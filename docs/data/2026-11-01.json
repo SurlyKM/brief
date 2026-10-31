@@ -18,6 +18,101 @@
    "takeaway": "Upgrade and installer paths often run with elevated trust and can be overlooked in security reviews. Defenders should treat OS update mechanisms as part of the attack surface."
   },
   {
+   "id": "ad4296e15ebcf305",
+   "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-10-30T16:11:44+00:00",
+   "topics": [
+    "SOC",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 9,
+   "summary": "Microsoft Threat Intelligence describes two intrusions where attackers impersonated help desk staff over Teams and used Quick Assist to gain interactive access. The attackers staged portable runtimes, performed discovery, then abused AD CS. In one case they used an ESC1 template to get privileged certificates and performed DCSync, and in the other they used PetitPotam and NTLM relay to ESC8 to obtain a domain controller certificate and authenticate via PKINIT. Defender containment blocked much activity in the first case, but a privileged identity excluded from automated containment remained a ",
+   "takeaway": "Automated containment is only as strong as its coverage, so any privileged identity exempted from it becomes the weak point. Relay attacks against AD CS web enrollment can be stopped by enforcing HTTPS and Extended Protection for Authentication."
+  },
+  {
+   "id": "15ac40d51959b6fc",
+   "title": "Reversing to Engineer: Learning to 'Secure' XPC from a Patch",
+   "url": "https://objective-see.org/blog.html#blogEntry7",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:13:15.166461+00:00",
+   "topics": [
+    "Reverse engineering",
+    "macOS and iOS",
+    "Exploits"
+   ],
+   "relevance": 8,
+   "summary": "The author reverses Apple's patch for the RootPipe issue to understand the underlying XPC flaw. That understanding is then used to harden the XPC service in the author's own tool, TaskExplorer. The write-up shows how a patch diff can expose the vulnerable pattern.",
+   "takeaway": "A security patch is a map of the bug: diffing before and after reveals the vulnerable logic, which you can then check for in your own IPC code."
+  },
+  {
+   "id": "1ee3fd057e0000a3",
+   "title": "Block Blocking Login Items",
+   "url": "https://objective-see.org/blog/blog_0x31.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:13:15.165681+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "Apple changed how macOS stores login items, so the author shows how to parse the new files to detect persistence. The post is a practical guide to finding persistence in the updated format.",
+   "takeaway": "Persistence detection depends on parsing the store the OS currently uses, so detection tooling must be updated whenever the storage format changes."
+  },
+  {
+   "id": "2e54cc0428bafab5",
+   "title": "Escaping the Microsoft Office Sandbox",
+   "url": "https://objective-see.org/blog/blog_0x35.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:13:15.165622+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The author describes gaining code execution through a malicious Word document, then escaping the Microsoft Office sandbox using a faulty regular expression. The escape is used to persist beyond the sandbox.",
+   "takeaway": "Sandbox escapes often come from flawed input validation in policy or parsing logic rather than from the sandbox kernel itself. Test the rules that decide what is allowed, not just the isolation mechanism."
+  },
+  {
+   "id": "448ed94bf5562489",
+   "title": "[0day] Abusing XLM Macros in SYLK Files",
+   "url": "https://objective-see.org/blog/blog_0x50.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:13:15.165222+00:00",
+   "topics": [
+    "Exploits",
+    "macOS and iOS",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The author reports a zero-day logic flaw in Microsoft Excel that enables code execution on macOS through malicious macros embedded in SYLK files. The attack uses the XLM macro mechanism.",
+   "takeaway": "Attackers may hide macro execution in less common file formats that users and mail gateways do not expect, so file type handling is part of the attack surface."
+  },
+  {
+   "id": "90bf52f1af4b8584",
+   "title": "Mass Surveillance, is an (un)Complicated Business",
+   "url": "https://objective-see.org/blog/blog_0x52.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:13:15.165180+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The author reveals that a popular iOS app is a government surveillance tool. The analysis decrypts the app binary and studies its network traffic to show what it does.",
+   "takeaway": "Decrypting App Store binaries and observing network traffic lets you verify what an app actually does, rather than relying on its stated behaviour."
+  },
+  {
    "id": "3ca374567b59352b",
    "title": "Monitoring Process Creation via the Kernel (Part II)",
    "url": "https://objective-see.org/blog/blog_0x0A.html",
@@ -130,115 +225,19 @@
    "takeaway": "When analysing a macOS implant, map the install and persistence logic first, since those artefacts give defenders the most reliable detection points."
   },
   {
-   "id": "44da1dc151b48e16",
-   "title": "From the Top to the Bottom; Tracking down CVE-2017-7149",
-   "url": "https://objective-see.org/blog/blog_0x23.html",
-   "source": "Objective-See",
+   "id": "d6c6367093755380",
+   "title": "Inside a malicious Claude Code-branded extension and its persistent SSH backdoor",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
+   "source": "Microsoft Security Blog",
    "kind": "article",
-   "published": "2026-10-31T14:10:19.785581+00:00",
+   "published": "2026-10-31T01:02:57+00:00",
    "topics": [
-    "macOS and iOS",
-    "Exploits",
-    "Reverse engineering"
+    "Blue team",
+    "SOC"
    ],
-   "relevance": 7,
-   "summary": "This post traces CVE-2017-7149, a High Sierra flaw that let local attackers read the contents of encrypted APFS volumes. It walks through how the bug was tracked down through the system's code paths.",
-   "takeaway": "Encryption does not help if a privilege or access check fails at a lower layer of the stack. Trace data flow through the system, not just the crypto, when assessing protection claims."
-  },
-  {
-   "id": "e4cca17ead186614",
-   "title": "Ay MaMi - Analyzing a New macOS DNS Hijacker",
-   "url": "https://objective-see.org/blog/blog_0x26.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.785484+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Reverse engineering",
-    "Blue team"
-   ],
-   "relevance": 7,
-   "summary": "The article analyses OSX/MaMi, an early 2018 Mac malware family that changed infected users' DNS settings and installed a malicious certificate in the System keychain. This gave attackers the ability to intercept network traffic.",
-   "takeaway": "Malware that adds a trusted root certificate can silently break TLS trust, so certificate stores and DNS configuration are key places to monitor. Checking both is a practical detection step."
-  },
-  {
-   "id": "4d5534fdce7d3c23",
-   "title": "Who Moved My Pixels?!",
-   "url": "https://objective-see.org/blog/blog_0x2C.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.785373+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Reverse engineering",
-    "Blue team"
-   ],
-   "relevance": 7,
-   "summary": "The post reverses Apple's screencapture utility and discusses macOS malware that captures desktop images. It also proposes methods for detecting unauthorised screen capture.",
-   "takeaway": "Legitimate system tools can be abused for collection, so detection should focus on unusual invocation context and parentage rather than on the tool's name alone."
-  },
-  {
-   "id": "17a5e369308ce80a",
-   "title": "A Remote iOS Bug",
-   "url": "https://objective-see.org/blog/blog_0x34.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.785216+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Exploits"
-   ],
-   "relevance": 7,
-   "summary": "Apple built code to meet requirements from the Chinese government, and that code contained a flaw. In certain configurations, iOS devices were vulnerable to an emoji-related bug that could be triggered remotely. The teaser highlights the risk of region-specific features adding attack surface.",
-   "takeaway": "Compliance or localisation features often add code paths that receive less scrutiny, so they can carry serious remote risk."
-  },
-  {
-   "id": "f1c2efe3ff7394a4",
-   "title": "Rootpipe Reborn (Part II)",
-   "url": "https://objective-see.org/blog/blog_0x41.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.784974+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Exploits",
-    "Reverse engineering"
-   ],
-   "relevance": 7,
-   "summary": "This is the second part of a series on privilege escalation bugs in macOS, including CVE-2019-8521 and CVE-2019-8565. The bugs provide a route for a local process to gain root privileges.",
-   "takeaway": "A chain of previously patched privilege escalation bugs can reappear in variants, so patch verification should test the underlying trust flaw rather than only the specific fixed path."
-  },
-  {
-   "id": "48996fdd45ee63b1",
-   "title": "Writing a Process Monitor with Apple's Endpoint Security Framework",
-   "url": "https://objective-see.org/blog/blog_0x47.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.784852+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Programming",
-    "Blue team"
-   ],
-   "relevance": 7,
-   "summary": "The article shows how to use Apple's Endpoint Security framework, introduced in macOS 10.15, to build a user-mode process monitor. It is a hands-on guide to a modern telemetry API. Defenders can use the approach to watch process activity on Macs.",
-   "takeaway": "Endpoint Security gives user-mode tools a supported, event-driven way to observe process execution without relying on deprecated kernel hooks."
-  },
-  {
-   "id": "93d61ec4e2ac6bc8",
-   "title": "Writing a File Monitor with Apple's Endpoint Security Framework",
-   "url": "https://objective-see.org/blog/blog_0x48.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.784833+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Programming",
-    "Blue team"
-   ],
-   "relevance": 7,
-   "summary": "This companion piece uses Apple's Endpoint Security framework to build a user-mode file monitor for macOS 10.15. It covers how to capture file system events from a supported API. The result is a practical tool for watching file activity on a Mac.",
-   "takeaway": "File events from Endpoint Security can be combined with process events to reconstruct what a program did to the disk."
+   "relevance": 8,
+   "summary": "Microsoft describes a tampered version of the Claude Code extension that was served from the Cursor extension marketplace for several hours. The injected JavaScript loader tries to add an attacker's SSH key, enable SSH, set up a reverse SSH tunnel, and create persistence, even if the tunnel fails. Microsoft says the official Visual Studio Marketplace and npm packages were not affected.",
+   "takeaway": "Editor extension marketplaces are a real supply-chain risk, and a loader can leave keys and persistence behind even when remote access does not work. Hunt for unexpected authorised_keys entries and new persistence artifacts on any host that updated the extension."
   }
  ]
 }
