@@ -1,0 +1,244 @@
+{
+ "date": "2026-11-01",
+ "items": [
+  {
+   "id": "11d8ee7dc332913d",
+   "title": "[0day] Bypassing Apple's System Integrity Protection",
+   "url": "https://objective-see.org/blog/blog_0x14.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785815+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "relevance": 9,
+   "summary": "The post presents a zero-day that bypasses Apple's System Integrity Protection by abusing the local OS upgrade process. It is a significant finding because SIP is a core protection against tampering with system files.",
+   "takeaway": "Upgrade and installer paths often run with elevated trust and can be overlooked in security reviews. Defenders should treat OS update mechanisms as part of the attack surface."
+  },
+  {
+   "id": "3ca374567b59352b",
+   "title": "Monitoring Process Creation via the Kernel (Part II)",
+   "url": "https://objective-see.org/blog/blog_0x0A.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785984+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Blue team",
+    "Programming"
+   ],
+   "relevance": 8,
+   "summary": "This part of the series examines using the macOS KAuth subsystem to monitor process creation in the kernel. It also covers the limitations of that approach, which matter when you rely on it for detection.",
+   "takeaway": "A kernel-level event source can look authoritative, but its coverage gaps determine what a detection can actually see. Test what a monitoring hook misses before trusting it."
+  },
+  {
+   "id": "0444f867369c307d",
+   "title": "Monitoring Process Creation via the Kernel (Part III)",
+   "url": "https://objective-see.org/blog/blog_0x0B.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785967+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Blue team",
+    "Reverse engineering"
+   ],
+   "relevance": 8,
+   "summary": "This article explains how process creation events can be passed from kernel mode to user mode using the undocumented kev_msg_post function. It shows how an endpoint tool can get these notifications without relying on documented interfaces.",
+   "takeaway": "Undocumented kernel interfaces can be the only route to telemetry, but they are fragile across OS versions. Reverse engineering them is useful, though the approach needs regular re-validation after updates."
+  },
+  {
+   "id": "2ac2761290f46b8b",
+   "title": "[0day] Bypassing SIP via Sandboxing",
+   "url": "https://objective-see.org/blog/blog_0x33.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785235+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "A guest post by CodeColorist describes a zero-day in which macOS sandboxing is abused to make a SIP-protected process load an untrusted library. The post highlights how security mechanisms can combine to undermine each other.",
+   "takeaway": "Security features interact, and a restriction in one layer can be used to force behaviour in another. Threat models should consider how protections compose, not just how each one works alone."
+  },
+  {
+   "id": "65c43f9edd9c0952",
+   "title": "[0day] Synthetic Reality",
+   "url": "https://objective-see.org/blog/blog_0x36.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785178+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The post argues that software that can generate synthetic mouse clicks can bypass macOS protections. The claimed impact includes approving kernel extensions and dismissing privacy alerts without user consent.",
+   "takeaway": "User-consent prompts are only as strong as the assumption that a human produced the input, so any trust decision based on UI clicks can be defeated by synthetic events."
+  },
+  {
+   "id": "8db557aedccac6d6",
+   "title": "Middle East Cyber-Espionage",
+   "url": "https://objective-see.org/blog/blog_0x3B.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785080+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The APT group WindShift has been targeting Middle Eastern governments with macOS implants. This article begins analysis of OSX.WindTail, the group's first-stage implant. It is a concrete malware teardown of a targeted espionage tool.",
+   "takeaway": "First-stage implants are often small loaders, so analysing them early can reveal the infrastructure and later stages an attacker depends on."
+  },
+  {
+   "id": "2d6bf7d57bf9a893",
+   "title": "Middle East Cyber-Espionage (part two)",
+   "url": "https://objective-see.org/blog/blog_0x3D.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785044+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "This is the continuation of the WindTail analysis, extending the examination of WindShift's first-stage macOS implant. It builds on the earlier instalment to cover further behaviour of the malware. The series offers a detailed look at an APT tool targeting Mac users.",
+   "takeaway": "Multi-part malware analysis works well when each stage is traced from its entry point, so the full chain of execution stays clear."
+  },
+  {
+   "id": "064d7f0409b26e20",
+   "title": "The Dacls RAT ...now on macOS!",
+   "url": "https://objective-see.org/blog/blog_0x57.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.784622+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The post analyses the macOS variant of the Dacls remote access trojan, attributed to the Lazarus Group. It walks through the implant's installation logic, persistence mechanism and capabilities.",
+   "takeaway": "When analysing a macOS implant, map the install and persistence logic first, since those artefacts give defenders the most reliable detection points."
+  },
+  {
+   "id": "44da1dc151b48e16",
+   "title": "From the Top to the Bottom; Tracking down CVE-2017-7149",
+   "url": "https://objective-see.org/blog/blog_0x23.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785581+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Reverse engineering"
+   ],
+   "relevance": 7,
+   "summary": "This post traces CVE-2017-7149, a High Sierra flaw that let local attackers read the contents of encrypted APFS volumes. It walks through how the bug was tracked down through the system's code paths.",
+   "takeaway": "Encryption does not help if a privilege or access check fails at a lower layer of the stack. Trace data flow through the system, not just the crypto, when assessing protection claims."
+  },
+  {
+   "id": "e4cca17ead186614",
+   "title": "Ay MaMi - Analyzing a New macOS DNS Hijacker",
+   "url": "https://objective-see.org/blog/blog_0x26.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785484+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The article analyses OSX/MaMi, an early 2018 Mac malware family that changed infected users' DNS settings and installed a malicious certificate in the System keychain. This gave attackers the ability to intercept network traffic.",
+   "takeaway": "Malware that adds a trusted root certificate can silently break TLS trust, so certificate stores and DNS configuration are key places to monitor. Checking both is a practical detection step."
+  },
+  {
+   "id": "4d5534fdce7d3c23",
+   "title": "Who Moved My Pixels?!",
+   "url": "https://objective-see.org/blog/blog_0x2C.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785373+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The post reverses Apple's screencapture utility and discusses macOS malware that captures desktop images. It also proposes methods for detecting unauthorised screen capture.",
+   "takeaway": "Legitimate system tools can be abused for collection, so detection should focus on unusual invocation context and parentage rather than on the tool's name alone."
+  },
+  {
+   "id": "17a5e369308ce80a",
+   "title": "A Remote iOS Bug",
+   "url": "https://objective-see.org/blog/blog_0x34.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.785216+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits"
+   ],
+   "relevance": 7,
+   "summary": "Apple built code to meet requirements from the Chinese government, and that code contained a flaw. In certain configurations, iOS devices were vulnerable to an emoji-related bug that could be triggered remotely. The teaser highlights the risk of region-specific features adding attack surface.",
+   "takeaway": "Compliance or localisation features often add code paths that receive less scrutiny, so they can carry serious remote risk."
+  },
+  {
+   "id": "f1c2efe3ff7394a4",
+   "title": "Rootpipe Reborn (Part II)",
+   "url": "https://objective-see.org/blog/blog_0x41.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.784974+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Reverse engineering"
+   ],
+   "relevance": 7,
+   "summary": "This is the second part of a series on privilege escalation bugs in macOS, including CVE-2019-8521 and CVE-2019-8565. The bugs provide a route for a local process to gain root privileges.",
+   "takeaway": "A chain of previously patched privilege escalation bugs can reappear in variants, so patch verification should test the underlying trust flaw rather than only the specific fixed path."
+  },
+  {
+   "id": "48996fdd45ee63b1",
+   "title": "Writing a Process Monitor with Apple's Endpoint Security Framework",
+   "url": "https://objective-see.org/blog/blog_0x47.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.784852+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The article shows how to use Apple's Endpoint Security framework, introduced in macOS 10.15, to build a user-mode process monitor. It is a hands-on guide to a modern telemetry API. Defenders can use the approach to watch process activity on Macs.",
+   "takeaway": "Endpoint Security gives user-mode tools a supported, event-driven way to observe process execution without relying on deprecated kernel hooks."
+  },
+  {
+   "id": "93d61ec4e2ac6bc8",
+   "title": "Writing a File Monitor with Apple's Endpoint Security Framework",
+   "url": "https://objective-see.org/blog/blog_0x48.html",
+   "source": "Objective-See",
+   "kind": "article",
+   "published": "2026-10-31T14:10:19.784833+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "This companion piece uses Apple's Endpoint Security framework to build a user-mode file monitor for macOS 10.15. It covers how to capture file system events from a supported API. The result is a practical tool for watching file activity on a Mac.",
+   "takeaway": "File events from Endpoint Security can be combined with process events to reconstruct what a program did to the disk."
+  }
+ ]
+}
