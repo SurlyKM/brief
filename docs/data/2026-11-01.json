@@ -207,6 +207,22 @@
    "takeaway": "Monitoring the internal state of an agent before it acts can catch a policy breach earlier than filtering its output, but a baseline text classifier may do nearly as well, so test against one before crediting the internals."
   },
   {
+   "id": "52602a85793aa21c",
+   "title": "Soei: Structured Observability of Evidence and Intent for Multi-Agent AI Software Engineering",
+   "url": "https://arxiv.org/abs/2610.39468",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-29T06:40:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors examine what AI coding agents actually did during long, multi-session work, using 45 real sessions and over 100,000 records. They find that about 23 percent of code-editing episodes end without an independent check after the last edit, and that most to-dos marked complete after editing lack proof. They also report an unauthenticated local mutation surface in an existing observability tool and credential-like strings in 16 transcripts, and propose a hash-chained, provenance-based ledger that separates claims of completion from evidence.",
+   "takeaway": "An agent saying a task is done is a claim, not evidence. Keep a tamper-evident record of actions and separate verification proof from the agent's own statements, and check transcripts for leaked secrets."
+  },
+  {
    "id": "449cc9b2bd611d60",
    "title": "WebMaze: Defending Against LLM-Powered Web Scanners with Functionality-Coupled Deception",
    "url": "https://arxiv.org/abs/2610.38524",
@@ -220,21 +236,6 @@
    "relevance": 7,
    "summary": "WebMaze is a defence that embeds traps in real web pages and diverts LLM-based scanners into generated decoy sites while keeping genuine functionality intact. Across 12 applications and three scanners, decoy pages made up on average 93% of the distinct pages requested. Scanners still explored mostly decoys even when told about the mechanism and instructed to avoid it.",
    "takeaway": "Deception can be built into the application's own views so that automated LLM scanners waste their budget in decoy content without any harm to real users."
-  },
-  {
-   "id": "6d793b25ccffb8ee",
-   "title": "VeriCUA: Verification as Agentic Exploration for Computer-Using Agents",
-   "url": "https://arxiv.org/abs/2610.40578",
-   "source": "arXiv cs.AI",
-   "kind": "paper",
-   "published": "2026-10-29T17:45:26+00:00",
-   "topics": [
-    "AI and ML",
-    "Programming"
-   ],
-   "relevance": 6,
-   "summary": "The authors present VeriCUA, a platform-agnostic verifier for computer-using agents that builds a task rubric from the available context, then chooses GUI or code checks to gather evidence for unresolved requirements. Across online and offline settings it agrees better with reference labels than prior baselines, with the biggest gains on hard offline cases and stronger rejection of false completion claims. The analysis links these gains to complementary evidence sources and test-time exploration.",
-   "takeaway": "A single observation channel, whether screenshots or program state, gives an incomplete picture, so verification improves when it actively gathers evidence from several independent sources and applies explicit rules for combining them."
   }
  ]
 }
