@@ -1,18 +1,24 @@
-__pycache__/
-*.pyc
-.venv/
-.pytest_cache/
+# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 ._*
 .Spotlight-V100
 .Trashes
+__MACOSX/
+
+# Python
+__pycache__/
+*.pyc
 .venv/
 venv/
 .pytest_cache/
+
+# Secrets (the key should only ever live in the GitHub secret)
 .env
 .env.*
 *.key
+
+# Editors
 .vscode/
 .idea/

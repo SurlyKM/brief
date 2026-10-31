@@ -49,12 +49,22 @@ def score_item(item, topics):
     return total + item.get("bonus", 0), labels
 
 
-def shortlist(items, topics, limit):
-    """Score everything, drop zero-scorers, return the best `limit`."""
+def shortlist(items, topics, limit, per_kind=None):
+    """Score everything, drop zero-scorers, return the best candidates.
+
+    With per_kind set, papers and articles each get their own quota, so one
+    kind (for example a chatty blog with a source bonus) cannot crowd the
+    other out of the shortlist.
+    """
     scored = []
     for it in items:
         s, labels = score_item(it, topics)
         if s > 0:
             scored.append({**it, "prefilter": s, "hint_topics": labels})
     scored.sort(key=lambda x: (x["prefilter"], x["published"]), reverse=True)
-    return scored[:limit]
+    if not per_kind:
+        return scored[:limit]
+    picked = []
+    for kind in ("paper", "article"):
+        picked += [s for s in scored if s["kind"] == kind][:per_kind]
+    return picked

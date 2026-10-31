@@ -6,7 +6,9 @@
 
 # Selection settings
 selection:
-  candidates_per_run: 40      # best pre-filter matches sent to the model
+  candidates_per_run: 40      # used only if candidates_per_kind is not set
+  candidates_per_kind: 20     # shortlist slots for papers and for articles each
+  min_papers_per_day: 5       # papers guaranteed a place in the daily cap
   batch_size: 8               # articles per model request
   min_relevance: 5            # model scores 0-10; below this is dropped
   max_items_per_day: 15       # cap per calendar day (Australia/Sydney)

@@ -101,10 +101,20 @@ def fetch_feeds(feeds, cutoff):
             log(f"[feed] {f['name']}: no entries (bozo={feed.get('bozo')}), skipped")
             continue
         kept = 0
+        undated = 0
         for e in feed.entries:
             when = entry_time(e)
             link = e.get("link")
-            if not link or (when and when < cutoff):
+            if not link:
+                continue
+            if when is None:
+                # No usable date: only trust the 3 newest entries in the feed,
+                # otherwise a feed without dates would look brand new every run.
+                undated += 1
+                if undated > 3:
+                    continue
+                when = datetime.now(timezone.utc)
+            elif when < cutoff:
                 continue
             # Prefer full content when the feed includes it, else the summary.
             body = ""

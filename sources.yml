@@ -3,7 +3,7 @@
 
 # How far back to look on each run. Items already processed are skipped,
 # so a generous window just means a missed run catches up on its own.
-lookback_hours: 72
+lookback_hours: 168
 
 # arXiv categories. Full list: https://arxiv.org/category_taxonomy
 arxiv:
@@ -45,9 +45,6 @@ feeds:
   - name: Elastic Security Labs
     url: https://www.elastic.co/security-labs/rss/feed.xml
     bonus: 2
-  - name: Hex-Rays Blog
-    url: https://hex-rays.com/blog/feed/
-    bonus: 1
   - name: Krebs on Security
     url: https://krebsonsecurity.com/feed/
     bonus: 0

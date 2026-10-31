@@ -40,20 +40,34 @@ def save_seen(data_dir, seen, today):
     write_json(Path(data_dir) / "seen.json", kept)
 
 
-def merge_day(data_dir, today, new_items, cap):
-    """Add new items to today's file, re-rank, and keep the best `cap`."""
+def merge_day(data_dir, today, new_items, cap, min_papers=0):
+    """Add new items to today's file, re-rank, and keep the best `cap`.
+
+    min_papers reserves that many places for papers (if enough exist) by
+    displacing the lowest-ranked non-papers, so research is not squeezed out
+    by higher-scoring blog posts.
+    """
     path = Path(data_dir) / f"{today}.json"
     day = read_json(path, {"date": today, "items": []})
     combined = {i["id"]: i for i in day["items"]}
     for i in new_items:
         combined[i["id"]] = i
-    ranked = sorted(
-        combined.values(),
-        key=lambda i: (i["relevance"], i["published"]),
-        reverse=True,
-    )[:cap]
-    write_json(path, {"date": today, "items": ranked})
-    return len(ranked)
+
+    def sort_key(i):
+        return (i["relevance"], i["published"])
+
+    ranked = sorted(combined.values(), key=sort_key, reverse=True)
+    top = ranked[:cap]
+    if min_papers:
+        short_by = min_papers - sum(i["kind"] == "paper" for i in top)
+        extra = [i for i in ranked[cap:] if i["kind"] == "paper"][:max(short_by, 0)]
+        if extra:
+            non_papers = [t for t in top if t["kind"] != "paper"]
+            drop = {i["id"] for i in non_papers[-len(extra):]}
+            top = sorted([t for t in top if t["id"] not in drop] + extra,
+                         key=sort_key, reverse=True)
+    write_json(path, {"date": today, "items": top})
+    return len(top)
 
 
 def rebuild_index(data_dir):

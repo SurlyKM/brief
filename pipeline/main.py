@@ -57,7 +57,8 @@ def main():
     log(f"{len(fresh)} not seen before")
 
     # 3. Cheap local shortlist
-    short = prefilter.shortlist(fresh, topics, sel["candidates_per_run"])
+    short = prefilter.shortlist(fresh, topics, sel["candidates_per_run"],
+                                sel.get("candidates_per_kind"))
     log(f"{len(short)} shortlisted for analysis")
     if not short:
         store.rebuild_index(args.data_dir)
@@ -89,7 +90,8 @@ def main():
     log(f"{len(keep)} cleared the relevance bar ({len(scored_ids)} scored)")
 
     # 6. Save
-    total = store.merge_day(args.data_dir, today, keep, sel["max_items_per_day"])
+    total = store.merge_day(args.data_dir, today, keep, sel["max_items_per_day"],
+                            sel.get("min_papers_per_day", 0))
     for i in scored_ids:
         seen[i] = today
     store.save_seen(args.data_dir, seen, today)
