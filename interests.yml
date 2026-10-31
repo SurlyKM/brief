@@ -1,0 +1,72 @@
+# Your topics. Each topic has a label (shown as a filter chip on the page),
+# a weight, and keywords used for a cheap pre-filter BEFORE any paid model call.
+# Keywords are matched case-insensitively as whole words or phrases.
+#
+# Add a topic, remove one, or tweak keywords at any time.
+
+# Selection settings
+selection:
+  candidates_per_run: 40      # best pre-filter matches sent to the model
+  batch_size: 8               # articles per model request
+  min_relevance: 5            # model scores 0-10; below this is dropped
+  max_items_per_day: 15       # cap per calendar day (Australia/Sydney)
+  timezone: Australia/Sydney
+
+topics:
+  - label: AI and ML
+    weight: 2
+    keywords: [llm, large language model, machine learning, neural network, transformer,
+               fine-tuning, agent, agents, reinforcement learning, prompt injection,
+               jailbreak, diffusion, deep learning, foundation model]
+
+  - label: Programming
+    weight: 1
+    keywords: [compiler, rust, memory safety, static analysis, fuzzing, type system,
+               program analysis, sanitizer, concurrency, symbolic execution]
+
+  - label: Exploits
+    weight: 3
+    keywords: [exploit, vulnerability, cve, zero-day, 0-day, rce, remote code execution,
+               privilege escalation, use-after-free, buffer overflow, sandbox escape,
+               kernel, heap, rop, jit]
+
+  - label: macOS and iOS
+    weight: 3
+    keywords: [macos, ios, ipados, xnu, apple, darwin, gatekeeper, xprotect, tcc,
+               endpoint security framework, dyld, safari, webkit, swift, objective-c,
+               apple silicon, secure enclave]
+
+  - label: Reverse engineering
+    weight: 3
+    keywords: [reverse engineering, disassembly, decompiler, ghidra, ida pro, binary ninja,
+               malware analysis, deobfuscation, firmware, binary analysis, unpacking,
+               emulation, frida]
+
+  - label: VR
+    weight: 1
+    keywords: [virtual reality, vr, augmented reality, mixed reality, headset, vision pro,
+               quest, openxr, spatial computing]
+
+  - label: SOC
+    weight: 2
+    keywords: [soc, security operations, siem, sentinel, detection engineering, edr, xdr,
+               incident response, threat hunting, kql, sigma, telemetry, triage, dfir,
+               defender, crowdstrike]
+
+  - label: Defence
+    weight: 2
+    keywords: [defence, defense, nation-state, apt, critical infrastructure, military,
+               cyber command, supply chain, espionage, ransomware, threat actor,
+               essential eight]
+
+  - label: Red team
+    weight: 3
+    keywords: [red team, red teaming, adversary emulation, c2, command and control, phishing,
+               initial access, lateral movement, active directory, kerberos, evasion,
+               cobalt strike, penetration test, pentest, post-exploitation]
+
+  - label: Blue team
+    weight: 2
+    keywords: [blue team, detection, hardening, mitigation, forensics, logging, yara,
+               threat intelligence, honeypot, honeytoken, deception, zero trust,
+               mitre att&ck]

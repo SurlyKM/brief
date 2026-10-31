@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Daily Brief</title>
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --ink: #121212;
+    --muted: #5f5f5f;
+    --rule: #d9d6cf;
+    --rule-strong: #121212;
+    --accent: #326891;
+    --panel: #f1eee7;
+    --serif: Georgia, "Times New Roman", Times, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212; --ink: #ececec; --muted: #a2a2a2; --rule: #333;
+      --rule-strong: #ececec; --accent: #7fb2dd; --panel: #1c1c1c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--serif); line-height: 1.5; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* Masthead */
+  header { text-align: center; padding: 28px 0 10px; border-bottom: 3px double var(--rule-strong); }
+  header h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 700; letter-spacing: -0.5px; }
+  .dateline { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+              font-family: var(--sans); font-size: 0.8rem; color: var(--muted);
+              padding: 10px 0; border-bottom: 1px solid var(--rule-strong); flex-wrap: wrap; }
+  .dateline strong { color: var(--ink); font-weight: 600; }
+  .nav button { font: inherit; background: none; border: 1px solid var(--rule); color: var(--ink);
+                padding: 4px 10px; cursor: pointer; border-radius: 2px; }
+  .nav button:disabled { opacity: 0.35; cursor: default; }
+  .nav select { font: inherit; background: var(--bg); color: var(--ink); border: 1px solid var(--rule);
+                padding: 4px 6px; border-radius: 2px; }
+
+  /* Topic filter */
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid var(--rule);
+           font-family: var(--sans); font-size: 0.78rem; }
+  .chip { background: none; border: 1px solid var(--rule); color: var(--ink); padding: 4px 11px;
+          border-radius: 999px; cursor: pointer; font: inherit; }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* Stories */
+  .kicker { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .story h2, .story h3 { margin: 0 0 8px; line-height: 1.2; font-weight: 700; }
+  .story h2 a, .story h3 a { text-decoration: none; }
+  .story h2 a:hover, .story h3 a:hover { text-decoration: underline; }
+  .summary { margin: 0 0 12px; }
+  .takeaway { background: var(--panel); border-left: 3px solid var(--accent); padding: 10px 12px;
+              margin: 0 0 12px; font-size: 0.95em; }
+  .takeaway b { display: block; font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.08em;
+                text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .meta { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); display: flex;
+          justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .meta a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+
+  .lead { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .lead h2 { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
+  .lead .summary { font-size: 1.12rem; max-width: 780px; }
+  .lead .takeaway { max-width: 780px; }
+
+  .grid { display: grid; grid-template-columns: 1fr; }
+  .grid .story { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  .grid h3 { font-size: 1.28rem; }
+  @media (min-width: 760px) {
+    .grid { grid-template-columns: repeat(2, 1fr); column-gap: 0; }
+    .grid .story { padding: 20px 22px; }
+    .grid .story:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--rule); }
+    .grid .story:nth-child(even) { padding-right: 0; }
+  }
+  @media (min-width: 1020px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+    .grid .story, .grid .story:nth-child(odd), .grid .story:nth-child(even) {
+      padding: 20px 22px; border-right: 1px solid var(--rule); }
+    .grid .story:nth-child(3n+1) { padding-left: 0; }
+    .grid .story:nth-child(3n) { padding-right: 0; border-right: none; }
+  }
+  .empty { text-align: center; color: var(--muted); padding: 60px 0; font-style: italic; }
+  footer { font-family: var(--sans); font-size: 0.72rem; color: var(--muted); text-align: center; padding-top: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><h1>The Daily Brief</h1></header>
+  <div class="dateline">
+    <span><strong id="date-label">Loading</strong> <span id="count"></span></span>
+    <span class="nav">
+      <button id="prev" aria-label="Older day">&larr; Older</button>
+      <select id="picker" aria-label="Jump to date"></select>
+      <button id="next" aria-label="Newer day">Newer &rarr;</button>
+    </span>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
+  <main id="stories"></main>
+  <footer id="updated"></footer>
+</div>
+
+<script>
+"use strict";
+// All content comes from JSON files that a script wrote from third-party feeds,
+// so every value is inserted with textContent, never innerHTML.
+
+const state = { dates: [], date: null, items: [], topic: null };
+const $ = (id) => document.getElementById(id);
+
+// Tiny helper: h("a", {href: "..."}, "text") builds a DOM element safely.
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
+  for (const kid of kids) if (kid != null) el.append(kid);
+  return el;
+}
+
+function safeUrl(u) {
+  try {
+    const url = new URL(u);
+    return (url.protocol === "https:" || url.protocol === "http:") ? url.href : "#";
+  } catch { return "#"; }
+}
+
+function fmtDate(iso) {
+  return new Intl.DateTimeFormat("en-AU", {
+    weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+  }).format(new Date(iso + "T00:00:00Z"));
+}
+
+function ago(iso) {
+  const hours = Math.max(0, (Date.now() - new Date(iso).getTime()) / 36e5);
+  if (hours < 24) return Math.max(1, Math.round(hours)) + "h ago";
+  return Math.round(hours / 24) + "d ago";
+}
+
+function story(item, isLead) {
+  const kicker = [...item.topics, item.source].join("  ·  ");
+  const title = h(isLead ? "h2" : "h3", {}, h("a", {
+    href: safeUrl(item.url), target: "_blank", rel: "noopener noreferrer" }, item.title));
+  return h("article", { class: isLead ? "lead story" : "story" },
+    h("div", { class: "kicker" }, kicker),
+    title,
+    h("p", { class: "summary" }, item.summary),
+    h("div", { class: "takeaway" }, h("b", {}, "Worth knowing"), item.takeaway),
+    h("div", { class: "meta" },
+      h("span", {}, (item.kind === "paper" ? "Paper" : "Article") + " · " + ago(item.published)),
+      h("a", { href: safeUrl(item.url), target: "_blank", rel: "noopener noreferrer" }, "Read the original →")));
+}
+
+function render() {
+  const main = $("stories");
+  main.replaceChildren();
+  const shown = state.items.filter((i) => !state.topic || i.topics.includes(state.topic));
+  $("count").textContent = shown.length ? "· " + shown.length + " stories" : "";
+  if (!shown.length) {
+    main.append(h("p", { class: "empty" }, "Nothing here yet for this selection."));
+    return;
+  }
+  main.append(story(shown[0], true));
+  const grid = h("div", { class: "grid" });
+  shown.slice(1).forEach((i) => grid.append(story(i, false)));
+  main.append(grid);
+}
+
+function renderChips() {
+  const box = $("chips");
+  box.replaceChildren();
+  const counts = {};
+  state.items.forEach((i) => i.topics.forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
+  const make = (label, value) => {
+    const b = h("button", { class: "chip", "aria-pressed": String(state.topic === value) }, label);
+    b.addEventListener("click", () => { state.topic = value; renderChips(); render(); });
+    return b;
+  };
+  box.append(make("All", null));
+  Object.keys(counts).sort().forEach((t) => box.append(make(t + " (" + counts[t] + ")", t)));
+}
+
+async function loadDay(date) {
+  state.date = date;
+  state.topic = null;
+  try {
+    const res = await fetch("data/" + date + ".json", { cache: "no-cache" });
+    state.items = res.ok ? (await res.json()).items : [];
+  } catch { state.items = []; }
+  const idx = state.dates.indexOf(date);
+  $("date-label").textContent = fmtDate(date);
+  $("picker").value = date;
+  $("prev").disabled = idx >= state.dates.length - 1;
+  $("next").disabled = idx <= 0;
+  history.replaceState(null, "", "#" + date);
+  renderChips();
+  render();
+}
+
+async function init() {
+  let index = { dates: [], updated: null };
+  try { index = await (await fetch("data/index.json", { cache: "no-cache" })).json(); } catch {}
+  state.dates = index.dates;
+  if (!state.dates.length) {
+    $("date-label").textContent = "No briefs yet";
+    $("stories").append(h("p", { class: "empty" }, "The first run has not completed. Check back soon."));
+    return;
+  }
+  const picker = $("picker");
+  state.dates.forEach((d) => picker.append(h("option", { value: d }, d)));
+  picker.addEventListener("change", () => loadDay(picker.value));
+  $("prev").addEventListener("click", () => loadDay(state.dates[state.dates.indexOf(state.date) + 1]));
+  $("next").addEventListener("click", () => loadDay(state.dates[state.dates.indexOf(state.date) - 1]));
+  if (index.updated) $("updated").textContent = "Last updated " + new Date(index.updated).toLocaleString("en-AU");
+  const wanted = location.hash.slice(1);
+  loadDay(state.dates.includes(wanted) ? wanted : state.dates[0]);
+}
+init();
+</script>
+</body>
+</html>

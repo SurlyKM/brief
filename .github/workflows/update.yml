@@ -1,0 +1,47 @@
+name: Update feed
+
+on:
+  schedule:
+    # Twice a day. Times are UTC: 20:00 and 08:00 are about 7am and 7pm in Sydney (AEDT).
+    - cron: "0 20 * * *"
+    - cron: "0 8 * * *"
+  workflow_dispatch:        # also lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write           # needed to commit the updated data files
+
+concurrency:
+  group: update-feed        # never run two updates at once
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch and process
+        env:
+          FEED_TOKEN: ${{ secrets.FEED_TOKEN }}
+        run: python -m pipeline.main
+
+      - name: Commit changes
+        run: |
+          git config user.name "feed-bot"
+          git config user.email "feed-bot@users.noreply.github.com"
+          git add docs/data
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update feed"
+            git push
+          fi

@@ -1,0 +1,53 @@
+# Where articles come from. Edit freely, no code changes needed.
+# After editing, the next scheduled run (or a manual run) picks it up.
+
+# How far back to look on each run. Items already processed are skipped,
+# so a generous window just means a missed run catches up on its own.
+lookback_hours: 72
+
+# arXiv categories. Full list: https://arxiv.org/category_taxonomy
+arxiv:
+  max_per_category: 60     # newest N per category per run
+  categories:
+    - cs.CR   # Cryptography and Security
+    - cs.AI   # Artificial Intelligence
+    - cs.LG   # Machine Learning
+    - cs.PL   # Programming Languages
+    - cs.SE   # Software Engineering
+    - cs.HC   # Human-Computer Interaction (VR lives here)
+    - cs.GR   # Graphics
+
+# Blog and news feeds. "bonus" nudges a source up the pre-filter ranking
+# (0 = neutral). Raise it for sources you almost always want to read.
+# Feed URLs change now and then; a dead feed is logged and skipped, not fatal.
+feeds:
+  - name: Google Project Zero
+    url: https://googleprojectzero.blogspot.com/feeds/posts/default
+    bonus: 3
+  - name: Objective-See
+    url: https://objective-see.org/rss.xml
+    bonus: 3
+  - name: Trail of Bits
+    url: https://blog.trailofbits.com/feed/
+    bonus: 2
+  - name: The DFIR Report
+    url: https://thedfirreport.com/feed/
+    bonus: 3
+  - name: Microsoft Security Blog
+    url: https://www.microsoft.com/en-us/security/blog/feed/
+    bonus: 1
+  - name: Google Cloud Threat Intelligence
+    url: https://cloudblog.withgoogle.com/topics/threat-intelligence/rss/
+    bonus: 2
+  - name: SentinelOne Labs
+    url: https://www.sentinelone.com/labs/feed/
+    bonus: 2
+  - name: Elastic Security Labs
+    url: https://www.elastic.co/security-labs/rss/feed.xml
+    bonus: 2
+  - name: Hex-Rays Blog
+    url: https://hex-rays.com/blog/feed/
+    bonus: 1
+  - name: Krebs on Security
+    url: https://krebsonsecurity.com/feed/
+    bonus: 0
