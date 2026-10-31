@@ -161,83 +161,80 @@
    "takeaway": "Security features interact, and a restriction in one layer can be used to force behaviour in another. Threat models should consider how protections compose, not just how each one works alone."
   },
   {
-   "id": "65c43f9edd9c0952",
-   "title": "[0day] Synthetic Reality",
-   "url": "https://objective-see.org/blog/blog_0x36.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.785178+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Exploits",
-    "Red team"
-   ],
-   "relevance": 8,
-   "summary": "The post argues that software that can generate synthetic mouse clicks can bypass macOS protections. The claimed impact includes approving kernel extensions and dismissing privacy alerts without user consent.",
-   "takeaway": "User-consent prompts are only as strong as the assumption that a human produced the input, so any trust decision based on UI clicks can be defeated by synthetic events."
-  },
-  {
-   "id": "8db557aedccac6d6",
-   "title": "Middle East Cyber-Espionage",
-   "url": "https://objective-see.org/blog/blog_0x3B.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.785080+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Reverse engineering",
-    "Red team"
-   ],
-   "relevance": 8,
-   "summary": "The APT group WindShift has been targeting Middle Eastern governments with macOS implants. This article begins analysis of OSX.WindTail, the group's first-stage implant. It is a concrete malware teardown of a targeted espionage tool.",
-   "takeaway": "First-stage implants are often small loaders, so analysing them early can reveal the infrastructure and later stages an attacker depends on."
-  },
-  {
-   "id": "2d6bf7d57bf9a893",
-   "title": "Middle East Cyber-Espionage (part two)",
-   "url": "https://objective-see.org/blog/blog_0x3D.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.785044+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Reverse engineering",
-    "Red team"
-   ],
-   "relevance": 8,
-   "summary": "This is the continuation of the WindTail analysis, extending the examination of WindShift's first-stage macOS implant. It builds on the earlier instalment to cover further behaviour of the malware. The series offers a detailed look at an APT tool targeting Mac users.",
-   "takeaway": "Multi-part malware analysis works well when each stage is traced from its entry point, so the full chain of execution stays clear."
-  },
-  {
-   "id": "064d7f0409b26e20",
-   "title": "The Dacls RAT ...now on macOS!",
-   "url": "https://objective-see.org/blog/blog_0x57.html",
-   "source": "Objective-See",
-   "kind": "article",
-   "published": "2026-10-31T14:10:19.784622+00:00",
-   "topics": [
-    "macOS and iOS",
-    "Reverse engineering",
-    "Blue team"
-   ],
-   "relevance": 8,
-   "summary": "The post analyses the macOS variant of the Dacls remote access trojan, attributed to the Lazarus Group. It walks through the implant's installation logic, persistence mechanism and capabilities.",
-   "takeaway": "When analysing a macOS implant, map the install and persistence logic first, since those artefacts give defenders the most reliable detection points."
-  },
-  {
-   "id": "d6c6367093755380",
-   "title": "Inside a malicious Claude Code-branded extension and its persistent SSH backdoor",
-   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
-   "source": "Microsoft Security Blog",
-   "kind": "article",
-   "published": "2026-10-31T01:02:57+00:00",
+   "id": "3edb924933411862",
+   "title": "How Deterministic SAST and AI Security Agents Divide the Work: Coverage, Harness Policy and Cost in Snyk VulnBench 2.0",
+   "url": "https://arxiv.org/abs/2610.38617",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-28T10:38:43+00:00",
    "topics": [
     "Blue team",
-    "SOC"
+    "AI and ML",
+    "Programming"
    ],
    "relevance": 8,
-   "summary": "Microsoft describes a tampered version of the Claude Code extension that was served from the Cursor extension marketplace for several hours. The injected JavaScript loader tries to add an attacker's SSH key, enable SSH, set up a reverse SSH tunnel, and create persistence, even if the tunnel fails. Microsoft says the official Visual Studio Marketplace and npm packages were not affected.",
-   "takeaway": "Editor extension marketplaces are a real supply-chain risk, and a loader can leave keys and persistence behind even when remote access does not work. Hunt for unexpected authorised_keys entries and new persistence artifacts on any host that updated the extension."
+   "summary": "The authors benchmark nine SAST and AI security configurations on 108 attacker-reachable vulnerabilities in 20 web applications, crediting a finding only when it names both the source and sink within two lines. Snyk Code and Claude Code each found about 80% of the vulnerabilities, but they disagreed on many cases, and together they reached 101 of 108. The AI harness, including its built-in review policy, shaped what was missed as much as the underlying model did.",
+   "takeaway": "Deterministic scanners and AI reviewers have complementary blind spots, so layering them is more effective than choosing one, and the harness wrapped around a model can matter as much as the model itself."
+  },
+  {
+   "id": "8564960f82410e0b",
+   "title": "BUSTA: Teaching Small Language Models to Reason About Binary Execution",
+   "url": "https://arxiv.org/abs/2610.36288",
+   "source": "arXiv cs.PL",
+   "kind": "paper",
+   "published": "2026-10-26T21:11:48+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The authors train small open models with reinforcement learning to predict the input register values that produce a given x86-64 basic block output state. Fine-tuning raises accuracy substantially, and the fine-tuned Nemotron-3-Nano comes within four points of frontier models at a far smaller parameter count. The training dataset and models are released.",
+   "takeaway": "Reinforcement learning on a narrow, verifiable reverse engineering task can give a small model useful low-level reasoning, which suits resource-constrained analysis environments."
+  },
+  {
+   "id": "27a55cd0e25c0a27",
+   "title": "Pre-Crime for Agents, at the Last Second: Probing When a Recruited Agent Gives In",
+   "url": "https://arxiv.org/abs/2610.40588",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-10-29T17:47:40+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that a linear probe on a target agent's activations can predict, before output is written, when the agent is about to leak a secret under peer pressure in a multi-agent setting. At a 5% benign flag rate it caught 82% of leaking calls, versus 26% for a zero-shot decision-model monitor. The probe also flags some permitted disclosures, and a simple bag-of-words classifier nearly matched it, so much of the gain comes from label training.",
+   "takeaway": "Monitoring the internal state of an agent before it acts can catch a policy breach earlier than filtering its output, but a baseline text classifier may do nearly as well, so test against one before crediting the internals."
+  },
+  {
+   "id": "449cc9b2bd611d60",
+   "title": "WebMaze: Defending Against LLM-Powered Web Scanners with Functionality-Coupled Deception",
+   "url": "https://arxiv.org/abs/2610.38524",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-28T09:35:14+00:00",
+   "topics": [
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "WebMaze is a defence that embeds traps in real web pages and diverts LLM-based scanners into generated decoy sites while keeping genuine functionality intact. Across 12 applications and three scanners, decoy pages made up on average 93% of the distinct pages requested. Scanners still explored mostly decoys even when told about the mechanism and instructed to avoid it.",
+   "takeaway": "Deception can be built into the application's own views so that automated LLM scanners waste their budget in decoy content without any harm to real users."
+  },
+  {
+   "id": "6d793b25ccffb8ee",
+   "title": "VeriCUA: Verification as Agentic Exploration for Computer-Using Agents",
+   "url": "https://arxiv.org/abs/2610.40578",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-10-29T17:45:26+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 6,
+   "summary": "The authors present VeriCUA, a platform-agnostic verifier for computer-using agents that builds a task rubric from the available context, then chooses GUI or code checks to gather evidence for unresolved requirements. Across online and offline settings it agrees better with reference labels than prior baselines, with the biggest gains on hard offline cases and stronger rejection of false completion claims. The analysis links these gains to complementary evidence sources and test-time exploration.",
+   "takeaway": "A single observation channel, whether screenshots or program state, gives an incomplete picture, so verification improves when it actively gathers evidence from several independent sources and applies explicit rules for combining them."
   }
  ]
 }
