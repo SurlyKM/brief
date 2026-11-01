@@ -126,6 +126,37 @@
    "takeaway": "Extension marketplaces can distribute trojanised code even when the original vendor is unaffected, so verify extension publishers and hunt for unexpected SSH keys and persistence after any automatic update."
   },
   {
+   "id": "27a55cd0e25c0a27",
+   "title": "Pre-Crime for Agents, at the Last Second: Probing When a Recruited Agent Gives In",
+   "url": "https://arxiv.org/abs/2610.40588",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-10-29T17:47:40+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The study tests whether a linear probe on an agent's internal activations can warn that it is about to leak a secret after a peer pressures it over many rounds. At a 5% benign flag rate, the probe catches 82% of leaking calls on Qwen3-32B, against 26% for a zero-shot decision-model monitor. The authors also find that a simple bag-of-words classifier performs nearly as well, so much of the gain comes from label training rather than activations.",
+   "takeaway": "Output filters only see what has already been written, so monitoring pre-generation state can give an overseer earlier warning, but a baseline trained on the same labels should always be checked before crediting the internals."
+  },
+  {
+   "id": "3edb924933411862",
+   "title": "How Deterministic SAST and AI Security Agents Divide the Work: Coverage, Harness Policy and Cost in Snyk VulnBench 2.0",
+   "url": "https://arxiv.org/abs/2610.38617",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-28T10:38:43+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Programming"
+   ],
+   "relevance": 7,
+   "summary": "The authors benchmark nine configurations of deterministic SAST and AI security agents on 108 reachable vulnerabilities across 20 web applications, scoring a finding only if its source and sink are located precisely. Snyk Code and Claude Code each reached roughly 80% recall and disagreed on many findings, and together they found 101 of 108. The harness and built-in review policy changed what the model could detect as much as the model itself did.",
+   "takeaway": "Deterministic scanners and AI agents miss different bugs, so combining them gives far better coverage than either alone, and the surrounding harness and policy strongly shape what an AI reviewer finds."
+  },
+  {
    "id": "887a530765a1fcc4",
    "title": "ICALL-BENCH: Benchmarking LLM Interprocedural Reasoning in Binary Programs",
    "url": "https://arxiv.org/abs/2610.37871",
@@ -139,6 +170,21 @@
    "relevance": 7,
    "summary": "ICALL-BENCH tests whether LLMs and agents can recover indirect-call targets across 50 real C/C++ binaries, using this as a measurable probe of interprocedural reasoning. Verifiable success ranged from 23% to 81%, and giving models more tools or internet access did not consistently help, especially on the hardest cases.",
    "takeaway": "Extra tools and retrieval do not fix weak cross-function reasoning in LLM-based binary analysis. Indirect-call resolution is a useful probe for separating reasoning from tool use."
+  },
+  {
+   "id": "8564960f82410e0b",
+   "title": "BUSTA: Teaching Small Language Models to Reason About Binary Execution",
+   "url": "https://arxiv.org/abs/2610.36288",
+   "source": "arXiv cs.PL",
+   "kind": "paper",
+   "published": "2026-10-26T21:11:48+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "The authors train small open models with reinforcement learning to predict input register values that produce a given output state for an x86-64 basic block. Fine-tuning raised accuracy substantially for both a 1.7B and a Nano model, and the latter came within four points of frontier models at a fraction of the size. The authors release the fine-tuned models and training data.",
+   "takeaway": "Narrow, verifiable reverse engineering skills such as reasoning about instruction semantics can be taught to small models with targeted reinforcement learning, which suits resource-constrained analysis sandboxes."
   },
   {
    "id": "2e0675284202e329",
@@ -173,65 +219,20 @@
    "takeaway": "When the vulnerability is poorly understood, explore several plausible root-cause hypotheses before committing to a fix, since a patch built on the wrong interpretation can pass superficial checks while leaving the flaw in place."
   },
   {
-   "id": "e1568c417060ac13",
-   "title": "ARBITRA: Robust Document-Level ATT&CK Extraction via Multi-Expert Argumentation",
-   "url": "https://arxiv.org/abs/2610.39433",
+   "id": "bb2b1ca6f3017f17",
+   "title": "Systematic Evaluation of Adversarial Jailbreaking Attacks and Defenses Across Seven Large Language Models",
+   "url": "https://arxiv.org/abs/2610.39509",
    "source": "arXiv cs.CR",
    "kind": "paper",
-   "published": "2026-10-29T06:09:41+00:00",
+   "published": "2026-10-29T07:07:58+00:00",
    "topics": [
     "AI and ML",
-    "SOC",
+    "Red team",
     "Blue team"
    ],
    "relevance": 6,
-   "summary": "ARBITRA extracts MITRE ATT&CK techniques from full cyber threat intelligence reports by having multiple role-specialised LLM experts propose candidates. A quantitative bipolar argumentation framework then verifies each candidate against document evidence. It achieves higher precision than sentence-level pipelines and frontier models and degrades less under adversarial perturbations such as conflicting TTP statements and semantic poisoning.",
-   "takeaway": "Verifying each candidate label against cited evidence with explicit supporting and attacking arguments makes automated threat mapping more precise and more resistant to poisoned or conflicting reporting."
-  },
-  {
-   "id": "cfa6962983e58590",
-   "title": "Provably Secure Diffusion Watermarking Against Removal Adversaries with Batched Detector Access",
-   "url": "https://arxiv.org/abs/2610.39189",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-10-29T02:12:28+00:00",
-   "topics": [
-    "AI and ML"
-   ],
-   "relevance": 6,
-   "summary": "The authors show that a recent defence for latent diffusion watermarks fails when an attacker can query a public detector in batches, because the secret transformations can be reconstructed and the decision boundary re-exposed. They propose a scheme mixing long-term and one-time secret transformations, and prove it resists removal attacks with a provable bound, with the bound tight at a sqrt(2) factor. Experiments on Stable Diffusion 2.1 and XL confirm the attack and show the new scheme keeps generation quality.",
-   "takeaway": "Hiding a detector's decision boundary with a fixed secret transform fails once an attacker can query it in volume, so per-sample randomness is needed to stop structure being reused across outputs."
-  },
-  {
-   "id": "0483984519f870ae",
-   "title": "Structured Security Explanations for Learning-Based Vulnerability Detection",
-   "url": "https://arxiv.org/abs/2610.37797",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-10-27T18:16:40+00:00",
-   "topics": [
-    "AI and ML",
-    "Reverse engineering",
-    "Exploits"
-   ],
-   "relevance": 6,
-   "summary": "VulnLens separates program-behaviour analysis from the final vulnerability decision for binary C/C++ code. A label-blind LLM writes structured explanations from seven fixed perspectives, such as data flow, memory access and object lifetime, and a supervised detector uses them with the code. It reaches 75.5% accuracy on a PrimeVul test set and beats two frontier LLMs on that set and on SecVulEval.",
-   "takeaway": "Asking an LLM to describe program behaviour from fixed perspectives, without revealing labels, can give a detector more useful signal than asking it for a verdict. Fixed analysis dimensions make the explanations more consistent."
-  },
-  {
-   "id": "12e34ae4b1c06233",
-   "title": "A Defense-Aware Explainable AI Framework for Feature-Level Vulnerability Analysis in Optimal Power Flow",
-   "url": "https://arxiv.org/abs/2610.38945",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-10-28T21:31:05+00:00",
-   "topics": [
-    "AI and ML",
-    "Defence"
-   ],
-   "relevance": 5,
-   "summary": "The paper argues that Shapley-based explainability wrongly marks highly influential inputs of OPF surrogate models as the most vulnerable, ignoring that these inputs may be the easiest for detectors to spot. It combines the surrogate's input-to-output dependencies with an autoencoder's input-to-input dependencies, and this identifies security-relevant features more accurately on IEEE test systems.",
-   "takeaway": "Rank attack surfaces by both impact and detectability, not impact alone. An attacker who must avoid detection will target a different set of inputs than one who does not."
+   "summary": "The authors test five jailbreak attack families against seven open LLMs and four defences. Obfuscation was the most transferable attack, and model size did not predict robustness, with models of the same family differing widely. Self-reminder prompting gave the most consistent defence with no false positives and no extra inference cost.",
+   "takeaway": "Model size and family are poor proxies for jailbreak resistance, so test each deployed model against each attack class and treat cheap prompt-level defences as a baseline to measure against."
   }
  ]
 }
