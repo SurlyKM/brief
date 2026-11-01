@@ -108,13 +108,12 @@ def fetch_feeds(feeds, cutoff):
             if not link:
                 continue
             if when is None:
-                # No usable date: only trust the 3 newest entries in the feed,
-                # otherwise a feed without dates would look brand new every run.
+                # No usable date, so we cannot tell new from old. Some feeds
+                # (Objective-See) keep years-old posts at the bottom with no
+                # date at all, so we skip these rather than pass them off as news.
                 undated += 1
-                if undated > 3:
-                    continue
-                when = datetime.now(timezone.utc)
-            elif when < cutoff:
+                continue
+            if when < cutoff:
                 continue
             # Prefer full content when the feed includes it, else the summary.
             body = ""
@@ -132,5 +131,5 @@ def fetch_feeds(feeds, cutoff):
                 "bonus": int(f.get("bonus", 0)),
             })
             kept += 1
-        log(f"[feed] {f['name']}: {kept} recent")
+        log(f"[feed] {f['name']}: {kept} recent, {undated} undated skipped")
     return items

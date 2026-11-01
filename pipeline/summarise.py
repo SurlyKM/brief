@@ -9,8 +9,7 @@ import os
 import re
 import sys
 
-# The secret and variable names are deliberately generic. The client is given
-# the key explicitly, so the SDK's default variable name is never needed.
+
 KEY_VAR = "FEED_TOKEN"
 MODEL_VAR = "FEED_MODEL"
 DEFAULT_MODEL = "claude-haiku-5-5"
