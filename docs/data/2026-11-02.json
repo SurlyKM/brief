@@ -1,0 +1,237 @@
+{
+ "date": "2026-11-02",
+ "items": [
+  {
+   "id": "ad4296e15ebcf305",
+   "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-10-30T16:11:44+00:00",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 9,
+   "summary": "Microsoft Threat Intelligence describes two intrusions that began with Teams impersonation of help desk staff and a user-approved Quick Assist session. In one case the attacker abused an ESC1 certificate template to obtain privileged authentication certificates and perform DCSync. In the other, PetitPotam forced a domain controller to authenticate to an attacker, which was relayed to AD CS web enrolment (ESC8) to obtain a domain controller certificate for PKINIT Kerberos access.",
+   "takeaway": "A single remote session can lead to certificate-based domain compromise, so AD CS templates and web enrolment need hardening and monitoring alongside NTLM relay defences."
+  },
+  {
+   "id": "843f0669e299ae9e",
+   "title": "Fuzzers vs. AI: Comparing Fuzzilli and BigSleep on JavaScript Engines",
+   "url": "https://projectzero.google/2026/10/fuzzing-v-AI.html",
+   "source": "Google Project Zero",
+   "kind": "article",
+   "published": "2026-10-27T07:00:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Programming"
+   ],
+   "relevance": 9,
+   "summary": "Project Zero compared Fuzzilli, a generative JavaScript fuzzer, with BigSleep, an LLM-based bug finder, on Chrome's V8 engine. Over six months BigSleep found 45 vulnerabilities to Fuzzilli's 37, with only 25% overlap in reported bugs, and dedicated experiments estimated theoretical overlap near 60%. The authors conclude that the two approaches find different bugs and recommend running both fuzzing and agentic analysis.",
+   "takeaway": "Measured overlap between tools depends on methodology, and the simple comparison tends to understate how much two tools agree. Use complementary techniques, since a large share of real bugs is found by only one approach."
+  },
+  {
+   "id": "1a8dd489f97c1b43",
+   "title": "InferD: A Honeypot Framework for AI Inference Infrastructure",
+   "url": "https://arxiv.org/abs/2610.39807",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T10:50:51+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors present InferD, a low-interaction honeypot that imitates AI inference services such as LLM APIs, vector databases and agent gateways. It answers every observable request from static response pools and never executes attacker input, and it adds a provenance plane that links planted credentials to later model-mediated use.",
+   "takeaway": "Deception can be made safe by reproducing the observable behaviour of a service from static data while never running the attacker's input. Tracking where a planted credential is later used can reveal downstream activity."
+  },
+  {
+   "id": "934df833f2e2ff2b",
+   "title": "SEAL: Sealed Queries for Local Sanitization against Indirect Prompt Injection",
+   "url": "https://arxiv.org/abs/2610.39758",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T10:11:51+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "SEAL is a defence against indirect prompt injection in local LLM agents that learns a soft prompt and scoring function offline to sanitise untrusted tool outputs. It deletes low-scoring spans while a preservation term keeps useful evidence and avoids a separate verifier model. On AgentDojo it cuts attack success from 34.6% to 0.1% and raises task completion under attack, using far fewer defence tokens than PISanitizer.",
+   "takeaway": "Prompt injection defences can be framed as learned token-level sanitisation of tool outputs, and should be judged on both attack success and task completion under attack, not attack suppression alone."
+  },
+  {
+   "id": "ba9385d9eea6ff47",
+   "title": "Where You Inject Matters: The Trust Region Effect in LLM Agents",
+   "url": "https://arxiv.org/abs/2610.38867",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-28T20:40:04+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The study tests indirect prompt injection in three agentic testbeds covering tool use, coding and daily workflows, holding the injected instruction constant. It finds agents follow the same malicious instruction at very different rates depending on where it sits, for example about 2.6 times more often in a README or TODO file than in a code or data file. The authors also build learning-based attackers that choose both placement and content to strengthen attacks.",
+   "takeaway": "Agents assign trust by location within their environment, so defenders should assess injection surfaces such as documentation files as well as the content of the injected text."
+  },
+  {
+   "id": "449cc9b2bd611d60",
+   "title": "WebMaze: Defending Against LLM-Powered Web Scanners with Functionality-Coupled Deception",
+   "url": "https://arxiv.org/abs/2610.38524",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-28T09:35:14+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "WebMaze embeds traps in genuine web pages that lead LLM-based scanners into generated decoy sites while leaving real functionality intact. Across 12 applications and three scanners, decoy pages made up an average of 93.0% of distinct pages requested, and scanners kept mostly exploring decoys even when told about the mechanism.",
+   "takeaway": "Deception works better when traps are coupled to real functionality, because automated tools cannot easily tell the decoy from the genuine application. Telling the scanner about the trap did not stop it from following the decoys."
+  },
+  {
+   "id": "c1cd946841703855",
+   "title": "Kernel eviction notice: What wesp.sys reveals about the Windows Endpoint Security Platform",
+   "url": "https://www.elastic.co/security-labs/blog/windows-endpoint-security-platform-wesp",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-10-26T00:00:00+00:00",
+   "topics": [
+    "Reverse engineering",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "Elastic reverse engineers the early Windows Endpoint Security Platform, finding the kernel mini-filter wesp.sys and its user-mode client espclient.dll in Windows Insider builds. Microsoft aims to move EDR out of the kernel and replace vendor drivers with one Microsoft-maintained driver, motivated by the July 2024 CrowdStrike incident. The article explains how current EDR kernel and user-mode components work and uses public symbols and kernel debugging to map the new design.",
+   "takeaway": "Moving security components out of the kernel reduces crash risk, but defenders should track how filter altitudes and filter communication ports change the way telemetry reaches the EDR."
+  },
+  {
+   "id": "d6c6367093755380",
+   "title": "Inside a malicious Claude Code-branded extension and its persistent SSH backdoor",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-10-31T01:02:57+00:00",
+   "topics": [
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "Microsoft analyses a tampered Claude Code extension that was briefly served from the Cursor extension marketplace. The injected JavaScript added an attacker SSH key, enabled the SSH service, set up reverse SSH forwarding and created startup persistence, and reported host details. The authors note the loader may leave keys and persistence even if the tunnel fails, and they set out immediate actions, hunting queries and indicators.",
+   "takeaway": "Extension marketplaces can distribute trojanised code even when the original vendor is unaffected, so verify extension publishers and hunt for unexpected SSH keys and persistence after any automatic update."
+  },
+  {
+   "id": "887a530765a1fcc4",
+   "title": "ICALL-BENCH: Benchmarking LLM Interprocedural Reasoning in Binary Programs",
+   "url": "https://arxiv.org/abs/2610.37871",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-27T19:15:15+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "ICALL-BENCH tests whether LLMs and agents can recover indirect-call targets across 50 real C/C++ binaries, using this as a measurable probe of interprocedural reasoning. Verifiable success ranged from 23% to 81%, and giving models more tools or internet access did not consistently help, especially on the hardest cases.",
+   "takeaway": "Extra tools and retrieval do not fix weak cross-function reasoning in LLM-based binary analysis. Indirect-call resolution is a useful probe for separating reasoning from tool use."
+  },
+  {
+   "id": "2e0675284202e329",
+   "title": "Tracking AI adoption in North Korean threat actor tradecraft",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-10-29T16:00:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 6,
+   "summary": "Microsoft tracks how North Korean threat actors have adopted AI across targeting, social engineering, tooling and operations. Examples include front-company campaigns, rapidly generated tailored lures, trojanised private repositories, and use of an open-source agentic penetration testing framework. The authors frame this as acceleration of existing revenue and targeting goals rather than a change in motivation, and they list mitigations and Defender detections.",
+   "takeaway": "AI mainly speeds up established attacker workflows such as persona building and lure creation, so defenders should focus on verifying identities and recognising high-volume, tailored social engineering."
+  },
+  {
+   "id": "bef3e3ed9491806a",
+   "title": "ExploreRepair: Evidence-Specialized Agents for Vulnerability Repair under Information Constraints",
+   "url": "https://arxiv.org/abs/2610.39899",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T12:09:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "The paper presents ExploreRepair, a multi-agent framework for fixing vulnerabilities when the developer lacks an accurate classification or a proof-of-vulnerability test. Three exploration agents each examine one dimension of the bug, and aggregators reconcile their candidate repairs without benchmark feedback. It reports higher repair success rates than EvoRepair and LoopRepair variants on PatchEval and VulnLoc+.",
+   "takeaway": "When the vulnerability is poorly understood, explore several plausible root-cause hypotheses before committing to a fix, since a patch built on the wrong interpretation can pass superficial checks while leaving the flaw in place."
+  },
+  {
+   "id": "e1568c417060ac13",
+   "title": "ARBITRA: Robust Document-Level ATT&CK Extraction via Multi-Expert Argumentation",
+   "url": "https://arxiv.org/abs/2610.39433",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T06:09:41+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "ARBITRA extracts MITRE ATT&CK techniques from full cyber threat intelligence reports by having multiple role-specialised LLM experts propose candidates. A quantitative bipolar argumentation framework then verifies each candidate against document evidence. It achieves higher precision than sentence-level pipelines and frontier models and degrades less under adversarial perturbations such as conflicting TTP statements and semantic poisoning.",
+   "takeaway": "Verifying each candidate label against cited evidence with explicit supporting and attacking arguments makes automated threat mapping more precise and more resistant to poisoned or conflicting reporting."
+  },
+  {
+   "id": "cfa6962983e58590",
+   "title": "Provably Secure Diffusion Watermarking Against Removal Adversaries with Batched Detector Access",
+   "url": "https://arxiv.org/abs/2610.39189",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T02:12:28+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "The authors show that a recent defence for latent diffusion watermarks fails when an attacker can query a public detector in batches, because the secret transformations can be reconstructed and the decision boundary re-exposed. They propose a scheme mixing long-term and one-time secret transformations, and prove it resists removal attacks with a provable bound, with the bound tight at a sqrt(2) factor. Experiments on Stable Diffusion 2.1 and XL confirm the attack and show the new scheme keeps generation quality.",
+   "takeaway": "Hiding a detector's decision boundary with a fixed secret transform fails once an attacker can query it in volume, so per-sample randomness is needed to stop structure being reused across outputs."
+  },
+  {
+   "id": "0483984519f870ae",
+   "title": "Structured Security Explanations for Learning-Based Vulnerability Detection",
+   "url": "https://arxiv.org/abs/2610.37797",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-27T18:16:40+00:00",
+   "topics": [
+    "AI and ML",
+    "Reverse engineering",
+    "Exploits"
+   ],
+   "relevance": 6,
+   "summary": "VulnLens separates program-behaviour analysis from the final vulnerability decision for binary C/C++ code. A label-blind LLM writes structured explanations from seven fixed perspectives, such as data flow, memory access and object lifetime, and a supervised detector uses them with the code. It reaches 75.5% accuracy on a PrimeVul test set and beats two frontier LLMs on that set and on SecVulEval.",
+   "takeaway": "Asking an LLM to describe program behaviour from fixed perspectives, without revealing labels, can give a detector more useful signal than asking it for a verdict. Fixed analysis dimensions make the explanations more consistent."
+  },
+  {
+   "id": "12e34ae4b1c06233",
+   "title": "A Defense-Aware Explainable AI Framework for Feature-Level Vulnerability Analysis in Optimal Power Flow",
+   "url": "https://arxiv.org/abs/2610.38945",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-28T21:31:05+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The paper argues that Shapley-based explainability wrongly marks highly influential inputs of OPF surrogate models as the most vulnerable, ignoring that these inputs may be the easiest for detectors to spot. It combines the surrogate's input-to-output dependencies with an autoencoder's input-to-input dependencies, and this identifies security-relevant features more accurately on IEEE test systems.",
+   "takeaway": "Rank attack surfaces by both impact and detectability, not impact alone. An attacker who must avoid detection will target a different set of inputs than one who does not."
+  }
+ ]
+}
