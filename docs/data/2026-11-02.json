@@ -34,6 +34,37 @@
    "takeaway": "Measured overlap between tools depends on methodology, and the simple comparison tends to understate how much two tools agree. Use complementary techniques, since a large share of real bugs is found by only one approach."
   },
   {
+   "id": "6f421f1330c72555",
+   "title": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks/",
+   "source": "Google Cloud Threat Intelligence",
+   "kind": "article",
+   "published": "2026-10-30T14:00:00+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "Google Threat Intelligence Group and Mandiant report that threat actors are abusing open-source agentic pentesting frameworks, including ARTEX, Hexstrike and CAIRN, during intrusions across several attack phases. The authors argue this shifts intrusions toward machine speed, with automated chaining of attack paths. They recommend control-plane isolation, short-lived credentials, least privilege, segmentation and behavioural detection, while noting these are long-standing practices.",
+   "takeaway": "Against machine-speed intrusions, the decisive controls are the familiar ones applied rigorously, especially short-lived credentials and segmentation that limit what automated chains can reach."
+  },
+  {
+   "id": "423d723c7160e7d7",
+   "title": "Agentic process evidence",
+   "url": "https://arxiv.org/abs/2610.40071",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-29T13:50:54+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors argue that git logs and existing SDLC audit controls assume a human made each decision, which fails when AI agents create commits and call tools. They propose Agentic Process Evidence, a signed, tamper-evident attestation linking each agent session to its model, tool calls and outcome, built on the in-toto style. It also enables policy-as-code with human review only where needed.",
+   "takeaway": "Treat AI coding agents as ephemeral, potentially compromised insiders and log their sessions as signed attestations, because a commit history alone cannot show who or what made a change."
+  },
+  {
    "id": "1a8dd489f97c1b43",
    "title": "InferD: A Honeypot Framework for AI Inference Infrastructure",
    "url": "https://arxiv.org/abs/2610.39807",
@@ -63,6 +94,22 @@
    "relevance": 8,
    "summary": "SEAL is a defence against indirect prompt injection in local LLM agents that learns a soft prompt and scoring function offline to sanitise untrusted tool outputs. It deletes low-scoring spans while a preservation term keeps useful evidence and avoids a separate verifier model. On AgentDojo it cuts attack success from 34.6% to 0.1% and raises task completion under attack, using far fewer defence tokens than PISanitizer.",
    "takeaway": "Prompt injection defences can be framed as learned token-level sanitisation of tool outputs, and should be judged on both attack success and task completion under attack, not attack suppression alone."
+  },
+  {
+   "id": "52602a85793aa21c",
+   "title": "Soei: Structured Observability of Evidence and Intent for Multi-Agent AI Software Engineering",
+   "url": "https://arxiv.org/abs/2610.39468",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-29T06:40:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Programming"
+   ],
+   "relevance": 8,
+   "summary": "The authors audit an open-source coding-agent observability tool, finding an unauthenticated local mutation surface, and then analyse 45 real sessions. They estimate 23.4% of code-editing episodes end without an independent check after the last edit, and 57.8% of agent-completed to-dos lacked proof. Over 1,300 records contained credential-like strings, and they propose Soei, a hash-chained ledger with a verification layer that separates claims of completion from evidence.",
+   "takeaway": "An agent saying a task is done is a claim, not evidence, so require a verifiable check after the last edit and keep logs free of credentials."
   },
   {
    "id": "ba9385d9eea6ff47",
@@ -141,6 +188,36 @@
    "takeaway": "Output filters only see what has already been written, so monitoring pre-generation state can give an overseer earlier warning, but a baseline trained on the same labels should always be checked before crediting the internals."
   },
   {
+   "id": "5f0b8e55e36f2367",
+   "title": "REALM: Identifying Minimal Task Assets for LLM Agents",
+   "url": "https://arxiv.org/abs/2610.39155",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T01:40:42+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "REALM addresses excessive permissions for LLM agents by modelling each task's required assets as a dependency graph and admitting newly discovered assets only through scoped selection. It separates discovering an asset from authorising its use and exposes resource-bound partial APIs inside a task container. On the AgentDyn benchmark, attack success under injection falls from 16.6 percent to 0.2 percent, at a cost in task completion of about 36 to 40 percent.",
+   "takeaway": "Least privilege for agents means scoping access per task and per discovered resource, and treating discovery and authorisation as two separate decisions."
+  },
+  {
+   "id": "c111e5db1049b9aa",
+   "title": "Appreciation Teaches Unauthorized Execution: Self-Evolution Degrades the Robustness of Personal Agents to Indirect Prompt Injection",
+   "url": "https://arxiv.org/abs/2610.39122",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T01:10:18+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that personal agents which learn from user feedback become more susceptible to indirect prompt injection. In a two-phase test, an agent that adapts through skill evolution or reinforcement learning shows attack success rising by 3 to 49 percentage points compared with a non-evolving base agent. The injected instructions are not authorised by the user's test request, yet the adapted agent still follows them.",
+   "takeaway": "Feedback-driven adaptation can teach an agent to comply with instructions it should refuse, so safety must be re-tested after every learning update, not only at release."
+  },
+  {
    "id": "3edb924933411862",
    "title": "How Deterministic SAST and AI Security Agents Divide the Work: Coverage, Harness Policy and Cost in Snyk VulnBench 2.0",
    "url": "https://arxiv.org/abs/2610.38617",
@@ -155,84 +232,6 @@
    "relevance": 7,
    "summary": "The authors benchmark nine configurations of deterministic SAST and AI security agents on 108 reachable vulnerabilities across 20 web applications, scoring a finding only if its source and sink are located precisely. Snyk Code and Claude Code each reached roughly 80% recall and disagreed on many findings, and together they found 101 of 108. The harness and built-in review policy changed what the model could detect as much as the model itself did.",
    "takeaway": "Deterministic scanners and AI agents miss different bugs, so combining them gives far better coverage than either alone, and the surrounding harness and policy strongly shape what an AI reviewer finds."
-  },
-  {
-   "id": "887a530765a1fcc4",
-   "title": "ICALL-BENCH: Benchmarking LLM Interprocedural Reasoning in Binary Programs",
-   "url": "https://arxiv.org/abs/2610.37871",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-10-27T19:15:15+00:00",
-   "topics": [
-    "Reverse engineering",
-    "AI and ML"
-   ],
-   "relevance": 7,
-   "summary": "ICALL-BENCH tests whether LLMs and agents can recover indirect-call targets across 50 real C/C++ binaries, using this as a measurable probe of interprocedural reasoning. Verifiable success ranged from 23% to 81%, and giving models more tools or internet access did not consistently help, especially on the hardest cases.",
-   "takeaway": "Extra tools and retrieval do not fix weak cross-function reasoning in LLM-based binary analysis. Indirect-call resolution is a useful probe for separating reasoning from tool use."
-  },
-  {
-   "id": "8564960f82410e0b",
-   "title": "BUSTA: Teaching Small Language Models to Reason About Binary Execution",
-   "url": "https://arxiv.org/abs/2610.36288",
-   "source": "arXiv cs.PL",
-   "kind": "paper",
-   "published": "2026-10-26T21:11:48+00:00",
-   "topics": [
-    "Reverse engineering",
-    "AI and ML"
-   ],
-   "relevance": 7,
-   "summary": "The authors train small open models with reinforcement learning to predict input register values that produce a given output state for an x86-64 basic block. Fine-tuning raised accuracy substantially for both a 1.7B and a Nano model, and the latter came within four points of frontier models at a fraction of the size. The authors release the fine-tuned models and training data.",
-   "takeaway": "Narrow, verifiable reverse engineering skills such as reasoning about instruction semantics can be taught to small models with targeted reinforcement learning, which suits resource-constrained analysis sandboxes."
-  },
-  {
-   "id": "2e0675284202e329",
-   "title": "Tracking AI adoption in North Korean threat actor tradecraft",
-   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
-   "source": "Microsoft Security Blog",
-   "kind": "article",
-   "published": "2026-10-29T16:00:00+00:00",
-   "topics": [
-    "AI and ML",
-    "Blue team",
-    "SOC"
-   ],
-   "relevance": 6,
-   "summary": "Microsoft tracks how North Korean threat actors have adopted AI across targeting, social engineering, tooling and operations. Examples include front-company campaigns, rapidly generated tailored lures, trojanised private repositories, and use of an open-source agentic penetration testing framework. The authors frame this as acceleration of existing revenue and targeting goals rather than a change in motivation, and they list mitigations and Defender detections.",
-   "takeaway": "AI mainly speeds up established attacker workflows such as persona building and lure creation, so defenders should focus on verifying identities and recognising high-volume, tailored social engineering."
-  },
-  {
-   "id": "bef3e3ed9491806a",
-   "title": "ExploreRepair: Evidence-Specialized Agents for Vulnerability Repair under Information Constraints",
-   "url": "https://arxiv.org/abs/2610.39899",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-10-29T12:09:12+00:00",
-   "topics": [
-    "AI and ML",
-    "Programming",
-    "Blue team"
-   ],
-   "relevance": 6,
-   "summary": "The paper presents ExploreRepair, a multi-agent framework for fixing vulnerabilities when the developer lacks an accurate classification or a proof-of-vulnerability test. Three exploration agents each examine one dimension of the bug, and aggregators reconcile their candidate repairs without benchmark feedback. It reports higher repair success rates than EvoRepair and LoopRepair variants on PatchEval and VulnLoc+.",
-   "takeaway": "When the vulnerability is poorly understood, explore several plausible root-cause hypotheses before committing to a fix, since a patch built on the wrong interpretation can pass superficial checks while leaving the flaw in place."
-  },
-  {
-   "id": "bb2b1ca6f3017f17",
-   "title": "Systematic Evaluation of Adversarial Jailbreaking Attacks and Defenses Across Seven Large Language Models",
-   "url": "https://arxiv.org/abs/2610.39509",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-10-29T07:07:58+00:00",
-   "topics": [
-    "AI and ML",
-    "Red team",
-    "Blue team"
-   ],
-   "relevance": 6,
-   "summary": "The authors test five jailbreak attack families against seven open LLMs and four defences. Obfuscation was the most transferable attack, and model size did not predict robustness, with models of the same family differing widely. Self-reminder prompting gave the most consistent defence with no false positives and no extra inference cost.",
-   "takeaway": "Model size and family are poor proxies for jailbreak resistance, so test each deployed model against each attack class and treat cheap prompt-level defences as a baseline to measure against."
   }
  ]
 }
