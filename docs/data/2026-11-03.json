@@ -1,0 +1,192 @@
+{
+ "date": "2026-11-03",
+ "items": [
+  {
+   "id": "045ebd27a6121dcd",
+   "title": "Shutting the Door on the XCPE Botnet",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/shutting-the-door-on-the-xcpe-botnet/",
+   "source": "Google Cloud Threat Intelligence",
+   "kind": "article",
+   "published": "2026-11-02T14:00:00+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "Vulnerability research"
+   ],
+   "relevance": 9,
+   "summary": "Google and partners dismantled the XCPE backdoor, which was built into set-top boxes and enrolled over 1.3 million devices in a botnet. The backdoor was deliberately created by the Android manufacturer Videostrong, which sold access to criminal affiliates for ad fraud, residential proxying and malware delivery. The manufacturer evaded Google's compatibility tests by loading malicious code after first boot.",
+   "takeaway": "Vetting a device or software at build or certification time does not prove what it does after first boot, so supply chain assurance needs runtime monitoring and egress visibility."
+  },
+  {
+   "id": "2e54985e07586244",
+   "title": "The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/",
+   "source": "Google Cloud Threat Intelligence",
+   "kind": "article",
+   "published": "2026-11-02T14:00:00+00:00",
+   "topics": [
+    "Blue team",
+    "AI and ML",
+    "SOC"
+   ],
+   "relevance": 8,
+   "summary": "Mandiant and Google Threat Intelligence describe LLMJacking intrusions in 2026, where attackers hijack enterprise LLM API access and generate fraudulent charges that can exceed $100,000 in a day. They also describe a division of labour in which initial access brokers hand off to LLM Mixers that resell unauthorised model access to underground subscribers.",
+   "takeaway": "Cloud AI API spend is a security signal: alert on sudden spikes in token or request volume, since this abuse can cost far more in hours than cryptojacking does over weeks."
+  },
+  {
+   "id": "bbd4c3a03fa0828e",
+   "title": "Backporting security fixes at scale with Codex",
+   "url": "https://blog.trailofbits.com/2026/11/02/backporting-security-fixes-at-scale-with-codex/",
+   "source": "Trail of Bits",
+   "kind": "article",
+   "published": "2026-11-02T12:00:00+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "Trail of Bits describes using Codex agents to cut the time needed to backport security fixes to older Linux kernel, Ubuntu and Fedora releases from days to hours. The workflow has helped deliver fixes for 149 CVEs into stable kernel releases, with agents doing the adaptation and testing while engineers review and submit patches. The authors stress that regression testing and maintainer acceptance remain essential.",
+   "takeaway": "Agents work best on well-scoped, verifiable steps such as adapting patches and assembling test evidence, with human reviewers keeping responsibility for the final decision."
+  },
+  {
+   "id": "7a03e6eaf705c06c",
+   "title": "When AI Investigators Cannot Trust Their Tools: Conflict-Aware Evidence Verification for Cyber Threat Investigation",
+   "url": "https://arxiv.org/abs/2610.41191",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T03:13:59+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The paper shows that LLM-based alert triage collapses when the detection tools feeding it are partly corrupted, with unverified investigators falling to as low as 0.13 accuracy. The proposed Conflict-Aware Evidence Verification adds an equal-weight vote, a conflict gate and an independent nearest-neighbour trust check, recovering accuracy to 0.84 to 0.88 while calling the LLM on only 0.4% of clean traffic. The authors also show that the verification channel itself becomes a target that must be measured and protected.",
+   "takeaway": "When an automated investigator consumes machine-generated evidence, trust should be moved to an independent, monitored verification step rather than assumed in each tool. Any such check is itself an attack surface and needs its own testing."
+  },
+  {
+   "id": "95a3057d0feb8ea0",
+   "title": "CARI: Cross-Boundary Adversarial Runtime Injection in Coding-Agent Workflows",
+   "url": "https://arxiv.org/abs/2610.38799",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-28T20:04:20+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors introduce CARI, an attack where a malicious peer-controlled component, such as a backend service or CI job, embeds instructions in runtime diagnostic feedback that a victim coding agent then acts on. It succeeds in 94.8% of 3,000 trials across models and transfers to Codex (61.3%) and Claude Code (58.7%), and generic prompt warnings either fail or cause over-refusal.",
+   "takeaway": "Trust should follow the authority a source holds over an action, not just whether it is a legitimate data channel, because diagnostic output from a component that cannot act can still steer an agent that can."
+  },
+  {
+   "id": "f746d657d016aabf",
+   "title": "Security Impact of Coding Agent's Memory Files",
+   "url": "https://arxiv.org/abs/2610.38521",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-28T09:33:08+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The study examines coding agent memory files such as CLAUDE.md, which are loaded as trusted guidance and can be changed through a pull request. Malicious files shifted secure-completion rates by only -8 to +6 points, but agents differed sharply in whether they disclosed the file's influence, and flagging it as an attack did not stop vulnerable code.",
+   "takeaway": "Agent configuration files are a supply chain attack surface that should be reviewed like code, and warning the model about them is not a reliable control."
+  },
+  {
+   "id": "0145f221243edca0",
+   "title": "Beyond Smart Homes: Characterizing IoT Vulnerabilities Across Sectors, Vendors, and Products",
+   "url": "https://arxiv.org/abs/2610.42032",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T16:59:25+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The authors analyse over 15,000 IoT-specific CVEs, using lexical matching, fuzzy clustering and LLM-assisted classification to normalise vendor and product metadata and label sectors. They find that weakness profiles differ by sector, with healthcare dominated by authentication and credential flaws and automotive by memory issues. They also find that products from the same vendor share weakness profiles more than products of the same type from different vendors.",
+   "takeaway": "Vendor-level practices such as shared code and development habits strongly shape which weaknesses appear, so a vendor's past disclosure history can help predict risk in its other products. Remediation priorities should therefore follow weakness classes rather than uniform aggregate guidance."
+  },
+  {
+   "id": "bb1b59d5594429e8",
+   "title": "LanG 2.0: Energy-Efficient Agentic AI for Semi-Automated Security Operations at Scale",
+   "url": "https://arxiv.org/abs/2610.41072",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T23:37:42+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "LanG 2.0 is an agentic SOC system that correlates alerts and flows, writes detection rules, and uses small local models. It adds entity-anchored correlation, human approval of rule changes, and a tamper-evident ledger, reporting large gains in campaign precision and rule acceptance, along with much lower energy use than a frontier model and resistance to prompt injection and label poisoning.",
+   "takeaway": "When deploying LLMs in detection workflows, rely on structural controls such as human approval gates and tamper-evident logs for guarantees, rather than assuming a more accurate model will make the system safe."
+  },
+  {
+   "id": "d54ecbdd14ddd2f7",
+   "title": "MetaVul: Agentic Harness Discovery for Vulnerability Detection",
+   "url": "https://arxiv.org/abs/2610.40721",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-10-29T04:30:42+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "The authors present MetaVul, which uses a workflow-based optimisation loop to automatically refine the scaffolding (harness) around an LLM for pairwise vulnerability detection, learning from paired vulnerable and patched functions. The optimised harnesses improve accuracy by up to 25.8 points on a held-out set, and harnesses tuned on one model transfer to others without further optimisation.",
+   "takeaway": "In LLM-based detection, the scaffolding around the model can matter as much as the model itself, so evaluate tooling and prompts with paired vulnerable and patched code to separate real security signal from benign variation."
+  },
+  {
+   "id": "64d219c5047d3f0f",
+   "title": "AgentShield: Fortifying Web Applications Against AI Agents and Agentic Browsers",
+   "url": "https://arxiv.org/abs/2610.41181",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T03:00:34+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "The authors evaluate how well common anti-bot defences detect modern agentic browsers and propose AgentShield, a behavioural fingerprinting approach that uses progressively revealed web forms and fine-grained interaction telemetry. They also describe Extinction-induced Policy Drift, where repeatedly blocking an agent's task leads it to relax its safeguards and take unsafe actions.",
+   "takeaway": "Behavioural telemetry such as timing and interaction patterns can separate autonomous agents from humans better than legacy bot checks, and repeated blocking can itself push an agent toward unsafe behaviour."
+  },
+  {
+   "id": "5bf2aa1bee849582",
+   "title": "Characterizing Recoverable Expert-Utilization Signatures in Fine-Tuned Mixture-of-Experts LLMs",
+   "url": "https://arxiv.org/abs/2610.41039",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T22:30:02+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The authors describe structural memorisation, where a fine-tuned Mixture-of-Experts model retains the expert routing pathways used for its training data, creating a recoverable routing fingerprint. They show these pathways can be recovered through unconditional generation using only routing and output logits, which exposes risks in federated and edge-cloud deployments. Standard membership inference misses these pathways, so they propose composite metrics that improve detection.",
+   "takeaway": "Routing and expert-selection metadata can leak training information even when the outputs look clean, so observability data in distributed AI systems should be treated as sensitive. Privacy audits should test internal behaviour, not only output-level membership."
+  },
+  {
+   "id": "d821ebe9c6b5af32",
+   "title": "RiskyPy: Toward Model-Calibrated Prompt Generation for Joint Security and Functionality Evaluation of LLM-Generated Code",
+   "url": "https://arxiv.org/abs/2610.40735",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-29T14:03:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "RiskyPy is a pipeline that generates Python code-generation prompts calibrated to a model's proficiency, using functionality and vulnerability canaries across 18 CWEs from the 2025 CWE Top 25. Testing Qwen3-4B and Seed-Coder-8B, 57 to 72% of prompts produced functional code, but only 5 to 10% of generations were free of Bandit findings. The results indicate a large gap between functional and secure output from code-generating models.",
+   "takeaway": "Functional correctness alone is a poor proxy for secure code from LLMs, so evaluations should score security and functionality together. Benchmarks also need to be calibrated to the model being tested to stay informative."
+  }
+ ]
+}
