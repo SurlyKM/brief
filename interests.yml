@@ -44,10 +44,13 @@ topics:
                malware analysis, deobfuscation, firmware, binary analysis, unpacking,
                emulation, frida]
 
-  - label: VR
-    weight: 1
-    keywords: [virtual reality, vr, augmented reality, mixed reality, headset, vision pro,
-               quest, openxr, spatial computing]
+  - label: Vulnerability research
+    weight: 3
+    keywords: [vulnerability research, vulnerability researcher, bug hunting, bug bounty,
+               patch diffing, bindiff, root cause analysis, n-day, 1-day, variant analysis,
+               crash triage, responsible disclosure, coordinated disclosure, proof of concept,
+               poc, attack surface, code audit, source code review, fuzzer, type confusion,
+               race condition, memory corruption, out-of-bounds, logic bug]
 
   - label: SOC
     weight: 2
