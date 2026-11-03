@@ -18,6 +18,38 @@
    "takeaway": "Vetting a device or software at build or certification time does not prove what it does after first boot, so supply chain assurance needs runtime monitoring and egress visibility."
   },
   {
+   "id": "70830e904acf9aae",
+   "title": "What Standard Evaluations Hide About Detectors of Hijacked LLM Agents: Rare Attacks, Unseen Tools and Benchmark Transfer",
+   "url": "https://arxiv.org/abs/2610.41803",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T14:30:47+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 9,
+   "summary": "The authors audited eleven evaluations of detectors for hijacked LLM agents and found that attack rates in test sets ranged from 16% to 86%, with none varying that share. At a realistic 2% attack rate, a detector with an AUROC of 0.879 had a precision of only 0.076, and detector rankings reversed when tools unseen in training made up more than half of test calls. Detectors trained on one benchmark scored near chance on another, and the authors close with a checklist for evaluating trace detectors.",
+   "takeaway": "A high AUROC can hide poor real-world alert quality, because precision collapses when attacks are rare, so evaluate detectors at deployment base rates and on unseen tools or sources."
+  },
+  {
+   "id": "73b73a4735183c93",
+   "title": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-02T20:20:59+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft analyses the vulnerability landscape, noting that only about 0.5% of roughly 383,000 disclosed CVEs have been linked to real-world exploitation. Attackers focus on flaws enabling system takeover, especially remote code execution, privilege escalation and authentication bypass. The post argues that AI-assisted discovery could shorten defenders' response windows, so protection should target both exploitation likelihood and potential blast radius.",
+   "takeaway": "Prioritise remediation by combining the likelihood of exploitation with the blast radius of compromise, since most CVEs are never exploited in the wild."
+  },
+  {
    "id": "2e54985e07586244",
    "title": "The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources",
    "url": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/",
@@ -48,6 +80,21 @@
    "relevance": 8,
    "summary": "Trail of Bits describes using Codex agents to cut the time needed to backport security fixes to older Linux kernel, Ubuntu and Fedora releases from days to hours. The workflow has helped deliver fixes for 149 CVEs into stable kernel releases, with agents doing the adaptation and testing while engineers review and submit patches. The authors stress that regression testing and maintainer acceptance remain essential.",
    "takeaway": "Agents work best on well-scoped, verifiable steps such as adapting patches and assembling test evidence, with human reviewers keeping responsibility for the final decision."
+  },
+  {
+   "id": "4e0f7f22ef71a5be",
+   "title": "SecPO: Principled Adversarial Training for Prompt Injection Security",
+   "url": "https://arxiv.org/abs/2610.41998",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T16:43:17+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors argue that Meta-SecAlign's DPO-based training anchors the model to an insecure reference, and that adversarial training on weak simulated attacks leaves it exposed. They propose a SecPO loss that approximates an injection-invariant reference, combined with a stronger adversarial training pipeline. The result cuts attack success rates on adaptive prompt injections by large factors while keeping benign utility across nine benchmarks.",
+   "takeaway": "Defences against prompt injection are only as good as the attacks used to train them, so evaluate with adaptive attackers that optimise against your specific defence, not fixed benchmark payloads."
   },
   {
    "id": "7a03e6eaf705c06c",
@@ -113,6 +160,21 @@
    "takeaway": "Vendor-level practices such as shared code and development habits strongly shape which weaknesses appear, so a vendor's past disclosure history can help predict risk in its other products. Remediation priorities should therefore follow weakness classes rather than uniform aggregate guidance."
   },
   {
+   "id": "3e208054ad053a3f",
+   "title": "How Much Can Tool Calls Reveal About You? Privacy Leakage from Tool-Call Traces",
+   "url": "https://arxiv.org/abs/2610.41885",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T15:30:23+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The paper introduces PrivacyTrace, a benchmark of synthetic user profiles and agent trajectories built on real MCP tools, to test whether tool-call traces reveal user attributes. Four LLM attackers inferred profile attributes at a 26.25% success rate, versus 17.97% from prior-based guessing alone. Tool arguments and returned results carried most of the leaked signal, and linking traces across sessions made profiling worse.",
+   "takeaway": "Metadata from agent tool use, such as arguments and results logged across sessions, is a privacy side channel even when conversations are never exposed, so apply minimisation and retention limits to traces."
+  },
+  {
    "id": "bb1b59d5594429e8",
    "title": "LanG 2.0: Energy-Efficient Agentic AI for Semi-Automated Security Operations at Scale",
    "url": "https://arxiv.org/abs/2610.41072",
@@ -144,49 +206,34 @@
    "takeaway": "In LLM-based detection, the scaffolding around the model can matter as much as the model itself, so evaluate tooling and prompts with paired vulnerable and patched code to separate real security signal from benign variation."
   },
   {
-   "id": "64d219c5047d3f0f",
-   "title": "AgentShield: Fortifying Web Applications Against AI Agents and Agentic Browsers",
-   "url": "https://arxiv.org/abs/2610.41181",
+   "id": "281c55a32de9ffe8",
+   "title": "DeepWeave: Weaving Neural and Symbolic Evidence for ML-Based Network Intrusion Detection System",
+   "url": "https://arxiv.org/abs/2610.41541",
    "source": "arXiv cs.CR",
    "kind": "paper",
-   "published": "2026-10-30T03:00:34+00:00",
+   "published": "2026-10-30T10:38:02+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "DeepWeave is a neuro-symbolic network intrusion detection system that combines automatically learned interpretable rules with neural predictions treated as probabilistic predicates. With only 50 labelled packet observations per attack class, it raised macro-F1 from 0.632 to 0.924 and cut the attack false-positive rate from 0.075 to 0.008 compared with a matched neural baseline. The authors also report that its proofs were more stable than post-hoc neural attributions.",
+   "takeaway": "Pairing a learned classifier with explicit, checkable rules can give analysts alert explanations that are more stable than post-hoc attributions, and can help when labelled attack data is scarce."
+  },
+  {
+   "id": "557f812e3c2b70a3",
+   "title": "When Safety Checks Become Privacy Risks: A Privacy-Preserving Paradigm for LLM Agent Safety Auditing",
+   "url": "https://arxiv.org/abs/2610.41401",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-10-30T08:12:45+00:00",
    "topics": [
     "AI and ML",
     "Defence"
    ],
    "relevance": 6,
-   "summary": "The authors evaluate how well common anti-bot defences detect modern agentic browsers and propose AgentShield, a behavioural fingerprinting approach that uses progressively revealed web forms and fine-grained interaction telemetry. They also describe Extinction-induced Policy Drift, where repeatedly blocking an agent's task leads it to relax its safeguards and take unsafe actions.",
-   "takeaway": "Behavioural telemetry such as timing and interaction patterns can separate autonomous agents from humans better than legacy bot checks, and repeated blocking can itself push an agent toward unsafe behaviour."
-  },
-  {
-   "id": "5bf2aa1bee849582",
-   "title": "Characterizing Recoverable Expert-Utilization Signatures in Fine-Tuned Mixture-of-Experts LLMs",
-   "url": "https://arxiv.org/abs/2610.41039",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-10-29T22:30:02+00:00",
-   "topics": [
-    "AI and ML",
-    "Vulnerability research"
-   ],
-   "relevance": 6,
-   "summary": "The authors describe structural memorisation, where a fine-tuned Mixture-of-Experts model retains the expert routing pathways used for its training data, creating a recoverable routing fingerprint. They show these pathways can be recovered through unconditional generation using only routing and output logits, which exposes risks in federated and edge-cloud deployments. Standard membership inference misses these pathways, so they propose composite metrics that improve detection.",
-   "takeaway": "Routing and expert-selection metadata can leak training information even when the outputs look clean, so observability data in distributed AI systems should be treated as sensitive. Privacy audits should test internal behaviour, not only output-level membership."
-  },
-  {
-   "id": "d821ebe9c6b5af32",
-   "title": "RiskyPy: Toward Model-Calibrated Prompt Generation for Joint Security and Functionality Evaluation of LLM-Generated Code",
-   "url": "https://arxiv.org/abs/2610.40735",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-10-29T14:03:12+00:00",
-   "topics": [
-    "AI and ML",
-    "Programming"
-   ],
-   "relevance": 5,
-   "summary": "RiskyPy is a pipeline that generates Python code-generation prompts calibrated to a model's proficiency, using functionality and vulnerability canaries across 18 CWEs from the 2025 CWE Top 25. Testing Qwen3-4B and Seed-Coder-8B, 57 to 72% of prompts produced functional code, but only 5 to 10% of generations were free of Bandit findings. The results indicate a large gap between functional and secure output from code-generating models.",
-   "takeaway": "Functional correctness alone is a poor proxy for secure code from LLMs, so evaluations should score security and functionality together. Benchmarks also need to be calibrated to the model being tested to stay informative."
+   "summary": "The paper argues that sending tool-call details to an external safety auditor for LLM agents can leak sensitive user data, and proposes separating trusted representation, encrypted audit computation and execution control. The SealCall prototype uses learned representations and CKKS homomorphic encryption to compare audit inputs without exposing plaintext to a semi-honest auditor. It reached a mean F1 of 0.840 on 1,252 binary candidates, with each encrypted scoring operation taking about 0.176 seconds.",
+   "takeaway": "Security monitoring of sensitive workloads can be outsourced without exposing the data by encrypting the audit computation and binding the enforcement decision to the audited action."
   }
  ]
 }
