@@ -1,0 +1,146 @@
+{
+ "date": "2026-11-06",
+ "items": [
+  {
+   "id": "4a1b3b5817769d2e",
+   "title": "When File Ingestion Misleads Language Models: Measuring and Mitigating Divergences in Office Documents",
+   "url": "https://arxiv.org/abs/2611.05806",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T01:32:31+00:00",
+   "topics": [
+    "Exploits",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors compare what common Office document extractors read from OOXML with what Office applications display, and find 19 channels where extractors read hidden content and 12 where they drop visible content. They build five attacks that make LLMs read a document differently from a human reviewer without any injected instruction, and every tested chat assistant and coding agent is misled by at least one. Their defence, Prism, reconstructs the human view from the OOXML specification before the text reaches the model.",
+   "takeaway": "Any pipeline that feeds a parser's view to a model or reviewer creates a gap with what a human sees, and that gap can be exploited without prompt injection, so it should be treated as an attack surface in its own right."
+  },
+  {
+   "id": "5a379f09430bea5f",
+   "title": "Reassessing Dataset Quality and Fine-Tuning Practices for Vulnerability Detection on PrimeVul dataset",
+   "url": "https://arxiv.org/abs/2611.06373",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T11:34:02+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "Across 770 fine-tuning runs of CodeBERT, GraphCodeBERT and UniXCoder on PrimeVul, the authors find that F1 and ROC-AUC sometimes look better while Matthews Correlation Coefficient stays near zero and calibration is poor. Imbalance handling, threshold tuning and calibration do not recover a real signal. The authors also trace the problem to the dataset itself, citing minimal semantic differences between vulnerable and fixed functions and noisy commit-level labels.",
+   "takeaway": "A rise in a headline metric such as F1 can hide a model that has learned almost nothing, so check MCC, calibration and false-positive behaviour, and audit the labels before trusting a benchmark."
+  },
+  {
+   "id": "caf549559c7713a5",
+   "title": "KVGuard: A KV Cache Safety Checker for LLM Serving Systems",
+   "url": "https://arxiv.org/abs/2611.06138",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T08:22:37+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper identifies a class of memory safety bugs in the KV cache used by PagedAttention-based LLM servers, including double-free, use-after-free and cross-request permission violations that silently corrupt outputs. KVGuard tracks shadow metadata for each physical block and runs five checks at the boundary where each violation is introduced. On vLLM and SGLang it covers all 29 historical bugs, finds 8 new violations with no false positives, and adds only about 3 to 7% latency overhead.",
+   "takeaway": "In custom allocators, memory bugs can corrupt data without crashing, so checks belong at the point where the invariant is broken rather than at the point where the bad output finally appears."
+  },
+  {
+   "id": "ccb791e01a5f529d",
+   "title": "PIMROP: A Feasibility Study of Return-Oriented Programming on Commercial Processing-in-Memory Architectures",
+   "url": "https://arxiv.org/abs/2611.06036",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T06:41:36+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Reverse engineering"
+   ],
+   "relevance": 7,
+   "summary": "PIMROP shows that return-oriented programming works on the UPMEM DPU, a commercially shipped processing-in-memory instruction set. The authors find 517 gadgets in the runtime library every kernel links and build two end-to-end attacks that leak a secret. Stack canaries and FORTIFY_SOURCE-style checks fail in platform-specific ways, and a bounds-checked DMA stops the attack.",
+   "takeaway": "New execution environments can carry old exploitation techniques into places where host-side defences do not reach, so every new instruction set needs its own gadget analysis and its own check on whether defences are actually active."
+  },
+  {
+   "id": "2dc05631f9b605da",
+   "title": "PatchCon: Patch-aware Weighted Supervised Contrastive Learning for Vulnerability Detection",
+   "url": "https://arxiv.org/abs/2611.06583",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T14:39:42+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The authors propose PatchCon, a CodeBERT-based model that treats vulnerable functions and their patched versions as hard negatives, weighting their contrastive loss more heavily. On the PairVul-Linux benchmark it raises pairwise accuracy from 0.2060 to 0.3264 and matches a GPT-4o-based method at much lower cost. It also holds up on Linux kernel CVEs disclosed after the training cutoff.",
+   "takeaway": "Vulnerability-fixing patches are a rich source of contrastive supervision, since the smallest security-relevant difference between a vulnerable function and its fix is exactly what a detector must learn to see."
+  },
+  {
+   "id": "92f300ab221fa59c",
+   "title": "Analysis of Local Open-Weight LLM Agents on Vulnerability-Reproduction Tasks",
+   "url": "https://arxiv.org/abs/2611.06257",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T10:07:14+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Exploits"
+   ],
+   "relevance": 6,
+   "summary": "The authors test twelve configurations of local open-weight models on ten CyberGym vulnerability-reproduction tasks, where the model must turn a bug description into an input that crashes the build. Every configuration, down to 4B parameters, solves most of the easier tasks, and the 27B model is needed for the harder ones. Quantisation changes speed but not which tasks are solved, and most failed runs still identify the right function and hypothesis, so the gap lies in turning that hypothesis into a working input.",
+   "takeaway": "For agentic exploit work, correct reasoning is often not the bottleneck; converting a sound hypothesis into an executable, verifiable input is the step that separates success from failure."
+  },
+  {
+   "id": "3895081f19499b5b",
+   "title": "SBVUL: Statement-Based Vulnerability Detection",
+   "url": "https://arxiv.org/abs/2611.06135",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T08:21:39+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "SBVul is an agentic LLM pipeline for C and C++ that first proposes candidate exploitable statements and then checks their control and data flow. It is evaluated against a manually verified statement-level ground truth built from the PrimeVul paired test set. The agent finds ground-truth statements in 56 to 77% of vulnerable functions, but also confirms candidates in 23 to 61% of patched functions, and reaches 42.0% pair accuracy against 33.8% for the best prior approach.",
+   "takeaway": "Localising the exploitable statement is more useful to developers than a function-level verdict, but a verifier must still be tested on patched code, because confident explanations can accept fixes just as easily as bugs."
+  },
+  {
+   "id": "019eee7962bb430b",
+   "title": "Constraint-Aware Evaluation of Reinforcement Learning and Unsupervised Anomaly Detection for Security Operations Alert Triage",
+   "url": "https://arxiv.org/abs/2611.05746",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T23:35:10+00:00",
+   "topics": [
+    "SOC",
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "The authors frame SOC alert triage as a constrained selection problem, with limited analyst capacity and asymmetric error costs, rather than as plain classification or anomaly detection. They compare an offline reinforcement learning policy, an Isolation Forest and an autoencoder on 74,909 analyst-labelled production alerts under a strict temporal split. All three meet the benign-escalation constraint, with reinforcement learning escalating benign alerts least often (0.000 against 0.007 and 0.041), and the methods prioritise largely different alert clusters.",
+   "takeaway": "Evaluate triage models against the operational constraints that actually bind, such as analyst capacity and escalation cost, and consider combining model families because they often surface different alerts."
+  },
+  {
+   "id": "ff7e90c3b1379364",
+   "title": "Trinetra.Q: Statistical and Behavioral Detection of Attacks on the Quantum-Error-Correction Layer and Classical Control Stack of Quantum Computing Systems",
+   "url": "https://arxiv.org/abs/2611.05722",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T22:50:14+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The authors present Trinetra.Q, a set of five cooperating detectors that watch the error-correction syndrome pipeline, decoder confidence, output divergence, and the classical control stack for tampering. Each detector alarms only on a statistically significant deviation from a baseline calibrated on honest runs. They test it in simulation and on three production IBM Heron processors, and a systematic mapping shows most physical-layer attacks are statistically null, with one measured covert channel as the exception.",
+   "takeaway": "Calibrating detectors against an honest-operation baseline and alarming only on significant deviations keeps false positives low, but it is only meaningful once it has been tested against an adaptive attacker who knows the detector."
+  }
+ ]
+}

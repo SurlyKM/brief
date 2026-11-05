@@ -1,6 +1,19 @@
 {
- "updated": "2026-11-05T00:42:40+00:00",
+ "updated": "2026-11-05T15:27:07+00:00",
+ "topics": [
+  "AI and ML",
+  "Programming",
+  "Exploits",
+  "macOS and iOS",
+  "Reverse engineering",
+  "Vulnerability research",
+  "SOC",
+  "Defence",
+  "Red team",
+  "Blue team"
+ ],
  "dates": [
+  "2026-11-06",
   "2026-11-05",
   "2026-11-04",
   "2026-11-03",
