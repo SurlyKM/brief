@@ -1,0 +1,210 @@
+{
+ "week": "2026-11-02",
+ "range": "2 to 8 November 2026",
+ "story_count": 75,
+ "days_covered": 5,
+ "partial": true,
+ "headline": "Agents Under Siege: Trust Fails at the Tool, the Update and the Parameter, While Real Intrusions Lean on Signed Software",
+ "themes": [
+  "The dominant pattern is that trust in LLM agents is being broken at points the model never sees. ETUDE (3eaf112c0f4fc0b2) hides malicious code in later tool updates, Step-Zero (4f0f05863a9578e7) shows harm occurring while an archive is unpacked before any content reaches the model, and the signed MCP tool paper (dff2c1828d5ea506) shows a signature proves publisher identity, not behaviour. Prompt-injection work refines the same point: CARI (95a3057d0feb8ea0) and parameter poisoning (63f0cc51563d2f2d) show that authority over an action or an argument matters more than whether a channel is legitimate, and Trust Region (ba9385d9eea6ff47) shows agents trust by location, such as README files. The defences that perform best, including SecureGARD (615d478541640e60), Baya (4cbcfb9ddd3cfd0d) and REALM (5f0b8e55e36f2367), enforce outside the model with deterministic state, fixed plans and scoped assets.",
+  "A second thread is that headline metrics flatter AI security tooling. The hijack-detector audit (70830e904acf9aae) shows an AUROC of 0.879 collapsing to 7.6% precision at a 2% attack rate. VeriHarm (2d694f5dcd1892e3) shows 95% task accuracy against 37% safe success, and the PrimeVul study (5a379f09430bea5f) shows F1 rising while MCC sits near zero. The forensic benign-label problem (6179752606a773e2) and the SAST versus agent comparison (3edb924933411862) add that label quality and tool complementarity matter, which echoes Project Zero's Fuzzilli versus BigSleep result (843f0669e299ae9e). The practical message is to evaluate at deployment base rates, against adaptive attackers, and to combine techniques rather than pick one.",
+  "Meanwhile the real-world intrusion reporting is conventional but fast. Elastic's quarterly (fe2f58fadfc9d2f1) shows signed RMM tools and AI assistants carrying whole intrusions, Microsoft's help desk impersonation to AD CS chain (ad4296e15ebcf305) needs only one user-approved Quick Assist session, and Google reports LLMJacking (2e54985e07586244) and agentic offensive frameworks (6f421f1330c72555) pushing attackers to machine speed. The XCPE takedown (045ebd27a6121dcd) and the malicious Claude Code extension (d6c6367093755380) both underline supply chain trust that was established at one point in time and not rechecked at runtime."
+ ],
+ "must_reads": [
+  {
+   "id": "70830e904acf9aae",
+   "title": "What Standard Evaluations Hide About Detectors of Hijacked LLM Agents: Rare Attacks, Unseen Tools and Benchmark Transfer",
+   "url": "https://arxiv.org/abs/2610.41803",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Defence"
+   ],
+   "kind": "paper",
+   "why": "This audit shows how standard evaluation of agent-hijack detectors overstates performance, with precision of 0.076 at a realistic 2% attack rate and rankings reversing on unseen tools. It gives a concrete checklist you can apply to any vendor claim about detection quality."
+  },
+  {
+   "id": "3eaf112c0f4fc0b2",
+   "title": "Beyond Prompt Injection: The Tool Update Gap in LLM Agent Security",
+   "url": "https://arxiv.org/abs/2611.01976",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "paper",
+   "why": "ETUDE demonstrates a 97.6% success supply chain attack across Claude Code, Codex CLI and Gemini CLI that runs entirely outside the model's context. It makes a strong case for pinning and re-verifying tool versions instead of relying on prompt-level defences."
+  },
+  {
+   "id": "ad4296e15ebcf305",
+   "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "SOC"
+   ],
+   "kind": "article",
+   "why": "Microsoft walks through two real intrusions from help desk impersonation to domain compromise via ESC1 and ESC8 AD CS abuse. It is directly actionable for both red and blue teams on template hardening, web enrolment and NTLM relay controls."
+  },
+  {
+   "id": "843f0669e299ae9e",
+   "title": "Fuzzers vs. AI: Comparing Fuzzilli and BigSleep on JavaScript Engines",
+   "url": "https://projectzero.google/2026/10/fuzzing-v-AI.html",
+   "source": "Google Project Zero",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Programming"
+   ],
+   "kind": "article",
+   "why": "Project Zero's careful comparison of Fuzzilli and BigSleep on V8 shows the two find largely different bugs, and explains why naive overlap measures understate agreement. It is a grounded, methodology-aware view of where AI bug finding actually adds value."
+  },
+  {
+   "id": "045ebd27a6121dcd",
+   "title": "Shutting the Door on the XCPE Botnet",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/shutting-the-door-on-the-xcpe-botnet/",
+   "source": "Google Cloud Threat Intelligence",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "Vulnerability research"
+   ],
+   "kind": "article",
+   "why": "The XCPE takedown shows a manufacturer deliberately shipping a backdoor and evading certification by loading code after first boot. It is a clear case for runtime monitoring and egress visibility in supply chain assurance."
+  }
+ ],
+ "lessons": [
+  {
+   "id": "70830e904acf9aae",
+   "title": "What Standard Evaluations Hide About Detectors of Hijacked LLM Agents: Rare Attacks, Unseen Tools and Benchmark Transfer",
+   "url": "https://arxiv.org/abs/2610.41803",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "A high AUROC can hide poor alert quality because precision collapses when attacks are rare. Evaluate detectors at realistic base rates and on tools or sources unseen in training."
+  },
+  {
+   "id": "4f0f05863a9578e7",
+   "title": "Step-Zero Attack: Agent Safety Before Observability",
+   "url": "https://arxiv.org/abs/2611.01953",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Vulnerability research"
+   ],
+   "kind": "paper",
+   "lesson": "Agents can cause harm in the first step of processing an untrusted archive, URL or image, before any content reaches the model. Enforce resource and output limits at the processing primitive itself, because later content guardrails come too late."
+  },
+  {
+   "id": "dff2c1828d5ea506",
+   "title": "Signed, Sealed, Leaked: Trust Beyond Signature for MCP Toolchains",
+   "url": "https://arxiv.org/abs/2611.06585",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "kind": "paper",
+   "lesson": "A code signature proves who published a tool, not that it behaves well. Limit what each tool call can see, for example by running it in a copy forked from a data-free parent, so any leak is bounded."
+  },
+  {
+   "id": "63f0cc51563d2f2d",
+   "title": "Right Tool, Wrong Parameters: Defending LLM Agents Against Parameter Poisoning",
+   "url": "https://arxiv.org/abs/2611.04673",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "Parameter poisoning keeps the intended action but alters an argument such as a recipient. Defend by checking whether the source of each parameter value is trusted to set that parameter, not only whether the action is allowed."
+  },
+  {
+   "id": "95a3057d0feb8ea0",
+   "title": "CARI: Cross-Boundary Adversarial Runtime Injection in Coding-Agent Workflows",
+   "url": "https://arxiv.org/abs/2610.38799",
+   "source": "arXiv cs.SE",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "Trust should follow the authority a source holds over an action, not merely whether it is a legitimate data channel. Diagnostic output from a component that cannot act can still steer an agent that can."
+  },
+  {
+   "id": "4a1b3b5817769d2e",
+   "title": "When File Ingestion Misleads Language Models: Measuring and Mitigating Divergences in Office Documents",
+   "url": "https://arxiv.org/abs/2611.05806",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Exploits",
+    "Red team",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "Any pipeline that feeds a parser's view of a document to a model creates a gap with what a human sees. That gap can be exploited without prompt injection, so reconstruct the human view before the text reaches the model."
+  },
+  {
+   "id": "2d694f5dcd1892e3",
+   "title": "VeriHarm-Bench: Measuring Harmful Success in LLM Coding Agents Verifiably",
+   "url": "https://arxiv.org/abs/2611.03575",
+   "source": "arXiv cs.SE",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "Harmful success is when a coding agent passes its task tests while causing side effects such as deleting files or weakening access controls. Add executable harm checks to agent evaluations, since 95% task accuracy coexisted with only 37% safe success."
+  },
+  {
+   "id": "ad4296e15ebcf305",
+   "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "SOC"
+   ],
+   "kind": "article",
+   "lesson": "One user-approved remote support session can lead to domain compromise through AD CS abuse. ESC1 needs weak certificate templates, while ESC8 relays coerced domain controller authentication to web enrolment, so harden templates and NTLM relay paths together."
+  },
+  {
+   "id": "4ece5c10fde1fa5f",
+   "title": "Proving the Wrong Program: Miscompilations as a Threat to zkVM Guarantees",
+   "url": "https://arxiv.org/abs/2611.04701",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Vulnerability research",
+    "Programming",
+    "Exploits"
+   ],
+   "kind": "paper",
+   "lesson": "A verified source does not guarantee a verified binary, because known rustc and LLVM miscompilations can make a zkVM prove the wrong program. Treat the compiler and toolchain as part of the trusted computing base and track their bugs."
+  },
+  {
+   "id": "73b73a4735183c93",
+   "title": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Blue team"
+   ],
+   "kind": "article",
+   "lesson": "Only about 0.5% of disclosed CVEs are linked to real-world exploitation. Prioritise remediation by combining likelihood of exploitation with the blast radius of compromise, favouring flaws that enable takeover."
+  }
+ ]
+}

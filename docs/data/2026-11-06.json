@@ -2,6 +2,38 @@
  "date": "2026-11-06",
  "items": [
   {
+   "id": "dff2c1828d5ea506",
+   "title": "Signed, Sealed, Leaked: Trust Beyond Signature for MCP Toolchains",
+   "url": "https://arxiv.org/abs/2611.06585",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T14:40:32+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors show that a signed MCP tool can pass authentication while secretly embedding sensitive data in requests to an allowed destination, and that a state-of-the-art runtime defence (MCPGuard-Dynamic) failed to stop this in every trial. They propose germline execution, where each tool call runs in a copy forked from a data-free parent so that any leak is bounded by the data the copy was given. Across 153 attack runs, no unauthorised disclosure was detected under this approach, compared with 5.9 to 74.5 per cent of runs under baseline defences.",
+   "takeaway": "Signing proves who published code, not that it behaves well, so limit what a tool can see rather than relying on trust or code inspection to prevent exfiltration."
+  },
+  {
+   "id": "1840f28a2ce8f8da",
+   "title": "A.S.E 2.0: Understanding How Repository Context Impacts the Security of LLM-Generated Code",
+   "url": "https://arxiv.org/abs/2611.06294",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T10:29:52+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors built CASE-Bench, a set of 145 repository-level tasks drawn from real CVEs, each with functional tests and a validated exploit. They found that context built to maximise functional correctness raises secure pass rates much less than functional pass rates, and that coding agents noticed the relevant existing safeguard in only 27 to 36% of their trajectories.",
+   "takeaway": "When an LLM generates code inside a real repository, the security controls already present in that codebase often never reach the model's context, so secure-coding guidance and retrieval need to surface authorisation and validation logic explicitly."
+  },
+  {
    "id": "4a1b3b5817769d2e",
    "title": "When File Ingestion Misleads Language Models: Measuring and Mitigating Divergences in Office Documents",
    "url": "https://arxiv.org/abs/2611.05806",
@@ -16,6 +48,51 @@
    "relevance": 8,
    "summary": "The authors compare what common Office document extractors read from OOXML with what Office applications display, and find 19 channels where extractors read hidden content and 12 where they drop visible content. They build five attacks that make LLMs read a document differently from a human reviewer without any injected instruction, and every tested chat assistant and coding agent is misled by at least one. Their defence, Prism, reconstructs the human view from the OOXML specification before the text reaches the model.",
    "takeaway": "Any pipeline that feeds a parser's view to a model or reviewer creates a gap with what a human sees, and that gap can be exploited without prompt injection, so it should be treated as an attack surface in its own right."
+  },
+  {
+   "id": "a637b78f61fae17b",
+   "title": "Rethinking Access Control for AI Agents: Recent Advances and Open Challenges",
+   "url": "https://arxiv.org/abs/2611.06764",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T16:42:53+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "This survey reviews recent work on access control for LLM agents across policy specification, identity and delegation, action enforcement, and information flow control. It argues that the agent's chosen plan determines the permissions it needs, that context should inform decisions without granting authority, and that authorisation must be reassessed as workflows change. It also recommends evaluating the unauthorised effects that remain enabled, not only observed agent behaviour.",
+   "takeaway": "Judge an agent's access controls by the unauthorised effects that remain possible, not just by whether the observed behaviour looked compliant."
+  },
+  {
+   "id": "615d478541640e60",
+   "title": "SecureGARD: Dynamic Ontology-Guided Governance for Secure Tool-Using LLM Agents",
+   "url": "https://arxiv.org/abs/2611.06682",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-04T15:51:30+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "SecureGARD governs tool-using LLM agents with an executable ontology and episode-level task state, classifying each proposed call as ready, waiting, or forbidden. The ontology is evolved offline from training failures and frozen after held-out validation. The authors report a 0% attack success rate on AgentDojo, ASB, and AgentDyn under indirect prompt injection, though the reported figures are benchmark-specific and not evidence of general robustness.",
+   "takeaway": "Enforce security outside the model by checking each proposed action against deterministic state and an explicit authorisation boundary, rather than trusting the model to refuse injected instructions."
+  },
+  {
+   "id": "f58430beeeae0a7f",
+   "title": "EPISTEME: Trustworthy Coding Agents Through Tool Call Intent",
+   "url": "https://arxiv.org/abs/2611.06563",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T14:26:55+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors propose an epistemic agent design in which the harness requires a coding agent to state why each tool call is made, then checks that declaration against what the command actually did. The resulting journal can guard calls before they run and support audits, and it exposed 90% of 49 reward-hacking runs on ImpossibleBench.",
+   "takeaway": "Logging an agent's stated intent alongside observed side effects creates a mismatch signal that makes covert cheating and unsafe actions much easier to detect and audit."
   },
   {
    "id": "5a379f09430bea5f",
@@ -49,6 +126,21 @@
    "takeaway": "In custom allocators, memory bugs can corrupt data without crashing, so checks belong at the point where the invariant is broken rather than at the point where the bad output finally appears."
   },
   {
+   "id": "4cbcfb9ddd3cfd0d",
+   "title": "Securing Web Agents with the Compile-Then-Execute Paradigm",
+   "url": "https://arxiv.org/abs/2611.06039",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T06:42:35+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "Baya is a web agent that compiles a user request into a Python program before touching the live site, so untrusted page content can supply values or pick among pre-defined branches but cannot change the control flow. On WebArena Verified it reached 77.8% utility, and on the WASP security benchmark it achieved a 0% attack success rate versus 16.2% and 25.5% for ReAct baselines.",
+   "takeaway": "Prompt injection is much harder to exploit when the plan is fixed before untrusted content is read, because the model cannot be steered into synthesising new actions at runtime."
+  },
+  {
    "id": "ccb791e01a5f529d",
    "title": "PIMROP: A Feasibility Study of Return-Oriented Programming on Commercial Processing-in-Memory Architectures",
    "url": "https://arxiv.org/abs/2611.06036",
@@ -65,6 +157,22 @@
    "takeaway": "New execution environments can carry old exploitation techniques into places where host-side defences do not reach, so every new instruction set needs its own gadget analysis and its own check on whether defences are actually active."
   },
   {
+   "id": "e88604fc15e3d336",
+   "title": "AgentTrustCI: Build-Time Policy, Grounding, and Trajectory Tests for Java LLM Agents",
+   "url": "https://arxiv.org/abs/2611.06674",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-04T15:46:11+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "AgentTrustCI is a Java and JUnit 5 framework that expresses policy, grounding, and trajectory checks over recorded LLM agent traces as build-time tests. On 55 synthetic cases, the full pipeline caught all 30 injected faults and passed all 25 controls, and trajectory checks caught a grounded answer reached through a disallowed sequence. The authors stress that this shows coverage of the authored suite, not production accuracy.",
+   "takeaway": "Checking the sequence of tool calls, not just the final answer, catches failures where a correct-looking output was reached through a disallowed path."
+  },
+  {
    "id": "2dc05631f9b605da",
    "title": "PatchCon: Patch-aware Weighted Supervised Contrastive Learning for Vulnerability Detection",
    "url": "https://arxiv.org/abs/2611.06583",
@@ -78,6 +186,21 @@
    "relevance": 6,
    "summary": "The authors propose PatchCon, a CodeBERT-based model that treats vulnerable functions and their patched versions as hard negatives, weighting their contrastive loss more heavily. On the PairVul-Linux benchmark it raises pairwise accuracy from 0.2060 to 0.3264 and matches a GPT-4o-based method at much lower cost. It also holds up on Linux kernel CVEs disclosed after the training cutoff.",
    "takeaway": "Vulnerability-fixing patches are a rich source of contrastive supervision, since the smallest security-relevant difference between a vulnerable function and its fix is exactly what a detector must learn to see."
+  },
+  {
+   "id": "e4f0c1172fa843c1",
+   "title": "A Bag of Tricks for Defending Deep Learning-based Face Recognition Pipelines against Backdoor Attacks",
+   "url": "https://arxiv.org/abs/2611.06412",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T12:12:32+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "This technical report targets face recognition pipelines that train on third-party data that may be poisoned. It presents three practical defences: a training-time method that detects poisoned identities, and two inference-time methods that filter suspicious inputs before responses are returned.",
+   "takeaway": "When training data comes from untrusted sources, defend at several points in the pipeline, since poisoned identities can be caught during training and suspicious inputs can still be filtered at inference."
   },
   {
    "id": "92f300ab221fa59c",
@@ -109,38 +232,6 @@
    "relevance": 6,
    "summary": "SBVul is an agentic LLM pipeline for C and C++ that first proposes candidate exploitable statements and then checks their control and data flow. It is evaluated against a manually verified statement-level ground truth built from the PrimeVul paired test set. The agent finds ground-truth statements in 56 to 77% of vulnerable functions, but also confirms candidates in 23 to 61% of patched functions, and reaches 42.0% pair accuracy against 33.8% for the best prior approach.",
    "takeaway": "Localising the exploitable statement is more useful to developers than a function-level verdict, but a verifier must still be tested on patched code, because confident explanations can accept fixes just as easily as bugs."
-  },
-  {
-   "id": "019eee7962bb430b",
-   "title": "Constraint-Aware Evaluation of Reinforcement Learning and Unsupervised Anomaly Detection for Security Operations Alert Triage",
-   "url": "https://arxiv.org/abs/2611.05746",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-03T23:35:10+00:00",
-   "topics": [
-    "SOC",
-    "AI and ML",
-    "Blue team"
-   ],
-   "relevance": 6,
-   "summary": "The authors frame SOC alert triage as a constrained selection problem, with limited analyst capacity and asymmetric error costs, rather than as plain classification or anomaly detection. They compare an offline reinforcement learning policy, an Isolation Forest and an autoencoder on 74,909 analyst-labelled production alerts under a strict temporal split. All three meet the benign-escalation constraint, with reinforcement learning escalating benign alerts least often (0.000 against 0.007 and 0.041), and the methods prioritise largely different alert clusters.",
-   "takeaway": "Evaluate triage models against the operational constraints that actually bind, such as analyst capacity and escalation cost, and consider combining model families because they often surface different alerts."
-  },
-  {
-   "id": "ff7e90c3b1379364",
-   "title": "Trinetra.Q: Statistical and Behavioral Detection of Attacks on the Quantum-Error-Correction Layer and Classical Control Stack of Quantum Computing Systems",
-   "url": "https://arxiv.org/abs/2611.05722",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-03T22:50:14+00:00",
-   "topics": [
-    "Defence",
-    "Blue team",
-    "Vulnerability research"
-   ],
-   "relevance": 6,
-   "summary": "The authors present Trinetra.Q, a set of five cooperating detectors that watch the error-correction syndrome pipeline, decoder confidence, output divergence, and the classical control stack for tampering. Each detector alarms only on a statistically significant deviation from a baseline calibrated on honest runs. They test it in simulation and on three production IBM Heron processors, and a systematic mapping shows most physical-layer attacks are statistically null, with one measured covert channel as the exception.",
-   "takeaway": "Calibrating detectors against an honest-operation baseline and alarming only on significant deviations keeps false positives low, but it is only meaningful once it has been tested against an adaptive attacker who knows the detector."
   }
  ]
 }
