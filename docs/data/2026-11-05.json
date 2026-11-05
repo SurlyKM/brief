@@ -18,6 +18,53 @@
    "takeaway": "Treat LLM reverse engineering output as a claim to be checked, by linking every label to evidence and verifying changes before analysts or downstream tools rely on it."
   },
   {
+   "id": "3a3aab10d663e8f2",
+   "title": "Monitoring AI agent sessions: Leveraging embedding models to aid threat hunting and attack discovery workflows",
+   "url": "https://www.elastic.co/security-labs/blog/ai-agent-session-monitoring-embedding-models",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-04T00:00:00+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The author stored six months of their own Claude Code and Cursor sessions as embeddings in Elastic and ran semantic search over them, rather than sending each session to an LLM for review. About one in seven sessions surfaced for triage of suspicious actions, and similar malicious sessions can be turned into detection rules. The approach aims to make agent activity huntable, since individually allowed actions can add up to a problematic session.",
+   "takeaway": "Embed records once at ingest so new hunting questions can be asked of historical data without reprocessing everything through a costly model."
+  },
+  {
+   "id": "4ece5c10fde1fa5f",
+   "title": "Proving the Wrong Program: Miscompilations as a Threat to zkVM Guarantees",
+   "url": "https://arxiv.org/abs/2611.04701",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T11:22:45+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming",
+    "Exploits"
+   ],
+   "relevance": 8,
+   "summary": "The study catalogues 88 known rustc and LLVM miscompilations and tests them on the SP1 and Jolt zero-knowledge VMs, where 48 and 46 respectively cause a guest to commit a wrong output. Most existing guest programs are unaffected by accident, but an LLM agent found ordinary-looking optimisation patches that trigger known compiler bugs in 12 of 366 project-bug pairs for about $40 per project. Code review and formal verification of the source would not catch these, because the source is correct.",
+   "takeaway": "A verified source does not guarantee a verified binary, so the compiler and toolchain belong in the trusted computing base and their known bugs need tracking."
+  },
+  {
+   "id": "a0d1c8419a8178cd",
+   "title": "Towards Effective Fuzzing of EDK2 Components",
+   "url": "https://arxiv.org/abs/2611.03854",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-02T19:23:21+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Reverse engineering"
+   ],
+   "relevance": 8,
+   "summary": "Metis fuzzes EDK2 boot-time protocols by rehosting them as user-space programs and mocking their direct dependencies, which become extra input channels. Combining static analysis with LLM-assisted harness synthesis, it reaches 73.1% coverage across 162 protocols and finds 137 previously unknown bugs, 26 of which have been reported.",
+   "takeaway": "When fuzzing firmware components, treat inter-component dependencies as attacker-reachable input channels and mock them so their interactions are exercised."
+  },
+  {
    "id": "fe2f58fadfc9d2f1",
    "title": "When trust becomes the payload: Inside the threats, etc quarterly report",
    "url": "https://www.elastic.co/security-labs/reports/threats-etc-report-november-2026-trouble-with-trust",
@@ -49,6 +96,22 @@
    "takeaway": "Harmless-looking training data can still create safety risk when it conflicts with what the model internally holds true, so model update pipelines need evaluation beyond content screening."
   },
   {
+   "id": "87c960b4ee8db612",
+   "title": "Extracting System Prompt of LLM Services in Complex (Agentic) Settings: Hierarchical Optimization and Reliable Evaluation Metrics",
+   "url": "https://arxiv.org/abs/2611.04803",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T12:37:01+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that existing system prompt extraction attacks degrade on modern agentic services with longer, structured prompts and only post-processed outputs visible. Their ExtraHerO method rebuilds the prompt hierarchically, uses information gain to stop or reset attack iterations, and scores results with structure-aware fidelity and a downstream adversarial utility metric. It reports gains of up to about 30% on agents over prior approaches.",
+   "takeaway": "Similarity scores can flatter a leak, so measure whether the recovered content preserves structure and whether it actually helps a downstream attack."
+  },
+  {
    "id": "d0d14968098d9de8",
    "title": "BrainwashedLLM: Jailbreaking via Automated Adversarial Chain of Thoughts Discovery",
    "url": "https://arxiv.org/abs/2611.04717",
@@ -62,6 +125,21 @@
    "relevance": 7,
    "summary": "BrainwashedLLM trains a small white-box model with reinforcement learning to write adversarial chain-of-thought traces. These traces are then pasted as prefixes into larger black-box reasoning models, where they steer them into producing harmful outputs without any queries to the target. The attack reaches high success rates across four reasoning models.",
    "takeaway": "Reasoning traces are an attack surface in their own right, so untrusted text placed in a model's reasoning context should be treated as hostile input."
+  },
+  {
+   "id": "63f0cc51563d2f2d",
+   "title": "Right Tool, Wrong Parameters: Defending LLM Agents Against Parameter Poisoning",
+   "url": "https://arxiv.org/abs/2611.04673",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T10:57:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper introduces parameter poisoning, where an injected prompt keeps the agent's intended action but alters a tool argument such as a recipient. Its AuthorityFlow defence builds a task-specific trust ranking of information fields and accepts argument values only when their source is trusted to set that parameter, cutting attack success from 93% to 9%.",
+   "takeaway": "Checking whether an action is allowed is not enough; you also need to check whether the source of each parameter value is trusted to influence it."
   },
   {
    "id": "af6b8e528a23e76d",
@@ -110,6 +188,36 @@
    "takeaway": "Static red-team test suites understate risk for agents that browse the web, so evaluations should model an adaptive attacker who learns from the defences they meet."
   },
   {
+   "id": "3e74d3386c0aac3b",
+   "title": "LatentTriad: Pre-Action Risk Representations for Malicious Agent Skill Detection",
+   "url": "https://arxiv.org/abs/2611.05088",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-03T15:46:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "LatentTriad flags malicious agent skills by reading hidden states from a single prefill pass, comparing task and operation consistency without generating output, calling tools or running skill code. It reports about 99% pooled F1 across 5,830 packages and seven backbones, with a median latency under 300 ms.",
+   "takeaway": "Model internals can reveal risky intent before any action occurs, which allows untrusted content to be screened without executing it."
+  },
+  {
+   "id": "1710e37162bda3ee",
+   "title": "One Strategy Does Not Fit All: Rethinking Data Labeling for Just-in-Time Vulnerability Prediction",
+   "url": "https://arxiv.org/abs/2611.05013",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-03T14:57:45+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The study builds 28 datasets from combinations of vulnerability-fixing and vulnerability-introducing commit labelling strategies on OpenSSL and the Linux kernel. It finds that the best labelling approach depends on whether the downstream task is classification, prioritisation or localisation, so no single strategy is universally optimal.",
+   "takeaway": "Label construction can change model rankings as much as the model itself, so dataset choices should be matched to the task and reported as a variable."
+  },
+  {
    "id": "f21ec7cd779d08d5",
    "title": "ScamWorld: An Interactive Environment for Evaluating Web Agents Against Online Fraud",
    "url": "https://arxiv.org/abs/2611.04879",
@@ -123,20 +231,6 @@
    "relevance": 6,
    "summary": "ScamWorld is a reproducible environment that rebuilds reported scam websites so that web agents can be tested against fraud in a controlled way. Baseline deception rates for six frontier models ranged from 11% to 35%. Agents were more willing to make payments than to hand over credentials or wallet details, and some noticed red flags yet proceeded anyway.",
    "takeaway": "An agent that notices a warning sign can still act on it, so safety checks need to block risky actions rather than rely on the agent's own suspicion."
-  },
-  {
-   "id": "9a5614c13eef8874",
-   "title": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
-   "url": "https://arxiv.org/abs/2611.05345",
-   "source": "arXiv cs.AI",
-   "kind": "paper",
-   "published": "2026-11-03T18:45:23+00:00",
-   "topics": [
-    "AI and ML"
-   ],
-   "relevance": 5,
-   "summary": "The authors argue that speculative decoding is not purely a speed optimisation for long-horizon agents, because numerical noise in verification windows and draft acceptance decisions can shift the output distribution and change reasoning accuracy after about 30 steps. They train a draft model to be rejected at identified critical reasoning points, so the target model resamples those tokens under less noisy conditions. They report higher end-to-end success on agentic coding benchmarks while changing only a small fraction of parameters.",
-   "takeaway": "Inference-time optimisations can change model behaviour as well as speed, so any acceleration of a deployed model should be validated against task outcomes, not just throughput."
   }
  ]
 }
