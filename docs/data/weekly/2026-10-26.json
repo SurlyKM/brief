@@ -1,0 +1,211 @@
+{
+ "week": "2026-10-26",
+ "range": "26 October to 1 November 2026",
+ "story_count": 15,
+ "days_covered": 1,
+ "partial": true,
+ "headline": "Trust Boundaries Keep Failing at the Edges, and AI Tools Need Evidence, Not Assurances",
+ "themes": [
+  "The macOS exploit stories share one pattern: protections are undone by the privileged or glue paths around them rather than by a frontal attack. The SIP bypass through the OS upgrade process and the SIP bypass via sandboxing both turn a trusted mechanism against another. The Office sandbox escape comes from a faulty regular expression in the policy logic, and the RootPipe patch diff shows the same lesson for XPC. Test the rules and the seams between layers, not just the isolation primitive. The Microsoft AD CS write-up is the Windows counterpart, where misconfigured certificate templates and relayable web enrollment turn a help desk impersonation into domain compromise.",
+  "A second thread is that detection is only as good as its coverage. The KAuth and kev_msg_post process monitoring posts and the login items parsing post all show that telemetry sources have gaps, are fragile across OS versions, or change format underneath you. Microsoft's case is the same problem in operational form: a privileged identity excluded from automated containment became the path the attacker used.",
+  "The AI and research stories converge on verification. Snyk VulnBench 2.0 finds that deterministic SAST and an AI agent miss different things, and that the harness policy matters as much as the model. Soei shows that an agent's 'done' is a claim, with roughly 23 percent of editing episodes ending without an independent check. The activation probe paper is a reminder to compare against a cheap text baseline before crediting a fancier signal. WebMaze and BUSTA show defenders and analysts using LLM behaviour and small verifiable-task models to their advantage."
+ ],
+ "must_reads": [
+  {
+   "id": "11d8ee7dc332913d",
+   "title": "[0day] Bypassing Apple's System Integrity Protection",
+   "url": "https://objective-see.org/blog/blog_0x14.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "article",
+   "why": "A SIP bypass through the local OS upgrade process is a clear example of privileged installer paths escaping scrutiny. It is worth reading to see how a core platform protection fails at a trusted but rarely reviewed workflow."
+  },
+  {
+   "id": "ad4296e15ebcf305",
+   "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "SOC",
+    "Red team",
+    "Blue team"
+   ],
+   "kind": "article",
+   "why": "Two real intrusions run from Teams help desk impersonation through Quick Assist to ESC1 and ESC8 abuse of AD CS. It gives concrete detection and hardening points, including HTTPS and Extended Protection for web enrollment, and the lesson that exempting a privileged identity from automated containment creates the gap attackers use."
+  },
+  {
+   "id": "3edb924933411862",
+   "title": "How Deterministic SAST and AI Security Agents Divide the Work: Coverage, Harness Policy and Cost in Snyk VulnBench 2.0",
+   "url": "https://arxiv.org/abs/2610.38617",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Blue team",
+    "AI and ML",
+    "Programming"
+   ],
+   "kind": "paper",
+   "why": "A rigorous benchmark of SAST and AI security agents on 108 reachable vulnerabilities, with strict source and sink matching. The finding that the two approaches overlap only partly, and that the harness policy shapes misses, bears directly on how you layer code review tooling."
+  },
+  {
+   "id": "52602a85793aa21c",
+   "title": "Soei: Structured Observability of Evidence and Intent for Multi-Agent AI Software Engineering",
+   "url": "https://arxiv.org/abs/2610.39468",
+   "source": "arXiv cs.SE",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "kind": "paper",
+   "why": "Analyses 45 real coding agent sessions and finds that completion claims often lack independent verification. It also reports leaked credential-like strings in transcripts and an unauthenticated local mutation surface in an observability tool, which makes it practical for anyone running agents."
+  },
+  {
+   "id": "2e54cc0428bafab5",
+   "title": "Escaping the Microsoft Office Sandbox",
+   "url": "https://objective-see.org/blog/blog_0x35.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "article",
+   "why": "Walks from a malicious Word document to a sandbox escape caused by a flawed regular expression, then persistence outside the sandbox. It shows that policy and validation logic is a richer target than the sandbox mechanism itself."
+  }
+ ],
+ "lessons": [
+  {
+   "id": "11d8ee7dc332913d",
+   "title": "[0day] Bypassing Apple's System Integrity Protection",
+   "url": "https://objective-see.org/blog/blog_0x14.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "article",
+   "lesson": "OS upgrade and installer paths often run with elevated trust and get little security review. Treat the update mechanism as part of the attack surface, since it can be abused to bypass protections such as System Integrity Protection."
+  },
+  {
+   "id": "2ac2761290f46b8b",
+   "title": "[0day] Bypassing SIP via Sandboxing",
+   "url": "https://objective-see.org/blog/blog_0x33.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "article",
+   "lesson": "Security features interact, and a restriction in one layer can be used to force unsafe behaviour in another, such as sandboxing making a SIP-protected process load an untrusted library. Threat model how protections compose, not only how each works alone."
+  },
+  {
+   "id": "2e54cc0428bafab5",
+   "title": "Escaping the Microsoft Office Sandbox",
+   "url": "https://objective-see.org/blog/blog_0x35.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "article",
+   "lesson": "Sandbox escapes often come from flawed input validation in the policy or parsing rules, such as a faulty regular expression, rather than from the isolation mechanism. Test the rules that decide what is allowed."
+  },
+  {
+   "id": "ad4296e15ebcf305",
+   "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "SOC",
+    "Red team",
+    "Blue team"
+   ],
+   "kind": "article",
+   "lesson": "Automated containment is only as strong as its coverage, so any privileged identity exempted from it becomes the weak point. NTLM relay to AD CS web enrollment (ESC8) can be prevented by enforcing HTTPS and Extended Protection for Authentication."
+  },
+  {
+   "id": "15ac40d51959b6fc",
+   "title": "Reversing to Engineer: Learning to 'Secure' XPC from a Patch",
+   "url": "https://objective-see.org/blog.html#blogEntry7",
+   "source": "Objective-See",
+   "topics": [
+    "Reverse engineering",
+    "macOS and iOS",
+    "Exploits"
+   ],
+   "kind": "article",
+   "lesson": "A security patch is a map of the bug. Diffing before and after reveals the vulnerable logic, which you can then check for in your own IPC code, as with the RootPipe XPC flaw."
+  },
+  {
+   "id": "3ca374567b59352b",
+   "title": "Monitoring Process Creation via the Kernel (Part II)",
+   "url": "https://objective-see.org/blog/blog_0x0A.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Blue team",
+    "Programming"
+   ],
+   "kind": "article",
+   "lesson": "A kernel-level event source such as KAuth can look authoritative, but its coverage gaps define what a detection can see. Test what a monitoring hook misses before relying on it."
+  },
+  {
+   "id": "0444f867369c307d",
+   "title": "Monitoring Process Creation via the Kernel (Part III)",
+   "url": "https://objective-see.org/blog/blog_0x0B.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Blue team",
+    "Reverse engineering"
+   ],
+   "kind": "article",
+   "lesson": "Undocumented kernel interfaces like kev_msg_post can be the only route to certain telemetry, but they are fragile across OS versions. Re-validate them after every update."
+  },
+  {
+   "id": "1ee3fd057e0000a3",
+   "title": "Block Blocking Login Items",
+   "url": "https://objective-see.org/blog/blog_0x31.html",
+   "source": "Objective-See",
+   "topics": [
+    "macOS and iOS",
+    "Blue team"
+   ],
+   "kind": "article",
+   "lesson": "Persistence detection depends on parsing the store the OS currently uses. When Apple changes the login item storage format, detection tooling must be updated or it will silently miss persistence."
+  },
+  {
+   "id": "3edb924933411862",
+   "title": "How Deterministic SAST and AI Security Agents Divide the Work: Coverage, Harness Policy and Cost in Snyk VulnBench 2.0",
+   "url": "https://arxiv.org/abs/2610.38617",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Blue team",
+    "AI and ML",
+    "Programming"
+   ],
+   "kind": "paper",
+   "lesson": "Deterministic SAST and AI security agents have complementary blind spots, and together found 101 of 108 vulnerabilities where each alone found about 80%. The harness and review policy around a model can matter as much as the model."
+  },
+  {
+   "id": "52602a85793aa21c",
+   "title": "Soei: Structured Observability of Evidence and Intent for Multi-Agent AI Software Engineering",
+   "url": "https://arxiv.org/abs/2610.39468",
+   "source": "arXiv cs.SE",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "kind": "paper",
+   "lesson": "An agent saying a task is done is a claim, not evidence. Keep a tamper-evident, hash-chained record of actions, separate verification proof from the agent's own statements, and scan transcripts for leaked secrets."
+  }
+ ]
+}

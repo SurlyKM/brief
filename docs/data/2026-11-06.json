@@ -50,6 +50,54 @@
    "takeaway": "Any pipeline that feeds a parser's view to a model or reviewer creates a gap with what a human sees, and that gap can be exploited without prompt injection, so it should be treated as an attack surface in its own right."
   },
   {
+   "id": "bd84c67ef474eb5a",
+   "title": "The Devil is in the Context: Nine Dimensions of Prompt Injection Attacks",
+   "url": "https://arxiv.org/abs/2611.04672",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T10:56:13+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The authors propose a nine-dimension taxonomy of prompt injection covering the injected instruction, its relation to the user's task and how it appears in the target system. Applying it to nine public benchmarks shows that most cover only a small part of the attack space, and 13% of pairwise category combinations are untested. The taxonomy also supports automated annotation and targeted generation of test cases.",
+   "takeaway": "A defence is only as good as the attack types it was tested against, so state which prompt injection categories an evaluation covers and check benchmark coverage before trusting results."
+  },
+  {
+   "id": "3dc474266564e0f0",
+   "title": "A Security Analysis of Verifiable Credential Verification Pipelines: Attack Surface Arising from JSON-LD/RDFC Canonicalization Compared with SD-JWT VC and mdoc",
+   "url": "https://arxiv.org/abs/2611.04461",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T07:49:18+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors test the verification pipelines of three verifiable credential formats under an explicit threat model. They show that W3C VCDM's RDFC-1.0 canonicalisation and remote context loading enable denial of service via crafted blank-node graphs, context injection, and SSRF at default settings, with costs reaching 278 times the baseline from a 527-byte input. SD-JWT VC and mdoc avoid these surfaces, and the study's mitigations are a static document loader, a context allowlist, and a call limit with a size bound.",
+   "takeaway": "Complexity attacks can come from legitimate-looking algorithmic features, such as symmetric graph canonicalisation, rather than from memory bugs, so bound recursion depth and disable remote fetches by default in any parser that accepts untrusted structure."
+  },
+  {
+   "id": "14f583faa20d9cfe",
+   "title": "Voluntary Servitude: Weaponized Safety Warning Mechanisms for Controlling AI Agents",
+   "url": "https://arxiv.org/abs/2611.04393",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-03T06:26:58+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The paper shows that an attacker can steer LLM agents by planting a fabricated safety hazard in ordinary-looking reviews, so the agent rejects legitimate options through its own harm-avoidance reasoning. This attack, called voluntary servitude, succeeds about as often as instruction injection and evades deployed injection detectors that score it as benign. Requiring corroboration of claims in the agent's instructions removes about 95 per cent of exposure against a non-adaptive attacker without retraining.",
+   "takeaway": "Defences that only detect malicious commands miss attacks that exploit the model's good intentions, so agents should require independent corroboration before acting on high-impact claims from retrieved content."
+  },
+  {
    "id": "a637b78f61fae17b",
    "title": "Rethinking Access Control for AI Agents: Recent Advances and Open Challenges",
    "url": "https://arxiv.org/abs/2611.06764",
@@ -186,52 +234,6 @@
    "relevance": 6,
    "summary": "The authors propose PatchCon, a CodeBERT-based model that treats vulnerable functions and their patched versions as hard negatives, weighting their contrastive loss more heavily. On the PairVul-Linux benchmark it raises pairwise accuracy from 0.2060 to 0.3264 and matches a GPT-4o-based method at much lower cost. It also holds up on Linux kernel CVEs disclosed after the training cutoff.",
    "takeaway": "Vulnerability-fixing patches are a rich source of contrastive supervision, since the smallest security-relevant difference between a vulnerable function and its fix is exactly what a detector must learn to see."
-  },
-  {
-   "id": "e4f0c1172fa843c1",
-   "title": "A Bag of Tricks for Defending Deep Learning-based Face Recognition Pipelines against Backdoor Attacks",
-   "url": "https://arxiv.org/abs/2611.06412",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-04T12:12:32+00:00",
-   "topics": [
-    "AI and ML",
-    "Defence"
-   ],
-   "relevance": 6,
-   "summary": "This technical report targets face recognition pipelines that train on third-party data that may be poisoned. It presents three practical defences: a training-time method that detects poisoned identities, and two inference-time methods that filter suspicious inputs before responses are returned.",
-   "takeaway": "When training data comes from untrusted sources, defend at several points in the pipeline, since poisoned identities can be caught during training and suspicious inputs can still be filtered at inference."
-  },
-  {
-   "id": "92f300ab221fa59c",
-   "title": "Analysis of Local Open-Weight LLM Agents on Vulnerability-Reproduction Tasks",
-   "url": "https://arxiv.org/abs/2611.06257",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-04T10:07:14+00:00",
-   "topics": [
-    "AI and ML",
-    "Vulnerability research",
-    "Exploits"
-   ],
-   "relevance": 6,
-   "summary": "The authors test twelve configurations of local open-weight models on ten CyberGym vulnerability-reproduction tasks, where the model must turn a bug description into an input that crashes the build. Every configuration, down to 4B parameters, solves most of the easier tasks, and the 27B model is needed for the harder ones. Quantisation changes speed but not which tasks are solved, and most failed runs still identify the right function and hypothesis, so the gap lies in turning that hypothesis into a working input.",
-   "takeaway": "For agentic exploit work, correct reasoning is often not the bottleneck; converting a sound hypothesis into an executable, verifiable input is the step that separates success from failure."
-  },
-  {
-   "id": "3895081f19499b5b",
-   "title": "SBVUL: Statement-Based Vulnerability Detection",
-   "url": "https://arxiv.org/abs/2611.06135",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-11-04T08:21:39+00:00",
-   "topics": [
-    "AI and ML",
-    "Vulnerability research"
-   ],
-   "relevance": 6,
-   "summary": "SBVul is an agentic LLM pipeline for C and C++ that first proposes candidate exploitable statements and then checks their control and data flow. It is evaluated against a manually verified statement-level ground truth built from the PrimeVul paired test set. The agent finds ground-truth statements in 56 to 77% of vulnerable functions, but also confirms candidates in 23 to 61% of patched functions, and reaches 42.0% pair accuracy against 33.8% for the best prior approach.",
-   "takeaway": "Localising the exploitable statement is more useful to developers than a function-level verdict, but a verifier must still be tested on patched code, because confident explanations can accept fixes just as easily as bugs."
   }
  ]
 }
