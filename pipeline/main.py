@@ -61,7 +61,7 @@ def main():
                                 sel.get("candidates_per_kind"))
     log(f"{len(short)} shortlisted for analysis")
     if not short:
-        store.rebuild_index(args.data_dir)
+        store.rebuild_index(args.data_dir, labels)
         return
 
     # 4. Model analysis
@@ -95,7 +95,7 @@ def main():
     for i in scored_ids:
         seen[i] = today
     store.save_seen(args.data_dir, seen, today)
-    store.rebuild_index(args.data_dir)
+    store.rebuild_index(args.data_dir, labels)
     log(f"{today}: {total} items in today's brief")
 
 

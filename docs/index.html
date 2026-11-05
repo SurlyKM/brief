@@ -94,25 +94,100 @@
     font-size: 16px;   /* under 16px makes iOS zoom the page on focus */
   }
 
-  .chips {
-    display: flex; gap: 8px; padding: 4px 0 10px;
-    font-family: var(--sans); font-size: 0.85rem;
-    overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
-    /* Without this, snapping aligns the first chip to the screen edge, ignoring padding. */
-    scroll-padding-inline: max(16px, var(--sal)) max(16px, var(--sar));
-    -webkit-overflow-scrolling: touch;
-    margin: 0 calc(-1 * max(16px, var(--sal))); padding-left: max(16px, var(--sal)); padding-right: max(16px, var(--sar));
+  /* ---------- Topic filter ---------- */
+  /* Phones: one "Topics" button that opens a bottom sheet.
+     Desktop: a row of underlined text topics, NYT section style. */
+  .topics-btn {
+    flex: none; min-height: 44px; padding: 0 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font: 600 0.85rem var(--sans); color: var(--ink);
+    background: none; border: 1px solid var(--rule); border-radius: 10px; cursor: pointer;
   }
-  .chips::-webkit-scrollbar { display: none; }
-  .chip {
-    flex: none; scroll-snap-align: start; min-height: 36px;
-    background: none; border: 1px solid var(--rule); color: var(--ink);
-    padding: 6px 14px; border-radius: 999px; cursor: pointer; font: inherit; white-space: nowrap;
+  .topics-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .topics-btn svg { width: 16px; height: 16px; }
+
+  .active-line {
+    display: none; align-items: center; gap: 8px;
+    font-family: var(--sans); font-size: 0.8rem; color: var(--muted);
+    padding: 0 0 8px;
   }
-  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .active-line.show { display: flex; }
+  .active-line span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .active-line button {
+    background: none; border: 0; padding: 6px 0 6px 8px; min-height: 32px;
+    font: 600 0.8rem var(--sans); color: var(--accent); cursor: pointer;
+  }
+
+  .topic-row { display: none; }
   @media (min-width: 760px) {
-    .chips { flex-wrap: wrap; overflow: visible; margin: 0; padding-left: 0; padding-right: 0; }
+    .topics-btn, .active-line, .active-line.show { display: none; }
+    .topic-row {
+      display: flex; flex-wrap: wrap; gap: 4px 22px; padding: 2px 0 0;
+      font-family: var(--sans); font-size: 0.82rem;
+    }
+    .topic-row button {
+      background: none; border: 0; padding: 8px 0 9px; cursor: pointer;
+      font: inherit; color: var(--ink); border-bottom: 2px solid transparent;
+    }
+    .topic-row button:hover { border-bottom-color: var(--rule); }
+    .topic-row button[aria-pressed="true"] { font-weight: 700; border-bottom-color: var(--ink); }
+    .topic-row button.empty { color: var(--muted); opacity: 0.55; }
   }
+
+  /* Bottom sheet */
+  .scrim {
+    position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 220ms;
+  }
+  .sheet {
+    position: fixed; z-index: 31; left: 0; right: 0; bottom: 0;
+    max-height: 82vh; max-height: 82dvh;
+    display: flex; flex-direction: column;
+    background: var(--bg); border-radius: 16px 16px 0 0;
+    box-shadow: 0 -6px 30px rgba(0,0,0,0.18);
+    transform: translateY(105%); transition: transform 260ms cubic-bezier(.2,.8,.2,1);
+    font-family: var(--sans);
+    padding-left: var(--sal); padding-right: var(--sar);
+  }
+  body.sheet-open .scrim { opacity: 1; pointer-events: auto; }
+  body.sheet-open .sheet { transform: none; }
+  .sheet .grab { padding: 8px 0 2px; display: grid; place-items: center; touch-action: none; }
+  .sheet .grab::before { content: ""; width: 38px; height: 5px; border-radius: 3px; background: var(--rule); }
+  .sheet header {
+    all: unset; display: flex; align-items: center; justify-content: space-between;
+    padding: 4px 18px 10px; border-bottom: 1px solid var(--rule); touch-action: none;
+  }
+  .sheet h2 { margin: 0; font: 700 1.05rem var(--sans); }
+  .sheet .link { background: none; border: 0; font: 600 0.9rem var(--sans); color: var(--accent); min-height: 44px; padding: 0 2px; cursor: pointer; }
+  .sheet .link:disabled { color: var(--muted); opacity: 0.5; }
+  .sheet ul { list-style: none; margin: 0; padding: 4px 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .sheet li label {
+    display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 18px; cursor: pointer;
+    font-size: 1rem;
+  }
+  .sheet li label:active { background: var(--panel); }
+  .sheet li .name { flex: 1; }
+  .sheet li .n { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+  .sheet li.empty .name { color: var(--muted); }
+  .sheet input[type=checkbox] {
+    appearance: none; -webkit-appearance: none; margin: 0; flex: none;
+    width: 22px; height: 22px; border: 2px solid var(--muted); border-radius: 6px; display: grid; place-items: center;
+  }
+  .sheet input[type=checkbox]:checked { background: var(--ink); border-color: var(--ink); }
+  .sheet input[type=checkbox]:checked::after {
+    content: ""; width: 6px; height: 11px; border: solid var(--bg); border-width: 0 2.5px 2.5px 0;
+    transform: translateY(-1px) rotate(45deg);
+  }
+  .sheet footer {
+    all: unset; display: block; padding: 10px 18px calc(12px + var(--sab));
+    border-top: 1px solid var(--rule);
+  }
+  .sheet .apply {
+    width: 100%; min-height: 50px; border: 0; border-radius: 12px; cursor: pointer;
+    background: var(--ink); color: var(--bg); font: 600 1rem var(--sans);
+  }
+  .sheet .apply:disabled { opacity: 0.4; }
+  @media (prefers-reduced-motion: reduce) { .sheet, .scrim { transition: none; } }
 
   /* ---------- Stories ---------- */
   main { min-height: 60vh; }
@@ -218,8 +293,13 @@
         <select id="picker" aria-label="Jump to date"></select>
       </label>
       <button class="arrow" id="next" aria-label="Newer day">&rsaquo;</button>
+      <button class="topics-btn" id="topics-btn" aria-haspopup="dialog" aria-controls="sheet">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M4.5 8h7M7 12h2"/></svg>
+        <span id="topics-label">Topics</span>
+      </button>
     </div>
-    <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
+    <div class="active-line" id="active-line"><span id="active-text"></span><button id="active-clear">Clear</button></div>
+    <nav class="topic-row" id="topic-row" aria-label="Filter by topic"></nav>
   </div>
 
   <main id="stories"></main>
@@ -228,12 +308,26 @@
 </div>
 <button class="totop" id="totop" aria-label="Back to top">&uarr;</button>
 
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
+  <div class="grab" id="grab"></div>
+  <header id="sheet-head">
+    <h2 id="sheet-title">Topics</h2>
+    <button class="link" id="sheet-clear">Clear all</button>
+  </header>
+  <ul id="sheet-list"></ul>
+  <footer><button class="apply" id="sheet-apply">Show stories</button></footer>
+</div>
+
 <script>
 "use strict";
 // All content comes from JSON written from third-party feeds, so every value
 // is inserted with textContent (via h()), never innerHTML.
 
-const state = { dates: [], date: null, items: [], topic: null };
+// topics: the full topic list (from index.json), in a fixed order.
+// selected: the ticked topics; empty means "show everything".
+// The selection carries over when you change day, like a real filter.
+const state = { dates: [], date: null, items: [], topics: [], selected: new Set() };
 const cache = new Map();   // date -> items, so swiping back and forth is instant
 const $ = (id) => document.getElementById(id);
 
@@ -295,7 +389,7 @@ function render(direction) {
   const main = $("stories");
   main.replaceChildren();
   main.classList.remove("in-left", "in-right");
-  const shown = state.items.filter((i) => !state.topic || i.topics.includes(state.topic));
+  const shown = visible(state.items, state.selected);
   $("count").textContent = shown.length ? shown.length + " stories" : "";
   if (!shown.length) {
     main.append(h("p", { class: "empty" }, "Nothing here yet for this selection."));
@@ -311,26 +405,147 @@ function render(direction) {
   }
 }
 
-function renderChips() {
-  const box = $("chips");
-  box.replaceChildren();
-  const counts = {};
+// ---------- Topic filter ----------
+
+// A story shows if it has ANY of the selected topics (or nothing is selected).
+function visible(items, selected) {
+  if (!selected.size) return items;
+  return items.filter((i) => i.topics.some((t) => selected.has(t)));
+}
+
+function topicCounts() {
+  const counts = Object.fromEntries(state.topics.map((t) => [t, 0]));
   state.items.forEach((i) => i.topics.forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
-  const make = (label, value) => {
-    const b = h("button", { class: "chip", "aria-pressed": String(state.topic === value) }, label);
-    b.addEventListener("click", () => {
-      state.topic = value; renderChips(); render(); jumpToStories();
-    });
+  return counts;
+}
+
+// Apply a new selection everywhere: button label, summary line, desktop row, stories.
+function applyFilter(selected) {
+  state.selected = new Set(selected);
+  const n = state.selected.size;
+  $("topics-label").textContent = n ? "Topics (" + n + ")" : "Topics";
+  $("topics-btn").classList.toggle("active", n > 0);
+  $("active-line").classList.toggle("show", n > 0);
+  $("active-text").textContent = n ? "Showing: " + [...state.selected].join(", ") : "";
+  renderTopicRow();
+  render();
+  jumpToStories();
+}
+
+// Desktop: underlined text row. Clicking toggles a topic; "All" clears.
+function renderTopicRow() {
+  const row = $("topic-row");
+  row.replaceChildren();
+  const counts = topicCounts();
+  const btn = (label, pressed, onClick, empty) => {
+    const b = h("button", { "aria-pressed": String(pressed), class: empty ? "empty" : "" }, label);
+    b.addEventListener("click", onClick);
     return b;
   };
-  box.append(make("All", null));
-  Object.keys(counts).sort().forEach((t) => box.append(make(t + " " + counts[t], t)));
+  row.append(btn("All", !state.selected.size, () => applyFilter([])));
+  state.topics.forEach((t) => row.append(btn(t, state.selected.has(t), () => {
+    const next = new Set(state.selected);
+    next.has(t) ? next.delete(t) : next.add(t);
+    applyFilter(next);
+  }, !counts[t])));
+}
+
+// Phones: bottom sheet. Ticks are a draft until "Show N stories" is tapped,
+// so you can change your mind; tapping outside discards the draft.
+const sheet = { draft: new Set(), lastFocus: null, scrollY: 0 };
+
+// Stop the page behind the sheet from scrolling. overflow:hidden alone is
+// ignored by older iOS, so the body is pinned in place at its current offset
+// and put back exactly where it was on close.
+function lockScroll() {
+  sheet.scrollY = window.scrollY;
+  const b = document.body.style;
+  b.position = "fixed"; b.top = -sheet.scrollY + "px"; b.left = "0"; b.right = "0";
+  document.documentElement.style.overflow = "hidden";
+}
+function unlockScroll() {
+  const b = document.body.style;
+  b.position = b.top = b.left = b.right = "";
+  document.documentElement.style.overflow = "";
+  window.scrollTo(0, sheet.scrollY);
+}
+
+function renderSheet() {
+  const list = $("sheet-list");
+  list.replaceChildren();
+  const counts = topicCounts();
+  state.topics.forEach((t) => {
+    const box = h("input", { type: "checkbox" });
+    box.checked = sheet.draft.has(t);
+    box.addEventListener("change", () => {
+      box.checked ? sheet.draft.add(t) : sheet.draft.delete(t);
+      updateSheetFooter();
+    });
+    list.append(h("li", { class: counts[t] ? "" : "empty" },
+      h("label", {}, box, h("span", { class: "name" }, t), h("span", { class: "n" }, String(counts[t])))));
+  });
+  updateSheetFooter();
+}
+
+function updateSheetFooter() {
+  const n = visible(state.items, sheet.draft).length;
+  const apply = $("sheet-apply");
+  apply.textContent = n ? "Show " + n + (n === 1 ? " story" : " stories") : "No stories match";
+  apply.disabled = n === 0;
+  $("sheet-clear").disabled = sheet.draft.size === 0;
+}
+
+function openSheet() {
+  sheet.draft = new Set(state.selected);
+  sheet.lastFocus = document.activeElement;
+  renderSheet();
+  document.body.classList.add("sheet-open");
+  lockScroll();
+  $("sheet").setAttribute("aria-hidden", "false");
+  $("sheet-apply").focus({ preventScroll: true });
+}
+
+function closeSheet(apply) {
+  if (!document.body.classList.contains("sheet-open")) return;
+  document.body.classList.remove("sheet-open");
+  unlockScroll();
+  $("sheet").setAttribute("aria-hidden", "true");
+  $("sheet").style.transform = "";
+  if (apply) applyFilter(sheet.draft);
+  if (sheet.lastFocus) sheet.lastFocus.focus({ preventScroll: true });
+}
+
+function setupSheet() {
+  $("topics-btn").addEventListener("click", openSheet);
+  $("scrim").addEventListener("click", () => closeSheet(false));
+  $("sheet-apply").addEventListener("click", () => closeSheet(true));
+  $("sheet-clear").addEventListener("click", () => { sheet.draft.clear(); renderSheet(); });
+  $("active-clear").addEventListener("click", () => applyFilter([]));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(false); });
+
+  // Drag the handle or header down to dismiss, like a native iOS sheet.
+  let y0 = null;
+  const el = $("sheet");
+  [$("grab"), $("sheet-head")].forEach((handle) => {
+    handle.addEventListener("touchstart", (e) => { y0 = e.touches[0].clientY; el.style.transition = "none"; }, { passive: true });
+    handle.addEventListener("touchmove", (e) => {
+      if (y0 === null) return;
+      const dy = Math.max(0, e.touches[0].clientY - y0);
+      el.style.transform = "translateY(" + dy + "px)";
+    }, { passive: true });
+    handle.addEventListener("touchend", (e) => {
+      if (y0 === null) return;
+      const dy = e.changedTouches[0].clientY - y0;
+      y0 = null; el.style.transition = "";
+      if (dy > 90) closeSheet(false); else el.style.transform = "";
+    }, { passive: true });
+  });
 }
 
 // If the reader is below the masthead, keep them at the top of the stories
 // (just under the sticky bar) when the content changes.
 function jumpToStories() {
-  const top = $("stories").getBoundingClientRect().top + window.scrollY - $("chips").closest(".bar").offsetHeight;
+  const top = $("stories").getBoundingClientRect().top + window.scrollY - document.querySelector(".bar").offsetHeight;
   if (window.scrollY > top) window.scrollTo({ top, behavior: "instant" });
 }
 
@@ -349,7 +564,6 @@ async function getDay(date) {
 async function loadDay(date, direction) {
   if (!date) return;
   state.date = date;
-  state.topic = null;
   state.items = await getDay(date);
   const idx = state.dates.indexOf(date);
   $("date-label").textContent = dayFmt.format(asDate(date));
@@ -357,8 +571,7 @@ async function loadDay(date, direction) {
   $("prev").disabled = idx >= state.dates.length - 1;
   $("next").disabled = idx <= 0;
   history.replaceState(null, "", "#" + date);
-  renderChips();
-  $("chips").scrollLeft = 0;
+  renderTopicRow();
   render(direction);
   if (direction) jumpToStories();
   // Warm the cache for the neighbouring days so the next swipe is instant.
@@ -412,9 +625,18 @@ function setupBackToTop() {
 async function init() {
   setupSwipe();
   setupBackToTop();
+  setupSheet();
   let index = { dates: [], updated: null };
   try { index = await (await fetch("data/index.json", { cache: "no-cache" })).json(); } catch {}
   state.dates = index.dates || [];
+  // The pipeline writes the full topic list into index.json so every topic
+  // shows even on days it has no stories. Older index files lack it, so fall
+  // back to whatever topics today's stories use.
+  state.topics = index.topics || [];
+  if (!state.topics.length && state.dates.length) {
+    const first = await getDay(state.dates[0]);
+    state.topics = [...new Set(first.flatMap((i) => i.topics))].sort();
+  }
   if (!state.dates.length) {
     $("date-label").textContent = "No briefs yet";
     $("prev").disabled = $("next").disabled = true;

@@ -70,8 +70,10 @@ def merge_day(data_dir, today, new_items, cap, min_papers=0):
     return len(top)
 
 
-def rebuild_index(data_dir):
-    """List every day file so the page knows which dates exist."""
+def rebuild_index(data_dir, topics=None):
+    """List every day file so the page knows which dates exist, plus the full
+    topic list from interests.yml so the filter can always show every topic."""
+    Path(data_dir).mkdir(parents=True, exist_ok=True)
     dates = sorted(
         (p.stem for p in Path(data_dir).iterdir() if DATE_FILE.match(p.name)),
         reverse=True,
@@ -79,5 +81,6 @@ def rebuild_index(data_dir):
     write_json(
         Path(data_dir) / "index.json",
         {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+         "topics": list(topics or []),
          "dates": dates},
     )
