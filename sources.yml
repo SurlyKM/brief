@@ -14,8 +14,6 @@ arxiv:
     - cs.LG   # Machine Learning
     - cs.PL   # Programming Languages
     - cs.SE   # Software Engineering
-    - cs.HC   # Human-Computer Interaction (VR lives here)
-    - cs.GR   # Graphics
 
 # Blog and news feeds. "bonus" nudges a source up the pre-filter ranking
 # (0 = neutral). Raise it for sources you almost always want to read.

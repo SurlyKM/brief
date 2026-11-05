@@ -2,78 +2,179 @@
 <html lang="en-AU">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- viewport-fit=cover lets the page reach under the notch and home bar;
+     the safe-area padding below keeps content clear of them. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Daily Brief</title>
 <meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+<!-- Home screen app behaviour on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Brief">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <style>
   :root {
-    --bg: #fbfaf7;
-    --ink: #121212;
-    --muted: #5f5f5f;
-    --rule: #d9d6cf;
-    --rule-strong: #121212;
-    --accent: #326891;
-    --panel: #f1eee7;
+    --bg: #fbfaf7; --ink: #121212; --muted: #5f5f5f; --rule: #d9d6cf;
+    --rule-strong: #121212; --accent: #326891; --panel: #f1eee7;
+    --bar: rgba(251, 250, 247, 0.92);
     --serif: Georgia, "Times New Roman", Times, serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Safe areas: zero on desktop, real values on notched iPhones */
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #121212; --ink: #ececec; --muted: #a2a2a2; --rule: #333;
       --rule-strong: #ececec; --accent: #7fb2dd; --panel: #1c1c1c;
+      --bar: rgba(18, 18, 18, 0.92);
     }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--serif); line-height: 1.5; }
+  html {
+    -webkit-text-size-adjust: 100%;   /* stop iOS inflating text on rotate */
+    text-size-adjust: 100%;
+  }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--serif); line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
   a { color: inherit; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px 60px; }
+  button, select, a { touch-action: manipulation; }  /* no double-tap zoom delay */
+  .wrap {
+    max-width: 1120px; margin: 0 auto;
+    padding: 0 max(16px, var(--sar)) calc(60px + var(--sab)) max(16px, var(--sal));
+  }
 
-  /* Masthead */
-  header { text-align: center; padding: 28px 0 10px; border-bottom: 3px double var(--rule-strong); }
-  header h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 700; letter-spacing: -0.5px; }
-  .dateline { display: flex; justify-content: space-between; align-items: center; gap: 12px;
-              font-family: var(--sans); font-size: 0.8rem; color: var(--muted);
-              padding: 10px 0; border-bottom: 1px solid var(--rule-strong); flex-wrap: wrap; }
-  .dateline strong { color: var(--ink); font-weight: 600; }
-  .nav button { font: inherit; background: none; border: 1px solid var(--rule); color: var(--ink);
-                padding: 4px 10px; cursor: pointer; border-radius: 2px; }
-  .nav button:disabled { opacity: 0.35; cursor: default; }
-  .nav select { font: inherit; background: var(--bg); color: var(--ink); border: 1px solid var(--rule);
-                padding: 4px 6px; border-radius: 2px; }
+  /* ---------- Masthead (scrolls away) ---------- */
+  header {
+    text-align: center; padding: calc(18px + var(--sat)) 0 8px;
+    border-bottom: 3px double var(--rule-strong);
+  }
+  header h1 { margin: 0; font-size: clamp(2rem, 9vw, 3.4rem); font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
 
-  /* Topic filter */
-  .chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid var(--rule);
-           font-family: var(--sans); font-size: 0.78rem; }
-  .chip { background: none; border: 1px solid var(--rule); color: var(--ink); padding: 4px 11px;
-          border-radius: 999px; cursor: pointer; font: inherit; }
+  /* ---------- Sticky bar: date and topics ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bar);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    margin: 0 calc(-1 * max(16px, var(--sal))) 0 calc(-1 * max(16px, var(--sar)));
+    padding: var(--sat) max(16px, var(--sar)) 0 max(16px, var(--sal));
+    border-bottom: 1px solid var(--rule);
+  }
+  .dateline {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    font-family: var(--sans); padding: 6px 0;
+  }
+  .arrow {
+    flex: none; width: 44px; height: 44px;            /* Apple's minimum tap size */
+    display: grid; place-items: center;
+    font: 600 1.25rem var(--sans); color: var(--ink);
+    background: none; border: 1px solid var(--rule); border-radius: 10px; cursor: pointer;
+  }
+  .arrow:disabled { opacity: 0.3; cursor: default; }
+  .arrow:active:not(:disabled) { background: var(--panel); }
+  /* The date label is a native select laid over text: tapping it opens the iOS picker. */
+  .datepick { position: relative; flex: 1; text-align: center; min-height: 44px; display: grid; place-items: center; }
+  .datepick strong { font-size: 0.95rem; font-weight: 600; pointer-events: none; }
+  .datepick small { display: block; color: var(--muted); font-size: 0.75rem; pointer-events: none; }
+  .datepick select {
+    position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;
+    font-size: 16px;   /* under 16px makes iOS zoom the page on focus */
+  }
+
+  .chips {
+    display: flex; gap: 8px; padding: 4px 0 10px;
+    font-family: var(--sans); font-size: 0.85rem;
+    overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+    /* Without this, snapping aligns the first chip to the screen edge, ignoring padding. */
+    scroll-padding-inline: max(16px, var(--sal)) max(16px, var(--sar));
+    -webkit-overflow-scrolling: touch;
+    margin: 0 calc(-1 * max(16px, var(--sal))); padding-left: max(16px, var(--sal)); padding-right: max(16px, var(--sar));
+  }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; scroll-snap-align: start; min-height: 36px;
+    background: none; border: 1px solid var(--rule); color: var(--ink);
+    padding: 6px 14px; border-radius: 999px; cursor: pointer; font: inherit; white-space: nowrap;
+  }
   .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  @media (min-width: 760px) {
+    .chips { flex-wrap: wrap; overflow: visible; margin: 0; padding-left: 0; padding-right: 0; }
+  }
 
-  /* Stories */
-  .kicker { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
-            text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .story h2, .story h3 { margin: 0 0 8px; line-height: 1.2; font-weight: 700; }
+  /* ---------- Stories ---------- */
+  main { min-height: 60vh; }
+  main.in-left  { animation: in-left 220ms ease-out; }
+  main.in-right { animation: in-right 220ms ease-out; }
+  @keyframes in-left  { from { opacity: 0; transform: translateX(32px); } }
+  @keyframes in-right { from { opacity: 0; transform: translateX(-32px); } }
+  @media (prefers-reduced-motion: reduce) { main.in-left, main.in-right { animation: none; } }
+
+  .kicker {
+    font-family: var(--sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .story h2, .story h3 { margin: 0 0 8px; line-height: 1.22; font-weight: 700; }
   .story h2 a, .story h3 a { text-decoration: none; }
   .story h2 a:hover, .story h3 a:hover { text-decoration: underline; }
-  .summary { margin: 0 0 12px; }
-  .takeaway { background: var(--panel); border-left: 3px solid var(--accent); padding: 10px 12px;
-              margin: 0 0 12px; font-size: 0.95em; }
-  .takeaway b { display: block; font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.08em;
-                text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-  .meta { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); display: flex;
-          justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-  .meta a { color: var(--accent); font-weight: 600; text-decoration: none; }
-  .meta a:hover { text-decoration: underline; }
+  .summary { margin: 0 0 10px; }
+  .takeaway {
+    background: var(--panel); border-left: 3px solid var(--accent);
+    padding: 10px 12px; margin: 0 0 12px; font-size: 0.95em;
+  }
+  .takeaway b {
+    display: block; font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 2px;
+  }
+  .meta {
+    font-family: var(--sans); font-size: 0.8rem; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .meta a {
+    color: var(--accent); font-weight: 600; text-decoration: none;
+    min-height: 44px; display: inline-flex; align-items: center;
+  }
 
-  .lead { padding: 22px 0; border-bottom: 1px solid var(--rule); }
-  .lead h2 { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
-  .lead .summary { font-size: 1.12rem; max-width: 780px; }
+  /* Collapsible extra (takeaway and link). grid-template-rows 0fr -> 1fr
+     animates to the content's natural height without measuring it. */
+  .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 220ms ease; }
+  .more > div { overflow: hidden; }
+  .story.open .more, .lead .more { grid-template-rows: 1fr; }
+  .toggle {
+    display: flex; align-items: center; gap: 6px; width: 100%; min-height: 44px;
+    background: none; border: 0; padding: 0; cursor: pointer;
+    font: 600 0.8rem var(--sans); color: var(--muted); text-align: left;
+  }
+  .toggle::after { content: "\25BE"; transition: transform 200ms; }
+  .story.open .toggle::after { transform: rotate(180deg); }
+  .lead .toggle { display: none; }
+  @media (min-width: 760px) {           /* desktop: always expanded */
+    .more { grid-template-rows: 1fr; }
+    .toggle { display: none; }
+  }
+
+  .lead { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  .lead h2 { font-size: clamp(1.55rem, 6.5vw, 2.3rem); }
+  .lead .summary { font-size: 1.1rem; max-width: 780px; }
   .lead .takeaway { max-width: 780px; }
 
   .grid { display: grid; grid-template-columns: 1fr; }
-  .grid .story { padding: 20px 0; border-bottom: 1px solid var(--rule); }
-  .grid h3 { font-size: 1.28rem; }
+  .grid .story { padding: 16px 0 6px; border-bottom: 1px solid var(--rule); }
+  .grid h3 { font-size: 1.22rem; }
   @media (min-width: 760px) {
-    .grid { grid-template-columns: repeat(2, 1fr); column-gap: 0; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
     .grid .story { padding: 20px 22px; }
     .grid .story:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--rule); }
     .grid .story:nth-child(even) { padding-right: 0; }
@@ -86,34 +187,56 @@
     .grid .story:nth-child(3n) { padding-right: 0; border-right: none; }
   }
   .empty { text-align: center; color: var(--muted); padding: 60px 0; font-style: italic; }
-  footer { font-family: var(--sans); font-size: 0.72rem; color: var(--muted); text-align: center; padding-top: 24px; }
+  .hint { text-align: center; font-family: var(--sans); font-size: 0.75rem; color: var(--muted); padding: 18px 0 0; }
+  @media (hover: hover) and (pointer: fine) { .hint { display: none; } }
+  footer { font-family: var(--sans); font-size: 0.72rem; color: var(--muted); text-align: center; padding-top: 18px; }
+
+  /* ---------- Back to top ---------- */
+  .totop {
+    position: fixed; z-index: 20;
+    right: max(16px, var(--sar)); bottom: calc(16px + var(--sab));
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--bar);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    color: var(--ink); font: 600 1.2rem var(--sans); cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 200ms, transform 200ms;
+  }
+  .totop.show { opacity: 1; transform: none; pointer-events: auto; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header><h1>The Daily Brief</h1></header>
-  <div class="dateline">
-    <span><strong id="date-label">Loading</strong> <span id="count"></span></span>
-    <span class="nav">
-      <button id="prev" aria-label="Older day">&larr; Older</button>
-      <select id="picker" aria-label="Jump to date"></select>
-      <button id="next" aria-label="Newer day">Newer &rarr;</button>
-    </span>
+
+  <div class="bar">
+    <div class="dateline">
+      <button class="arrow" id="prev" aria-label="Older day">&lsaquo;</button>
+      <label class="datepick">
+        <span><strong id="date-label">Loading</strong><small id="count"></small></span>
+        <select id="picker" aria-label="Jump to date"></select>
+      </label>
+      <button class="arrow" id="next" aria-label="Newer day">&rsaquo;</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
   </div>
-  <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
+
   <main id="stories"></main>
+  <p class="hint">Swipe left or right to change day</p>
   <footer id="updated"></footer>
 </div>
+<button class="totop" id="totop" aria-label="Back to top">&uarr;</button>
 
 <script>
 "use strict";
-// All content comes from JSON files that a script wrote from third-party feeds,
-// so every value is inserted with textContent, never innerHTML.
+// All content comes from JSON written from third-party feeds, so every value
+// is inserted with textContent (via h()), never innerHTML.
 
 const state = { dates: [], date: null, items: [], topic: null };
+const cache = new Map();   // date -> items, so swiping back and forth is instant
 const $ = (id) => document.getElementById(id);
 
-// Tiny helper: h("a", {href: "..."}, "text") builds a DOM element safely.
 function h(tag, attrs, ...kids) {
   const el = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
@@ -128,11 +251,9 @@ function safeUrl(u) {
   } catch { return "#"; }
 }
 
-function fmtDate(iso) {
-  return new Intl.DateTimeFormat("en-AU", {
-    weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
-  }).format(new Date(iso + "T00:00:00Z"));
-}
+const dayFmt = new Intl.DateTimeFormat("en-AU", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+const longFmt = new Intl.DateTimeFormat("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const asDate = (iso) => new Date(iso + "T00:00:00Z");
 
 function ago(iso) {
   const hours = Math.max(0, (Date.now() - new Date(iso).getTime()) / 36e5);
@@ -140,33 +261,54 @@ function ago(iso) {
   return Math.round(hours / 24) + "d ago";
 }
 
+// ---------- Rendering ----------
+
 function story(item, isLead) {
-  const kicker = [...item.topics, item.source].join("  ·  ");
-  const title = h(isLead ? "h2" : "h3", {}, h("a", {
-    href: safeUrl(item.url), target: "_blank", rel: "noopener noreferrer" }, item.title));
-  return h("article", { class: isLead ? "lead story" : "story" },
-    h("div", { class: "kicker" }, kicker),
-    title,
-    h("p", { class: "summary" }, item.summary),
+  const link = () => h("a", { href: safeUrl(item.url), target: "_blank", rel: "noopener noreferrer" });
+  const title = link(); title.textContent = item.title;
+  const readLink = link(); readLink.textContent = "Read the original →";
+
+  const el = h("article", { class: isLead ? "lead story" : "story" },
+    h("div", { class: "kicker" }, [...item.topics, item.source].join("  ·  ")),
+    h(isLead ? "h2" : "h3", {}, title),
+    h("p", { class: "summary" }, item.summary));
+
+  // The takeaway and link sit inside .more, which collapses on phones.
+  const toggle = h("button", { class: "toggle", "aria-expanded": "false" }, "Worth knowing");
+  const more = h("div", { class: "more" }, h("div", {},
     h("div", { class: "takeaway" }, h("b", {}, "Worth knowing"), item.takeaway),
     h("div", { class: "meta" },
       h("span", {}, (item.kind === "paper" ? "Paper" : "Article") + " · " + ago(item.published)),
-      h("a", { href: safeUrl(item.url), target: "_blank", rel: "noopener noreferrer" }, "Read the original →")));
+      readLink)));
+  const flip = () => {
+    const open = el.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  };
+  toggle.addEventListener("click", flip);
+  // Tapping the summary also expands, which feels natural on a phone.
+  el.querySelector(".summary").addEventListener("click", () => { if (!isLead) flip(); });
+  el.append(toggle, more);
+  return el;
 }
 
-function render() {
+function render(direction) {
   const main = $("stories");
   main.replaceChildren();
+  main.classList.remove("in-left", "in-right");
   const shown = state.items.filter((i) => !state.topic || i.topics.includes(state.topic));
-  $("count").textContent = shown.length ? "· " + shown.length + " stories" : "";
+  $("count").textContent = shown.length ? shown.length + " stories" : "";
   if (!shown.length) {
     main.append(h("p", { class: "empty" }, "Nothing here yet for this selection."));
-    return;
+  } else {
+    main.append(story(shown[0], true));
+    const grid = h("div", { class: "grid" });
+    shown.slice(1).forEach((i) => grid.append(story(i, false)));
+    main.append(grid);
   }
-  main.append(story(shown[0], true));
-  const grid = h("div", { class: "grid" });
-  shown.slice(1).forEach((i) => grid.append(story(i, false)));
-  main.append(grid);
+  if (direction) {
+    void main.offsetWidth;   // restart the CSS animation
+    main.classList.add(direction === "older" ? "in-left" : "in-right");
+  }
 }
 
 function renderChips() {
@@ -176,44 +318,122 @@ function renderChips() {
   state.items.forEach((i) => i.topics.forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
   const make = (label, value) => {
     const b = h("button", { class: "chip", "aria-pressed": String(state.topic === value) }, label);
-    b.addEventListener("click", () => { state.topic = value; renderChips(); render(); });
+    b.addEventListener("click", () => {
+      state.topic = value; renderChips(); render(); jumpToStories();
+    });
     return b;
   };
   box.append(make("All", null));
-  Object.keys(counts).sort().forEach((t) => box.append(make(t + " (" + counts[t] + ")", t)));
+  Object.keys(counts).sort().forEach((t) => box.append(make(t + " " + counts[t], t)));
 }
 
-async function loadDay(date) {
-  state.date = date;
-  state.topic = null;
+// If the reader is below the masthead, keep them at the top of the stories
+// (just under the sticky bar) when the content changes.
+function jumpToStories() {
+  const top = $("stories").getBoundingClientRect().top + window.scrollY - $("chips").closest(".bar").offsetHeight;
+  if (window.scrollY > top) window.scrollTo({ top, behavior: "instant" });
+}
+
+// ---------- Data ----------
+
+async function getDay(date) {
+  if (cache.has(date)) return cache.get(date);
   try {
     const res = await fetch("data/" + date + ".json", { cache: "no-cache" });
-    state.items = res.ok ? (await res.json()).items : [];
-  } catch { state.items = []; }
+    const items = res.ok ? (await res.json()).items : [];
+    cache.set(date, items);
+    return items;
+  } catch { return []; }
+}
+
+async function loadDay(date, direction) {
+  if (!date) return;
+  state.date = date;
+  state.topic = null;
+  state.items = await getDay(date);
   const idx = state.dates.indexOf(date);
-  $("date-label").textContent = fmtDate(date);
+  $("date-label").textContent = dayFmt.format(asDate(date));
   $("picker").value = date;
   $("prev").disabled = idx >= state.dates.length - 1;
   $("next").disabled = idx <= 0;
   history.replaceState(null, "", "#" + date);
   renderChips();
-  render();
+  $("chips").scrollLeft = 0;
+  render(direction);
+  if (direction) jumpToStories();
+  // Warm the cache for the neighbouring days so the next swipe is instant.
+  [state.dates[idx + 1], state.dates[idx - 1]].forEach((d) => d && getDay(d));
 }
 
+const older = () => loadDay(state.dates[state.dates.indexOf(state.date) + 1], "older");
+const newer = () => loadDay(state.dates[state.dates.indexOf(state.date) - 1], "newer");
+
+// ---------- Swipe between days ----------
+// Only a clearly horizontal swipe counts, so normal scrolling is untouched.
+// Touches starting near the screen edge are left alone, because iOS uses
+// edge swipes for browser back and forward.
+function setupSwipe() {
+  let x0 = null, y0 = 0, t0 = 0;
+  const area = $("stories");
+  area.addEventListener("touchstart", (e) => {
+    const t = e.touches[0];
+    const edge = 28;
+    if (e.touches.length !== 1 || t.clientX < edge || t.clientX > window.innerWidth - edge) { x0 = null; return; }
+    x0 = t.clientX; y0 = t.clientY; t0 = Date.now();
+  }, { passive: true });
+  area.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - x0, dy = t.clientY - y0;
+    x0 = null;
+    if (Date.now() - t0 > 600) return;                       // too slow, probably reading
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 2) return;
+    if (dx < 0 && !$("prev").disabled) older();               // swipe left: older day
+    if (dx > 0 && !$("next").disabled) newer();               // swipe right: newer day
+  }, { passive: true });
+}
+
+// ---------- Back to top ----------
+function setupBackToTop() {
+  const btn = $("totop");
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      btn.classList.toggle("show", window.scrollY > window.innerHeight * 1.2);
+      ticking = false;
+    });
+  }, { passive: true });
+  btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+}
+
+// ---------- Start ----------
 async function init() {
+  setupSwipe();
+  setupBackToTop();
   let index = { dates: [], updated: null };
   try { index = await (await fetch("data/index.json", { cache: "no-cache" })).json(); } catch {}
-  state.dates = index.dates;
+  state.dates = index.dates || [];
   if (!state.dates.length) {
     $("date-label").textContent = "No briefs yet";
+    $("prev").disabled = $("next").disabled = true;
     $("stories").append(h("p", { class: "empty" }, "The first run has not completed. Check back soon."));
     return;
   }
   const picker = $("picker");
-  state.dates.forEach((d) => picker.append(h("option", { value: d }, d)));
-  picker.addEventListener("change", () => loadDay(picker.value));
-  $("prev").addEventListener("click", () => loadDay(state.dates[state.dates.indexOf(state.date) + 1]));
-  $("next").addEventListener("click", () => loadDay(state.dates[state.dates.indexOf(state.date) - 1]));
+  state.dates.forEach((d) => picker.append(h("option", { value: d }, longFmt.format(asDate(d)))));
+  picker.addEventListener("change", () => {
+    const from = state.dates.indexOf(state.date), to = state.dates.indexOf(picker.value);
+    loadDay(picker.value, to > from ? "older" : "newer");
+  });
+  $("prev").addEventListener("click", older);
+  $("next").addEventListener("click", newer);
+  document.addEventListener("keydown", (e) => {
+    if (e.target.tagName === "SELECT") return;
+    if (e.key === "ArrowLeft" && !$("next").disabled) newer();
+    if (e.key === "ArrowRight" && !$("prev").disabled) older();
+  });
   if (index.updated) $("updated").textContent = "Last updated " + new Date(index.updated).toLocaleString("en-AU");
   const wanted = location.hash.slice(1);
   loadDay(state.dates.includes(wanted) ? wanted : state.dates[0]);
