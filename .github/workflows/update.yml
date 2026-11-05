@@ -6,6 +6,11 @@ on:
     - cron: "0 20 * * *"
     - cron: "0 8 * * *"
   workflow_dispatch:        # also lets you run it by hand from the Actions tab
+    inputs:
+      weekly_week:
+        description: "Optional: write the weekly issue for the week containing this date (YYYY-MM-DD), e.g. today for a preview"
+        required: false
+        default: ""
 
 permissions:
   contents: write           # needed to commit the updated data files
@@ -33,6 +38,19 @@ jobs:
         env:
           FEED_TOKEN: ${{ secrets.FEED_TOKEN }}
         run: python -m pipeline.main
+
+      # Writes last week's issue on the first run each Monday (Sydney); a no-op otherwise.
+      - name: Weekly issue
+        env:
+          FEED_TOKEN: ${{ secrets.FEED_TOKEN }}
+          FEED_DISCORD_WEBHOOK: ${{ secrets.FEED_DISCORD_WEBHOOK }}
+          WEEK: ${{ github.event.inputs.weekly_week }}
+        run: |
+          if [ -n "$WEEK" ]; then
+            python -m pipeline.weekly --week "$WEEK"
+          else
+            python -m pipeline.weekly
+          fi
 
       - name: Commit changes
         run: |

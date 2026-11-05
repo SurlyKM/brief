@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Weekly Brief</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Brief">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root {
+    --bg: #fbfaf7; --ink: #121212; --muted: #5f5f5f; --rule: #d9d6cf;
+    --rule-strong: #121212; --accent: #326891; --panel: #f1eee7;
+    --serif: Georgia, "Times New Roman", Times, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px); --sar: env(safe-area-inset-right, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121212; --ink: #ececec; --muted: #a2a2a2; --rule: #333;
+            --rule-strong: #ececec; --accent: #7fb2dd; --panel: #1c1c1c; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--serif);
+         line-height: 1.55; -webkit-tap-highlight-color: transparent; }
+  a { color: inherit; }
+  button, select, a { touch-action: manipulation; }
+  /* A single readable column, like a newsletter, on every screen size. */
+  .wrap { max-width: 720px; margin: 0 auto;
+          padding: 0 max(18px, var(--sar)) calc(60px + var(--sab)) max(18px, var(--sal)); }
+
+  .topnav { display: flex; justify-content: space-between; align-items: center;
+            padding: calc(10px + var(--sat)) 0 0; font: 600 0.85rem var(--sans); }
+  .topnav a { color: var(--accent); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  header { text-align: center; padding: 6px 0 10px; border-bottom: 3px double var(--rule-strong); }
+  header h1 { margin: 0; font-size: clamp(2rem, 9vw, 3.2rem); line-height: 1.1; letter-spacing: -0.5px; }
+
+  .issuebar { display: flex; align-items: center; gap: 8px; padding: 8px 0;
+              border-bottom: 1px solid var(--rule); font-family: var(--sans); }
+  .arrow { flex: none; width: 44px; height: 44px; display: grid; place-items: center;
+           font: 600 1.25rem var(--sans); color: var(--ink); background: none;
+           border: 1px solid var(--rule); border-radius: 10px; cursor: pointer; }
+  .arrow:disabled { opacity: 0.3; cursor: default; }
+  .pick { position: relative; flex: 1; min-height: 44px; display: grid; place-items: center; text-align: center; }
+  .pick strong { font-size: 0.95rem; pointer-events: none; }
+  .pick small { display: block; font-size: 0.75rem; color: var(--muted); pointer-events: none; }
+  .pick select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; font-size: 16px; cursor: pointer; }
+
+  .partial { margin: 14px 0 0; padding: 8px 12px; background: var(--panel);
+             font: 0.82rem var(--sans); color: var(--muted); border-radius: 6px; }
+
+  .headline { font-size: clamp(1.7rem, 7vw, 2.5rem); line-height: 1.15; margin: 22px 0 14px; }
+  .themes p { margin: 0 0 14px; font-size: 1.08rem; }
+  .themes p:first-child::first-letter {
+    float: left; font-size: 3.4em; line-height: 0.85; font-weight: 700; padding: 6px 8px 0 0;
+  }
+
+  h3.section { font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase;
+               margin: 34px 0 4px; padding-top: 10px; border-top: 2px solid var(--rule-strong); }
+
+  .must { list-style: none; margin: 0; padding: 0; counter-reset: must; }
+  .must li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 0 10px;
+             padding: 16px 0; border-bottom: 1px solid var(--rule); counter-increment: must; }
+  .must li::before { content: counter(must); font-size: 2rem; font-weight: 700; line-height: 1; color: var(--accent); }
+  .kicker { font: 700 0.68rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 4px; }
+  .must h4 { margin: 0 0 6px; font-size: 1.2rem; line-height: 1.25; }
+  .must h4 a { text-decoration: none; }
+  .must h4 a:hover { text-decoration: underline; }
+  .must p { margin: 0; }
+
+  .lessons { margin: 0; padding: 0; list-style: none; }
+  .lessons li { padding: 12px 0 12px 16px; border-left: 3px solid var(--accent); margin: 12px 0;
+                background: var(--panel); padding-right: 12px; }
+  .lessons .from { display: block; margin-top: 4px; font: 0.78rem var(--sans); color: var(--muted); }
+  .lessons .from a { color: var(--accent); text-decoration: none; }
+
+  .empty { text-align: center; color: var(--muted); padding: 60px 0; font-style: italic; }
+  footer { font: 0.72rem var(--sans); color: var(--muted); text-align: center; padding-top: 28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="./">&larr; Daily brief</a></nav>
+  <header><h1>The Weekly Brief</h1></header>
+  <div class="issuebar">
+    <button class="arrow" id="prev" aria-label="Older issue">&lsaquo;</button>
+    <label class="pick">
+      <span><strong id="range">Loading</strong><small id="sub"></small></span>
+      <select id="picker" aria-label="Choose issue"></select>
+    </label>
+    <button class="arrow" id="next" aria-label="Newer issue">&rsaquo;</button>
+  </div>
+  <main id="issue"></main>
+  <footer>Written each Monday from the week's daily brief.</footer>
+</div>
+
+<script>
+"use strict";
+// Content originates from third-party feeds via a model, so everything is
+// inserted with textContent through h(), never innerHTML.
+const $ = (id) => document.getElementById(id);
+const state = { issues: [], week: null };
+
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
+  for (const kid of kids) if (kid != null) el.append(kid);
+  return el;
+}
+function safeUrl(u) {
+  try { const url = new URL(u); return /^https?:$/.test(url.protocol) ? url.href : "#"; }
+  catch { return "#"; }
+}
+const ext = (url, text) => h("a", { href: safeUrl(url), target: "_blank", rel: "noopener noreferrer" }, text);
+
+function renderIssue(d) {
+  const main = $("issue");
+  main.replaceChildren();
+  $("range").textContent = d.range;
+  $("sub").textContent = d.story_count + " stories";
+  if (d.partial) {
+    main.append(h("p", { class: "partial" },
+      "Partial issue: covers " + d.days_covered + " of 7 days."));
+  }
+  main.append(h("h2", { class: "headline" }, d.headline));
+  const themes = h("div", { class: "themes" });
+  d.themes.forEach((p) => themes.append(h("p", {}, p)));
+  main.append(themes);
+
+  main.append(h("h3", { class: "section" }, "Five must-reads"));
+  const must = h("ol", { class: "must" });
+  d.must_reads.forEach((m) => must.append(h("li", {}, h("div", {},
+    h("div", { class: "kicker" }, [...m.topics, m.source].join("  ·  ")),
+    h("h4", {}, ext(m.url, m.title)),
+    h("p", {}, m.why)))));
+  main.append(must);
+
+  if (d.lessons && d.lessons.length) {
+    main.append(h("h3", { class: "section" }, "Lessons of the week"));
+    const ul = h("ul", { class: "lessons" });
+    d.lessons.forEach((l) => ul.append(h("li", {}, l.lesson,
+      h("span", { class: "from" }, "From ", ext(l.url, l.title)))));
+    main.append(ul);
+  }
+}
+
+async function loadIssue(week) {
+  if (!week) return;
+  state.week = week;
+  const idx = state.issues.findIndex((i) => i.week === week);
+  $("picker").value = week;
+  $("prev").disabled = idx >= state.issues.length - 1;
+  $("next").disabled = idx <= 0;
+  history.replaceState(null, "", "#" + week);
+  try {
+    const res = await fetch("data/weekly/" + week + ".json", { cache: "no-cache" });
+    if (!res.ok) throw new Error();
+    renderIssue(await res.json());
+    window.scrollTo({ top: 0 });
+  } catch {
+    $("issue").replaceChildren(h("p", { class: "empty" }, "This issue could not be loaded."));
+  }
+}
+
+async function init() {
+  try {
+    const res = await fetch("data/weekly/index.json", { cache: "no-cache" });
+    state.issues = res.ok ? (await res.json()).issues : [];
+  } catch { state.issues = []; }
+  if (!state.issues.length) {
+    $("range").textContent = "No issues yet";
+    $("prev").disabled = $("next").disabled = true;
+    $("issue").append(h("p", { class: "empty" }, "The first weekly issue arrives on Monday morning."));
+    return;
+  }
+  const picker = $("picker");
+  state.issues.forEach((i) => picker.append(h("option", { value: i.week }, i.range)));
+  picker.addEventListener("change", () => loadIssue(picker.value));
+  const step = (n) => () => loadIssue((state.issues[state.issues.findIndex((i) => i.week === state.week) + n] || {}).week);
+  $("prev").addEventListener("click", step(1));
+  $("next").addEventListener("click", step(-1));
+  const wanted = location.hash.slice(1);
+  loadIssue(state.issues.some((i) => i.week === wanted) ? wanted : state.issues[0].week);
+}
+init();
+</script>
+</body>
+</html>
