@@ -2,6 +2,22 @@
  "date": "2026-11-06",
  "items": [
   {
+   "id": "59cc3f83603700bb",
+   "title": "Does Frontier AI Strengthen Cyber Defense? Evidence from Project Glasswing",
+   "url": "https://arxiv.org/abs/2611.06629",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-04T15:12:30+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Defence",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "Using public vulnerability disclosure data, the study found that firms given early access to Claude Mythos Preview more than doubled their disclosures and reported about 150 percent more high-impact flaws than comparable foreign firms without access, while fix times stayed the same. Bug bounty researchers shifted their reports toward untreated firms rather than leaving the market. The share of flaws exploited within a month of disclosure fell by about two-thirds, mainly because fewer were already exploited when disclosed, not because exploitation of the extra flaws increased.",
+   "takeaway": "When judging whether a defensive tool helps, track exploitation status at the moment of disclosure, not just the raw count of findings. Early defender access to vulnerability-finding AI can shift the discovery race, but restricted release can also create uneven security between countries."
+  },
+  {
    "id": "dff2c1828d5ea506",
    "title": "Signed, Sealed, Leaked: Trust Beyond Signature for MCP Toolchains",
    "url": "https://arxiv.org/abs/2611.06585",
@@ -143,6 +159,22 @@
    "takeaway": "Logging an agent's stated intent alongside observed side effects creates a mismatch signal that makes covert cheating and unsafe actions much easier to detect and audit."
   },
   {
+   "id": "95f34a9e3f705a9e",
+   "title": "Towards Early Warning of Real-World Vulnerabilities: An Evidence-Aware Decoupled Method for CVSS Vector Prediction Based on Unstructured Disclosures",
+   "url": "https://arxiv.org/abs/2611.06477",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T13:18:37+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "VPre predicts CVSS vectors from noisy, pre-NVD OSINT reports by screening out irrelevant evidence and routing each metric to a suitable predictor. It reduces mean absolute error by 44.7% against a BERT baseline and gives an average 38-day lead before official scoring. The screening stage also reaches 0.99 F1 under a heavy noise setting.",
+   "takeaway": "When a prediction task mixes evidence types, split it by how the evidence appears, sending explicit signals to a cheap classifier and implicit ones to a language model."
+  },
+  {
    "id": "5a379f09430bea5f",
    "title": "Reassessing Dataset Quality and Fine-Tuning Practices for Vulnerability Detection on PrimeVul dataset",
    "url": "https://arxiv.org/abs/2611.06373",
@@ -203,37 +235,6 @@
    "relevance": 7,
    "summary": "PIMROP shows that return-oriented programming works on the UPMEM DPU, a commercially shipped processing-in-memory instruction set. The authors find 517 gadgets in the runtime library every kernel links and build two end-to-end attacks that leak a secret. Stack canaries and FORTIFY_SOURCE-style checks fail in platform-specific ways, and a bounds-checked DMA stops the attack.",
    "takeaway": "New execution environments can carry old exploitation techniques into places where host-side defences do not reach, so every new instruction set needs its own gadget analysis and its own check on whether defences are actually active."
-  },
-  {
-   "id": "e88604fc15e3d336",
-   "title": "AgentTrustCI: Build-Time Policy, Grounding, and Trajectory Tests for Java LLM Agents",
-   "url": "https://arxiv.org/abs/2611.06674",
-   "source": "arXiv cs.AI",
-   "kind": "paper",
-   "published": "2026-11-04T15:46:11+00:00",
-   "topics": [
-    "AI and ML",
-    "Programming",
-    "Blue team"
-   ],
-   "relevance": 6,
-   "summary": "AgentTrustCI is a Java and JUnit 5 framework that expresses policy, grounding, and trajectory checks over recorded LLM agent traces as build-time tests. On 55 synthetic cases, the full pipeline caught all 30 injected faults and passed all 25 controls, and trajectory checks caught a grounded answer reached through a disallowed sequence. The authors stress that this shows coverage of the authored suite, not production accuracy.",
-   "takeaway": "Checking the sequence of tool calls, not just the final answer, catches failures where a correct-looking output was reached through a disallowed path."
-  },
-  {
-   "id": "2dc05631f9b605da",
-   "title": "PatchCon: Patch-aware Weighted Supervised Contrastive Learning for Vulnerability Detection",
-   "url": "https://arxiv.org/abs/2611.06583",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-11-04T14:39:42+00:00",
-   "topics": [
-    "AI and ML",
-    "Vulnerability research"
-   ],
-   "relevance": 6,
-   "summary": "The authors propose PatchCon, a CodeBERT-based model that treats vulnerable functions and their patched versions as hard negatives, weighting their contrastive loss more heavily. On the PairVul-Linux benchmark it raises pairwise accuracy from 0.2060 to 0.3264 and matches a GPT-4o-based method at much lower cost. It also holds up on Linux kernel CVEs disclosed after the training cutoff.",
-   "takeaway": "Vulnerability-fixing patches are a rich source of contrastive supervision, since the smallest security-relevant difference between a vulnerable function and its fix is exactly what a detector must learn to see."
   }
  ]
 }
