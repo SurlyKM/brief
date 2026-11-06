@@ -82,6 +82,22 @@
    "takeaway": "Deception can move an attacker's working exploit somewhere else rather than stop it, so defenders should measure whether the attack has been neutralised or only relocated. Requests that reach the real target before the attacker is identified remain the main exposure."
   },
   {
+   "id": "ff85a44d449e8471",
+   "title": "Signed but Not Safe: Requirement Integrity in Multi-Agent LLM Handoffs",
+   "url": "https://arxiv.org/abs/2611.07483",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T05:43:47+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors test multi-agent LLM pipelines where an orchestrator passes requirements to subagents, comparing free-text, structured JSON and HMAC-signed requirement manifests. Signing sharply cut unsafe commits under attack and blocked in-transit tampering entirely, and a deterministic verifier outperformed an LLM checker on both detection and false alarms. However, a single adversarial line injected before signing was authenticated by the signature and raised violations sharply across three models.",
+   "takeaway": "A signature only proves that data arrived unchanged, so the step that creates the data is the real trust boundary and needs its own controls."
+  },
+  {
    "id": "d93081553b9b4583",
    "title": "SPILLWAY: Separating Target Admission from Sanitization to Defend Tool-Using Agents against Prompt Injection",
    "url": "https://arxiv.org/abs/2611.07222",
@@ -111,6 +127,21 @@
    "relevance": 7,
    "summary": "MEvince is a framework that uses LLMs to map malware analysis reports to MITRE ATT&CK techniques, grounding the model in a shared behavioural representation built from technique documentation. It extracts observations linked to source passages, retrieves candidate techniques along with confusable alternatives, and checks evidence references before the LLM compares distinguishing behaviours. Across 610 public reports it improves exact-ID F1 by 17.4% over the strongest baseline and raises gold-label candidate coverage from 31.6% to 47.9%.",
    "takeaway": "When an LLM labels threat activity, require it to cite supporting evidence and to compare the closest confusable techniques, since plausible associations alone produce many false mappings. Retrieval coverage is often the bottleneck, so measure whether the correct answer is even among the candidates."
+  },
+  {
+   "id": "64c6257e7efdd9c2",
+   "title": "Detecting Silent Faults at the Environment-Trainer Boundary in Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2611.08144",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-05T15:05:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 6,
+   "summary": "The authors treat the wire between a reinforcement learning trainer and its environment as a protocol and inject faults into it, including faults that raise no error. Learning-curve thresholds and comparisons with fault-free seeds caught very few faults, while a step ledger kept on both sides and compared step by step caught and located every fault that crossed. Several real faults were also found in Gymnasium and in multi-agent libraries.",
+   "takeaway": "Check what the system actually did at each step, not just whether its final outcome looks plausible, because silent corruption can produce normal-looking results."
   },
   {
    "id": "468404fd3490fba4",
@@ -159,6 +190,21 @@
    "takeaway": "In adversarial automation, the side that improves the realism of its deception may keep pace better than the side that improves detection. Model defensive value as a race over resource consumption and belief adaptation, not just as a detection accuracy problem."
   },
   {
+   "id": "72881a5bcb71e8e0",
+   "title": "JailBound: FOL-Guided Jailbreak Evaluation for Exploring LLM Behavioral Boundaries",
+   "url": "https://arxiv.org/abs/2611.07530",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T06:41:14+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 5,
+   "summary": "JailBound is a jailbreak evaluation framework that generates attack prompts across a taxonomy of threat conditions and uses a first-order loss signal to search for states near the boundary between refusal and unsafe output. Across 46 LLMs it reports modest attack success rate gains over a zeroth-order baseline and shows that local perturbations flip judged safety labels more often in sensitive states. The authors argue this gives a finer view of model behaviour than success rate alone.",
+   "takeaway": "Attack success rate alone hides how fragile a model's refusal is, so measure how often small perturbations near the decision boundary flip its behaviour."
+  },
+  {
    "id": "c9d427493236b492",
    "title": "Req2Rust: A Requirements-Guided Agent Harness for Project-Level C++-to-Rust Migration",
    "url": "https://arxiv.org/abs/2611.07442",
@@ -172,6 +218,21 @@
    "relevance": 5,
    "summary": "Req2Rust is an LLM-based harness for project-level C++ to Rust migration. It first writes a Migration Requirements Specification of behaviours that must be preserved, then produces a Rust design and initial project, and refines the project using compiler, semantic, and unsafe-reduction validators. It produces buildable crates on general projects and OpenHarmony modules, raising test pass rates from 69.5% to 91.9% and from 45.4% to 87.9%.",
    "takeaway": "Migrating legacy code to a memory-safe language is more reliable when the behaviours to preserve are written down explicitly and checked by tests and validators. Treat the first generated translation as a starting point to refine, not as the final result."
+  },
+  {
+   "id": "33761f5c64ca4335",
+   "title": "SeVerus: Context-Aware, Gamified Benchmarking for Rust Verification",
+   "url": "https://arxiv.org/abs/2611.07194",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T22:34:57+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "SeVerus generates Verus benchmark tasks from real verified Rust projects by progressively removing the helper lemmas that originally supported each proof, arranged as gamified levels. A checker rejects weakened specifications and unsound proof constructs, and a noisy binary search estimates the hardest level an agent solves reliably. The strongest agent solved the final level of many quests yet reliably solved only about 35 percent of levels, with successful proofs often using different decompositions rather than the withheld lemmas.",
+   "takeaway": "Benchmarks that supply the helper lemmas hide how much an agent can actually discover, so withholding context is a useful way to expose real capability gaps in verification tasks."
   }
  ]
 }
