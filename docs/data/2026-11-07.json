@@ -1,0 +1,177 @@
+{
+ "date": "2026-11-07",
+ "items": [
+  {
+   "id": "eff432925562f8e4",
+   "title": "After Binance, check what your signing systems can approve",
+   "url": "https://blog.trailofbits.com/2026/11/06/after-binance-check-what-your-signing-systems-can-approve/",
+   "source": "Trail of Bits",
+   "kind": "article",
+   "published": "2026-11-06T12:00:00+00:00",
+   "topics": [
+    "Blue team",
+    "Defence",
+    "AI and ML"
+   ],
+   "relevance": 9,
+   "summary": "Trail of Bits analyses Binance's October 2026 incident, in which an attacker compromised a wallet-signing service and used valid signatures rather than stolen keys. The attacker used an EIP-7702 delegation to install a standing instruction that allowed repeated transfers, including of later deposits, without further signatures. The article argues that monitoring must cover authority changes and delegation paths, not just transfers and ownership.",
+   "takeaway": "A compromised server that can request signatures is as dangerous as a stolen private key, so detection must watch for new standing authority such as delegations and session keys, not only the asset movements they enable."
+  },
+  {
+   "id": "e2845eccbac1628b",
+   "title": "Threat actors use agentic AI tooling to find and abuse exposed secrets",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-05T23:46:50+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 9,
+   "summary": "Microsoft Threat Intelligence observed threat actors using an agentic AI framework, ARTEX, to scan public GitHub repositories for exposed credentials and AI API keys. In one case an agent went from finding a secret to exfiltrating data from Azure Key Vault in five minutes. Follow-on activity involved service principal sign-ins using a compromised multitenant vendor application credential to reach downstream tenants.",
+   "takeaway": "Exposed secrets are now found and exploited at machine speed, so rotate leaked credentials immediately and hunt for unusual service principal sign-ins, especially from multitenant application credentials."
+  },
+  {
+   "id": "1482780abff91adc",
+   "title": "Escalate or Close: How Fast-Tier Models Handle Held-Out Web Attack Families in Two-Tier Triage",
+   "url": "https://arxiv.org/abs/2611.08229",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T16:13:19+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The study tests two-tier web attack triage where a fast model closes most requests, using seven attack families held out of all training and threshold tuning. Supervised detectors such as ModernBERT often give held-out path traversal confident benign scores, while hosted decision models escalate at least 97.6% of every family within the benign budget, though their training data is undisclosed. The authors also show that benign twin requests and scanner-like shapes can inflate apparent detection, and that a probability-guided search gets 43% of held-out attacks past one model within 300 queries",
+   "takeaway": "Evaluate detectors on attack families they never saw, and include benign twins that share the attack's request shape, otherwise high scores may only reflect scanner-like structure or leaked training data."
+  },
+  {
+   "id": "61904eca2730194f",
+   "title": "Beyond Instruction Override: Benchmarking Indirect Prompt Injection with Task-Tampering Attacks",
+   "url": "https://arxiv.org/abs/2611.07640",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T08:25:27+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The authors define indirect prompt injection by authority: planted content is an attack if it tries to influence a decision its source is not authorised to make, even when it does not issue an instruction. Their 90-case benchmark shows that attacks on decision rules, available actions, and state beliefs succeed more often than attacks on the objective, and that a detection-and-removal defence cuts objective attacks to 2.4% but leaves observation and state attacks at 9.5% and 12.1%. A tool-policy defence still allows 15.4% success, close to the 17.0% undefended rate.",
+   "takeaway": "Prompt injection defences that only catch instruction-like text or block unexpected tools miss attacks that manipulate the values an agent reads during execution. Test defences against attacks that keep the expected task and tools but tamper with the decision inputs."
+  },
+  {
+   "id": "cf90cacafafebdd4",
+   "title": "A Gingerbread House for LLM Agents: Source-Planned Honeypots That Lure Autonomous Attackers into an Isolated Shadow",
+   "url": "https://arxiv.org/abs/2611.07611",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T07:55:38+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors have an LLM defender plan a static honeypot from application source code, then route confirmed attacker traffic, including working exploits, to an isolated shadow copy of the app. On 40 critical CVE-Bench tasks, real compromise fell from 26/40 to 5/40 for Claude Opus 4.8 and from 20/40 to 0/40 for the ARTEX attack framework. In about half the deception runs the exploit still worked, but against the shadow, and ARTEX accepted a planted fake secret as genuine in 30 of 120 deception-arm tasks.",
+   "takeaway": "Deception can move an attacker's working exploit somewhere else rather than stop it, so defenders should measure whether the attack has been neutralised or only relocated. Requests that reach the real target before the attacker is identified remain the main exposure."
+  },
+  {
+   "id": "d93081553b9b4583",
+   "title": "SPILLWAY: Separating Target Admission from Sanitization to Defend Tool-Using Agents against Prompt Injection",
+   "url": "https://arxiv.org/abs/2611.07222",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T23:18:10+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "SPILLWAY is a runtime defence for tool-using agents that admits a tool call only when each new target value, such as an email recipient or payment account, came from a typed field returned by a read-only tool or matches a fixed delegation rule. A deterministic sanitiser strips instruction-like text before the model reads it and keeps the removed spans as evidence. The authors report that no standard templated injection redirected an action to an attacker's target across three backbones and seven task suites, with mean in-scope attack success of 0.007 against a released reinforcement-learning a",
+   "takeaway": "Where an agent sends data or money can often be enforced deterministically from the structure of tool outputs, rather than by asking a model to judge each action. Typed fields are harder to forge through free text than the content around them."
+  },
+  {
+   "id": "83c6293972f63e14",
+   "title": "MEvince: Knowledge-Constrained LLM Reasoning for Technique Identification from Malware Reports",
+   "url": "https://arxiv.org/abs/2611.07486",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T05:45:20+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "MEvince is a framework that uses LLMs to map malware analysis reports to MITRE ATT&CK techniques, grounding the model in a shared behavioural representation built from technique documentation. It extracts observations linked to source passages, retrieves candidate techniques along with confusable alternatives, and checks evidence references before the LLM compares distinguishing behaviours. Across 610 public reports it improves exact-ID F1 by 17.4% over the strongest baseline and raises gold-label candidate coverage from 31.6% to 47.9%.",
+   "takeaway": "When an LLM labels threat activity, require it to cite supporting evidence and to compare the closest confusable techniques, since plausible associations alone produce many false mappings. Retrieval coverage is often the bottleneck, so measure whether the correct answer is even among the candidates."
+  },
+  {
+   "id": "468404fd3490fba4",
+   "title": "CANMentor: A Large-Small Model Collaboration Framework for CAN Bus Intrusion Detection",
+   "url": "https://arxiv.org/abs/2611.07853",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T11:31:03+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "The authors propose CANMentor, where a lightweight intrusion detector in each vehicle handles CAN bus traffic locally and a cloud LLM acts as a teacher, with a privacy-aware generator producing proxies so raw messages never leave the car. Teacher predictions are used only within a latency bound and are distilled back into the local model as soft targets. On non-IID partitions of the ROAD and HCRL Car-Hacking datasets, distillation gives up to 25.01% and 20.79% relative Macro F1 gains.",
+   "takeaway": "When edge models are weak on skewed data, distilling soft targets from a stronger remote model can recover accuracy, but the design must also limit what sensitive data leaves the device and must have a fallback when the remote answer is late."
+  },
+  {
+   "id": "28adf095bb4a05f4",
+   "title": "Fast Unsupervised Anomaly Detection Methods on Software Logs - An Empirical Study",
+   "url": "https://arxiv.org/abs/2611.07760",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-05T10:02:42+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC"
+   ],
+   "relevance": 6,
+   "summary": "This empirical study tests unsupervised anomaly detection on software logs across seven datasets, including BGL, HDFS and Thunderbird, using four models and three text representations. Results vary widely by dataset, so no single recommendation holds everywhere, although training on anomaly-free data tends to help. The authors find that shuffling training data does not cause the leakage it causes for supervised models, and that word representations with models other than IsolationForest run fastest.",
+   "takeaway": "Log anomaly detection results depend heavily on the dataset, so a detector tuned on one log source should be revalidated on yours before you trust its alerts."
+  },
+  {
+   "id": "c70a903cde2cde21",
+   "title": "The Promise of Strategic Agentic Scambaiting",
+   "url": "https://arxiv.org/abs/2611.08170",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T15:28:27+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The paper presents a formal game-theoretic model of agent-to-agent fraud, in which scammer agents and scambaiting agents compete for each other's resources such as mule accounts and wallet addresses. Under the baseline parameters, scammer profitability turns negative once baiting-agent prevalence passes certain thresholds. When both sides improve at the same rate, the defender's gains in mimicry quality outpace the scammer's gains in detection, so the defender wins the arms race.",
+   "takeaway": "In adversarial automation, the side that improves the realism of its deception may keep pace better than the side that improves detection. Model defensive value as a race over resource consumption and belief adaptation, not just as a detection accuracy problem."
+  },
+  {
+   "id": "c9d427493236b492",
+   "title": "Req2Rust: A Requirements-Guided Agent Harness for Project-Level C++-to-Rust Migration",
+   "url": "https://arxiv.org/abs/2611.07442",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-05T04:40:17+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "Req2Rust is an LLM-based harness for project-level C++ to Rust migration. It first writes a Migration Requirements Specification of behaviours that must be preserved, then produces a Rust design and initial project, and refines the project using compiler, semantic, and unsafe-reduction validators. It produces buildable crates on general projects and OpenHarmony modules, raising test pass rates from 69.5% to 91.9% and from 45.4% to 87.9%.",
+   "takeaway": "Migrating legacy code to a memory-safe language is more reliable when the behaviours to preserve are written down explicitly and checked by tests and validators. Treat the first generated translation as a starting point to refine, not as the final result."
+  }
+ ]
+}
