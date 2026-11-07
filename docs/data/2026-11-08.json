@@ -1,0 +1,96 @@
+{
+ "date": "2026-11-08",
+ "items": [
+  {
+   "id": "cb18a97bb19d1c5a",
+   "title": "A Hidden Markov Preference Model for Online Prediction of Adversary Actions",
+   "url": "https://arxiv.org/abs/2611.08445",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-05T18:37:07+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The paper models an attacker's next action with a hidden Markov model whose latent state is the attacker's behavioural regime, with actions restricted to a feasibility-masked tree of executable operations. On the CAGE 2 cyber defence benchmark, the inferred regime is worth about 0.8 nats per step, and after a controller switch the model's loss falls within three steps, compared with ten for a recurrent baseline. The approach gives defenders an online probability distribution over what the attacker will do next.",
+   "takeaway": "Modelling attacker behaviour as a switching regime, rather than a fixed policy, lets defenders detect and adapt quickly when an adversary changes tactics. Constraining predictions to feasible actions also makes them far more informative."
+  },
+  {
+   "id": "86099069bb697c64",
+   "title": "Benchmarks as Software: Terminal-Bench and the Case for Continuous Benchmarks",
+   "url": "https://arxiv.org/abs/2611.08417",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-05T18:18:39+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors audit Terminal-Bench 2.0 and find problems in about 30% of its tasks, then release repairs as version 2.1 that shift accuracy by over 10 points and move leaderboard ranks. They also show that the wall-clock time limit can substantially change agent results, with longer limits closing large harness gaps. They propose continuous validation of benchmarks and treat resource budgets as part of the measurement specification.",
+   "takeaway": "Benchmarks decay as models improve, and their time or resource limits are part of the measurement itself. Revalidate both the tasks and the budgets before trusting any comparison."
+  },
+  {
+   "id": "99c2ff7a138c9ed1",
+   "title": "Hard Issue, Weak Model, or Bad Run? Rethinking Failure Prediction for Coding Agents",
+   "url": "https://arxiv.org/abs/2611.08285",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-05T16:50:11+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors show that trajectory-based failure predictors for coding agents mostly track issue difficulty and model ability rather than anything about the specific run. A run-independent difficulty score reaches 0.92 AUROC, while trajectory predictors reach about 0.62. Model switching and retries gain little unless failures are caused by a bad run, which current predictors cannot distinguish.",
+   "takeaway": "When evaluating an automated system's failure detector, check whether it beats simple baselines such as issue difficulty, since it may only be reproducing known structure in the data."
+  },
+  {
+   "id": "d5979cc0db9086f1",
+   "title": "Accepted but Wrong: Silent Failures of LLM Code Repairs after API Migrations",
+   "url": "https://arxiv.org/abs/2611.08269",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-05T16:41:32+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors study LLM-generated repairs to code broken by runtime or API migrations, finding that many repaired programs run cleanly but return wrong results and still pass typical release checks. An edge-case input drawn from the release note cut wrong releases sharply, and an AI-written test set also helped. Some hard wrong programs still passed the preregistered tests, showing limits to these gates.",
+   "takeaway": "Passing typical test inputs is a weak release gate for automated changes, so targeted edge cases derived from the change documentation catch silent regressions that ordinary tests miss."
+  },
+  {
+   "id": "b0ba5688204db1a9",
+   "title": "Multi-step SWE: Can Coding Agents Keep Building on Their Own Code Over Long Horizons?",
+   "url": "https://arxiv.org/abs/2611.07166",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-04T21:49:40+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors introduce Multi-step SWE, a benchmark of 69 chained software engineering tasks where each step builds on the code the agent wrote in earlier steps. The strongest of nine frontier models solves only 18.5% of tasks, and 38 tasks are unsolved by every model. Early design decisions and errors compound across steps, which single-task benchmarks miss.",
+   "takeaway": "Single-shot agent scores can overstate real-world reliability, because errors made early in a multi-step build carry forward and compound. Evaluate agents on sustained, dependent workflows rather than isolated tasks."
+  },
+  {
+   "id": "bb9c3475d81115a3",
+   "title": "Beyond Proof of Possession: A Relational Theory of Authority",
+   "url": "https://arxiv.org/abs/2611.07159",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T21:35:27+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The paper argues that proof of possession, which shows an executor holds a key or token, is not enough to establish that a specific execution is authorised. It proposes Proof of Relationship and a relational model of authority that tracks the causal history of each execution occurrence. The authors prove monotonicity and closure properties and show that possession evidence is a possible mechanism, not a required premise, under stated assumptions.",
+   "takeaway": "Holding a valid credential does not prove that a particular action is authorised, so authorisation should consider the causal lineage of the request. This matters for delegated and agentic systems where a deputy acts on behalf of others."
+  }
+ ]
+}
