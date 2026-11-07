@@ -2,6 +2,22 @@
  "date": "2026-11-08",
  "items": [
   {
+   "id": "e115b44724e254be",
+   "title": "ARTEX abuse expands as cybercriminals target financial sector",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-07T02:44:34+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft reports that the financially motivated group Storm-3358 is using the agentic offensive framework ARTEX against financial organisations, mainly in Southeast Asia. The operators combine ARTEX with conventional tools to scan internet-facing systems, exploit flaws such as anonymous file upload and SSRF, and deploy RATs including WISP, vshell and AdaptixC2 for persistence and lateral movement. Microsoft also describes ARTEX agents performing credential attacks, API abuse and database dumping at machine speed.",
+   "takeaway": "Agentic attack tooling compresses the intrusion timeline, so defenders should prioritise behavioural detections such as web servers using netcat or curl to fetch binaries and rapid credential misuse, rather than relying on known tool signatures alone."
+  },
+  {
    "id": "cb18a97bb19d1c5a",
    "title": "A Hidden Markov Preference Model for Online Prediction of Adversary Actions",
    "url": "https://arxiv.org/abs/2611.08445",
@@ -16,6 +32,52 @@
    "relevance": 7,
    "summary": "The paper models an attacker's next action with a hidden Markov model whose latent state is the attacker's behavioural regime, with actions restricted to a feasibility-masked tree of executable operations. On the CAGE 2 cyber defence benchmark, the inferred regime is worth about 0.8 nats per step, and after a controller switch the model's loss falls within three steps, compared with ten for a recurrent baseline. The approach gives defenders an online probability distribution over what the attacker will do next.",
    "takeaway": "Modelling attacker behaviour as a switching regime, rather than a fixed policy, lets defenders detect and adapt quickly when an adversary changes tactics. Constraining predictions to feasible actions also makes them far more informative."
+  },
+  {
+   "id": "f19d5216d9224412",
+   "title": "Cloudy Skies: Early Detection of Jamming Against Iridium LEO Satellite-IoT Links",
+   "url": "https://arxiv.org/abs/2611.08118",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T14:52:03+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "The authors built a public dataset of Iridium LEO satellite-IoT messages captured under 47 jamming conditions and tested detection methods on it. Autoencoder anomaly detectors on physical-layer data reached an AUC of at least 0.84 once a noise jammer raised the noise floor by 9 dB or more, while the GNSS-style C/N0 and SNR indicators failed because correctly decoded messages still showed high SNR.",
+   "takeaway": "Signal-quality metrics that work for GNSS can miss jamming on links where the attacker raises the noise floor, so detection should model the physical-layer signal itself, not just whether messages still decode."
+  },
+  {
+   "id": "bfbcdc3e4db0c807",
+   "title": "Breaking $\\mathsf{TraintoDefend}$ via Adaptive Neuron Clustering in Cryptanalytic Model Extraction",
+   "url": "https://arxiv.org/abs/2611.07370",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T03:15:23+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that TraintoDefend, a 2025 defence against cryptanalytic model extraction, can be broken by SimBreak, an adaptive clustering method. The defence assumed neurons with similar weights would switch activation states together, but the authors show that weight similarity can merge signatures from distinct neurons. SimBreak raised layer signature recovery from 0% to 100% across six MNIST networks.",
+   "takeaway": "A defence that relies on a plausible structural property, such as weight similarity, may not hold once an attacker adapts to it, so defences should be tested against adaptive adversaries rather than fixed attacks."
+  },
+  {
+   "id": "fc342b5735a5536e",
+   "title": "What the Middleman Delivers: Answer Behavior, Tool Permissions, and Billed Usage in LLM API Relays",
+   "url": "https://arxiv.org/abs/2611.07650",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-05T08:35:38+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "The study tested 20 third-party LLM API relays against official endpoints and found behavioural differences in answers, four relays returning tool calls even when tools were disabled, and five reporting 4,200 to 60,000 more input tokens than the official API for identical requests. Balances showed charges following the inflated reported usage in some cases.",
+   "takeaway": "Price and model name do not establish what a middleman actually delivers, so verify tool permissions and billed usage with repeated tests against a trusted reference."
   },
   {
    "id": "86099069bb697c64",
@@ -61,6 +123,22 @@
    "relevance": 5,
    "summary": "The authors study LLM-generated repairs to code broken by runtime or API migrations, finding that many repaired programs run cleanly but return wrong results and still pass typical release checks. An edge-case input drawn from the release note cut wrong releases sharply, and an AI-written test set also helped. Some hard wrong programs still passed the preregistered tests, showing limits to these gates.",
    "takeaway": "Passing typical test inputs is a weak release gate for automated changes, so targeted edge cases derived from the change documentation catch silent regressions that ordinary tests miss."
+  },
+  {
+   "id": "d5140f3efe45bc43",
+   "title": "Route Before Response: Fail-Closed Routing for LLM-Enabled Customer-Service Software",
+   "url": "https://arxiv.org/abs/2611.07534",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-05T06:44:09+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The authors present RouteBR, a controller for LLM-based customer-service software at a financial institution. One model call proposes a service action and target object, then deterministic code checks identifiers and versioned rules before any dispatch, and lower-ranked candidates cannot replace a blocked route. On 200 held-out cases it reached 97.5% final-path accuracy and produced no false dispatches across 166 non-dispatch cases.",
+   "takeaway": "Let the model propose and have ordinary code decide: authorisation and identifier checks should run deterministically before an action, and a fallback candidate should never bypass a block on the primary choice."
   },
   {
    "id": "b0ba5688204db1a9",
