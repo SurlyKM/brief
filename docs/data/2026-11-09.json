@@ -18,6 +18,21 @@
    "takeaway": "Hardening where a security policy is stored does not protect its enforcement, so test whether the enforcement logic still holds after faults, resets and debug-state transitions."
   },
   {
+   "id": "96214a43bf671892",
+   "title": "Decision Models as Retrieval Gates Against Injection and Pollution",
+   "url": "https://arxiv.org/abs/2611.08325",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T17:19:19+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The paper tests whether small open-weight decision models can act as gates that screen retrieved web passages before they reach a language model. On a 1,000-question benchmark, a 4B-parameter gate reduced attack success from 27.9 percent with no defence to 5.7 percent, with a 76 ms cost per passage and minimal loss in answer quality. Filtering the whole candidate pool, rather than only the top results, also kept fake pages out of answers in a pollution test, and the gate performed better when it read HTML rather than plain text.",
+   "takeaway": "Treat retrieved content as untrusted input and place a cheap, typed classifier in front of the model, filtering the full candidate set before ranking, since filtering only the final top results can starve the generator of usable evidence."
+  },
+  {
    "id": "5e5b696a2bf93cdd",
    "title": "Zirah: A Post-Quantum True Random Number Generator Hardware Signer With an Avalanche Noise",
    "url": "https://arxiv.org/abs/2611.08200",
