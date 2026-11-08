@@ -1,0 +1,108 @@
+{
+ "date": "2026-11-09",
+ "items": [
+  {
+   "id": "105a2d381c04919d",
+   "title": "Shoot on (Core)Sight: Re-enabling Secure Debug on the RP2350 with Photon-Emission Microscopy and Laser Fault Injection",
+   "url": "https://arxiv.org/abs/2611.06386",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T11:49:44+00:00",
+   "topics": [
+    "Exploits",
+    "Reverse engineering",
+    "Vulnerability research"
+   ],
+   "relevance": 9,
+   "summary": "The authors use differential photon-emission microscopy to locate where laser pulses are most likely to disrupt the RP2350A4, then use laser fault injection to find two sites that set the DEBUGEN bits and enable Secure debug on core 1. A Serial Wire Debug-only attack sequence restores sustained access, and after a rescue reset it recovers a 128-bit test secret. The reset reloads the page lock from a stored policy, showing that fault-resistant policy storage does not guarantee fault-resistant enforcement.",
+   "takeaway": "Hardening where a security policy is stored does not protect its enforcement, so test whether the enforcement logic still holds after faults, resets and debug-state transitions."
+  },
+  {
+   "id": "5e5b696a2bf93cdd",
+   "title": "Zirah: A Post-Quantum True Random Number Generator Hardware Signer With an Avalanche Noise",
+   "url": "https://arxiv.org/abs/2611.08200",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T15:54:05+00:00",
+   "topics": [
+    "Defence",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The Zirah project builds a low-cost hardware signer that combines a noise-based hardware random number generator, masked ML-DSA-65 post-quantum signing on an STM32, and an ATECC608 secure element for ECDSA. The authors found that the 4,032-byte ML-DSA-65 key cannot fit in the secure element, so it sits in flash, and on an earlier board a debugger copied it out before readout protection was enabled. The copied key then produced valid signatures without the device, though the leakage results come from an emulator and nothing is certified.",
+   "takeaway": "A secure element only protects keys it can store and compute with, so any key kept outside it is only as safe as the debug and readout protections around it."
+  },
+  {
+   "id": "df570dd674b4b8ff",
+   "title": "Fix One, Miss Another: Leveraging Historical Bug Fixes to Uncover Residual Bugs in Database Systems",
+   "url": "https://arxiv.org/abs/2611.07739",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-05T09:48:45+00:00",
+   "topics": [
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The authors describe Reaper, a tool that uses historical DBMS bug fixes to find sibling bugs in structurally similar SQL handlers. It infers trigger and validation profiles from a fix, mutates grammar-guided tests to reach sibling code, and validates results in stages to cut false positives. Across MariaDB, MySQL, OceanBase and CockroachDB it found 61 unknown bugs, with 57 confirmed by developers.",
+   "takeaway": "When you patch one handler, the same flaw often survives in sibling code that shares its pattern, so review those siblings and search for them systematically."
+  },
+  {
+   "id": "ba30824875bd2084",
+   "title": "SenTrojan: Revealing Analog Hardware Trojan Attacks on Sensors",
+   "url": "https://arxiv.org/abs/2611.06103",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T07:45:46+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "SenTrojan is an analog hardware Trojan framework that hides malicious circuitry in sensor signal paths before deployment and triggers it with crafted external physical signals. Two designs are described: one uses monitoring logic to detect trigger frequency and amplitude, and the other exploits native analog effects such as rectification. The authors tested 14 sensors across six transduction principles, reporting high trigger rates, low false triggers, and small changes in sensor behaviour.",
+   "takeaway": "Sensor integrity depends on the supply chain as well as on physical or software attacks, so a Trojan can hide in analog circuitry that digital checks and normal behavioural testing would miss."
+  },
+  {
+   "id": "41341649fe9513a2",
+   "title": "Understanding AI from the Inside: The State of Mechanistic Interpretability for AI Safety",
+   "url": "https://arxiv.org/abs/2611.08438",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-05T18:30:54+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "This survey reviews mechanistic interpretability as a route to AI safety, covering features, polysemanticity, circuits, causal verification, and training-data attribution. It proposes a framework for judging interpretability claims and compares six research orientations by their goals and trade-offs. The authors also examine how the approach supports knowledge editing, steering, and monitoring, and they discuss its limits and open problems.",
+   "takeaway": "Claims that a model is safe because of its internals need causal verification and should be weighed against behavioural evidence, since each can fail in ways the other does not reveal."
+  },
+  {
+   "id": "1911dfdbee1a4df3",
+   "title": "Full Provenance on the COSS Causal Axis: An Event-Level Closure of Causal Attribution and Confused-Deputy Exclusion",
+   "url": "https://arxiv.org/abs/2611.07164",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-04T21:42:21+00:00",
+   "topics": [
+    "Defence",
+    "Vulnerability research"
+   ],
+   "relevance": 5,
+   "summary": "The paper formalises Provenance Identity Continuity as a causal graph model and proves an architecture-independent theorem that prevents confused-deputy states. Authority can only shrink along ordinary causal edges, and any widening must be an explicit authorised composition event. The authors argue that full provenance tracking is a useful evidence mechanism for recovering causal edges but is not the foundation of the theorem.",
+   "takeaway": "A confused deputy can be ruled out by requiring that authority never grows along causal chains, so every privilege increase needs an explicit, auditable authorisation step."
+  },
+  {
+   "id": "e6cb0800863fb182",
+   "title": "Verified Implementation of the Next-gen Borrow Checking Algorithm for Rust via Abstract Interpretation",
+   "url": "https://arxiv.org/abs/2611.06319",
+   "source": "arXiv cs.PL",
+   "kind": "paper",
+   "published": "2026-11-04T10:52:22+00:00",
+   "topics": [
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The paper formalises Polonius, the next-generation borrow checker in the Rust compiler, on a core subset of Rust. It treats lazy borrow checking as a forward abstract interpretation over pointer aliasing relations and proves that accepted programs never access invalid references at runtime. The formulation is implemented and verified in CompCert, with the proofs generated by an agentic AI under human guidance.",
+   "takeaway": "Borrow checking can be understood as a sound abstract interpretation over aliasing relations, which gives a clear route to proving memory safety of checked programs."
+  }
+ ]
+}
