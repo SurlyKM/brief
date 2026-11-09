@@ -1,0 +1,126 @@
+{
+ "date": "2026-11-10",
+ "items": [
+  {
+   "id": "a5c13e5ca67c8bb2",
+   "title": "I Don't Care How You Hide It, I Care What You Do: Runtime Detection of Malicious ML Models",
+   "url": "https://arxiv.org/abs/2611.08745",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T21:52:21+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "ModelShield detects malicious pre-trained models by running them and attributing observed system behaviour, combining ML framework API instrumentation with eBPF syscall tracing. It classifies behaviour against 195 patterns mapped to MITRE ATT&CK and reports zero false positives on an independent dataset. Across 145,000 Hugging Face models it found 41 malicious ones, where existing scanners caught between 29% and 93% of them.",
+   "takeaway": "Static scanning of model files misses payloads that hide behind equivalent functions or unusual loading paths, so observing runtime behaviour attributed to specific model operations is a stronger control."
+  },
+  {
+   "id": "530a2aa3d126cd83",
+   "title": "I Think, Therefore I Attack: Evaluating Thought Injection Attacks on Reasoning Agents",
+   "url": "https://arxiv.org/abs/2611.08811",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-06T00:06:13+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "The authors study thought injection, where untrusted text styled like a model's own reasoning is fed back to it. Against open-weight reasoning models in a containerised agentic cyber range, this reached up to 50% attack success on objectives such as reverse-shell exfiltration and repository backdooring. The same objective in ordinary user-voice prompt injection never succeeded, and stripping thinking tags proved an unreliable defence.",
+   "takeaway": "Injected content that imitates a model's own reasoning style can be far more effective than standard prompt injection, so defences should not rely on tag stripping or formatting cues."
+  },
+  {
+   "id": "bdf699d1fc8244de",
+   "title": "Conflux: Preventing Privilege Escalation with Principal Contexts and System-Level Evaluation",
+   "url": "https://arxiv.org/abs/2611.08768",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-05T22:30:59+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper formalises privilege escalation in LLM agents as a system-level property: an action should proceed only if every principal that influenced it would permit it. Its Conflux kernel derives authority from data provenance and the organisation's existing access controls, then intersects the permissions of all influencing principals. The authors prove a conditional confinement theorem for value influence only, and they note that control influence through tool, branch, or plan selection is still open.",
+   "takeaway": "Enforce authorisation outside the model, using provenance and the intersection of every contributing principal's permissions, because model-level judgement is only probabilistic."
+  },
+  {
+   "id": "8a670d383174a510",
+   "title": "MemoryDojo: Benchmarking Poisoning Through LLM Agent Memory",
+   "url": "https://arxiv.org/abs/2611.09721",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-06T17:00:09+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "MemoryDojo is a benchmark of 155 multi-session trajectories for tracing how poisoned instructions persist and propagate through the memory of LLM agents. It covers five memory systems and finds all of them susceptible, with large differences in downstream effects. The authors also propose a memory-aware poison optimisation method that raises attack efficacy.",
+   "takeaway": "Agent memory turns a one-off injected instruction into a persistent threat, so poisoning should be tested across sessions and not only within a single interaction."
+  },
+  {
+   "id": "2514f0e6f251757f",
+   "title": "ReplayAudit: Auditing Outsourced LLM Fine-Tuning via Sealed Records and Selective Replay",
+   "url": "https://arxiv.org/abs/2611.09607",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-06T15:32:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "ReplayAudit is a system for checking whether an untrusted provider actually ran the fine-tuning it claims. Training records are sealed before challenges, and sampled intervals are replayed from sealed checkpoints, with sampling guided by loss changes and update norms. On a 7B LoRA prototype it caught false update-norm reports and skipped steps, and cut median audit time by 49% to 67% against uniform sampling in the honest-trajectory tests.",
+   "takeaway": "Verifying a third party's computation is cheaper when you commit to records before you are challenged and then spot-check the most anomalous segments. Uniform random sampling wastes effort on boring parts of the process."
+  },
+  {
+   "id": "31c435ca4fd74c0b",
+   "title": "Logit Laundering: Evading Data-Use Auditing in Large Language Models",
+   "url": "https://arxiv.org/abs/2611.09446",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-06T13:20:30+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "Logit Laundering is an evasion framework in which a non-compliant LLM provider reshapes output logits at inference time to hide watermark signals used for data-use auditing. A statistical bias estimator and confidence-aware scaling suppress the watermark while leaving model parameters unchanged. The authors report that it evades several state-of-the-art auditing methods while keeping downstream utility.",
+   "takeaway": "Auditing that relies only on signals in model outputs can be defeated by whoever controls the decoding step. Robust verification needs evidence that does not depend on the provider's cooperation at inference time."
+  },
+  {
+   "id": "30b31d2de6d2fa49",
+   "title": "Wake 5: A Python Framework for Solidity Testing, Fuzzing, and Static Analysis",
+   "url": "https://arxiv.org/abs/2611.09307",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-06T10:59:01+00:00",
+   "topics": [
+    "Programming",
+    "Vulnerability research"
+   ],
+   "relevance": 5,
+   "summary": "Wake 5 is a Python framework for Solidity testing, fuzzing, and static analysis that runs an in-process EVM and exposes analysis through an MCP server. On a maze benchmark it matches Foundry's throughput, but all three tools plateau at similar coverage, and the authors trace this to the integer generator's probability distribution rather than raw speed. An agent-written harness using a constraint solver reached all 153 assertions in every campaign.",
+   "takeaway": "When a fuzzer stalls, the input generator's prior distribution, not execution speed, is often the real bottleneck, so check whether generated values can reach the deep branches at all."
+  },
+  {
+   "id": "f1e1664e2fc0a05e",
+   "title": "NotaryMark: Multi-Bit Watermarking for Black-Box DatasetUsage Auditing in Text-to-Image Diffusion Models",
+   "url": "https://arxiv.org/abs/2611.08985",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-06T04:56:52+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "NotaryMark is a multi-bit watermarking method for auditing whether licensed images were used to train text-to-image diffusion models through black-box queries. It aligns the watermark with the latent denoising process so that the signal does not decay during training, reaching 0.85 to 0.90 bit accuracy at capacities below 32 bits. The authors also add voting and error-correcting codes, and report robustness against fifteen evasion attacks, with stronger attacks degrading image utility.",
+   "takeaway": "A watermark that is treated as noise by the training process will be filtered out, so an effective mark must be designed around the mechanism that would erase it. Evasion robustness should also be judged against the utility cost an attacker pays to remove the mark."
+  }
+ ]
+}
