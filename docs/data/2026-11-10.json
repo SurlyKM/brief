@@ -2,6 +2,37 @@
  "date": "2026-11-10",
  "items": [
   {
+   "id": "5bce94b89cfb76df",
+   "title": "FORGE Lab uses agentic tools to identify memory safety issues in Rust",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/09/forge-lab-uses-agentic-tools-to-identify-memory-safety-issues-in-rust/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-09T20:17:31+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming",
+    "AI and ML"
+   ],
+   "relevance": 9,
+   "summary": "Microsoft's FORGE Lab used an AI-driven scanner to find memory safety bugs in Rust's standard library, including cases where purely safe Rust code triggers undefined behaviour. The authors describe three recurring patterns of misplaced trust in unsafe code: trusting code not to panic, trusting user-provided implementations to be correct, and trusting the underlying system. The piece also argues that Rust's guarantees matter more as it spreads into widely used software and operating systems.",
+   "takeaway": "A safe API is only as safe as the unsafe code beneath it, so audit the trust boundaries inside libraries, not just the code written by application developers."
+  },
+  {
+   "id": "20d47a22abe52523",
+   "title": "Retention Horizons of Volatile Stores in iOS and Android Extractions",
+   "url": "https://arxiv.org/abs/2611.10309",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-06T23:15:31+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors measure how far back eight iOS and seven Android stores reach across full file system extractions and bug reports. Horizons range from minutes to years, with the iOS unified log Persist stream median at 2.5 days and interactionC reaching 166 to 170 days on most devices, and stray old lines appearing in bug reports.",
+   "takeaway": "A store's retention horizon depends on its mechanism, OS release and device, and the oldest record can be misleading, so check write-ahead logs and stray entries before stating what an extraction covers."
+  },
+  {
    "id": "a5c13e5ca67c8bb2",
    "title": "I Don't Care How You Hide It, I Care What You Do: Runtime Detection of Malicious ML Models",
    "url": "https://arxiv.org/abs/2611.08745",
@@ -16,6 +47,22 @@
    "relevance": 8,
    "summary": "ModelShield detects malicious pre-trained models by running them and attributing observed system behaviour, combining ML framework API instrumentation with eBPF syscall tracing. It classifies behaviour against 195 patterns mapped to MITRE ATT&CK and reports zero false positives on an independent dataset. Across 145,000 Hugging Face models it found 41 malicious ones, where existing scanners caught between 29% and 93% of them.",
    "takeaway": "Static scanning of model files misses payloads that hide behind equivalent functions or unusual loading paths, so observing runtime behaviour attributed to specific model operations is a stronger control."
+  },
+  {
+   "id": "db07c89ee642a530",
+   "title": "Beyond the Prompt: Leveraging Pre-Decoding States for Jailbreak Detection in dLLMs",
+   "url": "https://arxiv.org/abs/2611.10258",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-06T21:46:25+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that jailbreak attempts against diffusion LLMs can be detected from hidden states over masked response positions before any output is generated, and that these signals complement prompt-only signals. Their inference-time detector, ReFuse, fuses two linear classifiers and cut average attack success from 63.29% to 3.31% on LLaDA-8B, with benign refusals under 1%.",
+   "takeaway": "Internal model states can reveal harmful intent before any output exists, and combining complementary views of the same input often catches more than either view alone."
   },
   {
    "id": "530a2aa3d126cd83",
@@ -46,6 +93,22 @@
    "relevance": 7,
    "summary": "The paper formalises privilege escalation in LLM agents as a system-level property: an action should proceed only if every principal that influenced it would permit it. Its Conflux kernel derives authority from data provenance and the organisation's existing access controls, then intersects the permissions of all influencing principals. The authors prove a conditional confinement theorem for value influence only, and they note that control influence through tool, branch, or plan selection is still open.",
    "takeaway": "Enforce authorisation outside the model, using provenance and the intersection of every contributing principal's permissions, because model-level judgement is only probabilistic."
+  },
+  {
+   "id": "509cee2b1691b898",
+   "title": "Crustify: Repository-Level Generation of Safe Rust Bindings with LLM Agents and Coverage-Guided Testing",
+   "url": "https://arxiv.org/abs/2611.10394",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-07T02:00:16+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "Crustify is an LLM agent system that generates safe Rust bindings for C libraries, using ownership and lifecycle contracts for each pointer and checking bindings with coverage-guided equivalence tests under sanitisers and Miri. On libgit2 and ffmpeg, reviewers fixed 8 and 13 defects that could cause undefined behaviour reachable from Rust.",
+   "takeaway": "A safe wrapper is only as sound as the ownership contract behind each raw pointer, so map and minimise the unsafe surface and test the boundary with sanitisers and Miri."
   },
   {
    "id": "8a670d383174a510",
@@ -91,6 +154,21 @@
    "relevance": 6,
    "summary": "Logit Laundering is an evasion framework in which a non-compliant LLM provider reshapes output logits at inference time to hide watermark signals used for data-use auditing. A statistical bias estimator and confidence-aware scaling suppress the watermark while leaving model parameters unchanged. The authors report that it evades several state-of-the-art auditing methods while keeping downstream utility.",
    "takeaway": "Auditing that relies only on signals in model outputs can be defeated by whoever controls the decoding step. Robust verification needs evidence that does not depend on the provider's cooperation at inference time."
+  },
+  {
+   "id": "476008c1ff8da095",
+   "title": "Tail-risk-aware Agent Safety: Constraining Tail Risks Across Multi-step LLM Agent Workflows",
+   "url": "https://arxiv.org/abs/2611.10411",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-07T02:45:44+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "TAS models an agent workflow as a sequence of dependent safety states using an MDP, so that risk propagates from one step to the next. It then constrains a tail-sensitive risk measure with a shared budget to derive step-wise safety strategies. The authors report better results than eleven baselines across three benchmarks, claiming it suppresses rare high-cost failures while keeping normal utility.",
+   "takeaway": "Per-step guardrails miss how a small early compromise can propagate through later tool calls, so agent safety should be measured across the whole workflow and focused on rare, high-cost outcomes rather than averages."
   },
   {
    "id": "30b31d2de6d2fa49",
