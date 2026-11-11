@@ -1,0 +1,97 @@
+{
+ "date": "2026-11-12",
+ "items": [
+  {
+   "id": "f91527c7bf888616",
+   "title": "Detecting sleeper agents hiding in AI model neurons",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-10T23:00:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft Research shows that editing fewer than 10 neurons can turn a capable agent model into a sleeper agent that passes evaluations but runs an attacker's command when a trigger string appears in its context. The attack needs only inference-level compute, and the research notes that frontier agents can detect anomalous weight edits when used as auditors. Microsoft has not observed threat actors using the technique.",
+   "takeaway": "Treat open model weights like untrusted code: passing evaluations does not prove a model is free of triggered behaviour, so audit weights and monitor agent actions independently."
+  },
+  {
+   "id": "e9e1b25a9c4354e7",
+   "title": "What a CAGE 4 Score Measures: An Audit of a Learned Cyber-Defense Benchmark, Its Reference Defenders, and the Tables Built on Them",
+   "url": "https://arxiv.org/abs/2611.14068",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T13:32:18+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The authors reproduce the two reference defenders from CAGE Challenge 4 and find that the simulator silently discards actions sent to busy agents, while still charging a point for them. Removing the busy check changes scores by roughly 100 to 146 points per episode, and evaluation seeds fixed only for the environment leave most outcome variance to policy sampling. They also show that five published comparison tables do not state the details needed to compare their results, and release patches, traces and a disclosure checklist.",
+   "takeaway": "A benchmark score is only meaningful when the environment's hidden rules, the policy's sampling randomness and the scoring ground truth are all disclosed and controlled."
+  },
+  {
+   "id": "4c5f07b26f27b710",
+   "title": "Stinging the Swarm: Extracting Attacker Intelligence from a Twin-Controller OT Honeypot",
+   "url": "https://arxiv.org/abs/2611.13406",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T00:38:48+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "Talos is an inline gate that judges every LLM-agent request to an industrial controller in milliseconds and diverts flagged agents to a mirror twin of the plant, where their attacks are harmless and observed. Across 2,400 autonomous attacker agents at four concealment tiers, no write reached the real plant. The authors also find that attackers who disclose more reveal themselves sooner, and that self-reported toolchain fingerprints and register lists build high-confidence profiles across the swarm.",
+   "takeaway": "Deception environments can turn an attacker's own involuntary disclosures, such as tool fingerprints and targeted lists, into intelligence even when their stated identity is false."
+  },
+  {
+   "id": "0fcf484e49ba6c64",
+   "title": "Data4Cyber: Labeled Cyber-Physical Datasets for Distribution-Grid Management Systems Under Representative OT Attacks",
+   "url": "https://arxiv.org/abs/2611.13942",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T11:29:07+00:00",
+   "topics": [
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "Data4Cyber is a labelled cyber-physical dataset recorded from a laboratory distribution management system, aligning Modbus and MQTT packet captures with physical process measurements. It covers a benign baseline and six attack scenarios, including Modbus manipulation, man-in-the-middle false-data injection and MQTT price manipulation. Baseline results show several detectors reach high recall only by saturating alarms, so high recall alone is not enough.",
+   "takeaway": "Evaluate OT intrusion detectors on alarm volume and process context as well as recall, since a detector that alerts constantly can look sensitive while being useless to operators."
+  },
+  {
+   "id": "41a737bfc06de850",
+   "title": "Tree-Ising: Repairing Language Models with Bit-Level Ising Edits",
+   "url": "https://arxiv.org/abs/2611.14210",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-10T15:32:04+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "Tree-Ising frames repairing a language model's reasoning loops as a sparse discrete optimisation over its BF16 weights, using sign flips and exponent shifts. The problem decomposes into per-row Ising problems solved with simulated annealing or simulated bifurcation on a GPU, and it modifies fewer weights than an agent-written edit while scoring higher on MATH-500. The authors also run a small proof of concept on a quantum processor.",
+   "takeaway": "Model weights can be edited surgically at the bit level with measurable effects, which means weight integrity is a meaningful attack and audit surface."
+  },
+  {
+   "id": "28d4e7097b45241c",
+   "title": "TERM: Target-Free Jailbreak Defense via Entropy-Guided Residual Modulation",
+   "url": "https://arxiv.org/abs/2611.13577",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T04:52:10+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "TERM is an inference-time jailbreak defence that calibrates attention entropy against each prompt's own prefill baseline to decide how strongly to modulate the model's residual updates. It avoids predefined safety directions and aims to keep over-refusal low on benign requests. The authors report comparisons against seven defences, seven attacks and two over-refusal benchmarks across several model families, including Qwen3 from 0.6B to 32B.",
+   "takeaway": "Defences that scale intervention relative to each input's own baseline can cut false positives on benign requests better than fixed thresholds."
+  }
+ ]
+}
