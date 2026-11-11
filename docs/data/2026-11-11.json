@@ -18,6 +18,22 @@
    "takeaway": "Attacker tooling leaves fingerprints in how it handles timeouts, secrets and scheduling, so defenders can attribute agentic intrusions by observing behaviour rather than trusting self-declared identity."
   },
   {
+   "id": "79f4e02945d3de58",
+   "title": "Detecting Shadow AI: Unsanctioned LLM Agents on Enterprise Endpoints: A Taxonomy, an Open Detector and a Controlled Evaluation",
+   "url": "https://arxiv.org/abs/2611.12377",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-09T13:19:45+00:00",
+   "topics": [
+    "Defence",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 8,
+   "summary": "The authors argue that autonomous agents will accelerate shadow IT, because agents build unsanctioned scripts, automations and MCP servers that compound faster than they are retired. They propose a taxonomy of nine agent classes and six endpoint footprint layers, and show that structural process and connection rules cannot separate an agent from a benign program talking to the same kind of service. Their open Windows detector, Agent Detector, anchors on the identity of the remote LLM service and correlates it with installation and execution history, and it flagged none of the benign twins whil",
+   "takeaway": "Behavioural similarity can defeat rules based on process and network structure, so anchor detections on the identity of the remote service and add host history such as installation and execution records."
+  },
+  {
    "id": "936402f52c4c5fc6",
    "title": "Treating the Model as an Untrusted Component: Deterministic Policy Enforcement, Human Approval and Taint Tracking Against Prompt Injection in Tool-Using Agents, with Validation on Open-Weights Models",
    "url": "https://arxiv.org/abs/2611.11571",
@@ -32,6 +48,22 @@
    "relevance": 8,
    "summary": "The authors compare in-prompt defences against prompt injection in tool-using agents with deterministic reference monitors, human approval and taint tracking, using open-weights Qwen2.5 models on 13 tasks and 12 tools. Real-model results show that a task-bound monitor admits very few attack calls compared with prompt guardrails, which were inconsistent across models. Simulated results suggest guardrail stacks fail under persistent adaptive attackers while the monitor holds severe actions at 0.0%, though human-approval and taint findings are simulation-only.",
    "takeaway": "Do not rely on the model to refuse injected instructions. Enforce what tool calls are permitted outside the model with deterministic, task-bound policies, and budget any human approval steps so they cannot be spammed."
+  },
+  {
+   "id": "3437d51ca8a5c995",
+   "title": "On the Relative Security of Prompt Injection: Mechanised Definitions, Defences and Verdicts for LLM Agents",
+   "url": "https://arxiv.org/abs/2611.11506",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-08T17:20:48+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The authors argue that noninterference is too strict for LLM agents that must read untrusted content and sometimes disclose data by design. They define relative security as requiring that every leak an agent has is also a leak a reference agent running the same plan under the same monitor already has. They introduce PlanTERS, a small agent language with a formal model, and prove in Isabelle/HOL that revoking injectable tools at the first untrusted read makes plans relatively secure under stated assumptions.",
+   "takeaway": "Measure prompt injection risk against a reference baseline of what the plan already leaks, rather than demanding that the agent leak nothing at all."
   },
   {
    "id": "1343f23ea8a03109",
@@ -82,6 +114,22 @@
    "takeaway": "Supply chain risk for agents sits in the procedures they follow, not just the code they run, so skills from public registries need the same review as other third-party dependencies."
   },
   {
+   "id": "b45cdb802bb629a4",
+   "title": "Harness Matters: Measuring and Dissecting Security Resilience in Web Agents",
+   "url": "https://arxiv.org/abs/2611.11971",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-09T06:53:04+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "WebTrap Farm is an evaluation framework that tests web agents against malicious user prompts, prompt injection and deceptive web design across four harness stages. Existing harnesses were vulnerable to typical attacks, and some unsafe behaviour occurred without any explicit attack content. Both the harness and the backend model significantly affected security outcomes, so the authors argue the harness itself is a security boundary that needs its own design controls.",
+   "takeaway": "When assessing an agent, test the harness that interprets pages and turns model output into browser actions as well as the model, because harness design alone can create injection-driven failures."
+  },
+  {
    "id": "712114bf94168557",
    "title": "Scaling Adaptive Prompt Injection Attacks with Agent Swarms",
    "url": "https://arxiv.org/abs/2611.11861",
@@ -95,6 +143,21 @@
    "relevance": 7,
    "summary": "The authors build a synthetic prompt injection dataset that uses benign actions as adversarial goals, which isolates instruction-hierarchy compliance from security knowledge. An agentic attacker with greater capabilities reliably gets several frontier models to follow instructions embedded in tool output, including models that did well on public benchmarks. They argue that defences need proactive, automated red teaming to keep pace.",
    "takeaway": "Static benchmark scores can overstate robustness, so run adaptive, automated attackers against agent tool outputs to find failures that fixed payloads miss."
+  },
+  {
+   "id": "eaee7cf4ca117e77",
+   "title": "PRISM: Causal Counterfactual Minimization of Agent Tool Privileges via Information Bottleneck Role Induction",
+   "url": "https://arxiv.org/abs/2611.11539",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-08T18:24:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper applies role engineering to LLM agents rather than human users, aiming to cut the over-authorisation that occurs when an agent receives every tool exposed through the Model Context Protocol (MCP). PRISM tests whether each tool is causally necessary by intervening in a sandbox, compresses agent trajectories with an information bottleneck, and picks the number of roles from the knee of the rate-distortion curve. On AgentDojo, τ-bench and ToolEmu, it reports a 78.3% reduction in authorised tools per role, a 78.2% task success rate and a 15.9% blast radius.",
+   "takeaway": "Least privilege for agents should be decided by testing which tools a task actually needs, not by granting the full tool catalogue by default."
   },
   {
    "id": "8b3c282b3ba958aa",
@@ -143,6 +206,22 @@
    "takeaway": "Existing insecure code acts as a template for generated code, so fixing vulnerabilities at the source is needed to stop them spreading as agents write more of the codebase."
   },
   {
+   "id": "fba50846e72696ac",
+   "title": "Least-Privilege Auditing of Agent Tool Calls with Intent Graphs and Reasoning-Guided Escalation",
+   "url": "https://arxiv.org/abs/2611.11305",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-08T11:05:45+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors propose a runtime audit for tool-calling agents that derives an intent graph from the user's objective and tool catalogue with a single LLM call per task. A deterministic checker then validates each tool call against that graph with no further LLM calls, at a median of 5.7 microseconds per call. Flagged calls are escalated to a reasoning guardian that sees only the objective, plan and flagged call, and lookups of the user's own state skip the audit because the harm lies in writes or outward actions. The authors note that end-to-end validation remains open because the current agent ",
+   "takeaway": "Put the expensive reasoning on the rare suspicious actions and keep a cheap deterministic check on everything else, and focus audits on writes and outward steps where harm occurs."
+  },
+  {
    "id": "e06f8a425c48946a",
    "title": "ErosionBench: Probing Alignment Decay in Enterprise Multi-Agent Systems",
    "url": "https://arxiv.org/abs/2611.11266",
@@ -157,83 +236,6 @@
    "relevance": 7,
    "summary": "ErosionBench tests whether benign-looking requests in enterprise multi-agent systems can gradually escalate into unsafe tool calls through shared state and trusted peer messages. It scores the realised tool action against authorised intent rather than output text, across 1,728 scenarios and 198 image-based attacks. Perimeter defences often reduce attacks by over-refusing 54 to 92% of legitimate work, while the proposed trajectory-based Meta-Auditor reaches 98.5% recall at a 2.9% false positive rate.",
    "takeaway": "A low attack success rate can hide heavy over-refusal, so measure defences on both blocked attacks and the legitimate work they stop, and monitor the actions an agent takes rather than the text it produces."
-  },
-  {
-   "id": "9198013ef9f1165c",
-   "title": "Tracing MCP Security Vulnerabilities: Constructing and Analyzing an MCP Security Vulnerability Dataset",
-   "url": "https://arxiv.org/abs/2611.11104",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-08T03:36:38+00:00",
-   "topics": [
-    "AI and ML",
-    "Vulnerability research",
-    "Exploits"
-   ],
-   "relevance": 7,
-   "summary": "The authors built a curated dataset of 24 validated MCP vulnerabilities from 119 CVE-linked records, filtering out unrelated matches such as acronym collisions. They found that 87.5% of these are Critical or High severity, and that injection and path traversal make up 66.7% of cases. Six case studies map common exploitation patterns to practical defences, and the dataset and tooling are released.",
-   "takeaway": "When a new protocol or ecosystem appears, check CVE keyword searches for acronym collisions before trusting the counts, since noisy matching can distort any measurement of its risk."
-  },
-  {
-   "id": "ad2c6732e4110d6c",
-   "title": "LogCDM: Interpretable Log Anomaly Detection via Behavioral Graph Drift and Adaptive Signal Fusion",
-   "url": "https://arxiv.org/abs/2611.12775",
-   "source": "arXiv cs.AI",
-   "kind": "paper",
-   "published": "2026-11-09T17:48:31+00:00",
-   "topics": [
-    "SOC",
-    "Blue team",
-    "AI and ML"
-   ],
-   "relevance": 6,
-   "summary": "LogCDM is a compact log anomaly detector that combines a small causal Transformer's next-event surprise, a graph-attention embedding of session transitions, and a chi-squared transition-drift statistic through a learned gate. It runs on a CPU in milliseconds and gets close to an 8.1B-parameter LLM detector on HDFS, BGL and Thunderbird. The drift statistic also yields a per-edge decomposition that explains each alarm.",
-   "takeaway": "Lightweight, explainable signals such as transition-drift scores can run on monitoring nodes without a GPU and still show analysts which event transitions caused an alert."
-  },
-  {
-   "id": "2e0e813e0834e018",
-   "title": "ShadowBench-MCP: Measuring Shadow Invocations in MCP-Style Tool Routing",
-   "url": "https://arxiv.org/abs/2611.11720",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-09T00:29:34+00:00",
-   "topics": [
-    "AI and ML",
-    "Defence"
-   ],
-   "relevance": 6,
-   "summary": "The authors define shadow invocation, where a harmless task variant causes an LLM tool router to pick a riskier execution path that skips validation, provenance or audit steps. In their six-workflow study, an efficiency-first router did this in 29.2% of cases, and a policy-aware router cut that to 4.2%. Pre-execution signals identified these risky routes with ROC AUC up to 0.94, though the evidence comes from a single router.",
-   "takeaway": "In agentic systems the chosen tool path is itself a security decision, so routing policies and pre-execution checks need to be tested against benign-looking requests that nudge the agent towards unsafe paths."
-  },
-  {
-   "id": "9eea3cac47f411de",
-   "title": "Interpretable Cyber-Physical Attack Detection in Smart Grids: A Leakage-Controlled Multi-Testbed Evaluation of Fusion, Robustness, and Observability Limits",
-   "url": "https://arxiv.org/abs/2611.10950",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-07T20:26:56+00:00",
-   "topics": [
-    "AI and ML",
-    "Defence",
-    "Blue team"
-   ],
-   "relevance": 6,
-   "summary": "The authors evaluate an interpretable Random Forest detector for smart-grid cyber-physical attacks across several testbeds and find that shuffled cross-validation overstates performance, with macro-F1 dropping from 0.96 to 0.88 under temporal evaluation. Feature-space adaptive attacks and a physics-constrained evasion both degrade the model, and stealthy false data injection evades all observation views. A physics-manifold test detects slow ramps that a forecasting-based temporal test misses, and the code and benchmarks are released.",
-   "takeaway": "Validate detectors with temporal, rolling-origin splits rather than shuffled cross-validation, and test them against physically realisable attacks, since clean benchmark scores can hide blind spots such as slow ramps."
-  },
-  {
-   "id": "f7311fb8f5e8a2a3",
-   "title": "System Prompts Affect Response Bias More Than Discriminability in LLM Safety",
-   "url": "https://arxiv.org/abs/2611.11074",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-11-08T02:22:05+00:00",
-   "topics": [
-    "AI and ML"
-   ],
-   "relevance": 5,
-   "summary": "Using signal detection theory across 13 models and three benchmarks, the authors show that system prompts mainly change how willing a model is to refuse rather than its ability to separate safe from unsafe requests. Making prompts clearer increases refusals without reliably improving discrimination. Prompt families also move responses across six distinct behavioural policies, such as clarification and safe help.",
-   "takeaway": "A drop in refusals or rise in refusals does not show a model is better at judging risk, so safety evaluations should separate decision threshold from discriminative ability."
   }
  ]
 }
