@@ -1,0 +1,94 @@
+{
+ "date": "2026-11-13",
+ "items": [
+  {
+   "id": "3c52b13d64de1b5c",
+   "title": "0% GPU utilization: How SANSAR hides Linux cryptomining",
+   "url": "https://www.elastic.co/security-labs/threat-command/sansar-linux-cryptomining-malware",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-12T10:48:47+00:00",
+   "topics": [
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "Elastic Security Labs describes REF3364, a Linux cryptomining intrusion that began with an unauthenticated Ray job agent exposed to the internet and led to root on GPU hosts. The toolkit includes SANSAR, a Rust orchestrator controlled over Tor, a kernel rootkit that hides processes and files, an NVML wrapper that falsifies GPU readings, and a backdoor that looks up its C2 address from an Ethereum smart contract. The report includes a timeline of the activity over several days.",
+   "takeaway": "Monitoring tools can be lied to, so defenders should verify GPU and process telemetry from independent sources such as the kernel, cloud billing or network flows rather than trusting a single metric."
+  },
+  {
+   "id": "d085c92b0aeb3d3a",
+   "title": "LABScon26 Replay | Let’s Get Physical: Why Cybersecurity Needs Hardware-Based Security to Survive AI",
+   "url": "https://www.sentinelone.com/labs/labscon26-replay-let-s-get-physical-why-cybersecurity-needs-hardware-based-security-to-survive-ai/",
+   "source": "SentinelOne Labs",
+   "kind": "article",
+   "published": "2026-11-12T14:00:02+00:00",
+   "topics": [
+    "Defence",
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "In a LABScon 2026 keynote, Dino Dai Zovi argues that software defences cannot keep pace with AI-enabled attackers and that hardware-based controls, such as the secure element behind tap-to-pay, should be applied more widely. He cites UK AI Security Institute data showing intrusions that once took days now approach minutes. He demonstrates on an AI cyber range, assuming none of the vulnerabilities can be patched, that a few hardware boundaries leave an agent with nothing useful to take.",
+   "takeaway": "When vulnerabilities cannot be patched in time, hardware-enforced boundaries can still limit what an attacker or autonomous agent can reach, so design containment that does not depend on software being correct."
+  },
+  {
+   "id": "53dc0d50c340e91e",
+   "title": "GARD: Gradient-Guided Adversarial Representation Defense against Backdoors in Multimodal Contrastive Learning Models",
+   "url": "https://arxiv.org/abs/2611.14143",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T14:30:36+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "GARD is a post-hoc defence against backdoors in multimodal contrastive models such as CLIP, which does not need to know the attack target or trigger. It uses complementary global and local adversarial probes to displace clean image representations, then realigns them with detached clean anchors while preserving image-text alignment. The authors report attack success below 1 percent across all 12 tested attack and backbone combinations, with no added inference cost and competitive clean accuracy.",
+   "takeaway": "Backdoors differ in how they respond to perturbation, with distributed triggers exposed by global probes and localised ones by patch probes, so a defence should probe at both scales rather than assume one trigger shape."
+  },
+  {
+   "id": "6c63bc92e031a930",
+   "title": "DEPUTYBENCH: Evaluating Contextual Safety in Enterprise Agents",
+   "url": "https://arxiv.org/abs/2611.13355",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-09T23:26:40+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "DEPUTYBENCH tests whether enterprise agents correctly decide whether an action is permitted when the authorisation records are present or missing. Agents were more likely to restrict execution when evidence was missing than when permission was explicitly denied, and this gap concentrated in privacy tasks that need complete counts or consent. The authors conclude that high safety with available evidence does not show that agents stop reliably when permission cannot be verified.",
+   "takeaway": "An agent that is safe when rules are clear can still act unsafely when authorisation cannot be verified, so test the missing-evidence case as a separate failure mode."
+  },
+  {
+   "id": "50bb3bec4cd492fd",
+   "title": "Reconfiguring System-Level Protection Through Bounded Delegation in RISC-V MCUs",
+   "url": "https://arxiv.org/abs/2611.12622",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-09T16:04:21+00:00",
+   "topics": [
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "The authors argue that microcontroller protection schemes constrain which domains can change protection settings but not what policies those domains may create, so a trusted domain can widen its rules beyond its scope. They add an ownership-aware model that bounds configuration authority and recursive delegation, validating rule-range changes before commit. On an FPGA-based RISC-V SoC, the approach adds no measurable latency or frequency cost, with modest LUT and FF overhead, and cuts policy-transition latency in an OTA update case study compared with hypervisor or firmware mediation.",
+   "takeaway": "Access control is not only about who can change a policy but also about what the policy may say, so every delegated authority should be bounded by explicit ownership and containment checks before the change is committed."
+  },
+  {
+   "id": "0755a45f0c6fcf0d",
+   "title": "Comparing WeChat and Telegram MiniApp Security Architectures: Toward Cross-Platform Analysis",
+   "url": "https://arxiv.org/abs/2611.13965",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T12:02:55+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The authors compare the security architectures of WeChat Mini Programs and Telegram MiniApps, using documentation, prior research and manual review of a Telegram Android source revision. They describe execution environments, communication paths and trust boundaries using a shared taxonomy. Two worked examples define requirements for cross-platform analysis, though no vulnerabilities are validated.",
+   "takeaway": "When analysing hybrid app platforms, first identify which credential or capability belongs to which execution context, since many issues arise where the host and the web content meet."
+  }
+ ]
+}
