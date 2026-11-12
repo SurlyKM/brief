@@ -2,6 +2,38 @@
  "date": "2026-11-12",
  "items": [
   {
+   "id": "3c5e2d75ed5c2a87",
+   "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-11T19:49:57+00:00",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft observed threat actors deploying GSocket, an open source remote access tool, on compromised Linux servers to keep access after web application vulnerabilities were patched. GSocket relays traffic through a shared public network, so there is no attacker-owned IP or domain to block. Microsoft recommends hunting for GSocket deployment, persistence, privilege escalation and outbound connections rather than treating patching as full remediation.",
+   "takeaway": "Patching the entry vulnerability does not remove an implant, so incident response must hunt for persistence and outbound command channels on the host itself."
+  },
+  {
+   "id": "e564f8c523137479",
+   "title": "Lessons from 59 Linux Kernel Bug Reports",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-11T16:55:00+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML",
+    "Exploits"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft's FORGE Lab used an AI scanning system, codenamed MDASH, across several Linux kernel subsystems and produced 26,502 raw findings in about two weeks. Filtering by confidence and reproducing candidates in QEMU reduced this to 621 cases with proof-of-concept evidence, which yielded 59 upstream reports, 33 CVEs and eight working root escalation exploits. The authors note that most of the months of work went into triage, reproduction and collaboration with maintainers.",
+   "takeaway": "AI can generate candidate bugs cheaply, so the real bottleneck is validation, and requiring a reproducible proof of concept is the most effective filter for separating signal from noise."
+  },
+  {
    "id": "f91527c7bf888616",
    "title": "Detecting sleeper agents hiding in AI model neurons",
    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/",
@@ -34,6 +66,22 @@
    "takeaway": "A benchmark score is only meaningful when the environment's hidden rules, the policy's sampling randomness and the scoring ground truth are all disclosed and controlled."
   },
   {
+   "id": "a2b937721d9a4b25",
+   "title": "BypassGym: A Benchmark for Evaluating AI Agents' Endpoint Defense Evasion Capabilities",
+   "url": "https://arxiv.org/abs/2611.13684",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T07:31:48+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "BypassGym is a benchmark that tests whether AI agents can write a loader that runs command-and-control shellcode on real Windows machines without being blocked by an EDR product. Even lightweight models produced working submissions, with one model succeeding in 17 of 18 runs, while Bitdefender stopped most attempts. The authors present the results as a measurement of current evasion capability that defenders should investigate.",
+   "takeaway": "Detection feedback loops let an attacker, human or AI, iterate against a specific EDR quickly, so defenders should assume that evasion tuned against their product can be automated and should monitor for the behavioural signals loaders leave behind."
+  },
+  {
    "id": "4c5f07b26f27b710",
    "title": "Stinging the Swarm: Extracting Attacker Intelligence from a Twin-Controller OT Honeypot",
    "url": "https://arxiv.org/abs/2611.13406",
@@ -48,6 +96,22 @@
    "relevance": 8,
    "summary": "Talos is an inline gate that judges every LLM-agent request to an industrial controller in milliseconds and diverts flagged agents to a mirror twin of the plant, where their attacks are harmless and observed. Across 2,400 autonomous attacker agents at four concealment tiers, no write reached the real plant. The authors also find that attackers who disclose more reveal themselves sooner, and that self-reported toolchain fingerprints and register lists build high-confidence profiles across the swarm.",
    "takeaway": "Deception environments can turn an attacker's own involuntary disclosures, such as tool fingerprints and targeted lists, into intelligence even when their stated identity is false."
+  },
+  {
+   "id": "b61856a48abae7da",
+   "title": "From Attack Surface to Defense Architecture: Compositional Security for Agentic Coding Harnesses",
+   "url": "https://arxiv.org/abs/2611.13960",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T11:52:40+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The paper argues that agentic coding harnesses become living-off-the-land platforms, since injected instructions can turn tools like bash, curl and find into payloads. It proposes ActiveSecHarness, a reference monitor with capability tokens, a two-dimensional taint lattice and deterministic guards, which reports perfect detection and zero false positives on its own fixtures at a fraction of LLM-judge latency. The evaluation uses a small synthetic fixture set and a 4B-parameter judge, so the results need independent validation.",
+   "takeaway": "Deterministic, provenance-aware policy enforcement on tool actions can outperform LLM-as-a-judge guardrails on both speed and over-blocking, because it checks what an action does rather than how it looks."
   },
   {
    "id": "0fcf484e49ba6c64",
@@ -65,6 +129,53 @@
    "takeaway": "Evaluate OT intrusion detectors on alarm volume and process context as well as recall, since a detector that alerts constantly can look sensitive while being useless to operators."
   },
   {
+   "id": "654e4d0d98069760",
+   "title": "No finite rulebook can certify every safe program: an impossibility theorem for gatekeeping AI agents",
+   "url": "https://arxiv.org/abs/2611.13367",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-09T23:40:32+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Programming"
+   ],
+   "relevance": 7,
+   "summary": "The authors prove that no finite, machine-checkable rulebook can certify every safe program for a gatekeeper that screens AI-generated code. Prohibitions can be caught by watching for violations but never cleared for good, and confidentiality and responsiveness cannot be verified at all. Any sound rulebook of n bits must omit some compliant programs, and the best a gatekeeper can offer is a checkable allow-list that includes everything it must allow and excludes everything it must refuse.",
+   "takeaway": "Safety properties phrased as 'never' or 'eventually' cannot be proven by a finite check, so runtime monitors can refute but not certify. Design sandboxes and policy gates to accept that some safe code will be refused, and prefer conservative allow-lists over attempts to certify everything."
+  },
+  {
+   "id": "8cdc4a0f74c83bb2",
+   "title": "Who Runs the Ransomware Group Qilin?",
+   "url": "https://krebsonsecurity.com/2026/11/who-runs-the-ransomware-group-qilin/",
+   "source": "Krebs on Security",
+   "kind": "article",
+   "published": "2026-11-11T18:06:01+00:00",
+   "topics": [
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 5,
+   "summary": "Krebs profiles the administrator of Qilin, which NCC Group describes as the most active ransomware-as-a-service group, with at least 365 victims claimed in three months. The administrator, known as Haise, has changed handles over time but made operational security mistakes that tie him to an individual in St Petersburg. Qilin offers affiliates at least 80 percent of ransom payments and uses double extortion.",
+   "takeaway": "Changing handles does not sever identity links, because old names reused on forums and other operational slips can be correlated over years."
+  },
+  {
+   "id": "923c039db9b1b753",
+   "title": "Model-Based Authoring of SOC Simulation Exercises for Cybersecurity Education",
+   "url": "https://arxiv.org/abs/2611.14227",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T15:42:08+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "The paper describes a model-based method for authoring SOC training exercises, where a structured incident model and orchestration model drive the content and an LLM writes selected alert descriptions. A validator checks references, event ordering, evidence links and assessment completeness, and it correctly flagged deliberately planted inconsistencies in a phishing-to-ransomware reference exercise. The authors conclude the approach is feasible for building consistent, executable exercises.",
+   "takeaway": "Keeping the incident's facts in a single structured model and validating generated narrative against it stops AI-written content from quietly contradicting the evidence and timeline that analysts rely on."
+  },
+  {
    "id": "41a737bfc06de850",
    "title": "Tree-Ising: Repairing Language Models with Bit-Level Ising Edits",
    "url": "https://arxiv.org/abs/2611.14210",
@@ -77,6 +188,21 @@
    "relevance": 5,
    "summary": "Tree-Ising frames repairing a language model's reasoning loops as a sparse discrete optimisation over its BF16 weights, using sign flips and exponent shifts. The problem decomposes into per-row Ising problems solved with simulated annealing or simulated bifurcation on a GPU, and it modifies fewer weights than an agent-written edit while scoring higher on MATH-500. The authors also run a small proof of concept on a quantum processor.",
    "takeaway": "Model weights can be edited surgically at the bit level with measurable effects, which means weight integrity is a meaningful attack and audit surface."
+  },
+  {
+   "id": "061692826d491b37",
+   "title": "An Empirical Study on CVE-based Vulnerabilities Propagation from one System to another System (IntraProject vs InterProject)",
+   "url": "https://arxiv.org/abs/2611.14164",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T14:49:52+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors use a CVE dataset and their SQVDT detection tool to look for vulnerable code patterns that have spread between projects. They report recurring patterns in major software such as the Linux kernel and Android, and in many GitHub projects, with several high-severity issues traced to copied code. The paper recommends tracking the impact of such propagation across interconnected systems.",
+   "takeaway": "When a vulnerable snippet is copied into another project, the flaw travels with it and may not be tied to any upstream advisory, so patch tracking should include code reuse and not just dependency versions."
   },
   {
    "id": "28d4e7097b45241c",
@@ -92,6 +218,22 @@
    "relevance": 5,
    "summary": "TERM is an inference-time jailbreak defence that calibrates attention entropy against each prompt's own prefill baseline to decide how strongly to modulate the model's residual updates. It avoids predefined safety directions and aims to keep over-refusal low on benign requests. The authors report comparisons against seven defences, seven attacks and two over-refusal benchmarks across several model families, including Qwen3 from 0.6B to 32B.",
    "takeaway": "Defences that scale intervention relative to each input's own baseline can cut false positives on benign requests better than fixed thresholds."
+  },
+  {
+   "id": "d782ee3a90ebad38",
+   "title": "Code-Grounded Agentic Explanations for Static Analysis Vulnerability Findings",
+   "url": "https://arxiv.org/abs/2611.13041",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-09T11:40:08+00:00",
+   "topics": [
+    "Programming",
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "SAFE is an open-source IntelliJ plugin that uses an LLM agent to explain findings from any SAST tool that outputs SARIF, while leaving the detection itself to the analyser. A 24-participant crossover study found higher usability scores and roughly 2.6 times the odds of a correct remediation, but no change in triage accuracy, time or trust. Participants wanted the tool to explain findings while they made the judgements themselves.",
+   "takeaway": "Grounding an LLM explanation in the analyser's data flow and the rule that fired makes findings easier to understand without changing the verdict, which keeps static analysis auditable."
   }
  ]
 }
