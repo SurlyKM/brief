@@ -1,0 +1,241 @@
+{
+ "date": "2026-11-14",
+ "items": [
+  {
+   "id": "04d39ddabcc81277",
+   "title": "56 AWS API calls in 141 milliseconds: Inside an AI-run intrusion",
+   "url": "https://www.elastic.co/security-labs/threat-command/cyberstrikeai-aws-cloudtrail-intrusion",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-13T15:27:20+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 9,
+   "summary": "Elastic describes a September to October 2026 intrusion where a CyberStrikeAI server used stolen credentials from eight AWS identities across four accounts. The attacker read 56 EC2 user data scripts in 141 milliseconds, went quiet for 14 days, then resumed, a gap that defeats fixed correlation windows. Each individual API call was one a legitimate role makes daily, and the activity was linked to three servers through a shared self-signed certificate.",
+   "takeaway": "Detection should baseline each identity's normal API behaviour and correlate over long windows, because a burst of legitimate calls spread over weeks can be a complete intrusion. No single call looks malicious, so the pattern across calls and time is the signal."
+  },
+  {
+   "id": "3ee0c9ab531fa535",
+   "title": "Preserve the Vulnerability, Break the Alert: Testing the Robustness of CodeQL Taint Tracking with Natural Rewrites",
+   "url": "https://arxiv.org/abs/2611.17123",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T17:16:08+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors ask whether CodeQL's JavaScript taint tracking stays reliable when vulnerable code is rewritten in a plausible, behaviour-preserving way. An LLM given only the alert silences 26.2% of 172 real npm flows with three rewrites each, and every silencing rewrite exploits one of seven gaps in library modelling. Roughly three quarters of these rewrites also evade an independently built analyser, so an alert disappearing is weak evidence of a fix.",
+   "takeaway": "A static analysis alert vanishing after a refactor does not prove the vulnerability is gone, so check the analyser's modelling of the APIs the code uses before trusting a clean result."
+  },
+  {
+   "id": "31e923d4d6025f16",
+   "title": "CrossPloit: A Benchmark for Cross-Version PoC Migration in Python Web Applications",
+   "url": "https://arxiv.org/abs/2611.16588",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T10:21:05+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "CrossPloit is a benchmark of 127 tasks in which an agent must adapt a proof-of-concept exploit from a listed vulnerable Python web application version to an earlier, unlisted version. The authors find that four vulnerability databases omit 149 vulnerable prior versions, showing that affected-version ranges are often incomplete. The best of 18 agent configurations resolves 58.3% of instances, while attack-vector shifts prove much harder.",
+   "takeaway": "Affected-version ranges in advisories are frequently too narrow, so verifying exposure by running a working PoC against older releases is a more reliable way to find vulnerable deployments than trusting the listed range."
+  },
+  {
+   "id": "60abc0ab684b1967",
+   "title": "Scale-Induced Semantic Shift in Visual Prompt Injection Against VLMs and Web Agents",
+   "url": "https://arxiv.org/abs/2611.16744",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-12T12:57:11+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Exploits"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that resizing or compressing an image can change what a vision-language model reads from it, so a hidden text instruction can become readable only after aggressive downsampling. Their black-box attack reaches a 58.75% average success rate across four closed-source models at the 512 by 512 presentation resolution, and the effect shrinks sharply at larger sizes. A consistency detector called ScaleGuard cut non-adaptive attack success from 61.4% to 24.3%, with no rejections on matched clean controls.",
+   "takeaway": "Preprocessing is part of the trust boundary: if an image is transformed before a model reads it, the model may see different content than a human reviewer or a filter examined, so test defences at the resolutions the model actually consumes."
+  },
+  {
+   "id": "d62214bc4bb7952c",
+   "title": "MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection",
+   "url": "https://arxiv.org/abs/2611.16693",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T12:08:43+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "MobileProbe is a red-teaming framework that tests mobile GUI agents against environmental injection, where malicious instructions hidden in screen content hijack the agent's actions. It finds attacker-controllable UI surfaces, locates vulnerable decision points along the agent's trajectory, and evolves context-aware payloads with a surrogate-filtered loop. Across 83 long-horizon attacks in 12 apps and three agent architectures, it achieves higher attack success than human-written, zero-shot LLM and prior automated baselines.",
+   "takeaway": "A fixed test that never reaches the vulnerable step records a false pass, so coverage of the agent's actual execution paths matters as much as the payloads. Adaptive testing that follows the trajectory gives a more honest risk estimate."
+  },
+  {
+   "id": "17680564150fd1c2",
+   "title": "Intent-Aware Protection for AI Agents",
+   "url": "https://arxiv.org/abs/2611.16122",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T00:17:31+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The paper argues that AI agent security must also check whether an action stays faithful to the agent's deployed purpose, since an action can pass permission checks and contain no attack pattern while still violating its role. The authors define an Intent Profile built from organisational, role and developer intent, and build an 887-sample benchmark. Profile-based detection improves four-class F1 from 45% to 79% and reaches 0.949 AUROC on AgentDojo trajectories, outperforming the baselines tested.",
+   "takeaway": "Permissions answer what an agent may do, but not whether it should be doing it now, so write down the agent's intended purpose as an explicit reference and check actions against it."
+  },
+  {
+   "id": "57c46433a25f33f5",
+   "title": "LOHRE: Execution-Grounded Type Recovery via LLM-Orchestrated Hybrid Analysis",
+   "url": "https://arxiv.org/abs/2611.14946",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-11T02:50:30+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "LOHRE uses an LLM to propose user-defined type layouts for stripped binary functions, then tests each hypothesis by emulating paired runs with mutated inputs. A cross-function knowledge base shares compatible type hypotheses between functions, and a compressed execution-depth summary keeps token and runtime costs down. On the RealType benchmark it reaches 57.85% structural accuracy, and disabling dynamic validation drops this sharply.",
+   "takeaway": "Treat inferred data structures as falsifiable hypotheses and check them against execution, because static guesses about memory layout can look plausible while being wrong."
+  },
+  {
+   "id": "97d3c2a1ce2bc00f",
+   "title": "CapLite: Prompt-Injection Defense for Small Language Model Agents without Model-Written Security Artifacts",
+   "url": "https://arxiv.org/abs/2611.17115",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T17:07:22+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "The authors show that small language model agents cannot reliably write the security policies, dependency graphs or constraint lists that existing prompt-injection defences such as CaMeL and Progent depend on, since these artefacts can be attacked or fail to run. Their CapLite defence derives policy from tool schemas, fixes write calls before any tool output is read, and only allows writes whose key arguments the user stated explicitly. It reports no successful attacks across 13,935 AgentDojo episodes, with lower token cost than CaMeL.",
+   "takeaway": "Do not let the model that processes untrusted input also decide what it is permitted to do, because injected text can shape any policy that model writes."
+  },
+  {
+   "id": "fc3bf4d5779e19bb",
+   "title": "IoTPwnBench: A Synthetic Benchmark for IoT Firmware Security Analysis",
+   "url": "https://arxiv.org/abs/2611.15316",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T10:55:03+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Reverse engineering",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "IoTPwnBench is a synthetic benchmark of 716 vulnerable firmware images covering 86 weakness scenarios across 28 CWE classes and 11 device profiles. Each vulnerable image runs a simulated device application with one known weakness and has a corrected twin, so tools can be measured for both detection and false positives. Builds are reproducible bit-for-bit and the images run under QEMU for static and dynamic testing.",
+   "takeaway": "Pairing each vulnerable target with a patched twin lets you measure false positives directly, which real firmware with undocumented defects cannot offer."
+  },
+  {
+   "id": "aed3c086f7fdd4f0",
+   "title": "Protecting Sensitive Knowledge Under LLM Unlearning: The Proxy Threat and a Superposition-Aware Defense",
+   "url": "https://arxiv.org/abs/2611.15013",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T04:10:32+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "The authors show that because knowledge is stored in overlapping parameter subspaces, a legitimate request to unlearn one entity can also remove a sensitive entity that shares those representations. They name this the Proxy Unlearning Attack and propose SAUP, which detects at-risk sensitive entities before unlearning and restores them afterwards while keeping the requested entity suppressed. The threat can also occur accidentally when benign users make unlearning requests.",
+   "takeaway": "Access control and deletion operations can have side effects through shared internal representations, so security reviews should ask what else a change touches, not only whether the requested item is removed."
+  },
+  {
+   "id": "a6b7063e4cab2f2c",
+   "title": "Where LLM Agents Get Stuck Debugging Databases: Access More Than Reasoning",
+   "url": "https://arxiv.org/abs/2611.17304",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-12T18:56:22+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "In a field study of Claude Code diagnosing eight incidents in a production message-dispatch database, the agent's wrong guesses on concurrency-related faults came mainly from missing access to live lock views, full deadlock reports, read-only execution and environment context. The hypotheses it formed were consistent with the evidence it could see, so the failures reflected what it was allowed to observe rather than fabrication. The authors propose a forensics layer with a safe interrogation API, a lock-and-deadlock flight recorder and a production replay harness.",
+   "takeaway": "When an investigator, human or automated, repeatedly guesses wrong, first check whether they can actually see the evidence needed, and design safe read-only observability before adding more reasoning capability."
+  },
+  {
+   "id": "527b2b2f22d28121",
+   "title": "Bait: Mitigating Harmful Agentic Reinforcement Learning via Probing Reward Function",
+   "url": "https://arxiv.org/abs/2611.16369",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T06:34:34+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The authors show that a small budget of around USD 20 can erode the safety alignment of a large language model through agentic reinforcement learning run via a hosted service, using a toxic training environment. The degraded model could then assist with tasks such as exploiting software vulnerabilities. Their proposed defence, Bait, probes the reward function to block learning from harmful rewards while still permitting benign task learning.",
+   "takeaway": "Fine-tuning-as-a-service exposes a model's safety to whatever reward signal a user supplies, so providers need to inspect the reward function itself rather than only the training data."
+  },
+  {
+   "id": "2350e5d835e77438",
+   "title": "Guided Generation of Linux Kernel Semantic Patches with Small Local Language Models",
+   "url": "https://arxiv.org/abs/2611.16215",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-12T03:08:17+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors use small local language models to write Coccinelle semantic patches that migrate Linux kernel drivers after API changes. A guided framework with a compile critic lets Qwen2.5-Coder 7B solve about 35 of 122 conversions on average, compared with 1 when prompted directly, and its rules are the most precise of the systems tested. General-purpose models stayed weak even with guidance, and all code and results are released.",
+   "takeaway": "Structured, verifiable intermediate outputs such as a compile check or a rule applied back to examples let small models perform well on tasks where free-form generation fails, because each candidate can be checked before it is accepted."
+  },
+  {
+   "id": "813f0f19ab4868a4",
+   "title": "GHAgentCI: A Dataset of Coding-Agent Invocations in CI Workflow Histories",
+   "url": "https://arxiv.org/abs/2611.15522",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-11T14:13:33+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "GHAgentCI is a dataset of over 15,000 GitHub Actions workflow histories containing coding-agent integrations, built with an open-source extractor called cai-miner. Manual validation confirmed 96.1% of dedicated-action matches and 98.8% of GitHub Agentic Workflow matches, with lower accuracy for other evidence types. The analysis finds a shift toward command-line and agentic workflow integrations, differences in declared safeguards, and frequent removal of agentic workflows.",
+   "takeaway": "Agent integrations in CI often look like ordinary workflow files, so inventorying them needs evidence-based detection across actions, shell commands and conventions. Review the declared permissions and safeguards of any workflow that invokes an agent."
+  },
+  {
+   "id": "f2a0387ce0fe9aa8",
+   "title": "Browser Immune System (BIS): Innate and Adaptive Threat Detection in the Browser with a Cybersecurity Transformer",
+   "url": "https://arxiv.org/abs/2611.15302",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T10:36:17+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "The Browser Immune System runs a 4-bit quantised 4B-parameter cybersecurity transformer in a Chrome and Firefox extension via WebGPU, answering typed security questions in about 150 ms. On an eight-site synthetic benchmark it gets 7 of 8 page verdicts right with a micro-F1 of 0.71, but two of seven questions answer yes on ordinary scripts and login forms on real pages. The authors report every error openly and identify specificity on the real web as the open problem.",
+   "takeaway": "A detector can look strong on synthetic malicious samples while still flagging benign pages, so specificity on ordinary real-world content is the test that decides whether it is usable. Report every error, including the false positives."
+  }
+ ]
+}
