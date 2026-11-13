@@ -2,6 +2,22 @@
  "date": "2026-11-13",
  "items": [
   {
+   "id": "a9b2747b83a3e347",
+   "title": "Trained to betray: How post-training supply chain attacks hijack coding agents",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-12T17:00:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft describes two studies showing how coding agents can be backdoored through post-training. Dataset poisoning with a few crafted fine-tuning examples taught a model to misuse command-execution tools when routine requests appeared, reaching about 78% attack success and transferring to an unseen harness. Model poisoning of open-weight checkpoints, combining supervised fine-tuning and reinforcement learning, reached 84.1% to 94.8% success on unseen repositories.",
+   "takeaway": "Model provenance is part of the supply chain, and behavioural testing alone may miss dormant backdoors, so agent permissions and monitoring should be enforced outside the model."
+  },
+  {
    "id": "3c52b13d64de1b5c",
    "title": "0% GPU utilization: How SANSAR hides Linux cryptomining",
    "url": "https://www.elastic.co/security-labs/threat-command/sansar-linux-cryptomining-malware",
@@ -30,6 +46,21 @@
    "relevance": 6,
    "summary": "In a LABScon 2026 keynote, Dino Dai Zovi argues that software defences cannot keep pace with AI-enabled attackers and that hardware-based controls, such as the secure element behind tap-to-pay, should be applied more widely. He cites UK AI Security Institute data showing intrusions that once took days now approach minutes. He demonstrates on an AI cyber range, assuming none of the vulnerabilities can be patched, that a few hardware boundaries leave an agent with nothing useful to take.",
    "takeaway": "When vulnerabilities cannot be patched in time, hardware-enforced boundaries can still limit what an attacker or autonomous agent can reach, so design containment that does not depend on software being correct."
+  },
+  {
+   "id": "0316ec651071c7e2",
+   "title": "MammothDP: Private Boosted Decision Trees Ready for Trusted Hardware and Leakage-free Hyperparameters",
+   "url": "https://arxiv.org/abs/2611.14317",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T16:44:28+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The authors build MammothDP, a gradient boosted decision tree learner that is differentially private, hardened against timing side channels, and deployed inside a trusted execution environment for health data. They report that combining TEEs with differential privacy surfaces new security problems, including a rollback protection that was vulnerable to timing attacks. Their fixes include an early stopping rule that picks the number of trees without adding privacy cost.",
+   "takeaway": "Security controls can interact badly: a rollback defence that is sound on its own can leak through timing when combined with another protection, so test composed defences together."
   },
   {
    "id": "53dc0d50c340e91e",
@@ -76,6 +107,20 @@
    "takeaway": "Access control is not only about who can change a policy but also about what the policy may say, so every delegated authority should be bounded by explicit ownership and containment checks before the change is committed."
   },
   {
+   "id": "60f9323035c76695",
+   "title": "Location Matters: Sparse Latent-Variance Attacks for Face Privacy against Diffusion Personalization",
+   "url": "https://arxiv.org/abs/2611.14254",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T16:03:32+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "SEAL is a proactive defence that protects face photos from diffusion model personalisation by changing only about 5% of pixel locations with adversarial perturbations. It targets the frozen VAE encoder's latent distribution and penalises changes in salient facial regions. On CelebA-HQ and VGGFace2 it keeps high image quality while cutting identity similarity to at most 0.15 after personalisation.",
+   "takeaway": "Concentrating adversarial perturbation in a sparse set of well-chosen locations can protect more effectively and less visibly than dense bounded noise, so perceptual quality should be measured alongside attack success."
+  },
+  {
    "id": "0755a45f0c6fcf0d",
    "title": "Comparing WeChat and Telegram MiniApp Security Architectures: Toward Cross-Platform Analysis",
    "url": "https://arxiv.org/abs/2611.13965",
@@ -89,6 +134,21 @@
    "relevance": 5,
    "summary": "The authors compare the security architectures of WeChat Mini Programs and Telegram MiniApps, using documentation, prior research and manual review of a Telegram Android source revision. They describe execution environments, communication paths and trust boundaries using a shared taxonomy. Two worked examples define requirements for cross-platform analysis, though no vulnerabilities are validated.",
    "takeaway": "When analysing hybrid app platforms, first identify which credential or capability belongs to which execution context, since many issues arise where the host and the web content meet."
+  },
+  {
+   "id": "3e9a34849185cf00",
+   "title": "POEM: Output-Relative Block-Sparse Attention for Long-Context Prefilling",
+   "url": "https://arxiv.org/abs/2611.13578",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-10T04:52:58+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 5,
+   "summary": "The listed title refers to block-sparse attention, but the text describes TERM, an inference-time defence against jailbreak attacks. TERM calibrates attention entropy against each prompt's own prefill baseline and uses the resulting signal to bound scaling of the model's residual updates. The authors report better jailbreak robustness than seven other defences, with low over-refusal on benign requests across several model families.",
+   "takeaway": "Normalising a safety signal against each input's own baseline can reduce false positives on benign requests, compared with using a fixed reference value."
   }
  ]
 }
