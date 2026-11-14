@@ -18,6 +18,38 @@
    "takeaway": "Detection should baseline each identity's normal API behaviour and correlate over long windows, because a burst of legitimate calls spread over weeks can be a complete intrusion. No single call looks malicious, so the pattern across calls and time is the signal."
   },
   {
+   "id": "78498214505c5f31",
+   "title": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-13T21:31:44+00:00",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft describes SCKit, a worm that abuses hijacked ConnectWise ScreenConnect sessions at managed service providers to install unauthorised remote-access clients. It uses scheduled tasks and Run keys for persistence, targets technician workstations, and spreads payloads through the victim's management console to other managed devices. Microsoft warns that removing the rogue client alone does not clear persistence or invalidate exposed web sessions.",
+   "takeaway": "When a remote-support tool is compromised, containment must cover persistence and active sessions as well as the malicious client, and technician workstations should be treated as high-value pivot points."
+  },
+  {
+   "id": "19ad942142494871",
+   "title": "Inside the loop: Five AI attack frameworks that never ask permission",
+   "url": "https://www.elastic.co/security-labs/threat-command/agentic-offensive-frameworks-detection-artex",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-13T16:00:00+00:00",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 8,
+   "summary": "Elastic reviewed the source of five agentic offensive frameworks, ARTEX, CyberStrikeAI, Cairn, PentAGI, and HexStrike, which have already appeared in real intrusions. Each lets an LLM plan and run scanners, shells, and cloud CLIs, and none enforces authorisation in code by default. The frameworks are loud by default and some switch routes when blocked, though their underlying actions still surface as processes, web requests, API calls, and sign-ins.",
+   "takeaway": "Detections built on the behaviour of actions, such as unusual processes or API calls, are more durable than those based on tool signatures, IP addresses, or User-Agent strings, which an agent can change quickly."
+  },
+  {
    "id": "3ee0c9ab531fa535",
    "title": "Preserve the Vulnerability, Break the Alert: Testing the Robustness of CodeQL Taint Tracking with Natural Rewrites",
    "url": "https://arxiv.org/abs/2611.17123",
@@ -48,6 +80,22 @@
    "relevance": 8,
    "summary": "CrossPloit is a benchmark of 127 tasks in which an agent must adapt a proof-of-concept exploit from a listed vulnerable Python web application version to an earlier, unlisted version. The authors find that four vulnerability databases omit 149 vulnerable prior versions, showing that affected-version ranges are often incomplete. The best of 18 agent configurations resolves 58.3% of instances, while attack-vector shifts prove much harder.",
    "takeaway": "Affected-version ranges in advisories are frequently too narrow, so verifying exposure by running a working PoC against older releases is a more reliable way to find vulnerable deployments than trusting the listed range."
+  },
+  {
+   "id": "1838248a60d90440",
+   "title": "Policy and Disclosure: 2026 Edition",
+   "url": "https://projectzero.google/2026/11/disclosure-policy.html",
+   "source": "Google Project Zero",
+   "kind": "article",
+   "published": "2026-11-13T08:00:00+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Defence",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "Google Project Zero says its 90 plus 30 day disclosure policy is no longer adequate because LLMs have sped up both discovery and exploitation. Attackers can now often work out bug details from a patch almost immediately, so the 30 day soak period creates a false sense of secrecy. Project Zero is also finding several vulnerabilities a week, which makes negotiated disclosure hard to manage.",
+   "takeaway": "Patch gap, the delay between a fix being released and users installing it, is now the critical window to shrink, so defenders should plan compensating controls for when patches cannot be applied straight away."
   },
   {
    "id": "60abc0ab684b1967",
@@ -128,6 +176,22 @@
    "takeaway": "Do not let the model that processes untrusted input also decide what it is permitted to do, because injected text can shape any policy that model writes."
   },
   {
+   "id": "894b840845f93b81",
+   "title": "S1-Evo: Experience-Guided Evidence Competition Attacks on Typed System-1 Decision Models",
+   "url": "https://arxiv.org/abs/2611.16937",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-12T15:21:44+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "S1-Evo targets typed System-1 decision models used in LLM agents for routing, moderation, and authorisation, which score options rather than generate text. It injects contract-aware evidence into untrusted fields to create competition with genuine task evidence, then evolves those perturbations using margin feedback and stores successful flips as reusable experience cards. The authors report a 71.99% mean attack success rate across four benchmarks and three models, and up to 24% end-to-end agent violations.",
+   "takeaway": "Classifiers that gate agent actions can be manipulated through the data fields they read, not only through prompt injection, so untrusted context needs validation before it reaches any decision point."
+  },
+  {
    "id": "fc3bf4d5779e19bb",
    "title": "IoTPwnBench: A Synthetic Benchmark for IoT Firmware Security Analysis",
    "url": "https://arxiv.org/abs/2611.15316",
@@ -144,6 +208,22 @@
    "takeaway": "Pairing each vulnerable target with a patched twin lets you measure false positives directly, which real firmware with undocumented defects cannot offer."
   },
   {
+   "id": "a3faf71dd7e704cb",
+   "title": "Pre-QED: Environment Specifications for Agentic Verification",
+   "url": "https://arxiv.org/abs/2611.15207",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-11T09:03:05+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Programming"
+   ],
+   "relevance": 6,
+   "summary": "The authors argue that agentic formal verification is bottlenecked by the specification rather than the proof, since existing efforts such as OSS-Verify reuse fuzz harnesses that cover only one call sequence. They propose verification harnesses that model all legal API usages, extracted from code and documentation by an agent and constrained with LTL to rule out illegal call orders. They release these harnesses as open challenges for the community.",
+   "takeaway": "A proof is only as strong as the environment model it assumes, so a verification harness should encode every legal client behaviour rather than a single fuzzing scenario."
+  },
+  {
    "id": "aed3c086f7fdd4f0",
    "title": "Protecting Sensitive Knowledge Under LLM Unlearning: The Proxy Threat and a Superposition-Aware Defense",
    "url": "https://arxiv.org/abs/2611.15013",
@@ -158,84 +238,6 @@
    "relevance": 6,
    "summary": "The authors show that because knowledge is stored in overlapping parameter subspaces, a legitimate request to unlearn one entity can also remove a sensitive entity that shares those representations. They name this the Proxy Unlearning Attack and propose SAUP, which detects at-risk sensitive entities before unlearning and restores them afterwards while keeping the requested entity suppressed. The threat can also occur accidentally when benign users make unlearning requests.",
    "takeaway": "Access control and deletion operations can have side effects through shared internal representations, so security reviews should ask what else a change touches, not only whether the requested item is removed."
-  },
-  {
-   "id": "a6b7063e4cab2f2c",
-   "title": "Where LLM Agents Get Stuck Debugging Databases: Access More Than Reasoning",
-   "url": "https://arxiv.org/abs/2611.17304",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-11-12T18:56:22+00:00",
-   "topics": [
-    "AI and ML",
-    "SOC",
-    "Programming"
-   ],
-   "relevance": 5,
-   "summary": "In a field study of Claude Code diagnosing eight incidents in a production message-dispatch database, the agent's wrong guesses on concurrency-related faults came mainly from missing access to live lock views, full deadlock reports, read-only execution and environment context. The hypotheses it formed were consistent with the evidence it could see, so the failures reflected what it was allowed to observe rather than fabrication. The authors propose a forensics layer with a safe interrogation API, a lock-and-deadlock flight recorder and a production replay harness.",
-   "takeaway": "When an investigator, human or automated, repeatedly guesses wrong, first check whether they can actually see the evidence needed, and design safe read-only observability before adding more reasoning capability."
-  },
-  {
-   "id": "527b2b2f22d28121",
-   "title": "Bait: Mitigating Harmful Agentic Reinforcement Learning via Probing Reward Function",
-   "url": "https://arxiv.org/abs/2611.16369",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-12T06:34:34+00:00",
-   "topics": [
-    "AI and ML",
-    "Defence"
-   ],
-   "relevance": 5,
-   "summary": "The authors show that a small budget of around USD 20 can erode the safety alignment of a large language model through agentic reinforcement learning run via a hosted service, using a toxic training environment. The degraded model could then assist with tasks such as exploiting software vulnerabilities. Their proposed defence, Bait, probes the reward function to block learning from harmful rewards while still permitting benign task learning.",
-   "takeaway": "Fine-tuning-as-a-service exposes a model's safety to whatever reward signal a user supplies, so providers need to inspect the reward function itself rather than only the training data."
-  },
-  {
-   "id": "2350e5d835e77438",
-   "title": "Guided Generation of Linux Kernel Semantic Patches with Small Local Language Models",
-   "url": "https://arxiv.org/abs/2611.16215",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-11-12T03:08:17+00:00",
-   "topics": [
-    "AI and ML",
-    "Programming"
-   ],
-   "relevance": 5,
-   "summary": "The authors use small local language models to write Coccinelle semantic patches that migrate Linux kernel drivers after API changes. A guided framework with a compile critic lets Qwen2.5-Coder 7B solve about 35 of 122 conversions on average, compared with 1 when prompted directly, and its rules are the most precise of the systems tested. General-purpose models stayed weak even with guidance, and all code and results are released.",
-   "takeaway": "Structured, verifiable intermediate outputs such as a compile check or a rule applied back to examples let small models perform well on tasks where free-form generation fails, because each candidate can be checked before it is accepted."
-  },
-  {
-   "id": "813f0f19ab4868a4",
-   "title": "GHAgentCI: A Dataset of Coding-Agent Invocations in CI Workflow Histories",
-   "url": "https://arxiv.org/abs/2611.15522",
-   "source": "arXiv cs.SE",
-   "kind": "paper",
-   "published": "2026-11-11T14:13:33+00:00",
-   "topics": [
-    "AI and ML",
-    "Programming",
-    "Blue team"
-   ],
-   "relevance": 5,
-   "summary": "GHAgentCI is a dataset of over 15,000 GitHub Actions workflow histories containing coding-agent integrations, built with an open-source extractor called cai-miner. Manual validation confirmed 96.1% of dedicated-action matches and 98.8% of GitHub Agentic Workflow matches, with lower accuracy for other evidence types. The analysis finds a shift toward command-line and agentic workflow integrations, differences in declared safeguards, and frequent removal of agentic workflows.",
-   "takeaway": "Agent integrations in CI often look like ordinary workflow files, so inventorying them needs evidence-based detection across actions, shell commands and conventions. Review the declared permissions and safeguards of any workflow that invokes an agent."
-  },
-  {
-   "id": "f2a0387ce0fe9aa8",
-   "title": "Browser Immune System (BIS): Innate and Adaptive Threat Detection in the Browser with a Cybersecurity Transformer",
-   "url": "https://arxiv.org/abs/2611.15302",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-11T10:36:17+00:00",
-   "topics": [
-    "AI and ML",
-    "Defence",
-    "Blue team"
-   ],
-   "relevance": 5,
-   "summary": "The Browser Immune System runs a 4-bit quantised 4B-parameter cybersecurity transformer in a Chrome and Firefox extension via WebGPU, answering typed security questions in about 150 ms. On an eight-site synthetic benchmark it gets 7 of 8 page verdicts right with a micro-F1 of 0.71, but two of seven questions answer yes on ordinary scripts and login forms on real pages. The authors report every error openly and identify specificity on the real web as the open problem.",
-   "takeaway": "A detector can look strong on synthetic malicious samples while still flagging benign pages, so specificity on ordinary real-world content is the test that decides whether it is usable. Report every error, including the false positives."
   }
  ]
 }
