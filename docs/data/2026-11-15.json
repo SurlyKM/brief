@@ -1,0 +1,158 @@
+{
+ "date": "2026-11-15",
+ "items": [
+  {
+   "id": "754b166495292e90",
+   "title": "Lazare, veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents",
+   "url": "https://arxiv.org/abs/2611.15118",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T06:53:24+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 9,
+   "summary": "The authors present Lazarus, a method that turns a capable language model into a sleeper agent by editing fewer than ten dormant neurons in its final feed-forward block, with no retraining. When an ordinary trigger string appears in the agent's context, the model emits a malicious payload such as a curl-to-shell command, and the attack generalises across several models. The same structure makes the edits detectable: an agent-built defence flagged 91.4% of edited checkpoints at a 9.7% false positive rate without a reference model.",
+   "takeaway": "Model weights are an attack surface and should be audited and monitored like code, because small, targeted weight edits can implant triggered behaviour that standard evaluations will not reveal."
+  },
+  {
+   "id": "038694c90fdad571",
+   "title": "Look Here, Then Decide: Small Decision Models in a Harness Find Memory-Safety Vulnerabilities at Scale on Commodity GPUs",
+   "url": "https://arxiv.org/abs/2611.16565",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T09:51:23+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The authors use Intern-Decision-4B, a 4B-parameter open-weight model, not to find bugs directly but to rank candidate C and C++ functions produced by deterministic miners and localisers. Alone the model is weak, but its ordering put the fixed function in the top 25 of its repository 1.4 times as often as random order, and the campaign confirmed 187 memory-safety findings across more than 4,000 projects on commodity GPUs. The findings are being disclosed under coordinated disclosure before publication.",
+   "takeaway": "Small models are most useful as prioritisers inside a pipeline that has deterministic analysis and verification, rather than as standalone bug finders, and their selection bias should be measured against random ordering."
+  },
+  {
+   "id": "b3e4088c754fc4d3",
+   "title": "Privacy Leakage from Recurrent State in LLM Inference",
+   "url": "https://arxiv.org/abs/2611.16048",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T21:57:21+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The researchers show that the recurrent state in latent-state LLMs retains private facts that can be recovered by probing, persists through public dialogue, and affects later decisions. They also show that GPU power telemetry leaks data: an unprivileged account on a partitioned GPU could infer a user's age from whole-device power during public requests. A state-isolation experiment links this channel to the recurrent state.",
+   "takeaway": "Confidentiality for LLM serving must cover the lifetime of retained internal state and not just prompts and responses. Shared hardware telemetry such as power draw can be a side channel even when access controls look correct."
+  },
+  {
+   "id": "214f6230196ab110",
+   "title": "One Fabrication Is Enough: A Fake News Article Changes the Forecasts of LLM Forecasting Systems",
+   "url": "https://arxiv.org/abs/2611.15102",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T06:29:13+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The study shows that an attacker who only knows a forecasting question can publish a single fabricated news article that a retrieval-augmented LLM forecaster then follows, reversing 74% to 82% of opposing forecasts across frontier models. Two leading deployed forecasting systems retrieved the fake article in about 90% of runs. The authors also show that the two strongest published retrieval defences are bypassed or are costly, and that average accuracy barely moves even as forecasts track the attacker's guess.",
+   "takeaway": "Accuracy can hide manipulation when the attacker's guess is right half the time, so evaluate whether outputs follow attacker-controllable inputs rather than relying on aggregate correctness."
+  },
+  {
+   "id": "be883c1992b62e0c",
+   "title": "PolicySniff: Inferring Agent Policy States through Shared-GPU Execution",
+   "url": "https://arxiv.org/abs/2611.16158",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T01:42:11+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "PolicySniff shows that a co-resident attacker sharing a GPU can infer whether an LLM agent is running under a confidential approval setting by timing only their own kernels while the agent processes a task. Using the cached policy prefix and expert routing density on an eager sparse mixture-of-experts runtime, the attacker identified the deployed setting with 94.17 percent balanced accuracy. The authors conclude that behavioural compliance does not protect configuration confidentiality and that authorisation should be enforced outside the model.",
+   "takeaway": "Shared hardware can leak the configuration of an AI system even when its outputs look compliant, so security controls for agents must sit outside the model and be tested against side channels on the actual serving stack."
+  },
+  {
+   "id": "ebd71a0f99bc8e8f",
+   "title": "Beyond the Diff - VulSpot: A Vulnerability Dataset Where No Vulnerability Goes Unlocalized",
+   "url": "https://arxiv.org/abs/2611.15737",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T17:16:44+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "VulSpot is a living vulnerability dataset with over 500k functions across 21 languages, including more than 15k vulnerable C and C++ functions. It links code added by a patch to the existing statement it protects, which localises 99.3% of functions that diff-based datasets left unlocated. It also provides leak-free splits, per-label reliability scores and monthly refreshes.",
+   "takeaway": "Patches that only add code, such as a NULL check, do not mark where the bug was, so diff-based labels miss localisation. Linking additions to the protected statement is a practical way to recover those locations."
+  },
+  {
+   "id": "6ee6d1b2343418f2",
+   "title": "Bug Finding With Agentic Symbolic Execution",
+   "url": "https://arxiv.org/abs/2611.15596",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-11T15:15:01+00:00",
+   "topics": [
+    "Programming",
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "The authors combine the CrossHair symbolic execution tool with an AI coding agent that adds assertions, synthesises a constrained database environment and produces reproducing tests. Across 11 Python web applications, it reports 1,050 reproduced bugs, and the environment synthesis raises the share of contracted functions executed from 4.5% to 81%. Symbolic execution mostly finds crashes on corner-case inputs, while LLM inspection mostly finds wrong-output bugs, so the two complement each other.",
+   "takeaway": "Symbolic execution and LLM code review find different bug classes, so combining them covers more ground than either alone. Modelling the environment, such as the database, is often the step that decides whether symbolic execution reaches real code."
+  },
+  {
+   "id": "a78cf98f88b27201",
+   "title": "Spec-Driven PBT: Deriving Semantic Invariants from Code Specifications for Agentic Property-based Testing",
+   "url": "https://arxiv.org/abs/2611.15920",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-11T19:16:05+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "Spec-Driven PBT has an agent derive natural-language invariants from a product specification before reading the implementation to write property-based tests. Across 25 applications, it finds bugs that implementation-driven PBT misses while writing 2.4 times fewer properties. Nearly 60% of the 169 bugs were found by only one of the two approaches, and the spec-driven bugs tend to break documented workflows.",
+   "takeaway": "Deriving test oracles from intended behaviour gives a different bug set from deriving them from the code, so the two approaches complement each other. Specifications are a useful independent source of test properties, not just documentation."
+  },
+  {
+   "id": "5ce16a80ddddedae",
+   "title": "Chinese Whispers About Vulnerabilities",
+   "url": "https://arxiv.org/abs/2611.15462",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T13:32:15+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "The paper analyses about 382 thousand online references to roughly 55 thousand software vulnerabilities and finds that the sources discussing each vulnerability are statistically quite dissimilar, with a mean cosine similarity of only 0.22. Vulnerabilities tied to GitHub and programming language ecosystems, and those with formal vulnerability reports, showed even more divergence. The number of references did not change how similar the sources were.",
+   "takeaway": "Different sources often describe the same vulnerability in very different ways, so relying on a single advisory or feed can miss affected details. Cross-referencing several sources is needed to build an accurate picture of a flaw."
+  },
+  {
+   "id": "794e7f4e6d6bd284",
+   "title": "Towards Runtime-Aware Observability for Java Virtual Threads",
+   "url": "https://arxiv.org/abs/2611.14999",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-11T03:57:02+00:00",
+   "topics": [
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "The paper addresses a gap in observability for Java virtual threads, where many virtual threads share a few carrier OS threads, so OS-level thread IDs stop identifying the unit of work and tracing joins fail silently. The authors bind a fixed off-heap trace buffer to each virtual thread and expose it to eBPF through four USDT probes in a patched OpenJDK, which correctly attributed all test markers while a two-probe design misattributed context. The approach adds only about 33 ns per transition when no consumer is attached.",
+   "takeaway": "Telemetry that keys on OS thread identity silently breaks under user-space scheduling, so correlate events using the logical unit of work and ensure readers handle records whose addresses may be cached."
+  }
+ ]
+}
