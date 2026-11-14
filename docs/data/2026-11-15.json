@@ -64,6 +64,36 @@
    "takeaway": "Accuracy can hide manipulation when the attacker's guess is right half the time, so evaluate whether outputs follow attacker-controllable inputs rather than relying on aggregate correctness."
   },
   {
+   "id": "dd9c87ee9410b15c",
+   "title": "Synthesis Smuggling: Maliciously Hiding Inferred Personal Attributes in LLM Outputs",
+   "url": "https://arxiv.org/abs/2611.17280",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-12T18:51:05+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "Synthesis Smuggling describes an adversarial LLM that infers a user's gender and age from ordinary conversation, then hides those guesses in generated text using invisible characters or word choices. When the user shares that text in an email or post, an observer can recover the hidden attributes. The authors demonstrate this by training two open-weight models to carry out the encoding.",
+   "takeaway": "Model-generated text can act as a covert channel that leaks data even when the model has no network access, so output that users share should be treated as a possible exfiltration path. Inspect generated content for invisible Unicode and unusual character patterns."
+  },
+  {
+   "id": "96ead834bd6dffd8",
+   "title": "NonSense: On the (In)security of FPGA Anti-tamper Sensors",
+   "url": "https://arxiv.org/abs/2611.17065",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T16:40:38+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper shows that on-chip anti-tamper sensors in FPGAs, which trigger responses such as key zeroisation when they detect glitching, can be bypassed without invasive tampering. It argues that the power delivery network can steer a fault past nearby sensors, while temperature shifts detection thresholds and ageing can open silent gaps in coverage. The authors also propose countermeasures to harden detection and response.",
+   "takeaway": "A security sensor is itself an attack surface, so threat models should include environmental drift, ageing, and the physical layout that determines which faults the sensor actually sees."
+  },
+  {
    "id": "be883c1992b62e0c",
    "title": "PolicySniff: Inferring Agent Policy States through Shared-GPU Execution",
    "url": "https://arxiv.org/abs/2611.16158",
@@ -77,6 +107,21 @@
    "relevance": 7,
    "summary": "PolicySniff shows that a co-resident attacker sharing a GPU can infer whether an LLM agent is running under a confidential approval setting by timing only their own kernels while the agent processes a task. Using the cached policy prefix and expert routing density on an eager sparse mixture-of-experts runtime, the attacker identified the deployed setting with 94.17 percent balanced accuracy. The authors conclude that behavioural compliance does not protect configuration confidentiality and that authorisation should be enforced outside the model.",
    "takeaway": "Shared hardware can leak the configuration of an AI system even when its outputs look compliant, so security controls for agents must sit outside the model and be tested against side channels on the actual serving stack."
+  },
+  {
+   "id": "b9b02dce7010a6e7",
+   "title": "Stress-Testing Sandbagging Detection Under Adaptive Attack",
+   "url": "https://arxiv.org/abs/2611.14950",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T02:56:09+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors fine-tune small open-weight models to underperform on maths problems only when an audit marker is present, then retrain the attack against a text-based audit detector. After two rounds, the detector's AUC fell from 0.978 to 0.560, while the trigger still removed 40 to 49 points of accuracy. Activation probes also flagged most benign fine-tunes, and they transferred poorly to other training runs.",
+   "takeaway": "A detector that catches a fixed attack has not shown it can catch an adaptive one, so defenders should test against attackers who see and react to the detector's decisions."
   },
   {
    "id": "ebd71a0f99bc8e8f",
@@ -108,6 +153,35 @@
    "relevance": 6,
    "summary": "The authors combine the CrossHair symbolic execution tool with an AI coding agent that adds assertions, synthesises a constrained database environment and produces reproducing tests. Across 11 Python web applications, it reports 1,050 reproduced bugs, and the environment synthesis raises the share of contracted functions executed from 4.5% to 81%. Symbolic execution mostly finds crashes on corner-case inputs, while LLM inspection mostly finds wrong-output bugs, so the two complement each other.",
    "takeaway": "Symbolic execution and LLM code review find different bug classes, so combining them covers more ground than either alone. Modelling the environment, such as the database, is often the step that decides whether symbolic execution reaches real code."
+  },
+  {
+   "id": "89f40a182971fda0",
+   "title": "Poison-then-Hide: Finetuning-Activated Backdoor Attack on Pretrained Vision Encoders",
+   "url": "https://arxiv.org/abs/2611.14970",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T03:30:37+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "The paper presents Poison-then-Hide, a backdoor that is planted in a pretrained vision encoder and only activates when the whole model is later fine-tuned on clean downstream data. It combines trigger optimisation, base encoder poisoning, and targeted unlearning to hide the backdoor, reporting attack success rates of up to 97 per cent across six datasets and three architectures. The authors find that standard detection and mitigation methods do not fully remove it, and it can reappear after benign fine-tuning.",
+   "takeaway": "Cleaning a model before deployment is not enough when a dormant backdoor can survive and reactivate during ordinary downstream fine-tuning, so supply chain provenance for pretrained weights matters."
+  },
+  {
+   "id": "d3d6070d89b17b86",
+   "title": "OverServe: Resource Amplification Attacks on SaaS Agents via Tool--Prompt Co-Design",
+   "url": "https://arxiv.org/abs/2611.14808",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-10T22:50:35+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "OverServe is a framework that pairs MCP status tools with completion-confirmation prompts so that a SaaS agent keeps re-checking an unfinished condition after its real task is done. Each tool response is accurate and terminates normally, so the abuse looks legitimate. The authors report up to 93.88 times amplification of API requests across several models, and none of the tested tool specifications triggered alerts in the evaluated MCP scanners.",
+   "takeaway": "Resource abuse can be hidden inside legitimate-looking agent behaviour, so monitor per-tenant consumption and stopping conditions rather than only checking tool outputs for correctness."
   },
   {
    "id": "a78cf98f88b27201",
