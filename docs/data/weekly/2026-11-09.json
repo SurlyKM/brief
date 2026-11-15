@@ -1,0 +1,211 @@
+{
+ "week": "2026-11-09",
+ "range": "9 to 15 November 2026",
+ "story_count": 91,
+ "days_covered": 7,
+ "partial": false,
+ "headline": "Agents on both sides of the keyboard: AI-run intrusions land as defenders race to put policy outside the model",
+ "themes": [
+  "Offence by AI agents moved from theory to incident reports. Elastic's account of an AI-run AWS intrusion (56 EC2 user data reads in 141 ms, then a 14 day pause) and its review of five agentic attack frameworks that enforce no authorisation show the pattern. Every individual call looked legitimate, so detection has to rest on per-identity baselines and long correlation windows. Two papers on fingerprinting agentic attackers (Say Shibboleth, the Talos twin-controller honeypot) and BypassGym's evidence that even lightweight models can evade an EDR suggest the contest will be fought on behaviour and deception rather than signatures. Project Zero's disclosure policy rewrite and the Microsoft kernel work (26,502 raw findings reduced to 33 CVEs) point the same way: discovery is cheap, and validation and patch gap are the bottlenecks.",
+  "The model itself is now treated as a supply chain and a trust boundary. Lazarus and Microsoft's sleeper agent write-up show fewer than ten neurons can implant a trigger, and the post-training poisoning study, Poison-then-Hide and StealthyPoison reinforce that weights, skills and memory can carry dormant behaviour. Prompt injection research kept converging on one conclusion: enforce authorisation outside the model with deterministic, provenance-aware policy (the untrusted-component study, Conflux, CapLite, PRISM, ActiveSecHarness). Several papers also warn that a low attack success rate can hide over-refusal (ErosionBench) and that detectors fail against adaptive attackers (sandbagging stress test). Side channels on shared GPUs (PolicySniff, recurrent state leakage) show that even a well-isolated serving stack can leak configuration and user data.",
+  "Classic tradecraft and hardware lessons still matter. GSocket, SCKit and the SANSAR Ray cryptomining intrusion all reward hunting for persistence rather than stopping at patching or removing one client. The RP2350 laser fault paper, the Zirah key extraction and the FPGA anti-tamper sensor bypass share a theme: protecting where a policy or key is stored does not protect how it is enforced. Static analysis fares no better, as CodeQL alerts disappear under natural rewrites and affected-version ranges in advisories omit vulnerable releases."
+ ],
+ "must_reads": [
+  {
+   "id": "04d39ddabcc81277",
+   "title": "56 AWS API calls in 141 milliseconds: Inside an AI-run intrusion",
+   "url": "https://www.elastic.co/security-labs/threat-command/cyberstrikeai-aws-cloudtrail-intrusion",
+   "source": "Elastic Security Labs",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "kind": "article",
+   "why": "A concrete incident report on an AI-run intrusion, where every API call was normal for the role and only the pattern over time gave it away. The 14 day gap that defeats fixed correlation windows is a direct lesson for anyone writing cloud detections."
+  },
+  {
+   "id": "754b166495292e90",
+   "title": "Lazare, veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents",
+   "url": "https://arxiv.org/abs/2611.15118",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "kind": "paper",
+   "why": "Shows that fewer than ten dormant neurons can turn a capable model into a sleeper agent with no retraining, and also that the edit is detectable. Read it with Microsoft's companion post for the defender view of weight auditing."
+  },
+  {
+   "id": "e564f8c523137479",
+   "title": "Lessons from 59 Linux Kernel Bug Reports",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML",
+    "Exploits"
+   ],
+   "kind": "article",
+   "why": "A candid account of running AI bug finding at scale: 26,502 raw findings narrowed to 59 reports and eight root exploits. The main lesson is that reproducible proof of concept evidence and triage, not generation, is where the effort goes."
+  },
+  {
+   "id": "936402f52c4c5fc6",
+   "title": "Treating the Model as an Untrusted Component: Deterministic Policy Enforcement, Human Approval and Taint Tracking Against Prompt Injection in Tool-Using Agents, with Validation on Open-Weights Models",
+   "url": "https://arxiv.org/abs/2611.11571",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "kind": "paper",
+   "why": "Compares prompt guardrails with deterministic, task-bound reference monitors on real open-weights models. It gives a practical argument for keeping authorisation outside the model and for budgeting human approvals."
+  },
+  {
+   "id": "105a2d381c04919d",
+   "title": "Shoot on (Core)Sight: Re-enabling Secure Debug on the RP2350 with Photon-Emission Microscopy and Laser Fault Injection",
+   "url": "https://arxiv.org/abs/2611.06386",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Exploits",
+    "Reverse engineering",
+    "Vulnerability research"
+   ],
+   "kind": "paper",
+   "why": "A clear hardware attack walkthrough using photon-emission microscopy and laser fault injection to re-enable secure debug on the RP2350. Its sharpest point is that fault-resistant policy storage does not give fault-resistant enforcement."
+  }
+ ],
+ "lessons": [
+  {
+   "id": "04d39ddabcc81277",
+   "title": "56 AWS API calls in 141 milliseconds: Inside an AI-run intrusion",
+   "url": "https://www.elastic.co/security-labs/threat-command/cyberstrikeai-aws-cloudtrail-intrusion",
+   "source": "Elastic Security Labs",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "kind": "article",
+   "lesson": "Baseline each cloud identity's normal API behaviour and correlate over long windows. A burst of individually legitimate calls separated by weeks of silence can be a complete intrusion that fixed windows never join."
+  },
+  {
+   "id": "19ad942142494871",
+   "title": "Inside the loop: Five AI attack frameworks that never ask permission",
+   "url": "https://www.elastic.co/security-labs/threat-command/agentic-offensive-frameworks-detection-artex",
+   "source": "Elastic Security Labs",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "SOC"
+   ],
+   "kind": "article",
+   "lesson": "Build detections on the behaviour of actions, such as processes, API calls and sign-ins, rather than tool signatures, IPs or User-Agent strings. Agentic attack frameworks can change the latter quickly but cannot avoid the former."
+  },
+  {
+   "id": "3c52b13d64de1b5c",
+   "title": "0% GPU utilization: How SANSAR hides Linux cryptomining",
+   "url": "https://www.elastic.co/security-labs/threat-command/sansar-linux-cryptomining-malware",
+   "source": "Elastic Security Labs",
+   "topics": [
+    "SOC",
+    "Blue team"
+   ],
+   "kind": "article",
+   "lesson": "Monitoring tools can be lied to, as SANSAR falsifies GPU readings through an NVML wrapper and hides processes with a rootkit. Cross-check telemetry against independent sources such as the kernel, cloud billing and network flows."
+  },
+  {
+   "id": "3c5e2d75ed5c2a87",
+   "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Red team"
+   ],
+   "kind": "article",
+   "lesson": "Patching the entry vulnerability does not remove an implant. GSocket relays through a shared public network, so there is no attacker IP to block and responders must hunt for persistence and outbound channels on the host."
+  },
+  {
+   "id": "f91527c7bf888616",
+   "title": "Detecting sleeper agents hiding in AI model neurons",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "kind": "article",
+   "lesson": "Treat open model weights like untrusted code. Passing evaluations does not show a model is free of triggered behaviour, so audit weights and monitor agent actions independently of the model."
+  },
+  {
+   "id": "e564f8c523137479",
+   "title": "Lessons from 59 Linux Kernel Bug Reports",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML",
+    "Exploits"
+   ],
+   "kind": "article",
+   "lesson": "AI makes candidate bugs cheap, so the bottleneck is validation. Requiring a reproducible proof of concept, for example in QEMU, is the most effective filter for separating real findings from noise."
+  },
+  {
+   "id": "936402f52c4c5fc6",
+   "title": "Treating the Model as an Untrusted Component: Deterministic Policy Enforcement, Human Approval and Taint Tracking Against Prompt Injection in Tool-Using Agents, with Validation on Open-Weights Models",
+   "url": "https://arxiv.org/abs/2611.11571",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "kind": "paper",
+   "lesson": "Do not rely on the model to refuse injected instructions. Enforce permitted tool calls outside the model with deterministic, task-bound policy, and budget human approval steps so they cannot be spammed."
+  },
+  {
+   "id": "3ee0c9ab531fa535",
+   "title": "Preserve the Vulnerability, Break the Alert: Testing the Robustness of CodeQL Taint Tracking with Natural Rewrites",
+   "url": "https://arxiv.org/abs/2611.17123",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Vulnerability research",
+    "Programming",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "A static analysis alert disappearing after a refactor is weak evidence of a fix. Behaviour-preserving rewrites can exploit gaps in how the analyser models library APIs, so check that modelling before trusting a clean result."
+  },
+  {
+   "id": "31e923d4d6025f16",
+   "title": "CrossPloit: A Benchmark for Cross-Version PoC Migration in Python Web Applications",
+   "url": "https://arxiv.org/abs/2611.16588",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Red team"
+   ],
+   "kind": "paper",
+   "lesson": "Advisory affected-version ranges are often too narrow, with four databases omitting 149 vulnerable prior versions. Running a working PoC against older releases is more reliable than trusting the listed range."
+  },
+  {
+   "id": "105a2d381c04919d",
+   "title": "Shoot on (Core)Sight: Re-enabling Secure Debug on the RP2350 with Photon-Emission Microscopy and Laser Fault Injection",
+   "url": "https://arxiv.org/abs/2611.06386",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Exploits",
+    "Reverse engineering",
+    "Vulnerability research"
+   ],
+   "kind": "paper",
+   "lesson": "Hardening where a security policy is stored does not harden its enforcement. Test whether enforcement still holds after faults, resets and debug-state transitions."
+  }
+ ]
+}

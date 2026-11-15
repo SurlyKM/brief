@@ -1,6 +1,11 @@
 {
  "issues": [
   {
+   "week": "2026-11-09",
+   "range": "9 to 15 November 2026",
+   "headline": "Agents on both sides of the keyboard: AI-run intrusions land as defenders race to put policy outside the model"
+  },
+  {
    "week": "2026-11-02",
    "range": "2 to 8 November 2026",
    "headline": "Agents Under Siege: Trust Fails at the Tool, the Update and the Parameter, While Real Intrusions Lean on Signed Software"

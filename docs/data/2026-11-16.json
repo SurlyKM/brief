@@ -1,0 +1,96 @@
+{
+ "date": "2026-11-16",
+ "items": [
+  {
+   "id": "f10b624ecbaf93ca",
+   "title": "Hijacking a Trusted LLM in Real-World Quantized Deployments Only Requires a Disguised Adapter",
+   "url": "https://arxiv.org/abs/2611.14978",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T03:37:09+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "QHijack-LoRA is an attack in which a third-party LoRA adapter behaves normally on the full-precision base model, passing audit, but hijacks decisions once the base is quantised for deployment. The attacker needs no changes to the base model or knowledge of the quantisation settings. The authors also propose a cross-precision paired audit that tests the adapter in its intended deployment configuration.",
+   "takeaway": "Auditing a model in full precision does not prove its behaviour after quantisation. Third-party components should be tested in the exact configuration they will run in."
+  },
+  {
+   "id": "1f867793f0b1b705",
+   "title": "Fault Injection Attacks on Q-Learning: Analysis, Vulnerabilities, and Countermeasures",
+   "url": "https://arxiv.org/abs/2611.16151",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T01:24:46+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "The authors use voltage and clock glitching on a ChipWhisperer platform to attack several Q-learning implementations, showing that faults can corrupt rewards, Q-table values and actions. They find that Robust Q-learning does not stop NaN values persisting, and that triple modular redundancy protects copies of the table but not shared inputs such as the reward or the voting code. In a traffic simulator, one injected infinite value degraded waiting time by 148 times.",
+   "takeaway": "Redundancy only helps when it covers every shared input and the voting logic itself, so a single unprotected reward path can defeat a protected model."
+  },
+  {
+   "id": "13462b0793111691",
+   "title": "Protocol-Aware Auditing of Domain-Blind Feature Attribution in Network Intrusion Detection",
+   "url": "https://arxiv.org/abs/2611.16018",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T21:24:44+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that feature-attribution explanations such as LIME and SHAP can query network states that break protocol rules, which makes their explanations unreliable for intrusion detection. Restricting the perturbations to rule-valid states (PA-LIME and related variants) reveals large variability that standard LIME hides. The paper also reports better attribution stability under adversarial perturbation with protocol repair.",
+   "takeaway": "An explanation method is only trustworthy if its perturbations stay within the domain's valid states. Otherwise it may explain the model's behaviour on inputs that could never occur in production."
+  },
+  {
+   "id": "222e507908e8cd53",
+   "title": "Speech Tokenizers are Vulnerable: Transferable Semantic Attack and Robust Tokenizer",
+   "url": "https://arxiv.org/abs/2611.14929",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-11T02:33:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The authors show that speech tokenizers, the front ends for ASR and audio-language models, can be disrupted by small perturbations at the semantic level. Their T-SemAttack uses an ensemble of semantic encoders to transfer attacks to unseen systems, and analysis points to shared adversarially sensitive input directions as the cause of transferability. They also propose ROSETok, a tokenizer trained with noise and robust distillation that improves downstream robustness.",
+   "takeaway": "Attacks transfer between models when their gradients point in similar input directions, so using an ensemble of surrogate models is a practical way to build black-box attacks and to test defences."
+  },
+  {
+   "id": "07d2091ec7bd4d91",
+   "title": "Look It Up: Multi-bit LLM Watermarking via Codebook Search",
+   "url": "https://arxiv.org/abs/2611.16890",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T14:49:23+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "The authors present a multi-bit watermarking scheme that maps a short payload to a longer codeword, embeds it through logit biasing, and recovers it by nearest-codeword search using Hamming or Levenshtein distance. It recovers 16 to 24 bit payloads reliably on 200-token texts, but struggles with very short outputs, insertions and strong paraphrasing.",
+   "takeaway": "Error-correcting codes can make a watermark recoverable from edited text, but each kind of edit (deletion, insertion, rewrite) needs its own robustness analysis."
+  },
+  {
+   "id": "ef4c6ed80eab288b",
+   "title": "LLM-Assisted Verification in Dafny",
+   "url": "https://arxiv.org/abs/2611.16886",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-12T14:48:38+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "The authors describe a ten-step workflow for using LLMs to help write machine-checked proofs in Dafny, covering specification, invariants, proof construction and solver performance tuning. They verified 37 algorithms, including the Hopcroft-Tarjan triconnectivity test, and conclude that the human role shifts toward supervision and specification review.",
+   "takeaway": "Formal verification gains most from LLM help when the specification is kept rigorous and human-reviewed, since a proof is only as trustworthy as the statement it proves."
+  }
+ ]
+}
