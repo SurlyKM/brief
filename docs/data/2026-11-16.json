@@ -49,6 +49,50 @@
    "takeaway": "An explanation method is only trustworthy if its perturbations stay within the domain's valid states. Otherwise it may explain the model's behaviour on inputs that could never occur in production."
   },
   {
+   "id": "a72142c29094cca8",
+   "title": "How Well Do SAST Tools Work Across Languages? An Empirical Study Using OCPP Implementations",
+   "url": "https://arxiv.org/abs/2611.14362",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-10T17:21:00+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming"
+   ],
+   "relevance": 7,
+   "summary": "The authors ran SonarQube, Semgrep and language-specific analysers over twelve independent OCPP 1.6 charging station implementations, each in a different language. Findings ranged from two in Rust to 1,689 in Java, and the authors argue this mostly reflects how mature each language's SAST tooling is rather than how secure the code is. The study frames SAST tool choice as a factor when selecting languages for safety or security critical systems.",
+   "takeaway": "Raw SAST finding counts measure tool coverage as much as code quality, so never compare security posture across languages using issue totals alone."
+  },
+  {
+   "id": "470f7b190d74726b",
+   "title": "A Convex-Analytic Reformulation for Poisoning Attacks on Logistic Regression",
+   "url": "https://arxiv.org/abs/2611.17143",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-12T17:30:34+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "The paper studies poisoning attacks on L2-regularised logistic regression, where an attacker crafts the features of injected training points to maximise loss on clean data. Strong convexity of the defender's problem lets the authors replace the bilevel structure with a convex-analytic reformulation that leaves only bounded bilinear constraints. Solved with SCIP, this formulation yields substantially stronger dual bounds within a fixed time limit than local optimisation, which degrades performance on most datasets.",
+   "takeaway": "When a defender's training objective is strongly convex, its first-order optimality conditions can turn a worst-case poisoning problem into a tractable optimisation with provable bounds, which is more useful for assessing risk than heuristic attack runs alone."
+  },
+  {
+   "id": "8b8c5a3e865742ae",
+   "title": "Prevalence Bounds for Edited Watermarked Text: Power Envelopes and Calibration Sensitivity",
+   "url": "https://arxiv.org/abs/2611.17035",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T16:21:31+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "The paper estimates what share of a corpus was produced by a watermarked language model when documents may have been edited or paraphrased, using Gumbel-max and KGW watermarks. It gives a power envelope and finite-sample bounds that cover in resampling trials on OPT-1.3B and Qwen3-1.7B text. The authors show the bounds remain valid at 2,000 documents but lose exact-null coverage at 100,000 when the null error is around 0.01, while a calibrated null from an independent human sample keeps coverage.",
+   "takeaway": "Small, harmless calibration errors can become decisive as sample size grows, so any statistical attribution or detection pipeline needs its null model validated at the scale it will actually be run."
+  },
+  {
    "id": "222e507908e8cd53",
    "title": "Speech Tokenizers are Vulnerable: Transferable Semantic Attack and Robust Tokenizer",
    "url": "https://arxiv.org/abs/2611.14929",
