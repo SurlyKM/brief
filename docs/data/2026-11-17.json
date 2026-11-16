@@ -1,0 +1,159 @@
+{
+ "date": "2026-11-17",
+ "items": [
+  {
+   "id": "b5e1ece521f345a8",
+   "title": "GTIG AI Threat Tracker: Agentic Threat Activity Crosses a Significant Threshold",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold/",
+   "source": "Google Cloud Threat Intelligence",
+   "kind": "article",
+   "published": "2026-11-16T14:00:00+00:00",
+   "topics": [
+    "Exploits",
+    "Red team",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "Google Threat Intelligence Group reports that threat actors have moved from manual prompting to autonomous multi-agent offensive frameworks such as PentAGI and CyberStrikeAI. It describes LLM-driven differential analysis of patches to weaponise n-day vulnerabilities at scale, along with LLMJacking that resells stolen cloud AI access and state-linked use of LLMs in influence operations. The update frames these trends as compressing attack timelines against internet-facing systems.",
+   "takeaway": "Patch diffing that once took skilled analysts can now be automated, so the window between a patch release and mass exploitation is shrinking and defenders should prioritise rapid patching of internet-facing systems."
+  },
+  {
+   "id": "ac957ae48fe345f0",
+   "title": "From Bytes to Behavior: Request-Level Attribution from Live GPU Hidden States",
+   "url": "https://arxiv.org/abs/2611.18272",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T15:04:05+00:00",
+   "topics": [
+    "AI and ML",
+    "Reverse engineering"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that per-layer residual-stream activations can be pulled from a live GPU process with a non-modifying debugger, without knowing the model's architecture or weights. They recovered byte-exact tensors across 33 open-source decoder-only models and trained linear probes on the recovered states, which distinguished refusal from compliance with an AUROC of 0.88. The work suggests live hidden-state acquisition as a new evidence source for examining deployed AI services.",
+   "takeaway": "Volatile GPU memory can hold behavioural evidence about a running AI service that its weights and logs never capture, so forensic acquisition should account for transient tensor state."
+  },
+  {
+   "id": "8854ba56eb21d5ee",
+   "title": "I2C-GRPO: Insight Importance Checklist for Reinforcement Learning in a Multi-Agent DDoS Alert Triage Workflow",
+   "url": "https://arxiv.org/abs/2611.17534",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T21:41:24+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "I2C-GRPO trains a Qwen3-4B agent to triage DDoS alerts by rewarding intermediate investigation steps according to how well they cover ranked forensic insights from an expert LLM panel. The agent reached a mean F1 of 0.869 and a 4.9% false-positive rate on an independent CSE-CIC-IDS2018 trace, against 16.4% for GPT-5-mini. The authors limit their claims to DDoS triage and note that false positives fell only at the highest orness weighting.",
+   "takeaway": "When intermediate investigative steps have no ground-truth labels, a checklist of expert-ranked insights can serve as a proxy reward, but its results should be tested on independent data."
+  },
+  {
+   "id": "b4d5556a3fc067d9",
+   "title": "Can LLMs Write Backdoors? An Empirical Security Study of Weight-Space Programming",
+   "url": "https://arxiv.org/abs/2611.17395",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-12T16:41:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "The authors test whether general-purpose LLMs can edit neural network weights from natural-language instructions to plant backdoors, without training data, forward passes or gradients. Five LLMs were tried across an MLP, ResNet-18 and a fine-tuned Qwen model, and backdoors were injected while clean accuracy stayed largely intact. Some attacks needed as few as six parameters, or 0.02% of the Qwen weights, and only one model succeeded on all three targets.",
+   "takeaway": "Backdoors can be tiny edits to weights that keep normal accuracy high, so model supply chain checks should compare weights against trusted hashes or diffs rather than relying on accuracy tests alone."
+  },
+  {
+   "id": "ad93a409d8af64a3",
+   "title": "PrivacyPR: A Dataset of Real-World Privacy Fixes for Benchmarking Privacy-Aware Code Review",
+   "url": "https://arxiv.org/abs/2611.18293",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T15:18:33+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "PrivacyPR is a dataset of 4,131 merged GitHub pull requests that fix real privacy defects, labelled for GDPR principles, with a harness that reintroduces each defect for testing. Two coding agents caught only 42 to 51 per cent of defects under a generic review prompt but 88 to 91 per cent when explicitly asked to check privacy, at the cost of flagging 11 to 15 per cent of non-fix changes. The authors conclude that detection depends strongly on what the reviewer is asked to look for.",
+   "takeaway": "A generic code review prompt can miss defects that a targeted prompt catches easily, so security checks for specific classes of issue should be stated explicitly in automated review pipelines."
+  },
+  {
+   "id": "cdd67b870b879b40",
+   "title": "C-to-Rust Translation Validation at the LLVM IR Level via AI-Assisted Refinement Proof",
+   "url": "https://arxiv.org/abs/2611.18036",
+   "source": "arXiv cs.PL",
+   "kind": "paper",
+   "published": "2026-11-13T11:05:17+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "R2C2 validates C-to-Rust translations by proving in Rocq that the Rust program refines the C program, working at the LLVM IR level with a common abstraction for data representations. Proof construction is automated by AI agents, but the proof checker removes the need to trust them. Of 519 LLM-produced translations, it proved 486 correct without bounding executions and found three incorrect ones with counterexamples that existing tools missed.",
+   "takeaway": "Machine-checked refinement proofs over a shared intermediate representation can verify translations that testing and bounded model checking cannot, and AI agents can do the proof work safely because the checker validates it."
+  },
+  {
+   "id": "95d5d308e51c6b17",
+   "title": "Binarization as an Attack Surface in Weightless Neural Networks",
+   "url": "https://arxiv.org/abs/2611.17646",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T01:34:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Exploits"
+   ],
+   "relevance": 6,
+   "summary": "The authors argue that binarising inputs does not make weightless neural networks robust, because perturbations that cross an encoding threshold still flip bits and change predictions. They formalise this with a threshold-crossing bound and show on MNIST that the encoding granularity trades a small accuracy loss for lower attack success. On Bot-IoT, CICIDS and UNSW-NB15, adversarial perturbations pushed many attacks to normal and raised false alarms.",
+   "takeaway": "Input quantisation can look like a defence against adversarial examples, but any threshold the attacker can cross becomes an attack surface, so encoding choices must be evaluated under adversarial conditions."
+  },
+  {
+   "id": "3f6c8be79bdf323c",
+   "title": "TradeGauntlet: Evaluating Compliance Controls for Autonomous Trading Agents",
+   "url": "https://arxiv.org/abs/2611.18493",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-13T18:05:23+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "TradeGauntlet is a replayable limit-order-book simulator that tests controls on autonomous trading agents, separating detection, prevention and execution cost. Across 1,680 sessions, the only alerts came from self-matching orders, which pre-trade gates eliminated, but split-order schedules evaded the implemented rules. The authors note that zero alerts alone do not establish compliance and that the results do not show legal compliance or real-market detection accuracy.",
+   "takeaway": "A control that eliminates observed alerts may still be evaded by adversarial schedules, so compliance tests need search-based probing beyond the behaviours that happened to occur."
+  },
+  {
+   "id": "f2b25f29d1ff8ece",
+   "title": "Do Verifier Judgments Survive Abstraction? Measuring Verification Transport for LLM Agent Evaluation",
+   "url": "https://arxiv.org/abs/2611.18471",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-13T17:44:01+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "The paper introduces Verification Transport, a test of whether LLM verifier judgments of agent runs stay correct when the trajectory is abstracted through composed tools, delegation or compacted histories. Across benchmarks, verifiers and protocols, verdicts failed under abstraction at up to about 31%, and direct verification tended to give wrong verdicts while evidence-grounded protocols tended to abstain. Restoring the original execution provenance recovered 85.5% of these failures.",
+   "takeaway": "Verifier accuracy measured on full traces can overstate reliability once evidence is summarised, so keep provenance intact in logs and audit trails that automated judges depend on."
+  },
+  {
+   "id": "72d5d955cd0b8726",
+   "title": "Condensing Law of Security Information",
+   "url": "https://arxiv.org/abs/2611.17918",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T08:57:58+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "The paper argues that the usual rule that bigger language models generalise better breaks down for security, because a large model can silently 'repair' the anomalous inputs that security tasks depend on before any detector sees them. It derives information-theoretic bounds linking a model's world knowledge and the security information retained in its representations to task error. The authors claim usable security information peaks at a finite model size, and report experiments on real LLMs that they say support this.",
+   "takeaway": "A model's ability to infer the intended whole from a corrupted part can erase the very anomaly a security control needs, so bigger is not automatically better for detection."
+  }
+ ]
+}
