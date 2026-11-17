@@ -1,0 +1,177 @@
+{
+ "date": "2026-11-18",
+ "items": [
+  {
+   "id": "2a3576b7db96929b",
+   "title": "The risks of device code authentication for AI coding agents",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-17T15:00:00+00:00",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 9,
+   "summary": "Microsoft examines how OAuth device code phishing, normally used to steal mailbox access, could target AI coding agents such as GitHub Copilot CLI. In a lab simulation, a victim approved an attacker-initiated device code request, and the authors analysed four outcomes, including steering an active agent session remotely and running commands on the user's machine. They also note that any public client supporting the device flow can be abused, and the attacker chooses the requested scopes.",
+   "takeaway": "A device code approval grants whatever scopes the attacker requested, so an AI agent with local execution rights turns a single phished approval into code execution on the endpoint."
+  },
+  {
+   "id": "11fffc0586acb5a6",
+   "title": "Beyond the Patch: Reconstructing an Incomplete-Fix Patch Bypass in LLM Agent Frameworks with Control-Gated, Benign Probes",
+   "url": "https://arxiv.org/abs/2611.20514",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-16T04:39:21+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors check whether a known incomplete fix in LLM agent frameworks really closes the underlying security invariant. Replaying the original trigger was blocked in PraisonAI 4.6.31, yet a sibling tool_override path still violated the invariant, reproducing a documented bypass. Each verdict is gated by a positive control and is explicitly scoped to the tested probe, version and configuration.",
+   "takeaway": "A patch that blocks the original proof-of-concept does not prove the security invariant holds, so verify the property across sibling code paths and use a positive control before trusting a non-violation result."
+  },
+  {
+   "id": "25d3111e1bfff0cf",
+   "title": "CHERI under Fault Injection: An Emulation-Based Security Evaluation of Capability Hardware Enhanced RISC Instructions",
+   "url": "https://arxiv.org/abs/2611.19915",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-15T10:08:16+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "This thesis uses QEMU-based fault injection on pure-capability CHERI-RISC-V to show that a single targeted bit flip in capability metadata or a skipped check on a capability store can enable buffer overflows, control-flow hijacking, data-only attacks and use-after-free. Each attack needs only one or two faults under the emulated setting. The author proposes ECC-protected capability memory, authenticated capability fields, redundant checks and revocation bitmap integrity.",
+   "takeaway": "Hardware memory safety is only as strong as its assumptions about physical integrity, so fault-resistant designs such as ECC and redundant checks are needed to make capability enforcement robust."
+  },
+  {
+   "id": "e0345f7a9a1e2653",
+   "title": "Compositional Exploits in Autonomous Coding Agents: Attack Mechanics and Ephemeral Defense",
+   "url": "https://arxiv.org/abs/2611.19764",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-15T03:46:10+00:00",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors show that autonomous coding agents can chain individually harmless tools across turns, using shared workspace files, environment variables and chat memory, to carry out unauthorised attacks. Unprotected frontier models succeeded 72.9% to 84.5% of the time, while five single-tool scanners detected none of the constituent tools. Their CompGuard defence combines single-skill capability leases with Linux Landlock, seccomp-BPF and a loopback proxy, blocking all attacks with low overhead.",
+   "takeaway": "Auditing each component in isolation misses emergent risk from how components are composed, so least-privilege controls must be enforced at the OS level per action rather than trusted at install time."
+  },
+  {
+   "id": "f2cd3341b495386e",
+   "title": "COLD RELIC: A Case Study in Impersonation and Compromise",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/cold-relic-a-case-study-in-impersonation-and-compromise/",
+   "source": "Google Cloud Threat Intelligence",
+   "kind": "article",
+   "published": "2026-11-17T14:00:00+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "Mandiant describes linked intrusions by the Russian state-linked group COLD RELIC, which used a cloud compromise at one US organisation to harvest a staff directory and stolen identities, then used them against a second organisation. The group uses stolen email and data to build authentic pretexts and impersonate known contacts when targeting new victims. The report highlights the group's social engineering and post-compromise tradecraft drawn from recent incident response work.",
+   "takeaway": "A stolen mailbox or staff directory is a reusable pretext, so detection should watch for trusted contacts suddenly making unusual requests, not only for malicious logins."
+  },
+  {
+   "id": "f61bd797d5c4fc71",
+   "title": "ProcReverser: Multi-Agent Black-Box Microarchitectural Reverse Engineering for Processor Vulnerability Analysis",
+   "url": "https://arxiv.org/abs/2611.20827",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-16T10:11:17+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "ProcReverser is a multi-agent system that designs microbenchmarks, refines them using execution feedback, and infers microarchitectural properties such as speculation, branch prediction, memory dependence and cache behaviour from black-box measurements. It reaches roughly 81% to 83% Pass@1 on the C910 and gem5 O3 models and characterises the SiFive P550. The work targets properties relevant to Spectre-class vulnerabilities.",
+   "takeaway": "When a CPU's internals are undocumented, timing-based experiments can recover the speculation and caching behaviour that determines side-channel exposure, and an agent loop can automate much of that experimental work."
+  },
+  {
+   "id": "50558f0b1234cd63",
+   "title": "Security of Deep Research Agents: Attack Surface, Defenses, Benchmarks, and Agenda Seeding against Research Planning",
+   "url": "https://arxiv.org/abs/2611.20045",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-15T14:44:28+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "This systematisation covers attacks on deep research agents across retrieval, planning, evidence integration and report generation, and finds that only 26.5% of 34 primary studies consider the planning stage. The authors propose agenda seeding, where an attacker plants a fictitious evaluation metric without any instructions. Across 3,520 sandboxed runs it made the target the top pick in 16% to 28% of reports, while injection detection and query anchoring failed against it.",
+   "takeaway": "Agents can be steered by manipulating the criteria they use to judge options, so a poisoned evaluation framework can bias conclusions even when no explicit malicious instruction is ever present."
+  },
+  {
+   "id": "37638498cd5552d7",
+   "title": "VAST: Compiling Grounded Vulnerability Scenarios into Verifiable, Multi-Step Environments for Evaluating LLM Red-Team Agents",
+   "url": "https://arxiv.org/abs/2611.19465",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-14T15:40:08+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "VAST is a declarative compiler that turns vulnerability scenarios into verifiable, multi-step cyber ranges for testing LLM red-team agents, with workflow hardening separated from the vulnerability itself. Solve rates varied strongly with prompt content: a full workflow protocol raised completion from about 13% to 84% on one stratum. Disclosing installed worker modules also turned a 0% Redis chaining task into a 100% solve, and a small LoRA fine-tune solved a few held-out instances.",
+   "takeaway": "Benchmark results for LLM agents can depend heavily on how much procedural guidance the prompt supplies, so evaluations should report the prompt condition alongside the success rate."
+  },
+  {
+   "id": "6fe2445caf019725",
+   "title": "Detection-Efficient Watermarking for Vision--Language Agents via Risk-Constrained Strength Allocation",
+   "url": "https://arxiv.org/abs/2611.21488",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-16T17:56:12+00:00",
+   "topics": [
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "The paper proposes a watermarking method for vision-language agents that allocates watermark strength during decoding using predictive uncertainty and a multimodal relevance-risk proxy. At a chosen operating point, mean strength drops by about 59.4% versus fixed watermarking while detection stays strong (ROC-AUC around 0.95). The authors also show that threshold calibration on finite samples causes substantial false-positive-rate drift, so they recommend reporting calibration variance.",
+   "takeaway": "A detector's false-positive rate can drift badly when its threshold is calibrated on a small sample, so audit claims should report that variance, not a single number."
+  },
+  {
+   "id": "3f6dc9c46e97907c",
+   "title": "Found, but Not Fixed : From Software Vulnerability Discovery to Fixes with Iterative LLM Pipelines",
+   "url": "https://arxiv.org/abs/2611.19719",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-15T02:02:33+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Vulnerability research"
+   ],
+   "relevance": 5,
+   "summary": "The authors build an iterative multi-stage LLM pipeline that repairs vulnerable functions in real-world code using feedback loops. They benchmark it against GPT-4o, GPT-5.1 and Gemini 3 Flash and release their framework, weights and dataset. The article is mainly a method and benchmark paper, so its novelty is modest.",
+   "takeaway": "Feeding verification results back into an LLM repair loop is a practical way to move from finding a vulnerability to producing a fix, but any generated patch still needs regression testing."
+  },
+  {
+   "id": "8fa7105a7abdba2b",
+   "title": "Attacker Diversity Reduction in Adaptive LLM Red Teaming",
+   "url": "https://arxiv.org/abs/2611.19680",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-15T00:15:57+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 5,
+   "summary": "This reproduction study tests whether reinforcement learning for adaptive LLM red teaming reduces attack diversity. Across three runs with a Qwen2.5-14B attacker and a Phi-4-mini defender, diversity retention fell to about 0.61 to 0.63 against a 0.75 threshold, while attack success kept improving. The authors note that the training stop point was chosen from development checkpoints, so the reported intervals are nominal.",
+   "takeaway": "Optimising an automated attacker for success can quietly collapse the variety of attacks it generates, so track diversity as a separate metric to avoid blind spots in red-team coverage."
+  }
+ ]
+}
