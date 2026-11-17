@@ -2,6 +2,22 @@
  "date": "2026-11-17",
  "items": [
   {
+   "id": "2b43967529f43a47",
+   "title": "Memory Safety Isn't All You Need: Code Reuse Attacks in Memory Safe Languages",
+   "url": "https://arxiv.org/abs/2611.18910",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T20:14:28+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Programming"
+   ],
+   "relevance": 9,
+   "summary": "The paper argues that memory safety removes classic memory-corruption code reuse but not code reuse itself. Attacks such as prototype pollution, DOM clobbering and object injection share one structure: attacker data changes reads of shared runtime state, and the fetched value then drives a sensitive operation. The authors give a language-agnostic weakness-and-gadget framework, a taxonomy of gadget shapes, a systematisation of defences, and a formal model language.",
+   "takeaway": "Memory safety does not stop attackers from abusing shared runtime state, so audit where untrusted input can influence lookups in prototypes, type metadata or the DOM before trusting a language's safety guarantees."
+  },
+  {
    "id": "b5e1ece521f345a8",
    "title": "GTIG AI Threat Tracker: Agentic Threat Activity Crosses a Significant Threshold",
    "url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold/",
@@ -16,6 +32,53 @@
    "relevance": 8,
    "summary": "Google Threat Intelligence Group reports that threat actors have moved from manual prompting to autonomous multi-agent offensive frameworks such as PentAGI and CyberStrikeAI. It describes LLM-driven differential analysis of patches to weaponise n-day vulnerabilities at scale, along with LLMJacking that resells stolen cloud AI access and state-linked use of LLMs in influence operations. The update frames these trends as compressing attack timelines against internet-facing systems.",
    "takeaway": "Patch diffing that once took skilled analysts can now be automated, so the window between a patch release and mass exploitation is shrinking and defenders should prioritise rapid patching of internet-facing systems."
+  },
+  {
+   "id": "f2f3ba2da41efb4f",
+   "title": "More Context, Mixed Results: Evaluating LLMs for Identifier Recovery and Code Deobfuscation",
+   "url": "https://arxiv.org/abs/2611.19043",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-14T00:35:14+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The authors test three LLMs against traditional baselines for recovering renamed identifiers in obfuscated Java across 51 projects and three obfuscators. Agentic retrieval gives the best identifier detection at 91.56% F1, but exact name recovery peaks at only 16.42% overall, and class names are the hardest to detect. Control-flow obfuscation degrades both tasks more than string encryption, and more context does not always help, particularly for larger methods.",
+   "takeaway": "LLMs help with deobfuscation mainly in detecting what needs renaming, while full semantic recovery remains unreliable, so it is worth choosing context carefully and expecting control-flow obfuscation to be the harder obstacle."
+  },
+  {
+   "id": "728d442c7c11e86e",
+   "title": "Agent-ZTA: A chain-Aware Zero Trust Model for Bidirectional Security-State Propagation and Runtime Containment in Multi-Agent Delegation",
+   "url": "https://arxiv.org/abs/2611.18999",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T22:55:26+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The paper proposes Agent-ZTA, a zero trust authorisation model for multi-agent workflows where an agent's security state can degrade mid-run through upstream compromise or untrusted inputs. It separates path-specific delegated authority from currently exercisable permissions, propagates security events bidirectionally across the delegation graph, and applies branch-scoped containment, including a sandbox mode. The authors give a deterministic decision procedure, five stated properties, and worked traces, and they state their trust assumptions explicitly.",
+   "takeaway": "Static, caller-based authorisation misses risk that appears during execution, so access decisions for agent chains should be re-evaluated against live security state rather than the original delegation alone."
+  },
+  {
+   "id": "176779d65dd46c9e",
+   "title": "We Have All the Cards: Securing Agent Cards at the Operational Trust Boundary of the Agent2Agent Protocol",
+   "url": "https://arxiv.org/abs/2611.18887",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-13T19:46:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper examines Agent Cards in the Agent2Agent protocol, where attacker-controlled natural-language fields can steer which agent an orchestrator selects before any invocation occurs. It presents a taxonomy of ten manipulation attacks and SECCARD, a layered validator combining protocol checks, deterministic analysis, and LLM semantic judgement. Measurements across 36.1 million domains and benchmarks show that detection quality varies widely between LLM judges, from 25.8% to 92.3% security recall on the synthetic set.",
+   "takeaway": "Metadata that influences routing or selection is an attack surface in its own right, and any LLM used as a security judge needs its own evaluation because detection performance depends heavily on the chosen model."
   },
   {
    "id": "ac957ae48fe345f0",
@@ -62,6 +125,53 @@
    "relevance": 7,
    "summary": "The authors test whether general-purpose LLMs can edit neural network weights from natural-language instructions to plant backdoors, without training data, forward passes or gradients. Five LLMs were tried across an MLP, ResNet-18 and a fine-tuned Qwen model, and backdoors were injected while clean accuracy stayed largely intact. Some attacks needed as few as six parameters, or 0.02% of the Qwen weights, and only one model succeeded on all three targets.",
    "takeaway": "Backdoors can be tiny edits to weights that keep normal accuracy high, so model supply chain checks should compare weights against trusted hashes or diffs rather than relying on accuracy tests alone."
+  },
+  {
+   "id": "3099ffeb8eda387c",
+   "title": "High volume phishing campaign uses Microsoft 365 outage lures to target multiple industry sectors",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-17T00:08:41+00:00",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "Microsoft Threat Intelligence observed a high-volume phishing campaign using fake Microsoft 365 service-health emails that claimed held mail would be deleted within 24 hours. The messages used rotating sender domains, randomised subjects, recipient-specific tracking links, and a common non-Microsoft destination to evade pattern matching. Credential phishing is assessed as likely, but credential capture and follow-on activity were not confirmed.",
+   "takeaway": "Lures tied to real global events combined with per-recipient links defeat simple pattern matching, so detection should also focus on post-click signals such as new sign-ins, inbox rules, and unusual mailbox access."
+  },
+  {
+   "id": "fda8101c47c1814f",
+   "title": "ST-GAT: A Leakage-Free Spatio-Temporal Graph Attention Framework for Robust Network Intrusion Detection",
+   "url": "https://arxiv.org/abs/2611.19109",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-14T02:43:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 6,
+   "summary": "The authors propose ST-GAT, a spatio-temporal graph attention model for network intrusion detection that treats traffic as sequences of graph snapshots. They identify two common inflation sources in CSE-CIC-IDS-2018 evaluations, namely overlapping windows that leak future information and preprocessing fitted before the train/test split, and they correct both. Under these conditions, the model reaches a Macro-F1 of 96.65%, about 14 points above a per-flow Random Forest baseline, while balanced resampling hurts minority-class detection.",
+   "takeaway": "Benchmark results for detection models can look strong only because of leakage from overlapping windows or pre-split preprocessing, so check the split methodology before trusting reported gains."
+  },
+  {
+   "id": "d62fce4570a41b49",
+   "title": "When the Spec Sheet Lies: Injection Attacks on LLM-Generated Compliance Artifacts",
+   "url": "https://arxiv.org/abs/2611.19090",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-14T02:01:39+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "The study tests prompt injection against LLM agents that generate industrial compliance documents such as Safety Data Sheets, quality control records and Digital Product Passports. Active falsification instructions succeed most often across scenarios, and success varies widely between models. Models resist passively injected override requests more reliably.",
+   "takeaway": "Compliance artefacts generated by LLMs can be falsified through injected content in source documents, so treat LLM-produced records as untrusted and validate them against authoritative data."
   },
   {
    "id": "ad93a409d8af64a3",
@@ -112,48 +222,20 @@
    "takeaway": "Input quantisation can look like a defence against adversarial examples, but any threshold the attacker can cross becomes an attack surface, so encoding choices must be evaluated under adversarial conditions."
   },
   {
-   "id": "3f6c8be79bdf323c",
-   "title": "TradeGauntlet: Evaluating Compliance Controls for Autonomous Trading Agents",
-   "url": "https://arxiv.org/abs/2611.18493",
-   "source": "arXiv cs.AI",
+   "id": "7987e1e626e5c555",
+   "title": "Using machine learning approaches to classify false-positives generated by static analysis tools - An empirical study using small datasets",
+   "url": "https://arxiv.org/abs/2611.19079",
+   "source": "arXiv cs.LG",
    "kind": "paper",
-   "published": "2026-11-13T18:05:23+00:00",
+   "published": "2026-11-14T01:28:08+00:00",
    "topics": [
     "AI and ML",
-    "Blue team"
+    "Vulnerability research",
+    "Programming"
    ],
    "relevance": 5,
-   "summary": "TradeGauntlet is a replayable limit-order-book simulator that tests controls on autonomous trading agents, separating detection, prevention and execution cost. Across 1,680 sessions, the only alerts came from self-matching orders, which pre-trade gates eliminated, but split-order schedules evaded the implemented rules. The authors note that zero alerts alone do not establish compliance and that the results do not show legal compliance or real-market detection accuracy.",
-   "takeaway": "A control that eliminates observed alerts may still be evaded by adversarial schedules, so compliance tests need search-based probing beyond the behaviours that happened to occur."
-  },
-  {
-   "id": "f2b25f29d1ff8ece",
-   "title": "Do Verifier Judgments Survive Abstraction? Measuring Verification Transport for LLM Agent Evaluation",
-   "url": "https://arxiv.org/abs/2611.18471",
-   "source": "arXiv cs.AI",
-   "kind": "paper",
-   "published": "2026-11-13T17:44:01+00:00",
-   "topics": [
-    "AI and ML",
-    "Blue team"
-   ],
-   "relevance": 5,
-   "summary": "The paper introduces Verification Transport, a test of whether LLM verifier judgments of agent runs stay correct when the trajectory is abstracted through composed tools, delegation or compacted histories. Across benchmarks, verifiers and protocols, verdicts failed under abstraction at up to about 31%, and direct verification tended to give wrong verdicts while evidence-grounded protocols tended to abstain. Restoring the original execution provenance recovered 85.5% of these failures.",
-   "takeaway": "Verifier accuracy measured on full traces can overstate reliability once evidence is summarised, so keep provenance intact in logs and audit trails that automated judges depend on."
-  },
-  {
-   "id": "72d5d955cd0b8726",
-   "title": "Condensing Law of Security Information",
-   "url": "https://arxiv.org/abs/2611.17918",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-13T08:57:58+00:00",
-   "topics": [
-    "AI and ML"
-   ],
-   "relevance": 5,
-   "summary": "The paper argues that the usual rule that bigger language models generalise better breaks down for security, because a large model can silently 'repair' the anomalous inputs that security tasks depend on before any detector sees them. It derives information-theoretic bounds linking a model's world knowledge and the security information retained in its representations to task error. The authors claim usable security information peaks at a finite model size, and report experiments on real LLMs that they say support this.",
-   "takeaway": "A model's ability to infer the intended whole from a corrupted part can erase the very anomaly a security control needs, so bigger is not automatically better for detection."
+   "summary": "The authors compare code representation learning techniques and machine learning algorithms for filtering false positives from static code analysis tools. They find that the best approach depends on the characteristics of the training dataset and the goal of the model. They recommend further study of simple ML models alongside advanced ones.",
+   "takeaway": "With small labelled datasets, simple models can perform competitively, so test triage classifiers against your dataset size and alarm types before trusting them to suppress findings."
   }
  ]
 }
