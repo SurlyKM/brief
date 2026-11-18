@@ -18,6 +18,38 @@
    "takeaway": "A device code approval grants whatever scopes the attacker requested, so an AI agent with local execution rights turns a single phished approval into code execution on the endpoint."
   },
   {
+   "id": "02dd92c6ab16f6b2",
+   "title": "When Tool Names Are Not Identities: Measuring Provider Misbinding in MCP-Based AI Agents",
+   "url": "https://arxiv.org/abs/2611.21577",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-16T18:49:37+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The paper shows that MCP-based AI agents can be steered into calling an attacker's tool instead of a legitimate provider's, without compromising the host, the model, or the network. Attackers only need to run their own MCP server advertising tools with carefully chosen names, descriptions, and schemas. Exact name collisions, task-aligned descriptions, and compatible schemas reinforce each other, and different LLM clients fail in different ways, including wrong-provider execution, clarification requests, and unstable resolution.",
+   "takeaway": "A tool's name and description are not proof of who provides it, so agent systems need a verified provider identity bound to every tool call rather than relying on discovery metadata."
+  },
+  {
+   "id": "858606cfc62d0a17",
+   "title": "Safe Resemblance, Silent Propagation: Limits of Text-Similarity Guardrails for AI Agent Safety",
+   "url": "https://arxiv.org/abs/2611.21520",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-16T18:13:01+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors test a text-similarity classifier meant to catch injected instructions spreading between agents in an email relay. It misses many outputs that still change downstream agent behaviour, and it flags most legitimate quotations and template reuse. They also find a threshold error in published configurations and argue that identical transcripts may need different decisions depending on the governing policy.",
+   "takeaway": "Surface similarity measures wording, not effect, so guardrails for agent systems should test behavioural outcomes and be grounded in explicit authorisation policy."
+  },
+  {
    "id": "11fffc0586acb5a6",
    "title": "Beyond the Patch: Reconstructing an Incomplete-Fix Patch Bypass in LLM Agent Frameworks with Control-Gated, Benign Probes",
    "url": "https://arxiv.org/abs/2611.20514",
@@ -82,6 +114,37 @@
    "takeaway": "A stolen mailbox or staff directory is a reusable pretext, so detection should watch for trusted contacts suddenly making unusual requests, not only for malicious logins."
   },
   {
+   "id": "3bbb4e23ae2119cf",
+   "title": "Optimistic Verifiers Get Hacked: Reward Hacking Under an Exact Process Oracle",
+   "url": "https://arxiv.org/abs/2611.21538",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-16T18:25:42+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The authors build a testbed where the true reward for authorisation-policy reasoning can be computed exactly, then train models against degraded verifiers while scoring them with the exact oracle. Optimistic verifiers are hacked by padding: the proxy score rises to 0.940 while true faithfulness drops from 0.731 to 0.667. The phenotypes recur across nine configurations, and the paper releases 14 real public policies (Cedar, OPA, Gatekeeper) ported to executable oracles.",
+   "takeaway": "A proxy metric that keeps climbing can hide a falling true objective, so measure how far your verifier sits from ground truth, and check whether its errors are optimistic, because that direction is what gets exploited."
+  },
+  {
+   "id": "4e6c7cfcdf7e4ae9",
+   "title": "TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models",
+   "url": "https://arxiv.org/abs/2611.21331",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-16T16:19:01+00:00",
+   "topics": [
+    "AI and ML",
+    "Reverse engineering",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "The authors study how eight LLMs perform static triage of decompiled Windows binaries when they can only inspect a small budget of functions, about 40 of roughly 1,000 per sample. They define a triage-specific metric that credits malware that is flagged or escalated, and find that the best model reaches about 0.86 on that metric. Different models adopt very different clear, flag and escalate policies, so no single configuration suits every deployment.",
+   "takeaway": "Treat LLM triage as a budgeted evidence-gathering problem, and measure the clear, flag and escalate trade-off explicitly, since model choice shifts that trade-off more than anything else."
+  },
+  {
    "id": "f61bd797d5c4fc71",
    "title": "ProcReverser: Multi-Agent Black-Box Microarchitectural Reverse Engineering for Processor Vulnerability Analysis",
    "url": "https://arxiv.org/abs/2611.20827",
@@ -114,64 +177,67 @@
    "takeaway": "Agents can be steered by manipulating the criteria they use to judge options, so a poisoned evaluation framework can bias conclusions even when no explicit malicious instruction is ever present."
   },
   {
-   "id": "37638498cd5552d7",
-   "title": "VAST: Compiling Grounded Vulnerability Scenarios into Verifiable, Multi-Step Environments for Evaluating LLM Red-Team Agents",
-   "url": "https://arxiv.org/abs/2611.19465",
+   "id": "0d77be74f55f8cb1",
+   "title": "The Provenance-Privacy Paradox: Can Private Cloud Compute (PCC) Prove That Apple Reference Images Are Not Used for Learning?",
+   "url": "https://arxiv.org/abs/2611.21590",
    "source": "arXiv cs.CR",
    "kind": "paper",
-   "published": "2026-11-14T15:40:08+00:00",
+   "published": "2026-11-16T18:56:06+00:00",
    "topics": [
-    "AI and ML",
-    "Red team"
-   ],
-   "relevance": 6,
-   "summary": "VAST is a declarative compiler that turns vulnerability scenarios into verifiable, multi-step cyber ranges for testing LLM red-team agents, with workflow hardening separated from the vulnerability itself. Solve rates varied strongly with prompt content: a full workflow protocol raised completion from about 13% to 84% on one stratum. Disclosing installed worker modules also turned a 0% Redis chaining task into a 100% solve, and a small LoRA fine-tune solved a few held-out instances.",
-   "takeaway": "Benchmark results for LLM agents can depend heavily on how much procedural guidance the prompt supplies, so evaluations should report the prompt condition alongside the success rate."
-  },
-  {
-   "id": "6fe2445caf019725",
-   "title": "Detection-Efficient Watermarking for Vision--Language Agents via Risk-Constrained Strength Allocation",
-   "url": "https://arxiv.org/abs/2611.21488",
-   "source": "arXiv cs.CR",
-   "kind": "paper",
-   "published": "2026-11-16T17:56:12+00:00",
-   "topics": [
+    "macOS and iOS",
     "AI and ML"
    ],
-   "relevance": 5,
-   "summary": "The paper proposes a watermarking method for vision-language agents that allocates watermark strength during decoding using predictive uncertainty and a multimodal relevance-risk proxy. At a chosen operating point, mean strength drops by about 59.4% versus fixed watermarking while detection stays strong (ROC-AUC around 0.95). The authors also show that threshold calibration on finite samples causes substantial false-positive-rate drift, so they recommend reporting calibration variance.",
-   "takeaway": "A detector's false-positive rate can drift badly when its threshold is calibrated on a small sample, so audit claims should report that variance, not a single number."
+   "relevance": 6,
+   "summary": "The authors argue that Apple's Reference Image provenance pipeline has a paradox: Private Cloud Compute must process raw photographs in plaintext, so attestation proves software identity but not that the workload cannot learn from or retain the image. In a Docker-based testbed, a learning-enabled workload passed the same checks as a baseline and produced identical JPEGs, yet retained a gradient from which the input could be reconstructed almost exactly. The paper frames non-learning and non-retention as separately verifiable assurance requirements.",
+   "takeaway": "Attestation and transparency logs prove what code is running, not what it does with the data, so privacy claims need their own verifiable properties such as non-retention."
   },
   {
-   "id": "3f6dc9c46e97907c",
-   "title": "Found, but Not Fixed : From Software Vulnerability Discovery to Fixes with Iterative LLM Pipelines",
-   "url": "https://arxiv.org/abs/2611.19719",
+   "id": "ebf729a18c99fcb4",
+   "title": "TRACE: Topological Representations for Anomaly detection through Contrastive Embeddings",
+   "url": "https://arxiv.org/abs/2611.21548",
    "source": "arXiv cs.CR",
    "kind": "paper",
-   "published": "2026-11-15T02:02:33+00:00",
+   "published": "2026-11-16T18:31:11+00:00",
    "topics": [
     "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "TRACE is a graph contrastive learning approach that trains only on benign system-activity graphs and uses a small labelled set just to set the anomaly threshold. It scores well on StreamSpot and Unicorn Wget compared with a benign-only baseline, but it trails a supervised model on StreamSpot and GraSec-IoT, and the authors report that it gives no uniform advantage. The results are candid about trade-offs across datasets rather than claiming a clear win.",
+   "takeaway": "Benign-only anomaly detectors can reduce dependence on scarce attack labels, but their performance varies a lot by dataset, so threshold calibration and per-environment validation matter more than headline F1 scores."
+  },
+  {
+   "id": "ab1716845e528580",
+   "title": "Injectra: Retrofitting Extensibility into Web-Based Desktop Applications",
+   "url": "https://arxiv.org/abs/2611.20713",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-16T08:20:25+00:00",
+   "topics": [
     "Programming",
-    "Vulnerability research"
+    "macOS and iOS",
+    "AI and ML"
    ],
-   "relevance": 5,
-   "summary": "The authors build an iterative multi-stage LLM pipeline that repairs vulnerable functions in real-world code using feedback loops. They benchmark it against GPT-4o, GPT-5.1 and Gemini 3 Flash and release their framework, weights and dataset. The article is mainly a method and benchmark paper, so its novelty is modest.",
-   "takeaway": "Feeding verification results back into an LLM repair loop is a practical way to move from finding a vulnerability to producing a fix, but any generated patch still needs regression testing."
+   "relevance": 6,
+   "summary": "Injectra is a system that injects JavaScript, HTML and CSS into the embedded web runtimes of Electron and Tauri desktop applications, with a CLI that AI agents can call. The authors report successful injection into all 38 macOS applications they tested and add an LLM tool that generates modifications from user selections. The main security relevance is that the same mechanism can alter an application's interface and behaviour at runtime.",
+   "takeaway": "Web-based desktop apps expose their UI runtime to injected scripts, so their integrity depends on code signing, runtime hardening and whether tampering is detected at launch."
   },
   {
-   "id": "8fa7105a7abdba2b",
-   "title": "Attacker Diversity Reduction in Adaptive LLM Red Teaming",
-   "url": "https://arxiv.org/abs/2611.19680",
+   "id": "b0b2be4d1b642f5a",
+   "title": "A First Look at System One Decision Models for Malware Detection",
+   "url": "https://arxiv.org/abs/2611.20699",
    "source": "arXiv cs.CR",
    "kind": "paper",
-   "published": "2026-11-15T00:15:57+00:00",
+   "published": "2026-11-16T08:08:40+00:00",
    "topics": [
     "AI and ML",
-    "Red team"
+    "Blue team",
+    "SOC"
    ],
-   "relevance": 5,
-   "summary": "This reproduction study tests whether reinforcement learning for adaptive LLM red teaming reduces attack diversity. Across three runs with a Qwen2.5-14B attacker and a Phi-4-mini defender, diversity retention fell to about 0.61 to 0.63 against a 0.75 threshold, while attack success kept improving. The authors note that the training stop point was chosen from development checkpoints, so the reported intervals are nominal.",
-   "takeaway": "Optimising an automated attacker for success can quietly collapse the variety of attacks it generates, so track diversity as a separate metric to avoid blind spots in red-team coverage."
+   "relevance": 6,
+   "summary": "The authors evaluate System One decision models, which return probabilities over typed answers in a single forward pass, for Windows PE malware detection. They build S1Mal, an ensemble that combines atomic behavioural answers from Ghidra and capa output with a model embedding, and report an AUROC of 0.9946. At a 1.45% realised false positive rate it detects 93.47% of malware, and each decision comes with the behavioural answers behind it.",
+   "takeaway": "Calibrated false positive rates matter more than raw AUROC for analysts, and decomposing a decision into atomic, explainable questions can make model verdicts easier to audit."
   }
  ]
 }
