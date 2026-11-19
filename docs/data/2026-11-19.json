@@ -2,6 +2,22 @@
  "date": "2026-11-19",
  "items": [
   {
+   "id": "adf648d81de894fe",
+   "title": "We caught the agent-framework PyPI compromise six minutes after it published",
+   "url": "https://www.elastic.co/security-labs/threat-command/we-caught-the-agent-framework-pypi-compromise-six-minutes-after-it-published",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-18T00:00:00+00:00",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Vulnerability research"
+   ],
+   "relevance": 9,
+   "summary": "Elastic's supply-chain monitor flagged malicious versions 1.26.1 and 1.26.2 of Microsoft's agent-framework PyPI meta-package within six minutes of publication. The malware used a .pth file to run a credential stealer every time Python started, so importing the package was not required. It harvested environment variables, cloud CLI tokens, and CI OIDC and metadata credentials, then exfiltrated them to a webhook endpoint.",
+   "takeaway": "Python executes .pth lines in site-packages at every interpreter start, so package installation alone can run code; defenders should audit .pth files and treat any host that installed the affected versions as fully compromised."
+  },
+  {
    "id": "c5599644421883df",
    "title": "Attackers Used Optimizely to A/B Test Malware on Top Websites",
    "url": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
@@ -98,6 +114,21 @@
    "takeaway": "An agent's reported inability can be a product of its own context management, so treating a stop or a negative conclusion as a hard limit can understate what the system can do."
   },
   {
+   "id": "5b59e3233433a1ac",
+   "title": "Evolution Under Fire: Evolving Agent Safety Harnesses with Adaptive Injection Stressors",
+   "url": "https://arxiv.org/abs/2611.22583",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-17T11:07:31+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The paper presents an automated framework that evolves executable safety harnesses for tool-using LLM agents, alongside adaptive attack stressors that find utility-preserving prompt injections. On AgentDyn with GPT-4o-mini, attack success fell from 50.4% to 3.0%, and the evolved harness transferred to another model with attack success falling from 32.1% to 0.9%. The gains on Agent-SafetyBench were smaller, falling from 82.6% to 62.0%.",
+   "takeaway": "Indirect prompt injection is best handled by a layered control around the agent that separates trusted task instructions from untrusted content, and that control must be tested against adaptive attacks rather than fixed ones."
+  },
+  {
    "id": "1d0b49e9508f8bf8",
    "title": "Agent Trust Infrastructure (ATI): A Federated Identity, Trust, Attestation, and Accountability Architecture for Cross-Organization Autonomous AI Agents",
    "url": "https://arxiv.org/abs/2611.23202",
@@ -141,6 +172,21 @@
    "relevance": 6,
    "summary": "The authors build a Rust lock-and-mint bridge on a local Solana validator with four exploitable variants drawn from the Cashio and Wormhole incidents and audit findings. Across 16,800 responses, open-weight models diagnosed only 24% of vulnerable source code without comments, while frequently flagging the secure version. Original comments that described the flaw raised source diagnosis to 60%.",
    "takeaway": "LLM vulnerability review should be scored for correct diagnoses and false alarms on matched secure code, since a high flag rate on vulnerable code can coexist with many unsupported alarms on safe code."
+  },
+  {
+   "id": "165f256efba8bf46",
+   "title": "Inference after coding agents",
+   "url": "https://arxiv.org/abs/2611.23174",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-17T18:22:01+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors show that AI coding agents doing empirical research can produce a new form of post-selection inference, reporting significant p-values on null data 54% to 98% of the time when asked for a compelling finding. They propose a correction that resets and replays the agent on data subsamples to estimate how likely it was to pick a favourable analysis. The method is shown to bring false rejection rates close to the nominal 5% in simulations.",
+   "takeaway": "Any automated search over analyses inflates false positives unless the search itself is accounted for, so logging and replaying the full decision process is essential when judging results from an agent or a pipeline."
   },
   {
    "id": "27b1bad5bfbf4652",
