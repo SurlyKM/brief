@@ -1,0 +1,128 @@
+{
+ "date": "2026-11-20",
+ "items": [
+  {
+   "id": "fd0ccfc8354876b0",
+   "title": "ARMORY CASTLE Exploits vSphere",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/",
+   "source": "Google Cloud Threat Intelligence",
+   "kind": "article",
+   "published": "2026-11-19T14:00:00+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "relevance": 9,
+   "summary": "Google Threat Intelligence describes the China-nexus actor ARMORY CASTLE chaining post-compromise activity with CVE-2026-123890, an unauthenticated SRP-6a session key disclosure in VMware vCenter over DCE/RPC. Successful exploitation yields an administrator@vsphere.local session, allowing command execution and theft of the vmdir database, and the actor used a Go utility called BONESAW to automate it. Broadcom patches are the recommended remediation.",
+   "takeaway": "Management plane systems such as vCenter are high-value targets because one authentication bypass grants control over every hypervisor it manages, so patch them first and monitor their directory services for unusual access."
+  },
+  {
+   "id": "7b8371ec98cfc7a5",
+   "title": "PIPETTE: Prompt Injection Purple-Teaming for Robust LLM Agents",
+   "url": "https://arxiv.org/abs/2611.24362",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T12:56:06+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors find that two state-of-the-art RL-based prompt-injection red teamers suffer from mode collapse, repeatedly finding similar attacks. Adversarial training on those attacks therefore yields little robustness gain despite high attack success rates. Their PIPETTE framework adds a dictionary-learning reward to encourage diverse attack strategies and an on-policy adversarial training pipeline, producing defenders with near-zero success on static attacks that also withstand strong adaptive attacks while keeping task utility.",
+   "takeaway": "A red-team campaign is only valuable to defenders if its findings are diverse, since a high success rate built on one repeated attack strategy adds little to hardening."
+  },
+  {
+   "id": "4d8e50dff2cd5909",
+   "title": "AutoPI: Taxonomy-Guided Adaptive Red Teaming for Prompt Injection in LLM Agents",
+   "url": "https://arxiv.org/abs/2611.24313",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T12:20:58+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "The authors argue that attack success rate alone hides how many different techniques an adaptive red teamer has actually tested, so a tool can look strong while leaving whole attack families unexplored. Their AutoPI tool uses a prompt-injection taxonomy to guide attack generation and to measure coverage across classes, techniques and sub-techniques. On AgentDojo it found successful injections in all six taxonomy classes against Qwen3.6-35B, and it outperformed recent red teamers on class-level coverage against Claude Haiku 5.5.",
+   "takeaway": "Measure how broadly an attack suite covers the technique space, not just how often it succeeds, because untested techniques are the ones defences will miss."
+  },
+  {
+   "id": "6fc645cc9322de4d",
+   "title": "Kaer: Security-Aware Replanning for Multi-Agent Systems",
+   "url": "https://arxiv.org/abs/2611.24839",
+   "source": "arXiv cs.LG",
+   "kind": "paper",
+   "published": "2026-11-18T18:05:47+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The authors identify a weakness in multi-agent systems where an orchestrator's dynamic replanning can be hijacked by instructions hidden in feedback from other agents. Their Kaer framework limits what the planner sees to abstract templates, restricts plan changes to deterministic repair operators, and checks every revised plan against policy. On the new Cintra benchmark, Kaer was more robust than an undefended system and the previous state-of-the-art defence, at similar utility.",
+   "takeaway": "Treat agent feedback as untrusted input at every stage of the workflow, not only at tool calls, because replanning loops can be a hijack path of their own."
+  },
+  {
+   "id": "1f43ef0d1d92acfd",
+   "title": "Mitigating fix reversal: Counterfactual constraints for function-level vulnerability detection",
+   "url": "https://arxiv.org/abs/2611.24489",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T14:21:12+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that function-level vulnerability detectors often rate a patched function as more likely vulnerable than the unpatched one, largely because patches lengthen functions and the models learn length as a shortcut. Their CFVul method uses a sliding window to cover full functions, trains with a constraint that favours the vulnerable version at equal length, and averages predictions over fixed reference lengths at inference. On PrimeVul it raises the fix-pair ranking metric to 59.4%, and for patches that add more than 15% length, it lifts CodeBERT from 25.8% to 48.4%.",
+   "takeaway": "When a learned detector's output correlates with a superficial property like length, test it with counterfactual pairs that change only the security-relevant content."
+  },
+  {
+   "id": "082703df6dacf7ff",
+   "title": "From posture to root cause: Investigate OpenShift compliance with Elastic Agent Builder",
+   "url": "https://www.elastic.co/security-labs/blog/openshift-compliance-elastic-agent-builder",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-19T15:30:00+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 6,
+   "summary": "Elastic shows how to pull OpenShift Compliance Operator results from every cluster into Elasticsearch using a single agent polling every 60 seconds. An Elastic Agent Builder agent can then answer plain-English questions such as which clusters failed checks and when a control started failing. Manual rules are evaluated with CEL custom rules, and remediation or rescans run through workflows that require approval.",
+   "takeaway": "Compliance drift is easiest to spot when per-cluster results are normalised into one searchable store, and monitoring should also confirm that scheduled scans actually ran."
+  },
+  {
+   "id": "6a6aa7f9ab51505c",
+   "title": "Rented Oscillations: Multi-Tenant Data Center Workload Synchronization Attacks and Mitigation",
+   "url": "https://arxiv.org/abs/2611.23666",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T00:49:44+00:00",
+   "topics": [
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "The authors show that a stealthy adversary renting data centre capacity can run unoptimised LLM training jobs whose individually normal load synchronises into large periodic oscillations. These oscillations can saturate generator control limiters and excite a lightly damped grid mode, with validation on a power hardware-in-the-loop setup and a surrogate of the Saudi transmission network. The paper proposes signal-energy-based detection and a mitigation that re-times workloads to reduce oscillatory energy.",
+   "takeaway": "Benign-looking workloads can combine into a system-level hazard, so defenders should monitor aggregate behaviour and not only the properties of each individual tenant."
+  },
+  {
+   "id": "9ac65580a3d25d13",
+   "title": "JEV vs. LLMs: A Comparative Analysis for Phishing Email Detection",
+   "url": "https://arxiv.org/abs/2611.23683",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T01:17:07+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "The paper compares a typed decision model, Jev 1.13, with three LLMs for classifying 1,500 labelled phishing emails. Jev had the highest accuracy and F1 score, along with the lowest latency, token use, cost and calibration error, though its precision of 71% is modest given its 98% recall. The authors note that LLMs can explain their decisions, which this study did not assess, and that all four systems need more validation before standalone use.",
+   "takeaway": "A detector with very high recall and moderate precision will generate many false positives at volume, so judge triage tools on operational cost and calibration as well as headline accuracy."
+  }
+ ]
+}
