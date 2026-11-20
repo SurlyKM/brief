@@ -1,0 +1,222 @@
+{
+ "date": "2026-11-21",
+ "items": [
+  {
+   "id": "bd055369dbe5e677",
+   "title": "SoK: Assessing the Evolution of LLM Capability in Software Vulnerability Research",
+   "url": "https://arxiv.org/abs/2611.26601",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T18:54:19+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "This systematisation of knowledge proposes an autonomy scale for LLM agents in vulnerability research, modelled on driving automation levels, and uses it to rate published evidence. It argues that agents could discover, validate and patch real bugs autonomously before 2026, and that open-weight models later matched this for discovery and validation. Public records show disclosed vulnerabilities more than doubled in 2026, although the time from report to fix and from disclosure to exploitation has not yet changed noticeably.",
+   "takeaway": "A jump in disclosure volume does not automatically shorten the window of exposure, so defenders should measure remediation and exploitation timelines directly rather than assuming faster discovery means faster patching."
+  },
+  {
+   "id": "51c9e8f0e8dadecd",
+   "title": "BlockJack: Cross-Tenant Redirection Fault Attacks on Paged KV Cache Address Translation in LLM Serving",
+   "url": "https://arxiv.org/abs/2611.25945",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T11:31:29+00:00",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "BlockJack attacks the paged KV cache used by vLLM by corrupting block-table entries, which redirects one tenant's cache reads to another tenant's blocks without altering weights or prompts. The authors show this can leak victim context to an attacker and steer a victim's answers, including medical advice that recommends less urgent care in up to 41.1% of cases. They also demonstrate physical feasibility with Rowhammer, and vLLM and Sonar confirmed the issue after responsible disclosure.",
+   "takeaway": "Shared inference infrastructure inherits the memory-safety and address-translation risks of operating systems, so classic fault attacks such as Rowhammer can now compromise multi-tenant LLM serving."
+  },
+  {
+   "id": "fe231af6f51dd38c",
+   "title": "Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents",
+   "url": "https://arxiv.org/abs/2611.25599",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T06:46:27+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "Tether runs each action an AI agent proposes in an ephemeral sandbox, infers its semantics from observed system calls, and enforces stateful policies before the action is allowed to proceed. Policies are written in an embedded Lean 4 DSL, which allows global invariants such as no network access after reading a sensitive file to be formally verified. The authors report blocking all in-scope attacks across coding-agent benchmarks with a single shared policy and a benign false-positive rate under 5%.",
+   "takeaway": "Stateless allow and deny rules miss multi-step data flows and side effects hidden inside scripts, so enforcement should track information flow across the whole execution trace."
+  },
+  {
+   "id": "d309f6169a82740f",
+   "title": "ToolPulse: Side-Channel Eavesdropping on Tool-Using LLM Agents",
+   "url": "https://arxiv.org/abs/2611.25470",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T03:57:41+00:00",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "ToolPulse shows that when an LLM agent runs remotely but its tools run on the user's own machine, cache side channels such as Flush+Reload can reveal which tools are being invoked. The authors reconstruct tool workflows across 11 LLMs in Codex and Claude Code with F1 scores above 93%, and infer user task categories and sensitive tool calls. The attacks still work on a shared server with about 20 users under substantial noise.",
+   "takeaway": "Moving inference to a vendor's cloud does not remove the attack surface, because local tool execution and shared system libraries can leak what the agent is doing through microarchitectural side channels."
+  },
+  {
+   "id": "4e295bd26999e128",
+   "title": "Behavioral Containment: Source-to-Binary Function Matching for 1-Day Vulnerability Detection",
+   "url": "https://arxiv.org/abs/2611.25394",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-19T02:36:58+00:00",
+   "topics": [
+    "Reverse engineering",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "SBIND matches source functions to compiled binary functions by checking behavioural containment rather than comparing code, which decompilers cannot reproduce faithfully. It represents each function as aligned behavioural paths of normalised operations and, for 1-day detection, compares only the paths through changed lines in the vulnerable and patched source. It ranks the correct function first in 77.87% of 32,008 searches, against 45.69% for SBridge, and reaches an F1 of 0.70 on 26 CVEs in stripped binaries.",
+   "takeaway": "Comparing what code does along aligned execution paths is more robust to compiler and optimisation differences than comparing syntax, which makes it a useful idea for matching patched functions in stripped binaries."
+  },
+  {
+   "id": "231bbb6daa44d8c6",
+   "title": "Attacks and Defenses in Decentralized Multi-Agent Systems with Hop-by-Hop Task Decomposition and Delegation",
+   "url": "https://arxiv.org/abs/2611.25056",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T19:06:28+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The authors systematise threats from malicious agents in decentralised LLM multi-agent systems, where agents delegate subtasks to peers without central oversight. A single malicious agent can cause up to 100% task failure, inflate token use and runtime, and exfiltrate much of the prior task data from benign agents. They propose a cryptographic protocol that produces an irrefutable verified execution trace and an auditor that detects and attributes 98% of attacks, including protocol-compliant ones, with negligible latency overhead.",
+   "takeaway": "In systems without a central authority, tamper-evident, signed execution traces let you attribute misbehaviour to a specific agent after the fact."
+  },
+  {
+   "id": "42fb814b60b244fc",
+   "title": "On the Reliability of CyberGym Evaluation: Task Material Consistency and Reference-Target Identity",
+   "url": "https://arxiv.org/abs/2611.25790",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T09:20:55+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML",
+    "Exploits"
+   ],
+   "relevance": 7,
+   "summary": "The authors audit the 1,507 CyberGym tasks and find that 22.4% have inconsistent task materials, such as coverage or patches pointing to a different defect than the crash report. They then check whether proof-of-concept inputs that pass the differential test actually trigger the intended bug, and find that requiring a target hit lowers the pass rate from 85.3% to 78.8%. Some non-target passes occur even in tasks with no detected inconsistency.",
+   "takeaway": "A differential crash test only shows that a PoC behaves differently on two builds, not that it reproduces the intended bug, so benchmark scores need separate checks on task consistency and root-cause identity."
+  },
+  {
+   "id": "1c1c0d05263f3864",
+   "title": "Hardening JavaScript Programs against LLM-Based Vulnerability Detection",
+   "url": "https://arxiv.org/abs/2611.25718",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T08:31:31+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "AntiAgent is a defence that transforms JavaScript before release so that LLM-based vulnerability detection agents miss or misreport the flaws in it. It learns transformation rules by evolving a corpus of vulnerable programs and keeping the variants that fool the agents, then applies these rules to new programs with an LLM. Tested on real applications against four agents including Claude Code and Codex, it cut detected vulnerabilities by 52.0% to 60.7% while passing project tests.",
+   "takeaway": "Source code shipped to clients is now exposed to LLM-driven analysis as well as human reverse engineering, so obfuscation strategies need to be re-evaluated against AI agents rather than traditional tools."
+  },
+  {
+   "id": "f1c3ab95da2d82ae",
+   "title": "ChainAgent: Automated Chainable Vulnerability Discovery in PHP Web Applications",
+   "url": "https://arxiv.org/abs/2611.25412",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T02:52:06+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Exploits"
+   ],
+   "relevance": 7,
+   "summary": "ChainAgent is an LLM agent that searches PHP source code for exploit-chain components, using preconditions and capabilities to link vulnerabilities with functional gadgets. Rather than finding bugs first and building paths afterwards, it works backward from unmet preconditions and forward from discovered capabilities. It outperformed the general coding agent Codex on recall and dependency edges, and found 20 vulnerabilities and 13 exploit chains, nine of which reached remote code execution, across 30 real applications.",
+   "takeaway": "Individual bugs often matter less than how they compose, so reviewing code for capabilities and preconditions can reveal chains that isolated vulnerability scanners miss."
+  },
+  {
+   "id": "cca794af25e336f0",
+   "title": "Verified Netlist-to-RTL Recovery with LLM Agents",
+   "url": "https://arxiv.org/abs/2611.25324",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T00:58:40+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "LOCA is an LLM-based method for recovering readable RTL from anonymised gate-level netlists by splitting the netlist into logic cones and having parallel agents rewrite each one. It keeps only RTL that is formally proven equivalent to the netlist, and it recovers 17 of 21 model-design pairs versus 6 with whole-netlist prompting. Function-preserving obfuscation did not stop it, while unknown keys or hidden cell functions blocked proof of recovery.",
+   "takeaway": "Decomposing a large reverse engineering problem into small, semantically meaningful pieces, and accepting only results that are formally verified, can make LLMs far more reliable than prompting them with the whole artefact."
+  },
+  {
+   "id": "36f930941b9c3943",
+   "title": "SCARVA: Interpretable Agentic Reasoning in Software Supply-Chain Analysis",
+   "url": "https://arxiv.org/abs/2611.26131",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T13:52:24+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "SCARVA is a framework that uses an analyst LLM agent to judge whether vulnerable software dependencies are actually exploitable in a project, while logging every tool call, file access and web request. Independent judge agents then check the analyst's claims against that evidence to produce an auditable report. On 54 curated cases the best analyst reaches 82% balanced accuracy, and human annotators agree with the judges' claim checks in 94% of cases.",
+   "takeaway": "Do not trust an LLM's security conclusion on its own; record the evidence it used and have a separate check verify each claim against that record."
+  },
+  {
+   "id": "ec316cce63e70514",
+   "title": "ALIoTh: Orchestrating Multi-Agent LLMs for Autonomous IoT Penetration Testing",
+   "url": "https://arxiv.org/abs/2611.25809",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T09:31:08+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "The paper presents ALIoTh, a multi-agent LLM framework built on LangGraph that automates penetration testing across IoT and industrial IoT devices, covering enumeration, payload generation, reverse shells and privilege escalation. A Self-RAG component gives the agents access to device documentation, tool manuals and known attack techniques to improve their reasoning. The contribution is mainly an orchestration design, so the practical value depends on how well it performs against real, varied devices.",
+   "takeaway": "Splitting an offensive workflow into specialised agents, each grounded in retrieved domain knowledge, is a common pattern for LLM-driven testing, so judge such tools on their evaluation rather than their architecture diagrams."
+  },
+  {
+   "id": "3123fe1c492b09f8",
+   "title": "Passing NPCR Without Diffusion: Exact Signatures, a Detection Benchmark and an Audit of Published Image Ciphers",
+   "url": "https://arxiv.org/abs/2611.25561",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T06:06:55+00:00",
+   "topics": [
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The authors show that NPCR, the standard one-pixel-change metric used to claim diffusion in image ciphers, cannot distinguish real diffusion from several weaker mechanisms that produce similar mean values. Using additional statistical signatures and two-sided testing, they audit twenty-one published schemes and find flawed specifications, schemes that leak under chosen-image attacks, and results driven by changing key material rather than the cipher itself. They also release a checker for published tables, while noting it does not certify security.",
+   "takeaway": "A single summary statistic that looks like the ideal value can hide the wrong underlying structure, so test the distribution and the mechanism rather than trusting the mean."
+  },
+  {
+   "id": "f3861ac79d4dc86a",
+   "title": "Phantom of the Masquerade: Graph Neural Network-Based Detection of Masquerade Attacks in Controller Area Networks",
+   "url": "https://arxiv.org/abs/2611.26094",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T13:30:46+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "PhantoMasq models CAN bus traffic as message sequence graphs enriched with signal statistics and classifies windows with graph convolutional networks to detect masquerade attacks. Evaluated on the ROAD dataset with a protocol that avoids overlap between training and test windows, it reaches mean AUC-ROC between 0.831 and 0.999 across five attack types. It beats a graph-embedding baseline on every attack type and runs at 168 to 429 windows per second on CPU.",
+   "takeaway": "When evaluating intrusion detection on time-series data, prevent overlapping windows from crossing the train and test split, because leakage can inflate reported results."
+  }
+ ]
+}
