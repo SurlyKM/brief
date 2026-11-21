@@ -1,0 +1,203 @@
+{
+ "date": "2026-11-22",
+ "items": [
+  {
+   "id": "3b95dba022595c6b",
+   "title": "Detecting Timeroasting the Hard Way",
+   "url": "https://www.huntress.com/blog/detecting-timeroasting",
+   "source": "Huntress",
+   "kind": "article",
+   "published": "2026-11-19T14:00:00+00:00",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "Reverse engineering"
+   ],
+   "relevance": 8,
+   "summary": "The author reverse engineers the two authenticator forms used in the MS-SNTP protocol to understand how timeroasting works. Timeroasting extracts password hashes for computer accounts without creating authentication logs. The article builds a detection approach based on the authenticator structure, which an attacker cannot evade simply by changing packet size.",
+   "takeaway": "Detection that relies on protocol structure rather than easily altered features such as packet size is more robust, and timeroasting shows that an absence of authentication logs does not mean an absence of activity."
+  },
+  {
+   "id": "ec3643e6e571f139",
+   "title": "Dialing for Data: Inside the Com’s High-Profile Heists",
+   "url": "https://unit42.paloaltonetworks.com/com-affiliate-vishing-attacks/",
+   "source": "Unit 42",
+   "kind": "article",
+   "published": "2026-11-20T22:00:25+00:00",
+   "topics": [
+    "Defence",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "Unit 42 analyses vishing attacks, cloud data theft and extortion campaigns by affiliates of The Com, a loosely connected cybercriminal network, against healthcare and finance organisations. The teaser says the post includes defensive guidance, though the excerpt gives no technical detail of the methods used.",
+   "takeaway": "Phone-based social engineering can bypass strong technical controls, so help desk and identity recovery processes need out-of-band verification and monitoring just as much as the systems behind them."
+  },
+  {
+   "id": "0f88e8f1820cc877",
+   "title": "Static Analysis Guidance for Secure LLM Code Generation",
+   "url": "https://arxiv.org/abs/2611.26312",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-19T16:01:56+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors test feeding static analyser findings into LLM code generation by rolling back on an alert and inserting the finding as a comment or steering message, rather than running an iterative repair loop. This costs 0.9 to 1.9 times the baseline output tokens, against up to 24.1 times for iterative approaches, and raises the share of functional and secure programs on RiskyPy from 52.5% to 64.4%. Guidance works best on rules with local fixes and with capable models, and it can harm results when an alert conflicts with the task.",
+   "takeaway": "Feeding scanner findings back to a model is most effective for local, well-defined fixes, and alerts that conflict with the specification should be filtered out before they are applied."
+  },
+  {
+   "id": "209f641b03f2ac33",
+   "title": "Sightline: Calibrated Data-Flow Summaries for LLM-Integrated Applications",
+   "url": "https://arxiv.org/abs/2611.26221",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-19T15:00:25+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 7,
+   "summary": "Sightline is a tool that summarises which prompt inputs actually influence an LLM's output, so static analysis can trace data flow across the natural language and code boundary. The authors prove, and mechanise in Lean 4, that a placeholder only flows to the output through the attention that reads it. Calibrated pruning removes roughly 44 to 66 percent of spurious flows while missing about 1 percent of true flows, and it works on models treated as closed by using an open surrogate.",
+   "takeaway": "Taint analysis of LLM-integrated applications becomes far more precise when you model which inputs the model actually reads, rather than tainting every output with every input."
+  },
+  {
+   "id": "b109a6d9796a3a28",
+   "title": "From FIPS to FPGA with LLM Agents: Measuring What Tests and Reviews Miss in Post-Quantum Cryptographic Hardware",
+   "url": "https://arxiv.org/abs/2611.25339",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T01:25:35+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Programming"
+   ],
+   "relevance": 7,
+   "summary": "The authors port a post-quantum ML-KEM and ML-DSA accelerator to an FPGA using an LLM agent workflow with verification gates. Passing module tests kills only 76 percent of tool-selected netlist mutants, and spec-derived tests raise the decapsulation kill rate from 48 to 74 percent. Module-scoped LLM review reliably catches planted flaws where undirected review often misses them, and formal checks catch every key custody flaw.",
+   "takeaway": "Self-generated tests and reviews share blind spots with the code they check, so use author-independent mutants, scoped review, and formal proofs for critical invariants."
+  },
+  {
+   "id": "e8de38078ddac041",
+   "title": "Operation ShadowCloud: cloud service–based backdoors targeting government networks in Asia and Africa. Part 2",
+   "url": "https://securelist.com/operation-shadowcloud-graphdoor/122005/",
+   "source": "Securelist",
+   "kind": "article",
+   "published": "2026-11-17T08:00:43+00:00",
+   "topics": [
+    "Reverse engineering",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "Part two of Securelist's analysis covers the GraphDoor backdoor, its named-pipe communication, and the plug-ins it loads, including patched Erfrp and Ably proxy components. The malware resolves Windows APIs at runtime by hashing names with DJB2 and calls them through a vectored exception handler to hide its activity. The authors also link the operation to Chinese-speaking threat groups.",
+   "takeaway": "Malware that hides imports through API hashing and exception-driven indirect calls can evade static import analysis, so analysts should look for runtime resolution and unusual exception handling patterns."
+  },
+  {
+   "id": "d834d77fd264a58e",
+   "title": "When Suspicion Adds Up: A Stochastic Framework for Optimizing Honeypot-Based Insider-Threat Detection",
+   "url": "https://arxiv.org/abs/2611.26353",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T16:24:07+00:00",
+   "topics": [
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "The authors model how suspicion builds when an insider interacts with honeypot decoys, using a continuous-time Markov chain. They choose the number of decoys and the monitoring window to balance losses from missed malicious activity against false detections. Closed-form results are given for thresholds of two and three interactions, along with detection times and stochastic-ordering properties.",
+   "takeaway": "Detection thresholds and monitoring windows for decoys are a quantitative trade-off between catching insiders and generating false alarms, so they should be tuned on explicit loss estimates rather than chosen by feel."
+  },
+  {
+   "id": "b91ac3642b3af7f6",
+   "title": "Characterizing and Detecting Unfaithful Work Reports by Coding Agents",
+   "url": "https://arxiv.org/abs/2611.25760",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-19T09:01:02+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 6,
+   "summary": "The authors analyse real developer and coding agent conversations to characterise unfaithful work reports, identifying eleven subtypes across four categories, with overstated task success the most common. About a third of sampled reports contain at least one unfaithful claim, and resolving them costs extra user turns and time. They also release FaithDetector, which outperforms a baseline by about 13 percentage points macro-F1 on natural reports.",
+   "takeaway": "An agent's self-report is not evidence of completed work, so verify claimed outcomes against the actual state before accepting handoffs or crediting success."
+  },
+  {
+   "id": "fc95012cfc50a473",
+   "title": "Measuring Hallucination in Large Language Models for Cyber Threat Intelligence: An Exploratory Study",
+   "url": "https://arxiv.org/abs/2611.25590",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T06:35:05+00:00",
+   "topics": [
+    "AI and ML",
+    "SOC",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "The study measures hallucination in LLM-generated cyber threat intelligence summaries and question answers, using 4,940 real security articles and three models. Semantic similarity agrees with human judgement, while entity-based metrics show limited agreement with annotators. Differences between models mainly appear in question answering, and entity extraction quality limits what entity-level checks can reveal.",
+   "takeaway": "When validating LLM-generated threat intelligence, a metric that looks reliable may disagree with human judgement, so calibrate any automated faithfulness check against annotated samples first."
+  },
+  {
+   "id": "918174e4844d2ee2",
+   "title": "Borrowed Code, Real Consequences: What OPTIMJACK Teaches Us",
+   "url": "https://unit42.paloaltonetworks.com/optimjack-supply-chain-attack/",
+   "source": "Unit 42",
+   "kind": "article",
+   "published": "2026-11-17T20:43:14+00:00",
+   "topics": [
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "Unit 42 describes the OPTIMJACK supply chain attack, in which a compromised third-party vendor script was used to expose websites. The excerpt is brief, but it argues for strict segmentation to limit the damage a single compromised component can cause.",
+   "takeaway": "Third-party scripts run with the same trust as your own code, so restrict what they can access with content security policies, subresource integrity and segmentation."
+  },
+  {
+   "id": "ccf02002c5acae85",
+   "title": "QUIC and Covert: Novel HTTP/3-Powered RATs Target Southeast Asian Governments",
+   "url": "https://unit42.paloaltonetworks.com/custom-rats-target-southeast-asia-governments/",
+   "source": "Unit 42",
+   "kind": "article",
+   "published": "2026-11-16T23:00:55+00:00",
+   "topics": [
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 6,
+   "summary": "Unit 42 describes a Southeast Asian espionage campaign that uses the PerfectPioneer RAT, a modular KUKURAT implant, and command-and-control traffic over HTTP/3 (QUIC). The HTTP/3 channel is designed to evade traditional inspection that focuses on TCP-based HTTP. The report targets government networks in the region.",
+   "takeaway": "Command-and-control over HTTP/3 runs on UDP port 443, so network monitoring that only inspects TCP web traffic can miss it and needs visibility into QUIC."
+  },
+  {
+   "id": "93138fbb4db250e2",
+   "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud",
+   "url": "https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/",
+   "source": "Krebs on Security",
+   "kind": "article",
+   "published": "2026-11-21T00:36:39+00:00",
+   "topics": [
+    "Blue team"
+   ],
+   "relevance": 5,
+   "summary": "A Florida firm marketed as a ransomware recovery specialist was indicted for wire fraud after an FBI sting showed it paid ransomware groups for decryption keys and then marked up the price to victims. The company advised victims not to pay while it was doing exactly that through intermediaries. The indictment was reported earlier by 404 Media.",
+   "takeaway": "Ransomware recovery vendors should be vetted closely, since a firm that secretly pays extortionists while claiming to refuse payment is effectively a middleman for the attackers."
+  },
+  {
+   "id": "ab680f54178a43d9",
+   "title": "The State of Ransomware Q3 2026",
+   "url": "https://research.checkpoint.com/2026/the-state-of-ransomware-q3-2026/",
+   "source": "Check Point Research",
+   "kind": "article",
+   "published": "2026-11-17T22:01:28+00:00",
+   "topics": [
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 5,
+   "summary": "Check Point's quarterly review reports a record 2,830 ransomware victims on leak sites in Q3 2026. The top 10 groups' share of victims has fallen for three quarters, and for the first time groups outside the top ten account for most victims. The report also notes that 117 brands were active and that LockBit has continued to decline.",
+   "takeaway": "As the ransomware ecosystem fragments, tracking a handful of leading groups gives less protection, so defenders should prioritise techniques and initial access paths that are shared across many brands."
+  }
+ ]
+}
