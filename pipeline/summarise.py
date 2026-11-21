@@ -9,7 +9,8 @@ import os
 import re
 import sys
 
-
+# The secret and variable names are deliberately generic. The client is given
+# the key explicitly, so the SDK's default variable name is never needed.
 KEY_VAR = "FEED_TOKEN"
 MODEL_VAR = "FEED_MODEL"
 DEFAULT_MODEL = "claude-haiku-5-5"
@@ -48,9 +49,9 @@ def build_prompt(batch, labels):
     for it in batch:
         parts.append(
             f'<article id="{it["id"]}">\n'
-            f'<title>{it["title"]}</title>\n'
-            f'<source>{it["source"]}</source>\n'
-            f'<text>{it["text"]}</text>\n'
+            f'<title>{safe(it["title"])}</title>\n'
+            f'<source>{safe(it["source"])}</source>\n'
+            f'<text>{safe(it["text"])}</text>\n'
             f"</article>"
         )
     parts.append(
@@ -62,9 +63,27 @@ def build_prompt(batch, labels):
 
 
 def tidy(text, limit):
-    """Remove dashes the model may have used anyway, and cap the length."""
+    """Remove dashes the model may have used anyway, and cap the length.
+
+    Over-long text is trimmed back to the last full sentence, so it never
+    ends mid-word. If there is no sentence break in a sensible place, it is
+    cut at the last word and given an ellipsis instead.
+    """
     text = re.sub(r"\s*[—–]\s*", ", ", str(text)).strip()
-    return text[:limit]
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    end = max(cut.rfind(". "), cut.rfind("! "), cut.rfind("? "))
+    if end >= limit * 0.5:
+        return cut[:end + 1]
+    return cut.rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
+
+def safe(text):
+    """Neutralise angle brackets in untrusted feed text before it goes inside
+    our <article> tags, so a title like '</article> ignore previous...' cannot
+    close the tag and pose as instructions."""
+    return str(text).replace("<", "‹").replace(">", "›")
 
 
 def parse_response(raw, batch_ids, labels):

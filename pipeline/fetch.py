@@ -21,11 +21,25 @@ TEXT_LIMIT = 2000          # characters of article text kept per item
 ARXIV_DELAY_SECONDS = 3    # arXiv asks for no more than 1 request per 3 seconds
 
 # feedparser has no timeout option of its own, so set one for all sockets.
-socket.setdefaulttimeout(30)
+socket.setdefaulttimeout(60)   # arXiv's API can be slow to answer at busy times
 
 
 def log(msg):
     print(msg, file=sys.stderr)
+
+
+def parse_feed(url, name, attempts=3, wait=10):
+    """feedparser.parse with retries. A slow or broken source returns None
+    instead of crashing the whole run, so one bad feed never costs the day."""
+    for n in range(1, attempts + 1):
+        try:
+            return feedparser.parse(url, agent=USER_AGENT)
+        except Exception as exc:          # timeouts, resets, DNS failures
+            log(f"[{name}] attempt {n}/{attempts} failed: {exc.__class__.__name__}: {exc}")
+            if n < attempts:
+                time.sleep(wait * n)      # back off: 10s, then 20s
+    log(f"[{name}] giving up for this run")
+    return None
 
 
 def clean(text):
@@ -67,7 +81,9 @@ def fetch_arxiv(cfg, cutoff):
             f"&sortBy=submittedDate&sortOrder=descending"
             f"&max_results={int(cfg.get('max_per_category', 60))}"
         )
-        feed = feedparser.parse(url, agent=USER_AGENT)
+        feed = parse_feed(url, "arxiv " + cat)
+        if feed is None:
+            continue
         if not feed.entries:
             log(f"[arxiv] {cat}: no entries (bozo={feed.get('bozo')})")
             continue
@@ -96,7 +112,9 @@ def fetch_feeds(feeds, cutoff):
     """One request per blog feed. A broken feed is logged and skipped."""
     items = []
     for f in feeds:
-        feed = feedparser.parse(f["url"], agent=USER_AGENT)
+        feed = parse_feed(f["url"], "feed " + f["name"], attempts=2)
+        if feed is None:
+            continue
         if not feed.entries:
             log(f"[feed] {f['name']}: no entries (bozo={feed.get('bozo')}), skipped")
             continue

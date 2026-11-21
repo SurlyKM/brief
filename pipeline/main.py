@@ -91,7 +91,7 @@ def main():
 
     # 6. Save
     total = store.merge_day(args.data_dir, today, keep, sel["max_items_per_day"],
-                            sel.get("min_papers_per_day", 0))
+                            sel.get("max_papers_per_day"))
     for i in scored_ids:
         seen[i] = today
     store.save_seen(args.data_dir, seen, today)

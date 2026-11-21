@@ -43,6 +43,34 @@ feeds:
   - name: Elastic Security Labs
     url: https://www.elastic.co/security-labs/rss/feed.xml
     bonus: 2
+  # Added Nov 2026; each URL checked as a working, dated feed.
+  - name: watchTowr Labs
+    url: https://labs.watchtowr.com/rss/
+    bonus: 3
+  - name: Zero Day Initiative
+    url: https://www.zerodayinitiative.com/blog?format=rss
+    bonus: 2
+  - name: Doyensec
+    url: https://blog.doyensec.com/atom.xml
+    bonus: 2
+  - name: Securelist
+    url: https://securelist.com/feed/
+    bonus: 2
+  - name: Huntress
+    url: https://www.huntress.com/blog/rss.xml
+    bonus: 2
+  - name: Red Canary
+    url: https://redcanary.com/feed/
+    bonus: 2
+  - name: Check Point Research
+    url: https://research.checkpoint.com/feed/
+    bonus: 1
+  - name: Unit 42
+    url: https://unit42.paloaltonetworks.com/feed/
+    bonus: 1
+  - name: Cisco Talos
+    url: https://blog.talosintelligence.com/rss/
+    bonus: 1
   - name: Krebs on Security
     url: https://krebsonsecurity.com/feed/
     bonus: 0

@@ -40,34 +40,38 @@ def save_seen(data_dir, seen, today):
     write_json(Path(data_dir) / "seen.json", kept)
 
 
-def merge_day(data_dir, today, new_items, cap, min_papers=0):
-    """Add new items to today's file, re-rank, and keep the best `cap`.
+def merge_day(data_dir, today, new_items, cap, max_papers=None):
+    """Add new items to today's file without removing anything already there.
 
-    min_papers reserves that many places for papers (if enough exist) by
-    displacing the lowest-ranked non-papers, so research is not squeezed out
-    by higher-scoring blog posts.
+    Stories already published today are locked in, so a story you read in
+    the morning is still there in the evening. New items only fill the slots
+    left under `cap`, best first, and papers stop at `max_papers` so blog
+    posts always have room. Quiet days simply end up with fewer stories.
     """
     path = Path(data_dir) / f"{today}.json"
     day = read_json(path, {"date": today, "items": []})
-    combined = {i["id"]: i for i in day["items"]}
-    for i in new_items:
-        combined[i["id"]] = i
+    kept = list(day["items"])
+    have = {i["id"] for i in kept}
+    papers = sum(i.get("kind") == "paper" for i in kept)
 
     def sort_key(i):
         return (i["relevance"], i["published"])
 
-    ranked = sorted(combined.values(), key=sort_key, reverse=True)
-    top = ranked[:cap]
-    if min_papers:
-        short_by = min_papers - sum(i["kind"] == "paper" for i in top)
-        extra = [i for i in ranked[cap:] if i["kind"] == "paper"][:max(short_by, 0)]
-        if extra:
-            non_papers = [t for t in top if t["kind"] != "paper"]
-            drop = {i["id"] for i in non_papers[-len(extra):]}
-            top = sorted([t for t in top if t["id"] not in drop] + extra,
-                         key=sort_key, reverse=True)
-    write_json(path, {"date": today, "items": top})
-    return len(top)
+    for item in sorted(new_items, key=sort_key, reverse=True):
+        if len(kept) >= cap:
+            break
+        if item["id"] in have:
+            continue
+        if item.get("kind") == "paper":
+            if max_papers is not None and papers >= max_papers:
+                continue
+            papers += 1
+        kept.append(item)
+        have.add(item["id"])
+
+    kept.sort(key=sort_key, reverse=True)
+    write_json(path, {"date": today, "items": kept})
+    return len(kept)
 
 
 def rebuild_index(data_dir, topics=None):
