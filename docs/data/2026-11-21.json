@@ -96,6 +96,21 @@
    "takeaway": "In systems without a central authority, tamper-evident, signed execution traces let you attribute misbehaviour to a specific agent after the fact."
   },
   {
+   "id": "e3a24527dd73e527",
+   "title": "The challenge of defending against bulletproof dead drops on public blockchains",
+   "url": "https://blog.talosintelligence.com/the-challenge-of-defending-against-bulletproof-dead-drops-on-public-blockchains/",
+   "source": "Cisco Talos",
+   "kind": "article",
+   "published": "2026-11-18T11:00:00+00:00",
+   "topics": [
+    "Blue team",
+    "Red team"
+   ],
+   "relevance": 8,
+   "summary": "Talos describes how malware operators are moving command-and-control configuration onto public blockchains such as Bitcoin, Ethereum smart contracts, TRON and Solana, where it is retrieved with read-only RPC queries and decrypted in memory. Because these ledgers cannot be seized or blocked by domain, the author argues defenders should watch for anomalous outbound JSON-RPC traffic, inspect endpoint memory, and treat blockchain access as a command channel.",
+   "takeaway": "Blocklists fail against C2 that lives on immutable ledgers, so detection has to focus on the unusual process behaviour of fetching the configuration, such as outbound JSON-RPC from hosts that have no business using a blockchain."
+  },
+  {
    "id": "42fb814b60b244fc",
    "title": "On the Reliability of CyberGym Evaluation: Task Material Consistency and Reference-Target Identity",
    "url": "https://arxiv.org/abs/2611.25790",
