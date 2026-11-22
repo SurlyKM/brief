@@ -2,6 +2,38 @@
  "date": "2026-11-22",
  "items": [
   {
+   "id": "25eee472f0aba029",
+   "title": "Living off the Local Model: Abusing Browser-Embedded Language Models for Post-Exploitation",
+   "url": "https://arxiv.org/abs/2611.25086",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-18T19:23:44+00:00",
+   "topics": [
+    "Red team",
+    "AI and ML",
+    "Exploits"
+   ],
+   "relevance": 9,
+   "summary": "The authors show that Chrome's built-in Gemini Nano model can be driven from the host using only interpreters that ship with the operating system, and that its user-activation gate can be satisfied by a simulated click or bypassed. They chain the model's capabilities into a simulated operation that reads a password from a webcam image, unlocks an archive, and stages a private key for exfiltration without user interaction. The point is that the model is a signed, pre-installed, network-invisible post-exploitation engine.",
+   "takeaway": "On-device AI features are a new living-off-the-land surface: a signed, pre-installed model can triage and classify stolen data locally, so defenders should monitor how endpoint AI runtimes are invoked, not only network traffic."
+  },
+  {
+   "id": "29fd5c5793b64c35",
+   "title": "Hostile Inference: Exploiting Docker Model Runner for Container Escapes",
+   "url": "https://www.thezdi.com/blog/2026/11/17/hostile-inference-exploiting-docker-model-runner-for-container-escapes",
+   "source": "Zero Day Initiative",
+   "kind": "article",
+   "published": "2026-11-18T17:23:52+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Reverse engineering"
+   ],
+   "relevance": 9,
+   "summary": "The authors chain an unauthenticated argument-injection flaw in Docker Model Runner (CVE-2026-28400) into a host file read and write primitive. They then turn partial control over file writes into code execution on the host through Docker Extensions, in non-default configurations on macOS and Windows. The post also covers a Seatbelt sandbox escape on macOS and a WSL2 VM-to-host escape through Docker Extensions.",
+   "takeaway": "A constrained file write becomes full code execution once it can reach a privileged host component, so argument injection into helper daemons should be treated as a path across trust boundaries."
+  },
+  {
    "id": "3b95dba022595c6b",
    "title": "Detecting Timeroasting the Hard Way",
    "url": "https://www.huntress.com/blog/detecting-timeroasting",
