@@ -1,0 +1,210 @@
+{
+ "week": "2026-11-16",
+ "range": "16 to 22 November 2026",
+ "story_count": 90,
+ "days_covered": 7,
+ "partial": false,
+ "headline": "Trusted components become the attack path, and AI agents are the newest one",
+ "themes": [
+  "The incidents this week mostly abused something already trusted. ARMORY CASTLE used an unauthenticated vCenter flaw to take the management plane and the vmdir database. The Optimizely compromise pushed malicious JavaScript to at least 178 sites through a vendor script, and Unit 42's OPTIMJACK write-up makes the same point about third-party code. Elastic's agent-framework PyPI catch shows install-time execution through .pth files, and Talos shows C2 configuration moving onto public ledgers that cannot be seized. In each case the defensive lever is monitoring behaviour (unusual directory access, outbound JSON-RPC, interpreter start-up) rather than blocking known-bad infrastructure.",
+  "Agent security had the heaviest research coverage, and a common finding is that the unit of risk is the composition, not the component. Compositional exploits in coding agents, the SEAM benchmark, GapLeak, MCP provider misbinding, and the Agent Card and replanning attacks all show harm emerging from individually benign steps or from metadata that influences routing. Microsoft's device code analysis and the Chrome Gemini Nano paper show the same issue on the endpoint: an approval or a pre-installed signed model becomes execution capability. The defences that look sturdiest enforce policy at the action boundary or OS level (CompGuard, Tether, Agent-ZTA) and track state across a trace. Red-team quality is also under scrutiny, since PIPETTE and AutoPI argue that attack success rate hides mode collapse and narrow technique coverage.",
+  "A quieter thread concerns whether our measurements can be trusted. The SoK finds disclosures more than doubled while fix and exploitation timelines have not visibly moved. The Vulnerability-Lookup work shows exploit publications misread as in-the-wild exploitation, CyberGym has inconsistent tasks, and the NIDS papers find leakage from overlapping windows. SAST counts reflect tool maturity as much as code quality. At the hardware layer, GPU load/store timing, Rowhammer on paged KV caches, side channels on agent tools and fault injection on CHERI all repeat the lesson that isolation assumptions fail below the software boundary."
+ ],
+ "must_reads": [
+  {
+   "id": "fd0ccfc8354876b0",
+   "title": "ARMORY CASTLE Exploits vSphere",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/",
+   "source": "Google Cloud Threat Intelligence",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "kind": "article",
+   "why": "A China-nexus actor chains an unauthenticated vCenter session key disclosure into administrator access and vmdir theft, automated with a Go tool. It is a concrete case for patching and monitoring the virtualisation management plane first, since one bypass reaches every hypervisor beneath it."
+  },
+  {
+   "id": "adf648d81de894fe",
+   "title": "We caught the agent-framework PyPI compromise six minutes after it published",
+   "url": "https://www.elastic.co/security-labs/threat-command/we-caught-the-agent-framework-pypi-compromise-six-minutes-after-it-published",
+   "source": "Elastic Security Labs",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Vulnerability research"
+   ],
+   "kind": "article",
+   "why": "Elastic detected a malicious PyPI release six minutes after publication, and the write-up explains why a .pth file runs at every Python start without any import. It gives practical guidance on what to audit and why affected hosts should be treated as fully compromised."
+  },
+  {
+   "id": "2a3576b7db96929b",
+   "title": "The risks of device code authentication for AI coding agents",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "Defence"
+   ],
+   "kind": "article",
+   "why": "Microsoft shows how a phished OAuth device code approval can hand an attacker control of an AI coding agent that has local execution rights. It connects a familiar identity attack to the new agent attack surface and lays out four distinct outcomes."
+  },
+  {
+   "id": "25eee472f0aba029",
+   "title": "Living off the Local Model: Abusing Browser-Embedded Language Models for Post-Exploitation",
+   "url": "https://arxiv.org/abs/2611.25086",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Red team",
+    "AI and ML",
+    "Exploits"
+   ],
+   "kind": "paper",
+   "why": "This paper treats Chrome's built-in Gemini Nano as a signed, pre-installed, network-invisible post-exploitation engine driven only by interpreters that ship with the OS. It is a new living-off-the-land idea that shifts detection toward how endpoint AI runtimes are invoked."
+  },
+  {
+   "id": "2b43967529f43a47",
+   "title": "Memory Safety Isn't All You Need: Code Reuse Attacks in Memory Safe Languages",
+   "url": "https://arxiv.org/abs/2611.18910",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Programming"
+   ],
+   "kind": "paper",
+   "why": "The authors argue that memory safety removes memory-corruption code reuse but not code reuse itself, and unify prototype pollution, DOM clobbering and object injection under one gadget framework. It gives experienced researchers a language-agnostic model for auditing shared runtime state."
+  }
+ ],
+ "lessons": [
+  {
+   "id": "adf648d81de894fe",
+   "title": "We caught the agent-framework PyPI compromise six minutes after it published",
+   "url": "https://www.elastic.co/security-labs/threat-command/we-caught-the-agent-framework-pypi-compromise-six-minutes-after-it-published",
+   "source": "Elastic Security Labs",
+   "topics": [
+    "Blue team",
+    "SOC",
+    "Vulnerability research"
+   ],
+   "kind": "article",
+   "lesson": "Python executes lines in .pth files in site-packages at every interpreter start, so installing a malicious package can run code without it ever being imported. Audit .pth files and treat any host that installed an affected version as fully compromised."
+  },
+  {
+   "id": "fd0ccfc8354876b0",
+   "title": "ARMORY CASTLE Exploits vSphere",
+   "url": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/",
+   "source": "Google Cloud Threat Intelligence",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Blue team"
+   ],
+   "kind": "article",
+   "lesson": "Management plane systems such as vCenter concentrate control, so a single authentication bypass can yield every hypervisor it manages. Patch them first and monitor directory services such as vmdir for unusual access."
+  },
+  {
+   "id": "2a3576b7db96929b",
+   "title": "The risks of device code authentication for AI coding agents",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+   "source": "Microsoft Security Blog",
+   "topics": [
+    "Red team",
+    "Blue team",
+    "Defence"
+   ],
+   "kind": "article",
+   "lesson": "A device code approval grants whatever scopes the attacker requested, and any public client supporting the device flow can be abused. When an AI agent with local execution rights is the target, one phished approval can become code execution on the endpoint."
+  },
+  {
+   "id": "c5599644421883df",
+   "title": "Attackers Used Optimizely to A/B Test Malware on Top Websites",
+   "url": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
+   "source": "Krebs on Security",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "kind": "article",
+   "lesson": "A site can be compromised through a trusted third-party script without its own infrastructure being breached. Content Security Policy and Subresource Integrity limit the damage from a vendor compromise."
+  },
+  {
+   "id": "e3a24527dd73e527",
+   "title": "The challenge of defending against bulletproof dead drops on public blockchains",
+   "url": "https://blog.talosintelligence.com/the-challenge-of-defending-against-bulletproof-dead-drops-on-public-blockchains/",
+   "source": "Cisco Talos",
+   "topics": [
+    "Blue team",
+    "Red team"
+   ],
+   "kind": "article",
+   "lesson": "Command-and-control configuration stored on public blockchains cannot be seized or blocked by domain. Detect the retrieval behaviour instead, such as outbound JSON-RPC from hosts with no reason to touch a blockchain, and inspect memory where it is decrypted."
+  },
+  {
+   "id": "2b43967529f43a47",
+   "title": "Memory Safety Isn't All You Need: Code Reuse Attacks in Memory Safe Languages",
+   "url": "https://arxiv.org/abs/2611.18910",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Programming"
+   ],
+   "kind": "paper",
+   "lesson": "Memory safety does not prevent code reuse when attacker data can change reads of shared runtime state such as prototypes, type metadata or the DOM. Audit where untrusted input can influence those lookups before relying on a language's safety guarantees."
+  },
+  {
+   "id": "e0345f7a9a1e2653",
+   "title": "Compositional Exploits in Autonomous Coding Agents: Attack Mechanics and Ephemeral Defense",
+   "url": "https://arxiv.org/abs/2611.19764",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Defence"
+   ],
+   "kind": "paper",
+   "lesson": "Autonomous coding agents can chain individually harmless tools across turns through shared files, environment variables and memory. Single-tool scanners miss this, so enforce least privilege per action at the OS level rather than trusting components at install time."
+  },
+  {
+   "id": "02dd92c6ab16f6b2",
+   "title": "When Tool Names Are Not Identities: Measuring Provider Misbinding in MCP-Based AI Agents",
+   "url": "https://arxiv.org/abs/2611.21577",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Red team"
+   ],
+   "kind": "paper",
+   "lesson": "A tool's name and description do not prove who provides it, so an attacker's MCP server can win selection through name collisions and matching schemas. Bind a verified provider identity to every tool call."
+  },
+  {
+   "id": "79f0d3a501e3cd06",
+   "title": "Exploited Before It Was Fixed? Vulnerability Timelines from Open, Machine-Readable Evidence",
+   "url": "https://arxiv.org/abs/2611.22479",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Blue team"
+   ],
+   "kind": "paper",
+   "lesson": "Exploitation-to-patch timing metrics depend on source provenance. A collector that treats a published proof of concept as active exploitation inflated early exploitation dates by about 40%, so check what each date really represents."
+  },
+  {
+   "id": "4d8e50dff2cd5909",
+   "title": "AutoPI: Taxonomy-Guided Adaptive Red Teaming for Prompt Injection in LLM Agents",
+   "url": "https://arxiv.org/abs/2611.24313",
+   "source": "arXiv cs.CR",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "kind": "paper",
+   "lesson": "Attack success rate alone hides how many techniques a prompt-injection red teamer has tested. Measure coverage across the technique taxonomy, because untested families are where defences will fail."
+  }
+ ]
+}

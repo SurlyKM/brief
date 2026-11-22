@@ -1,6 +1,11 @@
 {
  "issues": [
   {
+   "week": "2026-11-16",
+   "range": "16 to 22 November 2026",
+   "headline": "Trusted components become the attack path, and AI agents are the newest one"
+  },
+  {
    "week": "2026-11-09",
    "range": "9 to 15 November 2026",
    "headline": "Agents on both sides of the keyboard: AI-run intrusions land as defenders race to put policy outside the model"
