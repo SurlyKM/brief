@@ -13,7 +13,6 @@ import json
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 import yaml
 
@@ -40,8 +39,13 @@ def main():
     labels = [t["label"] for t in interests["topics"]]
 
     now = datetime.now(timezone.utc)
-    today = now.astimezone(ZoneInfo(sel["timezone"])).date().isoformat()
+    today = now.date().isoformat()          # UTC, only used to age out seen.json
     cutoff = now - timedelta(hours=sources.get("lookback_hours", 72))
+
+    # One-off conversion of the old per-Sydney-day files, if any remain.
+    moved = store.migrate_legacy(args.data_dir)
+    if moved:
+        log(f"migrated {moved} old day files to editions")
 
     # 1. Fetch
     if args.fixture:
@@ -89,14 +93,15 @@ def main():
             })
     log(f"{len(keep)} cleared the relevance bar ({len(scored_ids)} scored)")
 
-    # 6. Save
-    total = store.merge_day(args.data_dir, today, keep, sel["max_items_per_day"],
-                            sel.get("max_papers_per_day"))
+    # 6. Save this run as one edition
+    picked = store.select_for_edition(keep, sel["max_items_per_run"],
+                                      sel.get("max_papers_per_run"))
+    eid = store.write_edition(args.data_dir, now, picked)
     for i in scored_ids:
         seen[i] = today
     store.save_seen(args.data_dir, seen, today)
     store.rebuild_index(args.data_dir, labels)
-    log(f"{today}: {total} items in today's brief")
+    log(f"edition {eid}: {len(picked)} stories" if eid else "no stories this run, nothing published")
 
 
 if __name__ == "__main__":

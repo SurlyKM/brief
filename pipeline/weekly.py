@@ -22,7 +22,7 @@ import json
 import os
 import sys
 import urllib.request
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, time, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -77,17 +77,16 @@ def last_completed_week(today):
     return week_bounds(this_monday - timedelta(days=7))
 
 
-def collect(data_dir, monday, sunday):
-    """All stories from the week's daily files, best first, de-duplicated."""
-    items, seen = [], set()
-    d = monday
-    while d <= sunday:
-        day = store.read_json(Path(data_dir) / f"{d.isoformat()}.json", {"items": []})
-        for it in day["items"]:
-            if it["id"] not in seen:
-                seen.add(it["id"])
-                items.append({**it, "day": d.isoformat()})
-        d += timedelta(days=1)
+def collect(data_dir, monday, sunday, tz):
+    """All stories from editions published during the week (midnight Monday to
+    midnight the next Monday in `tz`), best first, de-duplicated. Each item
+    gets a "day" (its edition's date in `tz`) for counting days covered."""
+    zone = ZoneInfo(tz)
+    start = datetime.combine(monday, time.min, zone)
+    end = datetime.combine(sunday + timedelta(days=1), time.min, zone)
+    items = store.editions_between(data_dir, start, end)
+    for it in items:
+        it["day"] = datetime.fromisoformat(it["edition"]).astimezone(zone).date().isoformat()
     items.sort(key=lambda i: (i.get("relevance", 0), i["published"]), reverse=True)
     return items
 
@@ -256,7 +255,7 @@ def main():
             log(f"[weekly] issue for {monday} already exists, nothing to do")
             return
 
-    items = collect(args.data_dir, monday, sunday)
+    items = collect(args.data_dir, monday, sunday, tz)
     if not items:
         log(f"[weekly] no stories for {monday} to {sunday}, skipped")
         return

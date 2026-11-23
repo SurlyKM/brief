@@ -351,7 +351,7 @@
 // topics: the full topic list (from index.json), in a fixed order.
 // selected: the ticked topics; empty means "show everything".
 // The selection carries over when you change day, like a real filter.
-const state = { dates: [], date: null, items: [], topics: [], selected: new Set() };
+const state = { dates: [], byDay: new Map(), date: null, items: [], topics: [], selected: new Set(), updatedAt: "" };
 const cache = new Map();   // date -> items, so swiping back and forth is instant
 const $ = (id) => document.getElementById(id);
 
@@ -414,7 +414,12 @@ function render(direction) {
   main.replaceChildren();
   main.classList.remove("in-left", "in-right");
   const shown = visible(state.items, state.selected);
-  $("count").textContent = shown.length ? shown.length + " stories" : "";
+  const label = dayLabel(state.date || "");
+  $("count").textContent = [
+    label === "Today" || label === "Yesterday" ? dayFmt.format(asDate(state.date)) : "",
+    shown.length ? shown.length + " stories" : "",
+    state.updatedAt || "",
+  ].filter(Boolean).join(" · ");
   if (!shown.length) {
     main.append(h("p", { class: "empty" }, "Nothing here yet for this selection."));
   } else {
@@ -575,14 +580,52 @@ function jumpToStories() {
 
 // ---------- Data ----------
 
-async function getDay(date) {
-  if (cache.has(date)) return cache.get(date);
+// Each pipeline run is an "edition" with an exact UTC time. Here we group
+// editions into days using THIS reader's time zone, so "Today" is right in
+// Sydney, Denver or anywhere else. state.byDay maps "YYYY-MM-DD" (local) to
+// that day's editions; state.dates is the same keys, newest first.
+
+// en-CA formats dates as YYYY-MM-DD; with no timeZone given it uses the reader's own.
+const keyFmt = new Intl.DateTimeFormat("en-CA", { year: "numeric", month: "2-digit", day: "2-digit" });
+const localKey = (d) => keyFmt.format(d);
+const timeFmt = new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit" });
+
+function dayLabel(key) {
+  const now = new Date();
+  if (key === localKey(now)) return "Today";
+  if (key === localKey(new Date(now.getTime() - 864e5))) return "Yesterday";
+  return dayFmt.format(asDate(key));
+}
+
+function groupEditions(editions) {
+  const byDay = new Map();
+  editions.forEach((e) => {
+    const k = localKey(new Date(e.published));
+    if (!byDay.has(k)) byDay.set(k, []);
+    byDay.get(k).push(e);
+  });
+  state.byDay = byDay;
+  state.dates = [...byDay.keys()].sort().reverse();
+}
+
+async function getEdition(id) {
+  if (cache.has(id)) return cache.get(id);
   try {
-    const res = await fetch("data/" + date + ".json", { cache: "no-cache" });
+    const res = await fetch("data/editions/" + id + ".json", { cache: "no-cache" });
     const items = res.ok ? (await res.json()).items : [];
-    cache.set(date, items);
+    cache.set(id, items);
     return items;
   } catch { return []; }
+}
+
+// All stories for one local day: every edition that day, best first.
+async function getDay(key) {
+  const eds = state.byDay.get(key) || [];
+  const lists = await Promise.all(eds.map((e) => getEdition(e.id)));
+  const seen = new Set();
+  return lists.flat()
+    .filter((i) => !seen.has(i.id) && seen.add(i.id))
+    .sort((a, b) => (b.relevance - a.relevance) || b.published.localeCompare(a.published));
 }
 
 async function loadDay(date, direction) {
@@ -590,7 +633,9 @@ async function loadDay(date, direction) {
   state.date = date;
   state.items = await getDay(date);
   const idx = state.dates.indexOf(date);
-  $("date-label").textContent = dayFmt.format(asDate(date));
+  const latest = state.byDay.get(date).map((e) => e.published).sort().pop();
+  state.updatedAt = latest ? "updated " + timeFmt.format(new Date(latest)).replace(" ", "") : "";
+  $("date-label").textContent = dayLabel(date);
   $("picker").value = date;
   $("prev").disabled = idx >= state.dates.length - 1;
   $("next").disabled = idx <= 0;
@@ -650,9 +695,9 @@ async function init() {
   setupSwipe();
   setupBackToTop();
   setupSheet();
-  let index = { dates: [], updated: null };
+  let index = { editions: [], updated: null };
   try { index = await (await fetch("data/index.json", { cache: "no-cache" })).json(); } catch {}
-  state.dates = index.dates || [];
+  groupEditions(index.editions || []);
   // The pipeline writes the full topic list into index.json so every topic
   // shows even on days it has no stories. Older index files lack it, so fall
   // back to whatever topics today's stories use.
@@ -668,7 +713,11 @@ async function init() {
     return;
   }
   const picker = $("picker");
-  state.dates.forEach((d) => picker.append(h("option", { value: d }, longFmt.format(asDate(d)))));
+  state.dates.forEach((d) => {
+    const rel = dayLabel(d);
+    const full = longFmt.format(asDate(d));
+    picker.append(h("option", { value: d }, rel === "Today" || rel === "Yesterday" ? rel + ", " + full : full));
+  });
   picker.addEventListener("change", () => {
     const from = state.dates.indexOf(state.date), to = state.dates.indexOf(picker.value);
     loadDay(picker.value, to > from ? "older" : "newer");

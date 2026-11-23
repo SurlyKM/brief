@@ -7,12 +7,12 @@
 # Selection settings
 selection:
   candidates_per_run: 40      # used only if candidates_per_kind is not set
-  candidates_per_kind: 20     # shortlist slots for papers and for articles each
-  max_papers_per_day: 8       # leaves room for blog posts; quiet days may show fewer than 15
+  candidates_per_kind: 12     # shortlist slots for papers and for articles each
   batch_size: 8               # articles per model request
   min_relevance: 5            # model scores 0-10; below this is dropped
-  max_items_per_day: 15       # cap per calendar day (Australia/Sydney)
-  timezone: Australia/Sydney
+  max_items_per_run: 8        # stories per edition (two runs a day, so about 16 a day)
+  max_papers_per_run: 4       # leaves room for blog posts; quiet runs may publish fewer
+  timezone: Australia/Sydney  # only sets the Monday-to-Sunday week for the weekly issue
 
 topics:
   - label: AI and ML
