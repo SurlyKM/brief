@@ -1,0 +1,69 @@
+{
+ "published": "2026-11-23T00:23:53+00:00",
+ "items": [
+  {
+   "id": "c86b62bf64e38e05",
+   "title": "Backtracking Agent Applications Security Incidents",
+   "url": "https://arxiv.org/abs/2611.26525",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T18:01:28+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "The paper presents Origin, a tool that helps analysts backtrack agent application security incidents to the compromise entry point by bridging the gap between agent trajectory logs and low-level application code. It uses a cross-layer dependency graph linking inferred agent functionality regions to variables in a taint propagation subgraph, queried through a small query language. In case studies covering eight attack incidents across five agent applications, an analyst using Origin identified all compromise entry points correctly.",
+   "takeaway": "When logs are recorded at a high abstraction level, incident response needs a mapping back to the code layer where the compromise actually happened. Building that cross-layer link ahead of time makes agent incidents much faster to trace."
+  },
+  {
+   "id": "6eb774c68c86c320",
+   "title": "Signed but Unbound: The Authority Gap Between Agent Commerce Mandates and Crypto Wallet Signatures",
+   "url": "https://arxiv.org/abs/2611.25821",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T09:39:53+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The authors define an authority gap between what an AI agent's payment mandate specifies and what a crypto wallet signature actually binds on-chain. Their tests on deployed contract code show that many USD Coin authorisations on Base could be redeemed by any holder of the signature, with 98.7% of sampled redemptions following such a path. They propose MandateLock, a recipient contract that rejects all modified mandates in their trials while accepting signatures from independent signers, at a cost of 25% more gas.",
+   "takeaway": "A valid signature proves who approved a message, not that the verifying system enforces every field the approver intended, so the enforcing contract must bind the full terms and restrict who can submit them."
+  },
+  {
+   "id": "89760b18fe2f626a",
+   "title": "Trace2ST: Recovering PLC Structured Text from I/O Traces with LLM Generation and Verification",
+   "url": "https://arxiv.org/abs/2611.24979",
+   "source": "arXiv cs.PL",
+   "kind": "paper",
+   "published": "2026-11-17T19:57:11+00:00",
+   "topics": [
+    "Reverse engineering",
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The authors test whether an LLM can recover executable Structured Text PLC code from logged input and output traces alone, using a generate, replay and feedback loop that checks candidates scan by scan against the recording. Across 47 third-party programs the recovered code matched unseen inputs at 94% of scans, and most remaining errors came from branches the trace never exercised. Adding a targeted trace raised adversarial agreement from 0.80 to 0.98, while a classical automata-learning baseline reached only 0.40.",
+   "takeaway": "Recovering program structure is the hard part of reverse engineering a controller, and coverage of the trace determines what behaviour can be trusted. Defenders can use the same replay-and-compare idea to reconstruct and audit logic from historian data."
+  },
+  {
+   "id": "72330247ae66852b",
+   "title": "MetaScanner: An Empirical Study and Proactive Defense against Deceptive UI Attacks in Social VR",
+   "url": "https://arxiv.org/abs/2611.25608",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T06:55:13+00:00",
+   "topics": [
+    "Red team",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "The authors describe four deceptive UI attacks in which malicious world creators hide scripts and interactive elements that trick social VR users into unintended actions. They implemented the attacks on VRChat, and a 30-person IRB-approved study confirmed they work. They also present MetaScanner, a static analysis tool that scans world assets before users encounter them, detecting all threats in their test worlds with an average scan time of 5 seconds.",
+   "takeaway": "User-generated content on platforms can be screened for suspicious interactive logic before exposure, which is a practical defensive layer, though detection is only as good as the patterns it is built to recognise."
+  }
+ ]
+}
