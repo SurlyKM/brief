@@ -1,0 +1,114 @@
+{
+ "published": "2026-11-23T19:54:17+00:00",
+ "items": [
+  {
+   "id": "720ee136746742db",
+   "title": "VirtualBox Process Hardening on Windows 2026 Edition: What’s a Single Bit Between Friends?",
+   "url": "https://projectzero.google/2026/11/virtualbox-process-hardening.html",
+   "source": "Google Project Zero",
+   "kind": "article",
+   "published": "2026-11-23T08:00:00+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Reverse engineering"
+   ],
+   "relevance": 9,
+   "summary": "Project Zero revisits VirtualBox's Windows process hardening and finds three new bypasses plus a broken fix for an earlier issue. The focus is CVE-2026-87268, where .NET's ability to load assemblies from memory buffers, combined with VirtualBox's DLL loader hooks, let arbitrary managed code run inside a protected process. The write-up walks through the .NET loading path, the root cause, and how the hooks were circumvented.",
+   "takeaway": "Allow-list or hook-based protections can be undermined by legitimate runtime features that load code through a path the protection does not inspect, so map every loading route before trusting a control."
+  },
+  {
+   "id": "3e00739ce0e37183",
+   "title": "Mjolnir: Finding and Reproducing Vulnerabilities in Root-of-Trust Firmware and RTL with Project-Grounded Agents",
+   "url": "https://arxiv.org/abs/2611.27567",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-20T13:04:36+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The authors present Mjolnir, an agentic pipeline that feeds each project's threat model and design conventions to discovery and skeptical review agents, then reproduces surviving findings as proof-of-concept tests in the project's own toolchain. On Caliptra, OpenTitan and OpenPRoT firmware and RTL, it outperformed single-agent baselines on precision and on recall against known fixed bugs. Maintainers confirmed 64 findings as previously unknown security-relevant bugs.",
+   "takeaway": "Give an LLM agent the project's threat model and a reproducible test harness, and it finds bugs that generic vulnerability patterns miss, especially where bugs produce no crash. Adding a sceptical review stage that must reproduce each finding helps filter false positives."
+  },
+  {
+   "id": "725989c230c856c4",
+   "title": "Suspected Until Inspected: Neuro-Symbolic Detection of Broken Access Control in Server-Side Web Applications",
+   "url": "https://arxiv.org/abs/2611.27270",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-20T08:10:01+00:00",
+   "topics": [
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "FLINT is a neuro-symbolic tool for finding broken access control in server-side web apps without framework-specific rules. The LLM may only propose that a data access needs a guard, while a symbolic analysis with origin tracing and interprocedural dataflow must verify any check before the access is cleared. It found 112 zero-day exploitable access control bugs in projects such as Gitea, Grafana and Strapi, with disclosures accepted by developers.",
+   "takeaway": "Let the language model propose hypotheses but require a deterministic verifier to make the final call, which prevents a confident but wrong model from clearing a real vulnerability. Separating proposal from verdict is a useful pattern for any LLM-assisted security analysis."
+  },
+  {
+   "id": "a4c108e8f643d253",
+   "title": "Thinking fast about prompt injection: New System 1 models in Elastic",
+   "url": "https://www.elastic.co/security-labs/blog/prompt-injection-detection-ai-agents",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-23T08:00:15+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "Elastic's Security for AI package runs four small classifiers inside the user's own cluster to score GenAI traffic for prompt injection, encoded payloads, obfuscation and model refusals, without needing a GPU. High-scoring events are checked by an LLM before an alert fires, and anomaly jobs baseline which tools each caller uses for AI agents. The eight detection rules map to MITRE ATLAS and the OWASP Top 10 for Agentic Applications, and the feature is in technical preview from Elastic Stack 9.6.",
+   "takeaway": "Cheap local classifiers can screen high volumes of agent traffic, with a more expensive model reserved for confirming high-scoring events. Baselining tool use per caller is a practical way to spot an agent that has been hijacked, since natural language attacks can evade signature rules."
+  },
+  {
+   "id": "64bfada7399cf9fd",
+   "title": "Cleave: Severing Guardrails and Auditing Spectral Coupling in Open-Weight LLMs",
+   "url": "https://arxiv.org/abs/2611.27426",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-20T10:25:54+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "The paper presents Cleave, a training-free method that edits the residual writing weights of open-weight LLMs to strip safety refusals, either fully or only for cybersecurity topics. The edited models keep general capability and evade both behavioural spot-checks and static weight audits, and they significantly increase executable exploit generation in tests. The authors also propose a defence combining pre-release subspace diagnostics with post-release weight-coupling audits, reporting 100% detection recall at a 1% false-positive rate.",
+   "takeaway": "Safety behaviour baked into model weights can be fragile, so release controls should audit the weights themselves and not just test outputs."
+  },
+  {
+   "id": "781cd346a83a10d2",
+   "title": "Subverting Tool Arguments: Defense-Evading Metadata Poisoning in LLM Agents",
+   "url": "https://arxiv.org/abs/2611.27041",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-20T03:13:56+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "The paper describes GRAFT, a method that uses an LLM to iteratively optimise third-party MCP tool descriptions so they cause an agent to generate malicious tool arguments while still looking benign to users and LLMs. It targets argument-relevant tokens via masking and evades five filter-based defences and several existing injection defences. The attack stays effective even against an adaptive defence trained on its own injections.",
+   "takeaway": "Tool metadata is an instruction channel that agents trust, so a poisoned description can steer arguments without any malicious content in retrieved data. Treat third-party tool descriptions as untrusted input and validate the arguments agents generate from them."
+  },
+  {
+   "id": "ca30c9b6b18169c3",
+   "title": "Elastic ships 143 detection rules for AI agents and LLM platforms",
+   "url": "https://www.elastic.co/security-labs/blog/ai-security-detection-rules-coding-agents-mcp",
+   "source": "Elastic Security Labs",
+   "kind": "article",
+   "published": "2026-11-23T10:50:41+00:00",
+   "topics": [
+    "SOC",
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 6,
+   "summary": "Elastic describes 143 SIEM and Elastic Defend rules for detecting threats around coding agents, MCP servers, and AI platforms such as Bedrock, Vertex AI, and ChatGPT Enterprise. The rules target agent hijacking, malicious MCP servers, credentials pasted into prompts, and stolen API keys, and they cite real supply-chain incidents involving npm packages and an IDE extension. The post also explains the telemetry each rule needs and how coverage varies across providers.",
+   "takeaway": "Developer AI tools run with shell access and cloud credentials, so treat them as privileged endpoints and monitor their process and tool-call behaviour."
+  }
+ ]
+}
