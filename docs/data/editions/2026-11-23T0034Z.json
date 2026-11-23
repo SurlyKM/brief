@@ -1,0 +1,37 @@
+{
+ "published": "2026-11-23T00:34:08+00:00",
+ "items": [
+  {
+   "id": "b81bc327114aa3d9",
+   "title": "VisualJevBench: A Benchmark and Black-Box Attacks for Visual Typed Decision Models",
+   "url": "https://arxiv.org/abs/2611.25435",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-19T03:16:43+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Vulnerability research"
+   ],
+   "relevance": 7,
+   "summary": "The authors introduce VisualJevBench, a benchmark of 800 images and 3,200 questions for testing adversarial robustness of a vision-enabled typed decision model across four attack surfaces. They also propose ABPS, a black-box search method that uses the structured output to find effective image manipulations. Image-specific attacks reach up to 69.6% success, universal attacks transfer to unseen images at 33.15%, and geometric transforms transfer across scenarios at 40.09%.",
+   "takeaway": "Constraining a model's output to a fixed structure does not remove its attack surface, because the typed answers themselves give an attacker a feedback signal for black-box optimisation."
+  },
+  {
+   "id": "4bdd3c3badd3cc68",
+   "title": "Safe Personal RSI: Evaluating and Repairing Personal-Agent Updates",
+   "url": "https://arxiv.org/abs/2611.23651",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-18T00:15:38+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors propose a gate for self-modifying personal agents in which prompt-only updates must pass safety and task tests, with failing cases repeated and repairs trialled before adoption, otherwise the current instructions stay in place. Across three models and two risky edits, the procedure rejected 20 of 21 update attempts, and an admitted repair cut attack violations from 10.7% to 0% in one setting. The paper also finds a missing local OAuth scope check in the evaluated snapshot, which is a concrete authorisation flaw.",
+   "takeaway": "Treat agent instruction changes as code changes that need regression and injection tests, and default to the last known-good version when no candidate passes."
+  }
+ ]
+}
