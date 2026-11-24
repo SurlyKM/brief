@@ -1,0 +1,68 @@
+{
+ "published": "2026-11-24T04:32:58+00:00",
+ "items": [
+  {
+   "id": "0560883253da1784",
+   "title": "Who Is Prompt-Injecting Coding Agents? An Empirical Study of Hidden AI-Directed Text on GitHub",
+   "url": "https://arxiv.org/abs/2611.28763",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-21T12:15:00+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team",
+    "Defence"
+   ],
+   "relevance": 9,
+   "summary": "The authors scanned about 145 million GitHub issues, pull requests, comments and READMEs for text that is hidden from human readers but still fed to AI agents. They found 2,281 validated items, with attacks being rare but aimed at maintainers' own triage and CI agents. Most of the hidden text was first-party orchestration, where projects coordinate their own agents through hidden markers that anyone able to comment could imitate. Replayed offline, the attacks worked against one small model in 19% of cases and against none once HTML comments were stripped.",
+   "takeaway": "Any content an AI agent reads is an input channel, so treat hidden markup such as HTML comments as untrusted and strip it before the model sees it."
+  },
+  {
+   "id": "5b74a9f5e1ea6165",
+   "title": "Right Verdict, Right Reason? An Execution-Grounded Study of Whether LLM Vulnerability Detectors Understand Vulnerabilities",
+   "url": "https://arxiv.org/abs/2611.28584",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-21T05:36:23+00:00",
+   "topics": [
+    "AI and ML",
+    "Vulnerability research"
+   ],
+   "relevance": 9,
+   "summary": "The authors test whether LLM vulnerability detectors understand the bugs they report, using 515 C and C++ functions whose faults they reproduce with proof-of-concept exploits. Open-weight models could not reliably tell vulnerable functions from their fixed versions, and commercial models often labelled fixed code as vulnerable. Commercial models located faults better than a keyword rule, but their advantage in predicting crashes faded on vulnerabilities published after the training cutoff.",
+   "takeaway": "A high benchmark score does not prove a model understands a vulnerability, so test detectors with execution-confirmed counterfactuals and compare them against simple non-learning baselines on data they could not have memorised."
+  },
+  {
+   "id": "e0d28572d078ffc2",
+   "title": "Benchmarking Web Agent Defenses Against Adaptive Visual Prompt Injection",
+   "url": "https://arxiv.org/abs/2611.29268",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-22T06:20:09+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "AdaptiveVPI is a benchmark of 360 webpage instances in which malicious destinations are hidden from screenshots, testing visual prompt injection against web agents. The authors build an attacker that iteratively refines its injected instructions using feedback from the defence under test. Adaptive attacks succeeded about 92% of the time against both computer-use and browser-use agents across 21 defence configurations.",
+   "takeaway": "A defence that only blocks known injection patterns can look strong against static attacks but fails once the attacker can see and adapt to the defence, so evaluate it against adaptive adversaries from the start."
+  },
+  {
+   "id": "4a9d0d3003f8923f",
+   "title": "Weight-Space Backdoors in Open-Weight LLMs: Cross-Architecture Attacks and Blind Model Forensics",
+   "url": "https://arxiv.org/abs/2611.28543",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-21T04:00:01+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Red team"
+   ],
+   "relevance": 7,
+   "summary": "The authors show that a sparse change to about 0.0002% of an open-weight model's parameters can implant a trigger that produces a specific output, and they report this across 14 architecture families. They describe three response regimes that govern how easily a backdoor can be inserted, and PPO-based weight search was no better than random search. Their scanner flagged 4 of 5 backdoored artefacts in a small development cohort, but it also marked all 17 clean artefacts as suspicious.",
+   "takeaway": "Provenance alone does not prove a model is clean, so pair weight-difference analysis with behavioural probing, and check false positive rates against a clean baseline before trusting a scanner."
+  }
+ ]
+}
