@@ -1,0 +1,68 @@
+{
+ "published": "2026-11-24T19:23:04+00:00",
+ "items": [
+  {
+   "id": "8149016989d58731",
+   "title": "Airlock: Robust Sandboxing and Governance of Rogue Agents",
+   "url": "https://arxiv.org/abs/2611.31010",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-23T16:56:51+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "The paper proposes Airlock, which pairs each agent VM with a separate Airlock VM in its own hardware-isolated TEE, so all network and storage traffic is mediated outside the host. The authors modify Arm's CCA firmware and both kernels, adapt the OpenShell agent runtime, and add tamper-proof auditing. On a Radxa board, the design costs under 15% on small-message latency and about half of bandwidth, which they judge tolerable for typical agent tasks.",
+   "takeaway": "Put the security boundary and audit log outside the component being contained, so a fully compromised agent cannot disable monitoring or reach the host to collude."
+  },
+  {
+   "id": "5d09561e7229eb1e",
+   "title": "Volant Manticore: Flying Under the Radar",
+   "url": "https://research.checkpoint.com/2026/volant-manticore-flying-under-the-radar/",
+   "source": "Check Point Research",
+   "kind": "article",
+   "published": "2026-11-24T14:13:55+00:00",
+   "topics": [
+    "Blue team",
+    "Defence",
+    "SOC"
+   ],
+   "relevance": 7,
+   "summary": "Check Point names Volant Manticore, an Iran-nexus group linked to MOIS that it assesses as likely former MuddyWater operators. It describes the KuboShell backdoor, which uses IPFS for command and control, and the Homa Framework built on a reimplemented MuddyC2Go client. The group targets Cyprus telecoms, airlines, and critical infrastructure, tests tooling against antivirus, and uses Fortinet SSL VPN clients, with a recent shift towards Saudi healthcare.",
+   "takeaway": "Threat clusters often split from parent groups and keep the same tradecraft, so detections tied only to one group's name may miss the successor's tooling."
+  },
+  {
+   "id": "d9a78bd56e83dcd8",
+   "title": "ReproShift: Cross-Version Adaptation of Linux Kernel Fuzzing Crash Reproducers",
+   "url": "https://arxiv.org/abs/2611.30655",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-23T13:16:11+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Exploits",
+    "Programming"
+   ],
+   "relevance": 7,
+   "summary": "ReproShift migrates historical Linux kernel crash reproducers to newer kernel versions by identifying version-sensitive operations and changing only those while keeping the trigger logic. It validates each candidate by execution on the target kernel and iterates on feedback. Across 107 migration cases it confirmed same-bug reproduction in 57, against 19 for direct replay, and it produced 22 upstream reports with 7 fixed and 5 maintainer-confirmed.",
+   "takeaway": "A crash reproducer encodes the resource dependencies and operation order that trigger the bug, so when migrating one across versions, change only the interface details that differ and check each result for the same crash."
+  },
+  {
+   "id": "5936caadd7a1b51f",
+   "title": "Interrupt-Aware Static Detection of Deadlocks in Rust Operating Systems",
+   "url": "https://arxiv.org/abs/2611.30713",
+   "source": "arXiv cs.SE",
+   "kind": "paper",
+   "published": "2026-11-23T13:55:12+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming"
+   ],
+   "relevance": 6,
+   "summary": "The authors present a static analysis tool for Rust operating systems that tracks lock and interrupt state across function boundaries using MIR-based flow-sensitive analysis, with lightweight annotations for project-specific semantics. An LLM agent then reviews each report and gives a confidence assessment. Across four real Rust OSes they find 26 true cases tied to nine maintainer-confirmed defects, with 86.2% precision and 96.2% recall after auditing.",
+   "takeaway": "Interrupt handlers that take locks already held by interrupted code are a classic deadlock source, and Rust's guards do not prevent it, so interrupt context must be modelled explicitly in lock analysis."
+  }
+ ]
+}
