@@ -1,0 +1,69 @@
+{
+ "published": "2026-11-25T03:17:43+00:00",
+ "items": [
+  {
+   "id": "39db2583880389e1",
+   "title": "Aftershock: Yesterday's Linux Kernel Bugs, Tomorrow's Android Exploits",
+   "url": "https://arxiv.org/abs/2611.31547",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-23T20:58:46+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "Defence"
+   ],
+   "relevance": 9,
+   "summary": "The researchers built a pipeline that screens upstream Linux kernel patches, reproduces memory-safety bugs on Pixel devices, and uses an off-the-shelf LLM agent to write local privilege escalation exploits from an untrusted app. They generated 17 verified exploits from 152 candidate CVEs at a median cost of about $321 and 14 hours of agent time. Only 3 of the 17 exploited CVEs appeared in Android Security Bulletins, and upstream fixes reached Pixel devices a median of 181 days later.",
+   "takeaway": "Upstream patches are now n-day exploit blueprints, so patch-diff monitoring and fast downstream deployment of kernel fixes matter more than they did when exploitation took weeks of manual effort."
+  },
+  {
+   "id": "17c863b6111d0de6",
+   "title": "Agentic Discovery of Soundness Bugs in Safe Rust Bindings",
+   "url": "https://arxiv.org/abs/2611.31813",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-24T02:06:23+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Programming",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The authors evaluate LLM agents as auditors of safe Rust bindings, defining a taxonomy covering undefined behaviour, divergence from the wrapped library, and incomplete unsafe contracts. Agents found the first two classes readily but seldom found incomplete contracts, and their findings were usually real, though they rarely confirmed them with a sanitiser. Their Crustify system found 225 undefined-behaviour bugs across 16 widely used crates, and the open model matched the closed one at a quarter of the cost.",
+   "takeaway": "Auditing unsafe Rust boundaries should focus on whether the safe wrapper enforces every invariant the underlying C or C++ code relies on, and every agent finding should be confirmed with a sanitiser before it is reported."
+  },
+  {
+   "id": "294d1be6def77426",
+   "title": "SwarmLeak: Does Coordination Improve Privacy Attacks on LLM Agents?",
+   "url": "https://arxiv.org/abs/2611.31791",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-24T01:43:42+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Defence"
+   ],
+   "relevance": 8,
+   "summary": "The authors built SwarmLeak, a dataset of 24 group-chat scenarios where attackers posing as colleagues try to get victim LLM agents to reveal protected fields despite a confidentiality policy. Comparing one attacker with a coordinated swarm at equal token budgets, they found no advantage for swarms, and the victim model mattered far more than attacker count, with leak rates ranging from 0% to 99.4%. Retrieval of protected data often did not lead to disclosure, but even a single leaked field can identify a patient or client.",
+   "takeaway": "When testing agent defences, the choice of victim model usually dwarfs the attacker's sophistication or team size, so benchmark across models rather than assuming a bigger red team finds more. Also measure retrieval and disclosure separately, since an agent that reads protected data may still withhold it."
+  },
+  {
+   "id": "59bcf205a94d0f43",
+   "title": "Harvesting Apple's Orchard: A Security Analysis of On-Device CoreML Models Across the Apple Ecosystem",
+   "url": "https://arxiv.org/abs/2611.31688",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-23T23:22:07+00:00",
+   "topics": [
+    "macOS and iOS",
+    "Reverse engineering",
+    "Vulnerability research"
+   ],
+   "relevance": 8,
+   "summary": "The authors harvested over 1,100 CoreML model artefacts from Apple platform images and devices, converting 155 previously opaque bundles into loadable packages. They report plaintext learned parameters, internal tokens in model bundles, adversarial flip rates of up to 100%, and a 16-byte weight edit that changes most probe outputs with no observed runtime integrity check. Apple declined three reports, classing the findings as robustness results rather than security boundary crossings.",
+   "takeaway": "On-device models are part of the attack surface, so check whether a model's weights can be modified or swapped without detection. Vendor classification of a finding as out of scope does not mean the impact is absent, and it should shape how you assess your own risk."
+  }
+ ]
+}
