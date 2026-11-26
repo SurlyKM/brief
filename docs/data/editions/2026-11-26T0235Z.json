@@ -1,0 +1,36 @@
+{
+ "published": "2026-11-26T02:35:32+00:00",
+ "items": [
+  {
+   "id": "fc1fe5cb80de4b70",
+   "title": "What defenders need to know about ARTEX, the agentic AI framework threat actors abuse",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/",
+   "source": "Microsoft Security Blog",
+   "kind": "article",
+   "published": "2026-11-25T18:09:06+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 8,
+   "summary": "Microsoft Threat Intelligence reports that ARTEX, a publicly available AI-agent penetration testing framework, has been adopted by state-sponsored and criminal groups for reconnaissance, credential attacks and web exploitation. ARTEX does not invent new techniques; it automates existing tools and can reach privileged access in minutes. Operators can also vary network indicators such as source IP and user agent to evade simple signature detection.",
+   "takeaway": "When attackers automate with agents, fixed indicators like IP addresses and user agents are fragile, so detections should focus on behavioural sequences such as rapid multi-stage progression across hosts."
+  },
+  {
+   "id": "eb56f82071d495a4",
+   "title": "How Far Can LLMs Go in Generating Android Lint Checks from Natural Language?",
+   "url": "https://arxiv.org/abs/2611.28159",
+   "source": "arXiv cs.PL",
+   "kind": "paper",
+   "published": "2026-11-19T22:00:36+00:00",
+   "topics": [
+    "Programming",
+    "AI and ML"
+   ],
+   "relevance": 5,
+   "summary": "The authors introduce LintBench, a human-validated set of 113 real Android Lint checks, each paired with a natural language description and its original test suite. Prompting alone gets LLMs to a 30% to 65% pass rate, while execution-guided repair with retrieved framework knowledge lifts this to 57% to 85% within five calls. Most compiled but failing checks had false negatives, so getting the detection logic right remains the hard part.",
+   "takeaway": "Compiling code is not the same as correct detection: an LLM-generated analysis rule can build cleanly and still miss the issues it exists to find, so test suites with known positives and negatives are essential."
+  }
+ ]
+}
