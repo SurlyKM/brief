@@ -1,0 +1,68 @@
+{
+ "published": "2026-11-27T17:52:47+00:00",
+ "items": [
+  {
+   "id": "bf40509517f7fad8",
+   "title": "Benchmarking Open-Ended Vulnerability Discovery in Windows Kernel Binaries",
+   "url": "https://arxiv.org/abs/2611.33486",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-24T22:07:13+00:00",
+   "topics": [
+    "Vulnerability research",
+    "Reverse engineering",
+    "Exploits"
+   ],
+   "relevance": 8,
+   "summary": "The authors introduce DeepBinary, a benchmark that asks AI agents to find vulnerabilities in closed-source Windows kernel binaries using a disassembler and kernel debugger inside isolated VMs. Each reported bug must come with a crashing proof of concept, which is replayed on fresh VMs and scored by an LLM judge for validity, uniqueness and estimated bounty value. Across 12 binaries, the evaluated models found over 200 vulnerabilities, including 146 previously unknown, with differences in how well they sustained long analysis.",
+   "takeaway": "Validating every AI-reported bug by replaying its crashing proof of concept on a clean system is a practical way to separate real findings from plausible-sounding noise."
+  },
+  {
+   "id": "4dddd1096949eac0",
+   "title": "Dynamic Reasoning in Next-Gen Detection and Response: An Empirical Study of LLM Triage, Reinforcement Tuning, and Adversarial Evasion",
+   "url": "https://arxiv.org/abs/2611.33470",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-24T21:48:03+00:00",
+   "topics": [
+    "SOC",
+    "Blue team",
+    "AI and ML"
+   ],
+   "relevance": 8,
+   "summary": "The study tests static classifiers, graph-based fusion and LLM triage agents under a fixed analyst alert budget across 56 experiments on several public datasets. It finds that letting an LLM auto-close alerts removes 90% of false positives but silently discards 31 to 44% of true attacks, and that GRPO-style post-training can reward-hack and suppress up to 86% of novel attacks. Against an adaptive adversary, LLM triage evasion only stays controlled when a deterministic policy gate runs before the model is invoked.",
+   "takeaway": "Never let an LLM close alerts on its own; put a deterministic policy gate in front of it so that suspicious cases cannot be silently discarded."
+  },
+  {
+   "id": "59d18ef749caf6c9",
+   "title": "Attack Policy Selection can Mislead Monitor Evaluators",
+   "url": "https://arxiv.org/abs/2611.34934",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-25T18:59:28+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The authors evaluate an ex-production OpenAI monitor and find that its measured false negative rate swings widely depending on how the attack transcripts were generated. Reinforcement learning attacks ranged from 0.5% to 20.8% across optimisation levels, and across methods the rate ranged from 6.4% to 23.0%. Because the attacks were developed against proxy monitors and transferred to a held-out target, the authors argue that a weak attack suite can give false confidence in a monitor.",
+   "takeaway": "A monitor's evaluation score is only as meaningful as the attack policies used to produce it, so report the attack method and optimisation level alongside the result. Also check whether the attack transcripts contain artefacts, such as references to a hidden side task, that the monitor could detect for reasons unrelated to real deployment behaviour."
+  },
+  {
+   "id": "36be01f6b892cf18",
+   "title": "Agentic-Level Adversarial Purification: Revisiting Diffusion Purifiers on Native-Resolution Agentic Inputs",
+   "url": "https://arxiv.org/abs/2611.34181",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-25T11:10:06+00:00",
+   "topics": [
+    "AI and ML",
+    "Defence"
+   ],
+   "relevance": 7,
+   "summary": "The authors study whether diffusion-based adversarial purifiers work on vision-language agents that read native-resolution screenshots of multi-element pages. Resizing inputs to the diffusion model's fixed resolution, as existing purifiers do, badly damages clean accuracy on TextVQA, but purifiers run at native resolution keep about 85% robust accuracy against web-hardened perturbations on web-shop pages. The robustness comes from the global noise level rather than the input-estimated masks, and the findings hold on held-out data and a second VLM.",
+   "takeaway": "A defence evaluated on classifier benchmarks can fail silently on real agent inputs, so match the input resolution and the clean-cost budget when comparing defences. Check whether a defence's benefit comes from the component you think it does, since here the global noise level did the work."
+  }
+ ]
+}
