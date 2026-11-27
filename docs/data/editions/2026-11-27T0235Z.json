@@ -1,0 +1,51 @@
+{
+ "published": "2026-11-27T02:35:21+00:00",
+ "items": [
+  {
+   "id": "c90513705f0ee5fd",
+   "title": "Reading Fine-Tuning Diffs Through Lenses: Model Diffing for Backdoor Detection",
+   "url": "https://arxiv.org/abs/2611.34758",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-25T17:28:59+00:00",
+   "topics": [
+    "AI and ML",
+    "Blue team"
+   ],
+   "relevance": 7,
+   "summary": "The paper compares weight-based, activation-based and output-based model diffing methods for detecting backdoors introduced by fine-tuning, using a shared token-readout scoring system. The authors propose the J and J++ lenses, and find that decoding the weight difference through the J++ lens of the base model is the strongest single method, ranking the backdoor token in the top ten in 11 of 12 settings.",
+   "takeaway": "No single backdoor detector is robust to every evasion, so defenders should combine detection methods that look at different parts of the model, such as weights and activations, since each can be defeated by a different adaptive attack."
+  },
+  {
+   "id": "7cc653be901297f7",
+   "title": "BridgeHammer: DNN Backdoor Attack via CPU-iGPU Shared-memory Rowhammer",
+   "url": "https://arxiv.org/abs/2611.34684",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-25T16:45:59+00:00",
+   "topics": [
+    "Exploits",
+    "Vulnerability research",
+    "AI and ML"
+   ],
+   "relevance": 7,
+   "summary": "BridgeHammer is a Rowhammer-based backdoor attack that exploits shared physical memory between CPUs and integrated GPUs on heterogeneous SoCs. The attacker places targeted model weights in vulnerable DRAM rows before the iGPU binds the memory zero-copy, then induces bit flips before inference. Tested on Intel CPU-iGPU hardware with OpenVINO, the attack achieved an average 88.9% attack success rate while keeping about 86.3% clean accuracy across ResNet, VGG and precision configurations.",
+   "takeaway": "Memory integrity is a model security boundary: when accelerators share DRAM with the CPU, a software-only process can corrupt model weights, so integrity protections need to span both computing domains."
+  },
+  {
+   "id": "ba37651d6e3eceb0",
+   "title": "Beyond the Efficiency-Efficacy Dilemma: A Critical Analysis of Transferability in Adversarial Malware Detection",
+   "url": "https://arxiv.org/abs/2611.33243",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-24T14:53:35+00:00",
+   "topics": [
+    "AI and ML",
+    "Red team"
+   ],
+   "relevance": 6,
+   "summary": "The authors introduce the Adversarial AI Engine, a platform for automated stress-testing of ML malware detectors. They run transfer attacks using EMBER2018 samples against a Random Forest target and report that single-step FGSM achieved a higher attack success rate (52.9%) than iterative PGD (45.2%). They argue that iterative attacks overfit the surrogate model and produce brittle perturbations, while FGSM generalises better.",
+   "takeaway": "An attack that looks weaker on the surrogate model can transfer better to an unseen target, so evaluate adversarial robustness against the real target's behaviour rather than surrogate success alone."
+  }
+ ]
+}
