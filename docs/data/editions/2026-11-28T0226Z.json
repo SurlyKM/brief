@@ -1,0 +1,36 @@
+{
+ "published": "2026-11-28T02:26:17+00:00",
+ "items": [
+  {
+   "id": "263fdd86000620ee",
+   "title": "C3H: Compression-to-Consensus Criteria Hijacking in Multimodal LLM Recommender Systems",
+   "url": "https://arxiv.org/abs/2611.32780",
+   "source": "arXiv cs.CR",
+   "kind": "paper",
+   "published": "2026-11-24T15:10:20+00:00",
+   "topics": [
+    "AI and ML",
+    "Exploits",
+    "Vulnerability research"
+   ],
+   "relevance": 6,
+   "summary": "The paper argues that the compression and cross-modal consensus steps meant to make multimodal LLM recommenders robust can instead create a bias that favours items with consistently salient signals. The authors present C3H, an inference-time attack that tailors a target item's multimodal content to the criteria the recommender implicitly applies, boosting its exposure while keeping overall utility high. No training-time poisoning or noisy perturbations are needed, and code is published.",
+   "takeaway": "A defensive mechanism can become an attack surface when its selection criteria are predictable. Adversaries who learn what a model rewards can craft inputs that satisfy those criteria without any obvious anomaly."
+  },
+  {
+   "id": "1edb70c33065ff2a",
+   "title": "How Much Do Coding Agents Over-Edit, and Why? An Empirical Study of Unneeded Edits in Repository-Level Agent Patches",
+   "url": "https://arxiv.org/abs/2611.34875",
+   "source": "arXiv cs.AI",
+   "kind": "paper",
+   "published": "2026-11-25T18:37:06+00:00",
+   "topics": [
+    "AI and ML",
+    "Programming"
+   ],
+   "relevance": 5,
+   "summary": "The authors introduce Delta Residue Attribution, which traces each block of an agent's patch to the step that wrote it, reverts it, and reruns tests to decide whether it was needed. Across 7,660 trajectories, agent patches are larger than developers' but their code is about as necessary, with extra edits mostly tests and documentation on SWE-bench Verified. Around 11% of agent code units remain unneeded, and pruning with visible tests removes many but also some necessary code.",
+   "takeaway": "Patch size alone is a poor measure of over-editing; measure whether each change is needed. Prune with care, because a test suite that is too narrow will remove code that is actually required."
+  }
+ ]
+}
